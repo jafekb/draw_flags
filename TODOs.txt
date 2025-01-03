@@ -1,0 +1,4 @@
+1. Finish the app
+2. Figure out image similarity methods
+3. Find more flags
+4. Add a painter?
