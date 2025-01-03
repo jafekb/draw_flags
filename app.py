@@ -5,11 +5,10 @@ resembles it. Using ARTIFICIAL INTELLIGENCE.
 from flask import Flask, render_template, request
 import werkzeug
 import os
-
-import cv2
-import numpy as np
+from PIL import Image
 
 from src.flag_searcher import FlagSearcher
+from src import utils
 
 
 app = Flask(__name__)
@@ -20,7 +19,7 @@ FLAG_SEARCHER = FlagSearcher(
 )
 
 # Path to upload directory where your uploaded files will be stored
-UPLOAD_FOLDER = '/home/bjafek/personal/draw_flags/tmp'
+UPLOAD_FOLDER = '/home/bjafek/personal/draw_flags/static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
@@ -35,15 +34,16 @@ def process():
     that will be called.
     """
     out_name = upload_file()
-    recognize_image(out_name)
+    topk_similar, topk_scores = recognize_image(out_name)
+    return render_template('index.html', user_image=os.path.basename(out_name))
+
 
 def recognize_image(out_name):
     """
     After the image has been selected, recognize it.
     """
-    img = cv2.imread(out_name)
-    topk_similar = FLAG_SEARCHER.recognize(img)
-    import pdb; pdb.set_trace()
+    img = Image.open(out_name)
+    return FLAG_SEARCHER.recognize(img)
     
 def upload_file():
     # Check if a file was posted
@@ -57,18 +57,15 @@ def upload_file():
     if file.filename == '':
         return "No selected file", 400
 
-    if file and allowed_file(file.filename):
+    if file and utils.allowed_file(file.filename):
         filename = werkzeug.utils.secure_filename(file.filename)
         out_name = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print (out_name)
         file.save(out_name)
         return out_name
 
     return "Filetype not supported", 400  
 
-def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-    return '.' in filename and \
-            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 if __name__ == '__main__':
     app.run(debug=True)
