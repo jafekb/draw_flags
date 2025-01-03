@@ -17,7 +17,7 @@ class Flags(BaseModel):
 
 
 app = FastAPI(debug=True)
-flag_searcher = FlagSearcher()
+flag_searcher = FlagSearcher(top_k=4)
 
 origins = [
     "http://localhost:5173",
@@ -47,8 +47,9 @@ def add_fruit(flag: Flag):
     if flag.name.startswith("flag"):
         flag.name = flag.name.lstrip("flag")
         flag.name = flag.name.lstrip(": ")
-        flag_names = flag_searcher.query(flag.name)
-        memory_db["flags"] = flag_names
+        images, labels, scores = flag_searcher.query(flag.name)
+        memory_db["flags"] = labels
+        print (labels, scores)
         return
 
     if flag.name == "delete":

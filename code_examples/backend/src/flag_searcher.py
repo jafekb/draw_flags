@@ -76,7 +76,7 @@ class FlagSearcher:
         print (f"Images encoded ({time.time() - start:.2f}s)!")
 
 
-    def recognize(self, img : np.ndarray):
+    def query(self, img : np.ndarray):
         """
         Run the recognizer, comparing to all the existing stuff.
 
