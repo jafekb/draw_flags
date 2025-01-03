@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        .container {
+            display: flex;
+        }
+        .left {
+            flex: 50%;
+        }
+        .right {
+            flex: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .right img {
+            width: 50%;
+            height: auto;
+        }
+    </style>
+</head>
 <body>
     <form action = "/process" method = "POST" enctype = "multipart/form-data">
         <input type = "file" name = "file" />
         <input type = "submit"/>
     </form>   
-    <img src="{{ url_for('static', filename=user_image) }}" alt="Query flag">
+    <div class="container">
+        <div class="left">
+            <!-- First Image -->
+            <img src="{{ url_for('static', filename=user_image) }}" alt="Query image">
+        </div>
+        <div class="right">
+            {% for svg in similar_flag_images %}
+                {{ svg | safe }}
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

@@ -34,8 +34,14 @@ def process():
     that will be called.
     """
     out_name = upload_file()
-    topk_similar, topk_scores = recognize_image(out_name)
-    return render_template('index.html', user_image=os.path.basename(out_name))
+    topk_images, topk_labels, topk_scores = recognize_image(out_name)
+    user_image = os.path.basename(out_name)
+    # TODO(bjafek)
+    return render_template(
+        'index.html',
+        user_image=user_image,
+        similar_flag_images=topk_images,
+    )
 
 
 def recognize_image(out_name):

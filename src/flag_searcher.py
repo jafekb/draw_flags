@@ -79,11 +79,16 @@ class FlagSearcher:
     def recognize(self, img : np.ndarray):
         """
         Run the recognizer, comparing to all the existing stuff.
+
+        Returns:
+            List of SVG images
+            List of labels
+            List of scores
         """
         new_embedding = self._model.encode([img])
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
         top_k_indices = similarity_scores.argsort()[0][::-1][:self._top_k]
-        return (
-            [self._label_list[ind] for ind in top_k_indices],
-            similarity_scores.ravel()[top_k_indices].tolist(),
-        )
+        labels = [self._label_list[ind] for ind in top_k_indices]
+        images = [of.get_flag_svg(*lab.split("/")) for lab in labels]
+        scores = similarity_scores.ravel()[top_k_indices].tolist()
+        return (images, labels, scores)
