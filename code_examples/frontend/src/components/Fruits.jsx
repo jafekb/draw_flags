@@ -32,7 +32,7 @@ const FruitList = () => {
       <h2>Describe the flag using words or a picture</h2>
       <ul>
         {fruits.map((fruit, index) => (
-          <li key={index}>{fruit.name}</li>
+          <li key={index}>yo: {fruit.name}</li>
         ))}
       </ul>
       <SubmitDescriptionForm addFruit={addFruit} />

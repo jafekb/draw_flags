@@ -4,16 +4,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 
+from src.flag_searcher import FlagSearcher
 
-class Fruit(BaseModel):
+
+class Flag(BaseModel):
     name: str
+    wikipedia_link: str = "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
 
 
-class Fruits(BaseModel):
-    fruits: List[Fruit]
+class Flags(BaseModel):
+    fruits: List[Flag]
 
 
 app = FastAPI(debug=True)
+flag_searcher = FlagSearcher()
 
 origins = [
     "http://localhost:5173",
@@ -28,23 +32,33 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-memory_db = {"fruits": []}
+memory_db = {
+    "list_of_fruits": [],
+    "flags": [],
+}
 
-@app.get("/fruits", response_model=Fruits)
+@app.get("/fruits", response_model=Flags)
 def get_fruits():
-    return Fruits(fruits=memory_db["fruits"])
+    return Flags(fruits=memory_db["list_of_fruits"])
 
 
 @app.post("/fruits")
-def add_fruit(fruit: Fruit):
-    if fruit.name == "delete":
-        memory_db["fruits"] = memory_db["fruits"][:-1]
-        return fruit
-    elif fruit.name in [i.name for i in memory_db["fruits"]]:
+def add_fruit(flag: Flag):
+    if flag.name.startswith("flag"):
+        flag.name = flag.name.lstrip("flag")
+        flag.name = flag.name.lstrip(": ")
+        flag_names = flag_searcher.query(flag.name)
+        memory_db["flags"] = flag_names
+        return
+
+    if flag.name == "delete":
+        memory_db["list_of_fruits"] = memory_db["list_of_fruits"][:-1]
+    elif flag.name in [i.name for i in memory_db["list_of_fruits"]]:
         print ("It's already there!")
     else:
-        memory_db["fruits"].append(fruit)
-    return fruit
+        memory_db["list_of_fruits"].append(flag)
+
+    return None
 
 
 if __name__ == "__main__":
