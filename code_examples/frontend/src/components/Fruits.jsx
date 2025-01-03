@@ -8,7 +8,7 @@ const FruitList = () => {
   const fetchFruits = async () => {
     try {
       const response = await api.get('/fruits');
-      setFruits(response.data.fruits);
+      setFruits(response.data.flags);
     } catch (error) {
       console.error("Error fetching fruits", error);
     }
