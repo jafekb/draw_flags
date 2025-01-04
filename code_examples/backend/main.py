@@ -40,13 +40,14 @@ def add_fruit(flag: Flag):
         # TODO(bjafek) Only do this part if it is so indicated
         flag.name = flag.name.lstrip("flag")
         flag.name = flag.name.lstrip(": ")
-        # images, labels, scores = flag_searcher.query(flag.name)
-        labels = [
+        # flags = flag_searcher.query(flag.name)
+        flags = Flags(flags=[
             Flag(name="usa/usa"),
             Flag(name="usa/alabama"),
             Flag(name="usa/california"),
-        ]
-        memory_db["flags"] = labels
+        ])
+        # TODO(bjafek) can I return just "flags"?
+        memory_db["flags"] = flags.flags
 
     # But always log the query.
     if flag.name == "delete":

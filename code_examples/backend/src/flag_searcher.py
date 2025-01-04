@@ -19,6 +19,8 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
+from src.utils import Flag, Flags
+
 TMP_DIR = Path("/home/bjafek/personal/draw_flags/tmp")
 TMP_DIR.mkdir(exist_ok=True, parents=False)
 
@@ -76,7 +78,7 @@ class FlagSearcher:
         print (f"Images encoded ({time.time() - start:.2f}s)!")
 
 
-    def query(self, img : np.ndarray):
+    def query(self, img : np.ndarray) -> Flags:
         """
         Run the recognizer, comparing to all the existing stuff.
 
@@ -88,10 +90,20 @@ class FlagSearcher:
         new_embedding = self._model.encode([img])
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
         top_k_indices = similarity_scores.argsort()[0][::-1][:self._top_k]
-        labels = [self._label_list[ind] for ind in top_k_indices]
-        images = [of.get_flag_svg(*lab.split("/")) for lab in labels]
-        scores = similarity_scores.ravel()[top_k_indices].tolist()
-        return (images, labels, scores)
+        sorted_scores = similarity_scores.ravel()[top_k_indices]
+
+        # labels = [self._label_list[ind] for ind in top_k_indices]
+        # images = [of.get_flag_svg(*lab.split("/")) for lab in labels]
+
+        flags = []
+        for (ind, score) in zip(top_k_indices, sorted_scores):
+            flag = Flag(
+                name=self._label_list[ind],
+                score=score,
+            )
+            flags.append(flag)
+
+        return Flags(flags=flags)
 
 
 if __name__ == "__main__":
