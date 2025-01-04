@@ -25,7 +25,7 @@ app.add_middleware(
 )
 
 memory_db = {
-    "list_of_queries": [],
+    "most_recent_query": "",
     "flags": Flags(flags=[]),
 }
 
@@ -36,25 +36,19 @@ def get_flags():
 
 @app.post("/flags")
 def add_flag(flag: Flag):
-    if flag.name.startswith("flag"):
-        # TODO(bjafek) Only do this part if it is so indicated
-        flag.name = flag.name.lstrip("flag")
-        flag.name = flag.name.lstrip(": ")
-        # flags = flag_searcher.query(flag.name)
-        flags = Flags(flags=[
-            Flag(name="usa/usa"),
-            Flag(name="usa/alabama"),
-            Flag(name="usa/california"),
-        ])
-        memory_db["flags"] = flags
+    # flags = flag_searcher.query(flag.name)
+    flags = Flags(flags=[
+        Flag(name="usa/usa"),
+        Flag(name="usa/alabama"),
+        Flag(name="usa/california"),
+    ])
+    memory_db["flags"] = flags
 
     # But always log the query.
     if flag.name == "delete":
-        memory_db["list_of_queries"] = memory_db["list_of_queries"][:-1]
-    elif flag.name in [i.name for i in memory_db["list_of_queries"]]:
-        print ("It's already there!")
+        memory_db["most_recent_query"] = ""
     else:
-        memory_db["list_of_queries"].append(flag)
+        memory_db["most_recent_query"] = flag
 
     return None
 
