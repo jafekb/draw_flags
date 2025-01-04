@@ -31,7 +31,7 @@ memory_db = {
 
 @app.get("/flags", response_model=Flags)
 def get_flags():
-    return Flags(flags=memory_db["list_of_queries"])
+    return memory_db["flags"]
 
 
 @app.post("/flags")
@@ -46,8 +46,7 @@ def add_flag(flag: Flag):
             Flag(name="usa/alabama"),
             Flag(name="usa/california"),
         ])
-        # TODO(bjafek) can I return just "flags"?
-        memory_db["flags"] = flags.flags
+        memory_db["flags"] = flags
 
     # But always log the query.
     if flag.name == "delete":

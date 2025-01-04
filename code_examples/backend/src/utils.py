@@ -10,7 +10,7 @@ class Flag(BaseModel):
     Stuff for a single flag - image & metadata
     """
     name: str
-    # wikipedia_link: str = ""
+    wikipedia_link: str = "wiki"
     # image_link: str = ""
     # TODO(bjafek) is this a part of the flag?
     # score: float = 0.

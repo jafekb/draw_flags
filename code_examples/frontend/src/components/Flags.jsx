@@ -32,7 +32,7 @@ const FlagList = () => {
       <h2>Describe the flag using words or a picture</h2>
       <ul>
         {flags.map((flag, index) => (
-          <li key={index}>yo: {flag.name}</li>
+          <li key={index}>yo: {flag.name}, {flag.wikipedia_link}</li>
         ))}
       </ul>
       <SubmitDescriptionForm addFlag={addFlag} />
