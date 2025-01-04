@@ -30,12 +30,12 @@ memory_db = {
 }
 
 @app.get("/flags", response_model=Flags)
-def get_fruits():
+def get_flags():
     return Flags(flags=memory_db["list_of_queries"])
 
 
 @app.post("/flags")
-def add_fruit(flag: Flag):
+def add_flag(flag: Flag):
     if flag.name.startswith("flag"):
         # TODO(bjafek) Only do this part if it is so indicated
         flag.name = flag.name.lstrip("flag")
