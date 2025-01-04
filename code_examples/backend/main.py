@@ -26,7 +26,7 @@ app.add_middleware(
 
 memory_db = {
     "list_of_queries": [],
-    "flags": [],
+    "flags": Flags(flags=[]),
 }
 
 @app.get("/flags", response_model=Flags)
