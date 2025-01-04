@@ -4,20 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 
-from src.flag_searcher import FlagSearcher
-
-
-class Flag(BaseModel):
-    name: str
-    wikipedia_link: str = "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
-
-
-class Flags(BaseModel):
-    fruits: List[Flag]
+# from src.flag_searcher import FlagSearcher
+from src.utils import Flag, Flags
 
 
 app = FastAPI(debug=True)
-flag_searcher = FlagSearcher(top_k=4)
+# flag_searcher = FlagSearcher(top_k=4)
 
 origins = [
     "http://localhost:5173",
@@ -33,31 +25,36 @@ app.add_middleware(
 )
 
 memory_db = {
-    "list_of_fruits": [],
+    "list_of_queries": [],
     "flags": [],
 }
 
-@app.get("/fruits", response_model=Flags)
+@app.get("/flags", response_model=Flags)
 def get_fruits():
-    return Flags(fruits=memory_db["list_of_fruits"])
+    return Flags(flags=memory_db["list_of_queries"])
 
 
-@app.post("/fruits")
+@app.post("/flags")
 def add_fruit(flag: Flag):
     if flag.name.startswith("flag"):
+        # TODO(bjafek) Only do this part if it is so indicated
         flag.name = flag.name.lstrip("flag")
         flag.name = flag.name.lstrip(": ")
-        images, labels, scores = flag_searcher.query(flag.name)
+        # images, labels, scores = flag_searcher.query(flag.name)
+        labels = [
+            Flag(name="usa/usa"),
+            Flag(name="usa/alabama"),
+            Flag(name="usa/california"),
+        ]
         memory_db["flags"] = labels
-        print (labels, scores)
-        return
 
+    # But always log the query.
     if flag.name == "delete":
-        memory_db["list_of_fruits"] = memory_db["list_of_fruits"][:-1]
-    elif flag.name in [i.name for i in memory_db["list_of_fruits"]]:
+        memory_db["list_of_queries"] = memory_db["list_of_queries"][:-1]
+    elif flag.name in [i.name for i in memory_db["list_of_queries"]]:
         print ("It's already there!")
     else:
-        memory_db["list_of_fruits"].append(flag)
+        memory_db["list_of_queries"].append(flag)
 
     return None
 

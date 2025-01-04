@@ -1,0 +1,33 @@
+"""
+Utils file for the FlagSearcher & backend.
+"""
+from pydantic import BaseModel
+from typing import List
+
+
+class Flag(BaseModel):
+    """
+    Stuff for a single flag - image & metadata
+    """
+    name: str
+    # wikipedia_link: str = ""
+    # image_link: str = ""
+    # TODO(bjafek) is this a part of the flag?
+    # score: float = 0.
+
+
+class Flags(BaseModel):
+    """
+    Just a bunch of flags
+    """
+    flags: List[Flag]
+
+
+def get_wikipedia_link(name):
+    # TODO(bjafek) shouldn't just be the USA flag every time
+    return "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
+
+
+def get_image_link(name):
+    # TODO(bjafek) shouldn't just be the USA flag every time
+    return "/home/bjafek/personal/draw_flags/flag_ims/usa/usa.png"

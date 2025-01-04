@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-const SubmitDescriptionForm = ({ addFruit }) => {
-  const [fruitName, setFruitName] = useState('');
+const SubmitDescriptionForm = ({ addFlag }) => {
+  const [flagName, setFlagName] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (fruitName) {
-      addFruit(fruitName);
-      setFruitName('');
+    if (flagName) {
+      addFlag(flagName);
+      setFlagName('');
     }
   };
 
@@ -15,8 +15,8 @@ const SubmitDescriptionForm = ({ addFruit }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={fruitName}
-        onChange={(e) => setFruitName(e.target.value)}
+        value={flagName}
+        onChange={(e) => setFlagName(e.target.value)}
         placeholder="Describe it"
       />
       <button type="submit">Submit</button>

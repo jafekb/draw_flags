@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import FruitList from './components/Fruits';
+import FlagList from './components/Flags';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
         <h1>What's that flag?</h1>
       </header>
       <main>
-        <FruitList />
+        <FlagList />
       </main>
     </div>
   );
