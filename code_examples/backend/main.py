@@ -36,7 +36,7 @@ def get_flags():
 
 @app.post("/flags")
 def add_flag(flag: Flag):
-    if flag.name == "delete":
+    if flag.name in ("delete", "clear"):
         memory_db["most_recent_query"] = ""
         memory_db["flags"] = Flags(flags=[])
         return
