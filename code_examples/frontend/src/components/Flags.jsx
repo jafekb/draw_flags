@@ -11,7 +11,6 @@ const FlagList = () => {
   const fetchFlags = async () => {
     try {
       const response = await api.get('/flags');
-      console.log("textflagsresponse", response);
       // clear the image one when you ask for the text one
       setImageFlags([]);
       setTextFlags(response.data.flags);
@@ -23,7 +22,6 @@ const FlagList = () => {
   const fetchImageFlags = async () => {
     try {
       const response = await api.get('/upload_image');
-      console.log("imageflagsresponse", response.data);
       // clear the text one when you ask for the image one
       setTextFlags([]);
       setImageFlags(response.data.flags);
@@ -55,14 +53,9 @@ const FlagList = () => {
     fetchImageFlags();
   }, []);
 
-  console.log("text flags", flags);
-  console.log("image flags", image_flags);
-
-
   // TODO(bjafek) this if statement is clumsy.
   // TODO(bjafek) don't know how to clear the image_flags one
   if (flags.length === 0 && image_flags.length === 0) {
-      console.log("both empty");
       return (
         <div>
           <h2>Describe the flag using words or a picture</h2>
@@ -71,7 +64,6 @@ const FlagList = () => {
         </div>
       );
   } else if (image_flags.length === 0) {
-      console.log("just have flags");
       return (
         <div>
           <h2>Describe the flag using words or a picture</h2>
@@ -81,7 +73,6 @@ const FlagList = () => {
         </div>
       );
   } else if (flags.length === 0) {
-      console.log("just have image flags");
       return (
         <div>
           <h2>Describe the flag using words or a picture</h2>

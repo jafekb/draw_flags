@@ -9,7 +9,7 @@ from src.utils import Flag, Flags, Image
 
 
 app = FastAPI(debug=True)
-flag_searcher = FlagSearcher(top_k=4)
+flag_searcher = FlagSearcher(top_k=8)
 
 origins = [
     "http://localhost:5173",
