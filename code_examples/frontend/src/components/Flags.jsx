@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from "../api.js";
 import ImageGrid from "./ImageGrid";
 import SubmitDescriptionForm from './SubmitDescriptionForm';
+import ImageUploader from './ImageUploader';
 
 const FlagList = () => {
   const [flags, setFlags] = useState([]);
