@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import FlagList from './components/Flags';
-import ImageGrid from './components/ImageGrid';
 
 const App = () => {
   return (

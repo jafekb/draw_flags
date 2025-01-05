@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from typing import List
 
 from src.flag_searcher import FlagSearcher
-from src.utils import Flag, Flags
+from src.utils import Flag, Flags, Image
 
 
 app = FastAPI(debug=True)
@@ -26,32 +26,64 @@ app.add_middleware(
 
 memory_db = {
     "most_recent_query": "",
-    "flags": Flags(flags=[]),
+    "text_flags": Flags(flags=[]),
+    "image_flags": Flags(flags=[]),
 }
 
 @app.get("/flags", response_model=Flags)
 def get_flags():
-    return memory_db["flags"]
+    return memory_db["text_flags"]
 
 
+# TODO(bjafek) this isn't adding a flag, it's querying based on text
 @app.post("/flags")
 def add_flag(flag: Flag):
     if flag.name in ("delete", "clear"):
         memory_db["most_recent_query"] = ""
-        memory_db["flags"] = Flags(flags=[])
+        memory_db["text_flags"] = Flags(flags=[])
         return
 
-    flags = flag_searcher.query(flag.name)
+    if memory_db["text_flags"]:
+        memory_db["text_flags"] = Flags(flags=[])
+
+    flags = flag_searcher.query(flag.name, is_image=False)
     # flags = Flags(flags=[
         # Flag(name="usa/usa"),
         # Flag(name="usa/alabama"),
         # Flag(name="usa/california"),
     # ])
-    memory_db["flags"] = flags
+    memory_db["text_flags"] = flags
 
     # But always log the query.
     memory_db["most_recent_query"] = flag
 
+    return None
+
+
+@app.get("/upload_image", response_model=Flags)
+def get_image_flags():
+    print (memory_db["image_flags"])
+    return memory_db["image_flags"]
+
+
+@app.post("/upload_image")
+def get_uploaded_image(img: Image):
+    """
+    TODO(bjafek) describe
+    """
+    # TODO(bjafek) how to actually pass the image instead
+    #  of this incomplete filename?
+    fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
+    if memory_db["image_flags"]:
+        memory_db["image_flags"] = Flags(flags=[])
+    flags = flag_searcher.query(img, is_image=True)
+    # flags = Flags(flags=[
+        # Flag(name="canada/canada", score=1.0),
+        # Flag(name="canada/alberta"),
+        # Flag(name="canada/manitoba"),
+    # ])
+
+    memory_db["image_flags"] = flags
     return None
 
 

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
-const ImageUploader = () => {
+const ImageUploader = ({ addImageUpload }) => {
     const [image, setImage] = useState(null);
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
+    const handleImageChange = (event) => {
+        event.preventDefault();
+
+        const file = event.target.files[0];
         if (file) {
             const imageURL = URL.createObjectURL(file);
+            // TODO(bjafek) figure out how to pass something better than
+            //  this incomplete name
+            addImageUpload(file.name);
             setImage(imageURL);
         }
     };

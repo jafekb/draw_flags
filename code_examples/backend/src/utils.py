@@ -21,6 +21,11 @@ class Flags(BaseModel):
     """
     flags: List[Flag]
 
+class Image(BaseModel):
+    """
+    """
+    data: str
+
 
 def get_wikipedia_link(name):
     # TODO(bjafek) shouldn't just be the USA flag every time

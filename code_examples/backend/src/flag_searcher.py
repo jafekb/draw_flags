@@ -77,22 +77,27 @@ class FlagSearcher:
         print (f"Images encoded ({time.time() - start:.2f}s)!")
 
 
-    def query(self, img : np.ndarray) -> Flags:
+    def query(self, img, is_image) -> Flags:
         """
         Run the recognizer, comparing to all the existing stuff.
 
+        Arguments:
+            img:
+            is_image (bool): TODO(bjafek) this currently handles both text
+                and image querying.
+
         Returns:
-            List of SVG images
-            List of labels
-            List of scores
+            Flags
         """
+        if is_image:
+            # TODO(bjafek) again, this should be a usable format when it
+            #  gets passed, instead of this junk.
+            fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
+            img = Image.open(fn)
         new_embedding = self._model.encode([img])
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
         top_k_indices = similarity_scores.argsort()[0][::-1][:self._top_k]
         sorted_scores = similarity_scores.ravel()[top_k_indices]
-
-        # labels = [self._label_list[ind] for ind in top_k_indices]
-        # images = [of.get_flag_svg(*lab.split("/")) for lab in labels]
 
         flags = []
         for (ind, score) in zip(top_k_indices, sorted_scores):
@@ -103,12 +108,3 @@ class FlagSearcher:
             flags.append(flag)
 
         return Flags(flags=flags)
-
-
-if __name__ == "__main__":
-    fs = FlagSearcher(top_k=3)
-    # query_fn = "/home/bjafek/personal/draw_flags/examples/usa_pole.jpg"
-    # query_img = Image.open(query_fn)
-    query_img = "union jack in the top left on a field of red with an icon"
-    out = fs.recognize(query_img)
-    import pdb; pdb.set_trace()
