@@ -41,7 +41,6 @@ def load_all_flag_info():
                 img = cairosvg.svg2png(svg, write_to=str(file_path))
             except Exception as e:
                 print (key, "failed!")
-                # import pdb; pdb.set_trace()
                 continue
         
         # TODO(bjafek) I don't totally understand the format that the model encode expects

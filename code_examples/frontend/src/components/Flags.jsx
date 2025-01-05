@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from "../api.js";
+import ImageGrid from "./ImageGrid";
 import SubmitDescriptionForm from './SubmitDescriptionForm';
 
 const FlagList = () => {
@@ -27,15 +28,21 @@ const FlagList = () => {
     fetchFlags();
   }, []);
 
+  if (flags.length === 0) {
+      return (
+        <div>
+          <h2>Describe the flag using words or a picture</h2>
+          <SubmitDescriptionForm addFlag={addFlag} />
+        </div>
+      );
+  }
+
+  // TODO(bjafek) do this if-statement less clumsily
   return (
     <div>
       <h2>Describe the flag using words or a picture</h2>
-      <ul>
-        {flags.map((flag, index) => (
-          <li key={index}>yo: {flag.name}, {flag.wikipedia_link}</li>
-        ))}
-      </ul>
       <SubmitDescriptionForm addFlag={addFlag} />
+      <ImageGrid images={flags} title="I bet it's..."/>
     </div>
   );
 };

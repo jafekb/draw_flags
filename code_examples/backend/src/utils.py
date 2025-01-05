@@ -11,9 +11,8 @@ class Flag(BaseModel):
     """
     name: str
     wikipedia_link: str = "wiki"
-    # image_link: str = ""
-    # TODO(bjafek) is this a part of the flag?
-    # score: float = 0.
+    image_link: str = ""
+    score: float = 0.
 
 
 class Flags(BaseModel):

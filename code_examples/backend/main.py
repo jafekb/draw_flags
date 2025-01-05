@@ -4,12 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 
-# from src.flag_searcher import FlagSearcher
+from src.flag_searcher import FlagSearcher
 from src.utils import Flag, Flags
 
 
 app = FastAPI(debug=True)
-# flag_searcher = FlagSearcher(top_k=4)
+flag_searcher = FlagSearcher(top_k=4)
 
 origins = [
     "http://localhost:5173",
@@ -36,19 +36,21 @@ def get_flags():
 
 @app.post("/flags")
 def add_flag(flag: Flag):
-    # flags = flag_searcher.query(flag.name)
-    flags = Flags(flags=[
-        Flag(name="usa/usa"),
-        Flag(name="usa/alabama"),
-        Flag(name="usa/california"),
-    ])
+    if flag.name == "delete":
+        memory_db["most_recent_query"] = ""
+        memory_db["flags"] = Flags(flags=[])
+        return
+
+    flags = flag_searcher.query(flag.name)
+    # flags = Flags(flags=[
+        # Flag(name="usa/usa"),
+        # Flag(name="usa/alabama"),
+        # Flag(name="usa/california"),
+    # ])
     memory_db["flags"] = flags
 
     # But always log the query.
-    if flag.name == "delete":
-        memory_db["most_recent_query"] = ""
-    else:
-        memory_db["most_recent_query"] = flag
+    memory_db["most_recent_query"] = flag
 
     return None
 
