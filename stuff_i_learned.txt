@@ -1,0 +1,6 @@
+1. you need a frontend to make it pretty
+2. backend handles data, frontend shows the users
+3. FastAPI & React seems like the move?
+    a. quite easy to do with a knowledge of python and ChatGPT
+4. 
+https://github.com/techwithtim/FastAPI-React-Integration/blob/main/notes.md

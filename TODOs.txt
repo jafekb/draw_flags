@@ -1,4 +1,8 @@
 1. Finish the app
+    a. add image upload
 2. Figure out image similarity methods
+    a. Figure out the scoring
+    b. ???
 3. Find more flags
 4. Add a painter?
+    a. probably not
