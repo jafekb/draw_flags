@@ -8,7 +8,7 @@ const ImageGrid = ({ images, title }) => {
                 {images.map((image, index) => (
                     <div className="grid-item" key={index}>
                         <img src={"./src/components/ims/" + image.name + ".png"} alt={"./src/components/ims/" + image.name + ".png"} />
-                        <p>{image.name + ": " + image.score.toFixed(2)}</p>
+                        <p>{image.name + ": " + image.score.toFixed(3)}</p>
                     </div>
                 ))}
             </div>

@@ -18,7 +18,6 @@ const ImageUploader = ({ addImageUpload }) => {
 
     return (
         <div style={{ textAlign: "center" }}>
-            <h2>Upload an Image</h2>
             <input
                 type="file"
                 accept="image/*"

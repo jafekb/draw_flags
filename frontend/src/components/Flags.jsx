@@ -58,16 +58,18 @@ const FlagList = () => {
   if (flags.length === 0 && image_flags.length === 0) {
       return (
         <div>
-          <h2>Describe the flag using words or a picture</h2>
+          <h2>Describe the flag using words</h2>
           <SubmitDescriptionForm addFlag={addFlag} />
+          <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
         </div>
       );
   } else if (image_flags.length === 0) {
       return (
         <div>
-          <h2>Describe the flag using words or a picture</h2>
+          <h2>Describe the flag using words</h2>
           <SubmitDescriptionForm addFlag={addFlag} />
+          <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
           <ImageGrid images={flags} title="I bet it's..."/>
         </div>
@@ -75,8 +77,9 @@ const FlagList = () => {
   } else if (flags.length === 0) {
       return (
         <div>
-          <h2>Describe the flag using words or a picture</h2>
+          <h2>Describe the flag using words</h2>
           <SubmitDescriptionForm addFlag={addFlag} />
+          <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
           <ImageGrid images={image_flags} title="I bet it's..."/>
         </div>
