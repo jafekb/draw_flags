@@ -4,3 +4,8 @@
     a. quite easy to do with a knowledge of python and ChatGPT
 4. 
 https://github.com/techwithtim/FastAPI-React-Integration/blob/main/notes.md
+https://www.crwflags.com/fotw/flags/ftp.html#download
+https://flagid.org/
+    This is a worse version of what I'm building.
+https://en.wikipedia.org/wiki/Lists_of_flags
+    This looks like the best balance of "gives information about them" and "coverage"
