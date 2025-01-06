@@ -1,6 +1,11 @@
 # vim files
 *.swp
 
+# images (you can override this if absolutely necessary)
+*.png
+*.jpg
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
