@@ -21,13 +21,16 @@ import os
 import asyncio
 import aiohttp
 
+import re
+from unidecode import unidecode
+
 NUM_MAPPERS = 1
 NUM_FETCHERS = 3
 NUM_DOWNLOADERS = 10
 
 # Setup logger
 logging.basicConfig(
-    filename = "downloader.log",
+    filename = "log.log",
     level = logging.INFO,
     format = "%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s",
     datefmt = "%Y-%m-%d %H:%M:%S",
@@ -240,17 +243,18 @@ async def fetch_images(category_queue: asyncio.Queue, download_queue: asyncio.Qu
                 
                 async for image_title, image_url in get_images(title, session = session):
                     is_new_image = await seen_images.add_if_missing(image_url)
+                    # TODO(bjafek) is there ever a time when the unicode conversion won't
+                    #  be able to find the wikipedia page? I tried a few examples and it
+                    #  worked fine.
+                    image_name = unidecode(image_title.replace("File:", ""))
+                    image_path = os.path.join(dirpath, image_name)
+                    just_page = re.search(r"Flag of ([a-z\ A-Z,\.\-]*)", image_name)
+                    if just_page is not None:
+                        just_page = just_page.group(1).split(".")[0]
                 
-                    if is_new_image:
-                        image_name = image_title.replace("File:", "")
-                        image_path = os.path.join(dirpath, image_name)
-                        "Flag of Ale Yarok 1999.svg"
-                        print(image_name)
-                        print(image_title)
-                        print(image_path)
-                    
-                        await download_queue.put((image_url, image_path))
-                        
+                    # TODO(bjafek)
+                    if is_new_image and just_page:
+                        await download_queue.put((image_url, image_path, just_page))
                         total = await seen_images.size()
                         progress.update(task, total = total)
                     else:
@@ -276,7 +280,7 @@ async def spawn_image_fetchers(category_queue: asyncio.Queue, download_queue: as
     
     return image_fetchers
 
-async def download_image(image_url: str, image_path: str, *, session: aiohttp.ClientSession):
+async def download_image(image_url: str, image_path: str, just_page: str, *, session: aiohttp.ClientSession):
     """Asynchronously downloads the image from the specified URL to the specified path."""
     os.makedirs(os.path.dirname(image_path), exist_ok = True)
     
@@ -284,6 +288,21 @@ async def download_image(image_url: str, image_path: str, *, session: aiohttp.Cl
         if response.status == HTTPStatus.OK:
             with open(image_path, "wb") as file:
                 file.write(await response.read())
+
+            # TODO(bjafek) do this better.
+            data_path = image_path.replace("/Flags/", "/data/")
+            os.makedirs(os.path.dirname(data_path), exist_ok = True)
+            base = os.path.basename(image_path).split(".")[0]
+            out_name = os.path.join(os.path.dirname(data_path), f"{base}.json")
+            data = {
+                "just_page": just_page,
+                "image_url": image_url,
+                "image_path": image_path,
+                "out_name": out_name,
+            }
+            with open(out_name, "w") as f:
+                json.dump(data, f, indent=1)
+    
         else:
             logging.error("Failed to download image from %s. Status code: %d." % (image_url, response.status))
 
@@ -292,14 +311,15 @@ async def download_images(download_queue: asyncio.Queue, seen_images: AsyncSet,
                           progress: Progress, task: TaskID):
     async with aiohttp.ClientSession() as session:
         while True:
-            image_url, image_path = await download_queue.get()
+            image_url, image_path, just_page = await download_queue.get()
+            # print (image_url, image_path, just_page)
             
             # Received the stop signal from the fetcher tasks
             if image_url is None:
                 break
             
             if not os.path.exists(image_path):
-                await download_image(image_url, image_path, session = session)
+                await download_image(image_url, image_path, just_page, session = session)
             
             total = await seen_images.size()
             progress.update(task, advance = 1, total = total)
@@ -319,9 +339,8 @@ async def spawn_image_downloaders(download_queue: asyncio.Queue, seen_images: As
     return image_downloaders
 
 async def main():
-    # title = input("Enter the name of the category: ")
-    
-    categories_filepath = input("Enter the path to a text file containing the category titles, one on each line: ")
+    # TODO(bjafek) command-line flag
+    categories_filepath = "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/text_file.txt"
     
     titles = []
     
@@ -330,7 +349,8 @@ async def main():
             title = "Category:" + line.strip()
             titles.append(title)
     
-    output_path = input("Enter the path to the output directory (default: download): ")
+    # TODO(bjafek) command-line flag
+    output_path = "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output"
     
     if output_path == "":
         output_path = "download"
@@ -393,6 +413,6 @@ async def main():
         
         num_images = await seen_images.size()
         logging.info("Finished downloading %d images." % num_images)
-    
+
 if __name__ == "__main__":
     asyncio.run(main())

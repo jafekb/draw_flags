@@ -1,6 +1,6 @@
 # Wikimedia Downloader
 I copied this from: https://github.com/ryanrudes/wikimedia-downloader, thanks @ryanrudes
-(I think the license allows me to do this since I included the LICENCE file too. If I get this working I'll figure out a better way to credit him).
+(I think the license allows me to do this since I included the LICENSE file too. If I get this working I'll figure out a better way to credit him).
 
 This is a fast, asynchronous script that recursively downloads all images under the specified Wikimedia categories.
 
