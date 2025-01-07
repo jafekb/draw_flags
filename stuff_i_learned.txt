@@ -10,7 +10,11 @@ https://flagid.org/
 https://en.wikipedia.org/wiki/Lists_of_flags
     This looks like the best balance of "gives information about them" and "coverage"
 
-# Just download a bunch of stuff from wikimedia commons.
-# I now have a directory of downloads/Flags/ with ~1GB of images.
-# BUT I don't think this is the move, since I don't have any associated information with them.
+# ~Just download a bunch of stuff from wikimedia commons.~
+# ~I now have a directory of downloads/Flags/ with ~1GB of images.~
+# ~BUT I don't think this is the move, since I don't have any associated information with them.~
+# With a little bit of filtering, this turned out to be the move. I filtered for _only_ those files with very simple names (i.e., that matched "*Flag of*").
+# I am currently downloading those, and then I'll be able to get the wikipedia links for just the page part (i.e., excluding the "Flag of" part).
+# This is looking like it's going to give me (a) a lot of examples, and (b) really well-formed examples that will be possible to link to wikipedia articles.
+# This still has a few FPs/FNs, but it should be very good.
 /home/bjafek/personal/wikimedia-downloader/downloader.py
