@@ -1,8 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import List
 
 from src.flag_searcher import FlagSearcher
 from src.utils import Flag, Flags, Image
@@ -30,6 +28,7 @@ memory_db = {
     "image_flags": Flags(flags=[]),
 }
 
+
 @app.get("/flags", response_model=Flags)
 def get_flags():
     return memory_db["text_flags"]
@@ -47,11 +46,6 @@ def add_flag(flag: Flag):
         memory_db["text_flags"] = Flags(flags=[])
 
     flags = flag_searcher.query(flag.name, is_image=False)
-    # flags = Flags(flags=[
-        # Flag(name="usa/usa"),
-        # Flag(name="usa/alabama"),
-        # Flag(name="usa/california"),
-    # ])
     memory_db["text_flags"] = flags
 
     # But always log the query.
@@ -62,7 +56,7 @@ def add_flag(flag: Flag):
 
 @app.get("/upload_image", response_model=Flags)
 def get_image_flags():
-    print (memory_db["image_flags"])
+    print(memory_db["image_flags"])
     return memory_db["image_flags"]
 
 
@@ -73,15 +67,9 @@ def get_uploaded_image(img: Image):
     """
     # TODO(bjafek) how to actually pass the image instead
     #  of this incomplete filename?
-    fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
     if memory_db["image_flags"]:
         memory_db["image_flags"] = Flags(flags=[])
     flags = flag_searcher.query(img, is_image=True)
-    # flags = Flags(flags=[
-        # Flag(name="canada/canada", score=1.0),
-        # Flag(name="canada/alberta"),
-        # Flag(name="canada/manitoba"),
-    # ])
 
     memory_db["image_flags"] = flags
     return None

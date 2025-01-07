@@ -2,7 +2,6 @@ requests
 aiohttp
 rich
 cairosvg
-numpy
 open_flags
 sentence_transformers
 scikit-learn
@@ -11,3 +10,4 @@ uvicorn
 fastapi
 pydantic
 pillow
+ruff

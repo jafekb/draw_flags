@@ -5,14 +5,12 @@ other images of flags that look like it.
 Uses:
 https://docs.openflags.net/implementations/python/
 """
-import os
-import glob
+
 from pathlib import Path
 from PIL import Image
 import time
 
 import cairosvg
-import numpy as np
 import open_flags as of
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -38,10 +36,10 @@ def load_all_flag_info():
             try:
                 # https://cairosvg.org/documentation/
                 img = cairosvg.svg2png(svg, write_to=str(file_path))
-            except Exception as e:
-                print (key, "failed!")
+            except Exception:
+                print(key, "failed!")
                 continue
-        
+
         # TODO(bjafek) I don't totally understand the format that the model encode expects
         # lmao I think the reason it expects a string is because I'm using the SentenceTransformer
         # instead of an ImageTransformer
@@ -57,24 +55,26 @@ class FlagSearcher:
         self._top_k = top_k
 
         # Load the OpenAI CLIP Model
-        print('Loading CLIP Model...', end=" ")
+        print("Loading CLIP Model...", end=" ")
         start = time.time()
         # TODO(bjafek) other models?
-        self._model = SentenceTransformer('clip-ViT-B-32')
-        print (f"success ({time.time() - start:.2f}s)!")
+        self._model = SentenceTransformer("clip-ViT-B-32")
+        print(f"success ({time.time() - start:.2f}s)!")
 
-        print ("Loading & encoding images...", end=" ")
+        print("Loading & encoding images...", end=" ")
         start = time.time()
         self._image_list, self._label_list = load_all_flag_info()
-        print (f"Images loaded ({time.time() - start:.2f}s)!")
+        print(f"Images loaded ({time.time() - start:.2f}s)!")
 
         start = time.time()
         # TODO(bjafek) just store the embeddings
         self._encoded_images = self._model.encode(
-            self._image_list, batch_size=128, convert_to_tensor=True, show_progress_bar=True
+            self._image_list,
+            batch_size=128,
+            convert_to_tensor=True,
+            show_progress_bar=True,
         )
-        print (f"Images encoded ({time.time() - start:.2f}s)!")
-
+        print(f"Images encoded ({time.time() - start:.2f}s)!")
 
     def query(self, img, is_image) -> Flags:
         """
@@ -95,11 +95,11 @@ class FlagSearcher:
             img = Image.open(fn)
         new_embedding = self._model.encode([img])
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
-        top_k_indices = similarity_scores.argsort()[0][::-1][:self._top_k]
+        top_k_indices = similarity_scores.argsort()[0][::-1][: self._top_k]
         sorted_scores = similarity_scores.ravel()[top_k_indices]
 
         flags = []
-        for (ind, score) in zip(top_k_indices, sorted_scores):
+        for ind, score in zip(top_k_indices, sorted_scores):
             flag = Flag(
                 name=self._label_list[ind],
                 score=score,

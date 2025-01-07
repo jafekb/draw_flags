@@ -17,6 +17,7 @@ Pages I'm interested in:
     d. https://en.wikipedia.org/wiki/List_of_country_subdivision_flags_in_Oceania
     e. https://en.wikipedia.org/wiki/List_of_country_subdivision_flags_in_South_America
 """
+
 import os
 import time
 
@@ -60,19 +61,16 @@ def get_good_flags():
     good = [i for i in all_results if i.lower().startswith("flag of")]
     good.sort()
 
-    with open(GOOD_FLAG_NAME, 'w') as f:
+    with open(GOOD_FLAG_NAME, "w") as f:
         for line in good:
             f.write(f"{line}\n")
     return good
 
-def save_info(flags):
-    """
 
-    """
+def save_info(flags):
+    """ """
     for page in flags:
         pass
 
 
-
 good_flags = get_good_flags()
-import pdb; pdb.set_trace()

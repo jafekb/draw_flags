@@ -1,6 +1,7 @@
 """
 Utils file for the FlagSearcher & backend.
 """
+
 from pydantic import BaseModel
 from typing import List
 
@@ -9,21 +10,26 @@ class Flag(BaseModel):
     """
     Stuff for a single flag - image & metadata
     """
+
     name: str
     wikipedia_link: str = "wiki"
     image_link: str = ""
-    score: float = 0.
+    score: float = 0.0
 
 
 class Flags(BaseModel):
     """
     Just a bunch of flags
     """
+
     flags: List[Flag]
+
 
 class Image(BaseModel):
     """
+    The data passed between processes for image data
     """
+
     data: str
 
 

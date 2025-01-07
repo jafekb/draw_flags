@@ -5,10 +5,13 @@ https://commons.wikimedia.org/wiki/Gallery_of_flags_by_design
 This makes finding the chromedriver way easier:
 python -m pip install chromedriver-binary==126.0.6478.126
 """
+
 import time
 
 from selenium import webdriver
-import chromedriver_binary  # Adds chromedriver binary to path
+
+# Adds chromedriver binary to path
+import chromedriver_binary  # noqa: F401
 from selenium.webdriver.common.by import By
 
 
