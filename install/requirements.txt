@@ -1,0 +1,13 @@
+requests
+aiohttp
+rich
+cairosvg
+numpy
+open_flags
+sentence_transformers
+scikit-learn
+tqdm
+uvicorn
+fastapi
+pydantic
+pillow

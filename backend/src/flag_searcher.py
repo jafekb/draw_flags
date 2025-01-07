@@ -11,7 +11,6 @@ from pathlib import Path
 from PIL import Image
 import time
 
-import cv2
 import cairosvg
 import numpy as np
 import open_flags as of
