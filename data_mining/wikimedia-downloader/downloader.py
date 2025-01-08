@@ -453,7 +453,7 @@ async def spawn_image_downloaders(
 async def main():
     # TODO(bjafek) command-line flag
     categories_filepath = Path(
-        "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/text_file.txt"
+        "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/categories.txt"
     )
 
     titles = []
