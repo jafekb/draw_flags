@@ -7,21 +7,25 @@ import json
 import logging
 from pathlib import Path
 
-import coloredlogs
+# import coloredlogs
+import pandas as pd
 import wikipedia
+from tqdm import tqdm
 from utils import methods_of_fixing
 
-# TODO(bjafek) make a constants.py instead of re-defining here.
-coloredlogs.install()
+# coloredlogs.install()
 
+# TODO(bjafek) make a constants.py instead of re-defining here.
 OUT_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=[
-        logging.FileHandler("filename.log"),
-        logging.StreamHandler(),
+        logging.FileHandler(
+            "/home/bjafek/personal/draw_flags/data_mining/post_processing/filename.log"
+        ),
     ],
 )
 
@@ -31,14 +35,16 @@ n_files = len(data)
 
 all_rows = []
 
-# for idx, fn in tqdm(enumerate(data), total=n_files):
-for idx, path in enumerate(data):
-    if idx < 40:
-        continue
+for idx, path in tqdm(enumerate(data), total=n_files):
     with path.open() as f:
-        data = json.load(f)
-    data["verified_page"] = False
-    data["verified_url"] = False
+        single_row = json.load(f)
+    single_row["verified_page"] = None
+    single_row["verified_url"] = None
+
+    # TODO(bjafek) this is actually a lot more useful avenue -
+    #  It works for every one, and the page has a 'File Usage' section
+    url_base = single_row["image_url"].split("/")[-1]
+    single_row["commons_link"] = f"https://en.m.wikipedia.org/wiki/File:{url_base}"
 
     page_name = path.stem
 
@@ -58,7 +64,17 @@ for idx, path in enumerate(data):
 
     if page is None:
         logging.warning(f"{idx}: Skipping '{page_name}', tried {options}")
-        continue
-    logging.info(f"{idx}: Mapping '{path.stem}' to '{page.title}' with '{possible_name}'")
-    data["verified_page"] = page.title
-    data["verified_url"] = page.url
+    else:
+        logging.info(f"{idx}: Mapping '{path.stem}' to '{page.title}' with '{possible_name}'")
+        single_row["verified_page"] = page.title
+        single_row["verified_url"] = page.url
+
+    # Just save progress every once in awhile.
+    if idx % 100 == 0:
+        df = pd.DataFrame(all_rows)
+        df.to_csv("more_info.csv", index=False)
+
+    all_rows.append(single_row)
+
+df = pd.DataFrame(all_rows)
+df.to_csv("more_info.csv", index=False)

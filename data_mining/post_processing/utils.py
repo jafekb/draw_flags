@@ -24,7 +24,7 @@ def _title_case_preserve_apostrophe(s):
             titled_word = parts[0].title() + "'" + parts[1].lower()
         else:
             titled_word = word.title()
-            titled_words.append(titled_word)
+        titled_words.append(titled_word)
     return " ".join(titled_words)
 
 
@@ -84,4 +84,5 @@ def methods_of_fixing(page_name):
         all_options.append(single_char_words)
 
     # Sanitize to wikipedia formatting
-    return _sanitize(all_options)
+    sanitized = _sanitize(all_options)
+    return sanitized
