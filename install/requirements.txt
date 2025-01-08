@@ -11,3 +11,4 @@ fastapi
 pydantic
 pillow
 ruff
+coloredlogs
