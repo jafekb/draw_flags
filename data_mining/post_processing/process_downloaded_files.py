@@ -8,7 +8,6 @@ import logging
 from pathlib import Path
 
 # import coloredlogs
-import pandas as pd
 import wikipedia
 from tqdm import tqdm
 from utils import methods_of_fixing
@@ -16,7 +15,9 @@ from utils import methods_of_fixing
 # coloredlogs.install()
 
 # TODO(bjafek) make a constants.py instead of re-defining here.
-OUT_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output")
+DATA_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output")
+POST_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/post_processed")
+POST_DIR.mkdir(exist_ok=True)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -30,14 +31,17 @@ logging.basicConfig(
 )
 
 
-data = sorted(OUT_DIR.rglob("*.json"))
+data = sorted(DATA_DIR.rglob("*.json"))
 n_files = len(data)
 
-all_rows = []
-
 for idx, path in tqdm(enumerate(data), total=n_files):
+    post_process_name = POST_DIR / path.relative_to(DATA_DIR)
+    if post_process_name.is_file():
+        continue
+
     with path.open() as f:
         single_row = json.load(f)
+
     single_row["verified_page"] = None
     single_row["verified_url"] = None
 
@@ -69,12 +73,6 @@ for idx, path in tqdm(enumerate(data), total=n_files):
         single_row["verified_page"] = page.title
         single_row["verified_url"] = page.url
 
-    # Just save progress every once in awhile.
-    if idx % 100 == 0:
-        df = pd.DataFrame(all_rows)
-        df.to_csv("more_info.csv", index=False)
-
-    all_rows.append(single_row)
-
-df = pd.DataFrame(all_rows)
-df.to_csv("more_info.csv", index=False)
+    post_process_name.parent.mkdir(exist_ok=True, parents=True)
+    with post_process_name.open("w") as f:
+        json.dump(single_row, f, indent=1)
