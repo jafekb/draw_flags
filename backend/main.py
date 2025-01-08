@@ -1,10 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from src.flag_searcher import FlagSearcher
 from src.utils import Flag, Flags, Image
-
 
 app = FastAPI(debug=True)
 flag_searcher = FlagSearcher(top_k=8)
@@ -51,7 +49,7 @@ def add_flag(flag: Flag):
     # But always log the query.
     memory_db["most_recent_query"] = flag
 
-    return None
+    return
 
 
 @app.get("/upload_image", response_model=Flags)
@@ -72,7 +70,7 @@ def get_uploaded_image(img: Image):
     flags = flag_searcher.query(img, is_image=True)
 
     memory_db["image_flags"] = flags
-    return None
+    return
 
 
 if __name__ == "__main__":

@@ -18,21 +18,21 @@ Pages I'm interested in:
     e. https://en.wikipedia.org/wiki/List_of_country_subdivision_flags_in_South_America
 """
 
-import os
 import time
+from pathlib import Path
 
 import pandas as pd
-from tqdm import tqdm
 import wikipedia
+from tqdm import tqdm
 
 start = time.time()
 N = 10_000
 
 
 def get_good_flags():
-    GOOD_FLAG_NAME = "./good_flags.csv"
-    if os.path.isfile(GOOD_FLAG_NAME):
-        return pd.read_csv(GOOD_FLAG_NAME, header=None)
+    good_flag_name = Path("./good_flags.csv")
+    if good_flag_name.is_file():
+        return pd.read_csv(good_flag_name, header=None)
 
     search_queries = [
         "Flag of",
@@ -61,7 +61,7 @@ def get_good_flags():
     good = [i for i in all_results if i.lower().startswith("flag of")]
     good.sort()
 
-    with open(GOOD_FLAG_NAME, "w") as f:
+    with good_flag_name.open("w") as f:
         for line in good:
             f.write(f"{line}\n")
     return good

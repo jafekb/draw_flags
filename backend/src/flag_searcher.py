@@ -6,17 +6,16 @@ Uses:
 https://docs.openflags.net/implementations/python/
 """
 
-from pathlib import Path
-from PIL import Image
 import time
+from pathlib import Path
 
 import cairosvg
 import open_flags as of
+from PIL import Image
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-from tqdm import tqdm
-
 from src.utils import Flag, Flags
+from tqdm import tqdm
 
 TMP_DIR = Path("/home/bjafek/personal/draw_flags/tmp")
 TMP_DIR.mkdir(exist_ok=True, parents=False)

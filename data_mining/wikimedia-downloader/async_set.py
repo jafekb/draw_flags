@@ -1,5 +1,6 @@
-from typing import Optional, Iterable
 from asyncio import Lock
+from collections.abc import Iterable
+from typing import Optional
 
 
 class AsyncSet:
@@ -32,6 +33,5 @@ class AsyncSet:
         async with self.lock:
             if value in self.values:
                 return False
-            else:
-                self.values.add(value)
-                return True
+            self.values.add(value)
+            return True

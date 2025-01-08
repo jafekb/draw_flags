@@ -33,7 +33,7 @@ exclude = [
 ]
 
 # Same as Black.
-line-length = 88
+line-length = 100
 indent-width = 4
 
 # Assume Python 3.9
@@ -69,7 +69,11 @@ select = [
     "FURB",
     "RUF",
 ]
-ignore = []
+ignore = [
+    "COM812",
+    "TD003",
+    "TD004",
+]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]

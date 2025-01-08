@@ -1,27 +1,23 @@
-from http_status import HTTPStatus
+import asyncio
+import json
+import logging
+import re
+from collections.abc import AsyncGenerator
+from pathlib import Path
+from typing import Optional
+
+import aiohttp
 from async_set import AsyncSet
-from utils import category2dirname
-
-from typing import AsyncGenerator, Optional
-
+from http_status import HTTPStatus
 from rich.progress import (
+    MofNCompleteColumn,
     Progress,
     SpinnerColumn,
-    TimeElapsedColumn,
-    MofNCompleteColumn,
     TaskID,
+    TimeElapsedColumn,
 )
-
-import json
-
-import logging
-import os
-
-import asyncio
-import aiohttp
-
-import re
 from unidecode import unidecode
+from utils import category2dirname
 
 NUM_MAPPERS = 1
 NUM_FETCHERS = 3
@@ -58,7 +54,10 @@ async def request(url: str, *, session: aiohttp.ClientSession):
 
 
 async def request_and_retry(
-    url: str, *, session: aiohttp.ClientSession, retries: int = -1
+    url: str,
+    *,
+    session: aiohttp.ClientSession,
+    retries: int = -1,
 ) -> Optional[dict]:
     """Asynchronously makes a GET request to the specified URL and retries if the request fails."""
     failures = 0
@@ -68,31 +67,32 @@ async def request_and_retry(
 
         if status == HTTPStatus.OK:
             return contents
-        elif status == HTTPStatus.TOO_MANY_REQUESTS:
-            logging.warning(
-                "Too many requests when accessing %s. Retrying in 5 seconds..." % url
-            )
+        if status == HTTPStatus.TOO_MANY_REQUESTS:
+            logging.warning(f"Too many requests when accessing {url}. Retrying in 5 seconds...")
             await asyncio.sleep(5)
             failures += 1
         else:
-            logging.error(
-                "Failed to make the request to %s. Status code: %d." % (url, status)
-            )
+            logging.error(f"Failed to make the request to {url}. Status code: {status}.")
 
-    logging.error("Failed to make the request to %s after %d retries." % (url, retries))
+    logging.error(f"Failed to make the request to {url} after {retries} retries.")
+    return None
 
 
 async def get_subcategories_no_continue(
-    url: str, title: str, *, session: aiohttp.ClientSession
-) -> AsyncGenerator[None, str]:
-    """Asynchronously fetches the subcategories of the specified category, given the request URL. Does not handle continuation."""
+    url: str,
+    title: str,
+    *,
+    session: aiohttp.ClientSession,
+) -> AsyncGenerator:
+    """Asynchronously fetches the subcategories of the specified category,
+    given the request URL. Does not handle continuation."""
     contents = await request_and_retry(url, session=session)
 
-    # TODO: KeyError: 'query'
+    # TODO(bjafek): KeyError: 'query'
     if "query" not in contents:
         logging.error(
-            'Got malformed response when listing subcategories of "%s".\n%s'
-            % (title, json.dumps(contents, indent=4))
+            f"Got malformed response when listing subcategories of "
+            f"'{title}'.\n{json.dumps(contents, indent=4)}"
         )
         return
 
@@ -104,8 +104,10 @@ async def get_subcategories_no_continue(
 
 
 async def get_subcategories(
-    title: str, *, session: aiohttp.ClientSession
-) -> AsyncGenerator[None, str]:
+    title: str,
+    *,
+    session: aiohttp.ClientSession,
+) -> AsyncGenerator:
     """Asynchronously lists all immediate subcategories of the specified category."""
     endpoint = LIST_SUBCATEGORIES_ENDPOINT.format(title=title)
 
@@ -113,7 +115,9 @@ async def get_subcategories(
     cmcontinue = None
 
     async for subcategory, should_continue, cmcontinue in get_subcategories_no_continue(
-        endpoint, title, session=session
+        endpoint,
+        title,
+        session=session,
     ):
         yield subcategory
 
@@ -125,7 +129,9 @@ async def get_subcategories(
             should_continue,
             cmcontinue,
         ) in get_subcategories_no_continue(
-            continuation_endpoint, title, session=session
+            continuation_endpoint,
+            title,
+            session=session,
         ):
             yield subcategory
 
@@ -136,12 +142,13 @@ async def map_categories(
     unmapped_category_queue: asyncio.Queue,
     seen_categories: AsyncSet,
     *,
-    output_path: str,
+    output_path: Path,
     mapper_id: int,
     progress: Progress,
     task: TaskID,
 ):
-    """Asynchronously maps all recursive subcategories of the specified category, filling them into the provided queue."""
+    """Asynchronously maps all recursive subcategories of the specified category,
+    filling them into the provided queue."""
     total = 1
 
     async with aiohttp.ClientSession() as session:
@@ -154,9 +161,7 @@ async def map_categories(
                     is_new_category = await seen_categories.add_if_missing(subcategory)
 
                     if is_new_category:
-                        subdirpath = os.path.join(
-                            dirpath, category2dirname(subcategory)
-                        )
+                        subdirpath = dirpath / category2dirname(subcategory)
 
                         await category_queue.put((subcategory, subdirpath))
                         await unmapped_category_queue.put((subcategory, subdirpath))
@@ -164,20 +169,20 @@ async def map_categories(
                         total += 1
                         progress.update(task, advance=0, total=total)
                     else:
-                        logging.debug("Loop detected at %s." % subcategory)
+                        logging.debug(f"Loop detected at {subcategory}.")
 
                 unmapped_category_queue.task_done()
-            except KeyboardInterrupt:
+            except KeyboardInterrupt:  # noqa: PERF203
                 return
             except Exception as e:
                 logging.error(
-                    "A task exited after it encountered an unexpected error while mapping categories: %s"
-                    % e
+                    "A task exited after it encountered an unexpected error while "
+                    f"mapping categories: {e}"
                 )
 
     if mapper_id == 0:
         num_categories = await seen_categories.size()
-        logging.debug("Discovered %d categories." % num_categories)
+        logging.debug(f"Discovered {num_categories} categories.")
 
         progress.update(task, visible=False, refresh=True)
 
@@ -187,13 +192,13 @@ async def spawn_category_mappers(
     category_queue: asyncio.Queue,
     seen_categories: AsyncSet,
     *,
-    output_path: str,
+    output_path: Path,
     num_mappers: int,
     progress: Progress,
     task: TaskID,
 ):
     """Spawns the asynchronous category mapper tasks."""
-    dirpath = os.path.join(output_path, category2dirname(title))
+    dirpath = output_path / category2dirname(title)
 
     unmapped_category_queue = asyncio.Queue()
 
@@ -213,7 +218,7 @@ async def spawn_category_mappers(
                 mapper_id=mapper_id,
                 progress=progress,
                 task=task,
-            )
+            ),
         )
         tasks.append(task)
 
@@ -221,9 +226,12 @@ async def spawn_category_mappers(
 
 
 async def get_images_no_continue(
-    url: str, *, session: aiohttp.ClientSession
-) -> AsyncGenerator[None, str]:
-    """Asynchronously fetches the images of the specified category, given the request URL. Does not handle continuation."""
+    url: str,
+    *,
+    session: aiohttp.ClientSession,
+) -> AsyncGenerator:
+    """Asynchronously fetches the images of the specified category, given
+    the request URL. Does not handle continuation."""
     contents = await request_and_retry(url, session=session)
 
     # There are no images on this page
@@ -246,20 +254,22 @@ async def get_images_no_continue(
         continuation_param = None
         continuation_value = None
 
-    for page_id, page in contents["query"]["pages"].items():
+    for page in contents["query"]["pages"].values():
         title = page["title"]
 
-        # TODO: Check this
+        # TODO(bjafek): Check this
         if len(page["imageinfo"]) > 1:
-            logging.warning('Found more than one image for page "%s".' % title)
+            logging.warning(f'Found more than one image for page "{title}".')
 
         url = page["imageinfo"][0]["url"]
         yield title, url, should_continue, continuation_param, continuation_value
 
 
 async def get_images(
-    title: str, *, session: aiohttp.ClientSession
-) -> AsyncGenerator[None, str]:
+    title: str,
+    *,
+    session: aiohttp.ClientSession,
+) -> AsyncGenerator:
     """Asynchronously lists all images under the specified categories."""
     endpoint = LIST_IMAGES_ENDPOINT.format(title=title)
 
@@ -297,7 +307,8 @@ async def fetch_images(
     progress: Progress,
     task: TaskID,
 ):
-    """Asynchronously fetches images from the specified category and submit them to the downloaders."""
+    """Asynchronously fetches images from the specified category and
+    submit them to the downloaders."""
     async with aiohttp.ClientSession() as session:
         while True:
             try:
@@ -313,26 +324,26 @@ async def fetch_images(
                     #  be able to find the wikipedia page? I tried a few examples and it
                     #  worked fine.
                     image_name = unidecode(image_title.replace("File:", ""))
-                    image_path = os.path.join(dirpath, image_name)
+                    image_path = dirpath / image_name
                     just_page = re.search(r"Flag of ([a-z\ A-Z,\.\-]*)", image_name)
                     if just_page is not None:
                         just_page = just_page.group(1).split(".")[0]
 
-                    # TODO(bjafek)
+                    # TODO(bjafek) this is a little bit clumsy
                     if is_new_image and just_page:
                         await download_queue.put((image_url, image_path, just_page))
                         total = await seen_images.size()
                         progress.update(task, total=total)
                     else:
-                        logging.debug('Skipping duplicate image "%s".' % image_title)
+                        logging.debug('Skipping duplicate image "{image_title}".')
 
                 category_queue.task_done()
             except KeyboardInterrupt:
                 return
             except Exception as e:
                 logging.error(
-                    "A task exited after it encountered an unexpected error while downloading images: %s"
-                    % e
+                    "A task exited after it encountered an unexpected error "
+                    f"while downloading images: {e}"
                 )
 
 
@@ -356,7 +367,7 @@ async def spawn_image_fetchers(
                 seen_images,
                 progress=progress,
                 task=task,
-            )
+            ),
         )
         image_fetchers.append(image_fetcher)
 
@@ -364,34 +375,36 @@ async def spawn_image_fetchers(
 
 
 async def download_image(
-    image_url: str, image_path: str, just_page: str, *, session: aiohttp.ClientSession
+    image_url: str,
+    image_path: str,
+    just_page: str,
+    *,
+    session: aiohttp.ClientSession,
 ):
     """Asynchronously downloads the image from the specified URL to the specified path."""
-    os.makedirs(os.path.dirname(image_path), exist_ok=True)
+    image_path.parent.mkdir(exist_ok=True, parents=True)
 
     async with session.get(image_url) as response:
         if response.status == HTTPStatus.OK:
-            with open(image_path, "wb") as file:
+            with image_path.open("wb") as file:
                 file.write(await response.read())
 
             # TODO(bjafek) do this better.
             data_path = image_path.replace("/Flags/", "/data/")
-            os.makedirs(os.path.dirname(data_path), exist_ok=True)
-            base = os.path.basename(image_path).split(".")[0]
-            out_name = os.path.join(os.path.dirname(data_path), f"{base}.json")
+            data_path.parent.mkdir(exist_ok=True)
+            out_name = data_path.parent / f"{image_path.stem}.json"
             data = {
                 "just_page": just_page,
                 "image_url": image_url,
                 "image_path": image_path,
                 "out_name": out_name,
             }
-            with open(out_name, "w") as f:
+            with out_name.open("w") as f:
                 json.dump(data, f, indent=1)
 
         else:
             logging.error(
-                "Failed to download image from %s. Status code: %d."
-                % (image_url, response.status)
+                f"Failed to download image from {image_url}. Status code: {response.status}."
             )
 
 
@@ -405,13 +418,12 @@ async def download_images(
     async with aiohttp.ClientSession() as session:
         while True:
             image_url, image_path, just_page = await download_queue.get()
-            # print (image_url, image_path, just_page)
 
             # Received the stop signal from the fetcher tasks
             if image_url is None:
                 break
 
-            if not os.path.exists(image_path):
+            if not image_path.is_file():
                 await download_image(image_url, image_path, just_page, session=session)
 
             total = await seen_images.size()
@@ -431,7 +443,7 @@ async def spawn_image_downloaders(
 
     for _ in range(num_downloaders):
         image_downloader = asyncio.create_task(
-            download_images(download_queue, seen_images, progress=progress, task=task)
+            download_images(download_queue, seen_images, progress=progress, task=task),
         )
         image_downloaders.append(image_downloader)
 
@@ -440,22 +452,19 @@ async def spawn_image_downloaders(
 
 async def main():
     # TODO(bjafek) command-line flag
-    categories_filepath = "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/text_file.txt"
+    categories_filepath = Path(
+        "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/text_file.txt"
+    )
 
     titles = []
 
-    with open(categories_filepath, "r") as file:
+    with categories_filepath.open() as file:
         for line in file:
             title = "Category:" + line.strip()
             titles.append(title)
 
     # TODO(bjafek) command-line flag
-    output_path = (
-        "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output"
-    )
-
-    if output_path == "":
-        output_path = "download"
+    output_path = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/dogs")
 
     progress = Progress(
         SpinnerColumn(),
@@ -476,7 +485,7 @@ async def main():
         mapper_tasks = []
 
         for title in titles:
-            task = progress.add_task('[blue]Mapping "%s"...' % title, total=None)
+            task = progress.add_task(f'[blue]Mapping "{title}"...', total=None)
             category_mappers = await spawn_category_mappers(
                 title,
                 category_queue,
@@ -511,7 +520,7 @@ async def main():
         await asyncio.gather(*mapper_tasks)
 
         num_categories = await seen_categories.size()
-        logging.info("Found %d categories." % num_categories)
+        logging.info(f"Found {num_categories} categories.")
 
         # Submit stop signals to the fetchers
         for _ in range(NUM_FETCHERS):
@@ -523,12 +532,12 @@ async def main():
 
         # Submit stop signals to the downloaders
         for _ in range(NUM_DOWNLOADERS):
-            await download_queue.put((None, None))
+            await download_queue.put((None, None, None))
 
         await asyncio.gather(*downloader_tasks)
 
         num_images = await seen_images.size()
-        logging.info("Finished downloading %d images." % num_images)
+        logging.info(f"Finished downloading {num_images} images.")
 
 
 if __name__ == "__main__":

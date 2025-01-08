@@ -3,7 +3,6 @@ Utils file for the FlagSearcher & backend.
 """
 
 from pydantic import BaseModel
-from typing import List
 
 
 class Flag(BaseModel):
@@ -22,7 +21,7 @@ class Flags(BaseModel):
     Just a bunch of flags
     """
 
-    flags: List[Flag]
+    flags: list[Flag]
 
 
 class Image(BaseModel):
