@@ -2,7 +2,41 @@
 Process all the files that we downloaded.
 """
 
+import logging
 import re
+from pathlib import Path
+
+import wikipedia
+
+
+def check_options(params, idx):
+    """
+    This is one way of trying to get the page that the flag corresponds to -
+    using the name of the flag to infer what it is about.
+    """
+    original_flag_page = Path(params["image_path"]).stem
+    options = _methods_of_fixing(original_flag_page)
+    page = None
+    for possible_name in options:
+        try:
+            # It is very tempting to let auto_suggest=True because we
+            #  get a lot more positives, but it introduces too much uncertainty.
+            page = wikipedia.page(possible_name, auto_suggest=False)
+        except wikipedia.exceptions.PageError:
+            continue
+        except wikipedia.exceptions.DisambiguationError:
+            continue
+        break
+
+    if page is None:
+        logging.warning(f"{idx}: Skipping '{original_flag_page}', tried {options}")
+    else:
+        logging.info(
+            f"{idx}: Mapping '{original_flag_page}' to '{page.title}' with '{possible_name}'"
+        )
+        params["verified_page"] = page.title
+        params["verified_url"] = page.url
+    return params
 
 
 def _title_case_preserve_apostrophe(s):
@@ -39,7 +73,7 @@ def _sanitize(str_list):
     return [_sanitize_single_word(s) for s in str_list]
 
 
-def methods_of_fixing(page_name):
+def _methods_of_fixing(page_name):
     """
     Give the title a couple of chances to get a similar page.
     During this function, process everything in lowercase,

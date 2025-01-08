@@ -8,9 +8,8 @@ import logging
 from pathlib import Path
 
 # import coloredlogs
-import wikipedia
 from tqdm import tqdm
-from utils import methods_of_fixing
+from utils import check_options
 
 # coloredlogs.install()
 
@@ -18,6 +17,7 @@ from utils import methods_of_fixing
 DATA_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output")
 POST_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/post_processed")
 POST_DIR.mkdir(exist_ok=True)
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -50,28 +50,7 @@ for idx, path in tqdm(enumerate(data), total=n_files):
     url_base = single_row["image_url"].split("/")[-1]
     single_row["commons_link"] = f"https://en.m.wikipedia.org/wiki/File:{url_base}"
 
-    page_name = path.stem
-
-    options = methods_of_fixing(page_name)
-    page = None
-    for possible_name in options:
-        try:
-            # It is very tempting to let auto_suggest=True because we
-            #  get a lot more positives, but it introduces too much uncertainty.
-            page = wikipedia.page(possible_name, auto_suggest=False)
-        except wikipedia.exceptions.PageError:
-            continue
-        except wikipedia.exceptions.DisambiguationError:
-            continue
-
-        break
-
-    if page is None:
-        logging.warning(f"{idx}: Skipping '{page_name}', tried {options}")
-    else:
-        logging.info(f"{idx}: Mapping '{path.stem}' to '{page.title}' with '{possible_name}'")
-        single_row["verified_page"] = page.title
-        single_row["verified_url"] = page.url
+    single_row = check_options(single_row, idx)
 
     post_process_name.parent.mkdir(exist_ok=True, parents=True)
     with post_process_name.open("w") as f:
