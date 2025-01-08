@@ -50,9 +50,10 @@ def methods_of_fixing(page_name):
     way1 = page_name
     all_options = [way1]
 
+    if "flag of" not in page_name:
+        return all_options
+
     no_flag = page_name.split("flag of")[1].strip()
-    # This was ensured in the data dumping stage
-    assert no_flag != way1, f"{page_name}"
     all_options.append(no_flag)
 
     has_with = re.split("\Wwith\W", no_flag)
