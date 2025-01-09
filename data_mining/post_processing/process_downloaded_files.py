@@ -5,6 +5,7 @@ Process all the files that we downloaded.
 
 import json
 import logging
+import time
 from pathlib import Path
 
 # import coloredlogs
@@ -61,3 +62,6 @@ for idx, path in tqdm(enumerate(data), total=n_files):
     post_process_name.parent.mkdir(exist_ok=True, parents=True)
     with post_process_name.open("w") as f:
         json.dump(single_row, f, indent=1)
+
+    # sorry for bothering you wikipedia
+    time.sleep(1)
