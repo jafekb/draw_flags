@@ -9,13 +9,15 @@ from pathlib import Path
 
 # import coloredlogs
 from tqdm import tqdm
-from utils import check_options
+from utils import check_options, look_at_commons_usage
 
 # coloredlogs.install()
 
 # TODO(bjafek) make a constants.py instead of re-defining here.
 DATA_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/output")
-POST_DIR = Path("/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/post_processed")
+POST_DIR = Path(
+    "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/commons_verified"
+)
 POST_DIR.mkdir(exist_ok=True)
 
 
@@ -25,7 +27,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=[
         logging.FileHandler(
-            "/home/bjafek/personal/draw_flags/data_mining/post_processing/filename.log"
+            "/home/bjafek/personal/draw_flags/data_mining/post_processing/commons_verified.log"
         ),
     ],
 )
@@ -39,18 +41,19 @@ for idx, path in tqdm(enumerate(data), total=n_files):
     if post_process_name.is_file():
         continue
 
+    # TODO(bjafek) at this point this deserves to be its own dataclass
+    #  since it's starting to do a bunch of stuff
     with path.open() as f:
         single_row = json.load(f)
 
     single_row["verified_page"] = None
     single_row["verified_url"] = None
 
-    # TODO(bjafek) this is actually a lot more useful avenue -
-    #  It works for every one, and the page has a 'File Usage' section
-    url_base = single_row["image_url"].split("/")[-1]
-    single_row["commons_link"] = f"https://en.m.wikipedia.org/wiki/File:{url_base}"
-
-    single_row = check_options(single_row, idx)
+    single_row = look_at_commons_usage(single_row, idx)
+    if single_row["verified_page"] is None:
+        # Trust the commons usage first, but if that doesn't work
+        #  do some guessing based on the name.
+        single_row = check_options(single_row, idx)
 
     post_process_name.parent.mkdir(exist_ok=True, parents=True)
     with post_process_name.open("w") as f:

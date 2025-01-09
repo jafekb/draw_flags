@@ -5,8 +5,70 @@ Process all the files that we downloaded.
 import logging
 import re
 from pathlib import Path
+from urllib.request import Request, urlopen
 
 import wikipedia
+from bs4 import BeautifulSoup
+from Levenshtein import distance as levenshtein_distance
+
+WIKI_BASE_URL = "https://en.m.wikipedia.org"
+
+
+def look_at_commons_usage(params, idx, max_length=3):
+    """
+    If there are too many pages that use the flag, it's probably
+    not that helpful.
+    """
+    # TODO(bjafek) this is actually a lot more useful avenue -
+    #  It works for every one, and the page has a 'File Usage' section
+    url_base = params["image_url"].split("/")[-1]
+    commons_link = f"https://en.m.wikipedia.org/wiki/File:{url_base}"
+    params["commons_link"] = commons_link
+
+    request = Request(commons_link)
+    with urlopen(request) as response:
+        # read and parse SVG file from URL
+        data = response.read()
+    soup = BeautifulSoup(data, "html.parser")
+
+    # This is how we find the links under "File Usage", which is the most
+    #  surefire way of knowing what wikipedia pages are related to this file.
+    # See this page for example:
+    # https://en.m.wikipedia.org/wiki/File:Flag_of_Offenburg.svg
+    file_usage_section = soup.find("div", id="mw-imagepage-section-linkstoimage")
+    if file_usage_section is None:
+        return params
+    links_section = file_usage_section.find("ul")
+
+    all_links = []
+    for link_tag in links_section.find_all("a"):
+        ref = link_tag["href"]
+        if "User" in ref:
+            continue
+        all_links.append(ref)
+
+    # Many of these flag images show up on a bunch of pages. For example, lists or
+    #  galleries of similar flags, or athletes representing that region. If that
+    #  is the only page available, I think that's still probably the most
+    #  informative page to link the user to, but if we can avoid it we'd prefer
+    #  not to. So we'll sort all the links by their similarity to the name of
+    #  the flag page, that feels like a good idea and seems to work on a few
+    #  simple examples.
+    all_links.sort(key=lambda x: levenshtein_distance(url_base, x))
+
+    if not all_links:
+        return params
+
+    verified_page = all_links[0]
+    flag_page = url_base.split(".")[0]
+    verified_url = WIKI_BASE_URL + verified_page
+    verified_page = verified_page.replace("/wiki/", "")
+
+    logging.info(f"{idx}: Verified '{flag_page}' on '{verified_page}'")
+    params["verified_page"] = verified_page
+    params["verified_url"] = verified_url
+    params["verification_method"] = "commons"
+    return params
 
 
 def check_options(params, idx):
@@ -36,6 +98,7 @@ def check_options(params, idx):
         )
         params["verified_page"] = page.title
         params["verified_url"] = page.url
+        params["verification_method"] = "check_options"
     return params
 
 
