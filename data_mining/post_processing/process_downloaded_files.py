@@ -54,6 +54,9 @@ for idx, path in tqdm(enumerate(data), total=n_files):
         # Trust the commons usage first, but if that doesn't work
         #  do some guessing based on the name.
         single_row = check_options(single_row, idx)
+    # TODO(bjafek) another option is to let wikipedia do the query
+    #  with a very high limit in returns, and then sort its output
+    #  by the Levenshtein distance to the original flag page, that could work.
 
     post_process_name.parent.mkdir(exist_ok=True, parents=True)
     with post_process_name.open("w") as f:
