@@ -5,6 +5,7 @@ Process all the files that we downloaded.
 import logging
 import re
 from pathlib import Path
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 import wikipedia
@@ -25,10 +26,14 @@ def look_at_commons_usage(params, idx, max_length=3):
     commons_link = f"https://en.m.wikipedia.org/wiki/File:{url_base}"
     params["commons_link"] = commons_link
 
-    request = Request(commons_link)
-    with urlopen(request) as response:
-        # read and parse SVG file from URL
-        data = response.read()
+    try:
+        request = Request(commons_link)
+        with urlopen(request) as response:
+            # read and parse SVG file from URL
+            data = response.read()
+    except HTTPError:  # 404 not found
+        # If it's not a real commons link, just don't bother
+        return params
     soup = BeautifulSoup(data, "html.parser")
 
     # This is how we find the links under "File Usage", which is the most
