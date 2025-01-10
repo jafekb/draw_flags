@@ -2,6 +2,8 @@
 Utils file for the FlagSearcher & backend.
 """
 
+from typing import List
+
 from pydantic import BaseModel
 
 
@@ -21,7 +23,7 @@ class Flags(BaseModel):
     Just a bunch of flags
     """
 
-    flags: list[Flag]
+    flags: List[Flag]
 
 
 class Image(BaseModel):

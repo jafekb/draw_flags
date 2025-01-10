@@ -48,6 +48,11 @@ const FlagList = () => {
     }
   };
 
+  const handleClick = () => {
+    setTextFlags([]);
+    setImageFlags([]);
+  };
+
   useEffect(() => {
     fetchFlags();
     fetchImageFlags();
@@ -71,6 +76,7 @@ const FlagList = () => {
           <SubmitDescriptionForm addFlag={addFlag} />
           <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
+          <button onClick={handleClick}> Clear </button>
           <ImageGrid images={flags} title="I bet it's..."/>
         </div>
       );
@@ -81,6 +87,7 @@ const FlagList = () => {
           <SubmitDescriptionForm addFlag={addFlag} />
           <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
+          <button onClick={handleClick}> Clear </button>
           <ImageGrid images={image_flags} title="I bet it's..."/>
         </div>
       );

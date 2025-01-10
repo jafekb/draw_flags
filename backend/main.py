@@ -35,11 +35,6 @@ def get_flags():
 # TODO(bjafek) this isn't adding a flag, it's querying based on text
 @app.post("/flags")
 def add_flag(flag: Flag):
-    if flag.name in ("delete", "clear"):
-        memory_db["most_recent_query"] = ""
-        memory_db["text_flags"] = Flags(flags=[])
-        return
-
     if memory_db["text_flags"]:
         memory_db["text_flags"] = Flags(flags=[])
 
