@@ -2,7 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.flag_searcher import FlagSearcher
-from src.utils import Flag, Flags, Image
+
+from common.dataclasses import Flag, Flags, Image
 
 app = FastAPI(debug=True)
 flag_searcher = FlagSearcher(top_k=8)

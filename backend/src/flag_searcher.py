@@ -12,7 +12,8 @@ from PIL import Image
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from src.load_flags import load_all_flag_info
-from src.utils import Flag, Flags
+
+from common.dataclasses import Flag, Flags
 
 
 class FlagSearcher:
@@ -28,7 +29,7 @@ class FlagSearcher:
 
         print("Loading & encoding images...", end=" ")
         start = time.time()
-        self._image_list, self._label_list = load_all_flag_info(mode="open_flags")
+        self._image_list, self._label_list = load_all_flag_info(mode="wikimedia_commons")
         print(f"Images loaded ({time.time() - start:.2f}s)!")
 
         start = time.time()
