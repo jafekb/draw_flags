@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from typing import List
 
+import cairosvg
+import requests
 from pydantic import BaseModel, validator
 
 
@@ -18,7 +20,8 @@ class Flag(BaseModel):
     wikipedia_page: str
     wikipedia_url: str
     wikipedia_image_url: str
-    local_image_link: str
+    # You don't have to specify this at build time, save_image() can define it for you
+    local_image_link: str = ""
     verification_method: str = ""
     score: float = 0.0
 
@@ -29,7 +32,28 @@ class Flag(BaseModel):
             raise ValueError(f"Invalid 'verification_method'. Allowed values are: {allowed_values}")
         return v
 
+    def save_image(self, out_dir: Path) -> None:
+        """
+        Save the wikipedia_image_url to a local path, and update the local_image_link
+
+        Returns:
+            had_to_download(bool) whether or not the file already existed. If it did not,
+                then we had to bother wikipedia so we should pause for a sec.
+        """
+        out_name = out_dir / f"{self.name}.png"
+        had_to_download = False
+        if not out_name.is_file():
+            svg = download_svg(self.wikipedia_image_url)
+            cairosvg.svg2png(svg, write_to=str(out_name))
+            had_to_download = True
+        self.local_image_link = str(out_name)
+
+        return had_to_download
+
     def to_json(self, out_dir: Path) -> None:
+        """
+        Save everything to a json in the specified output directory
+        """
         if not out_dir.is_dir():
             raise ValueError(f"out_dir must be a valid directory! got '{out_dir}'")
         out_name = out_dir / f"{self.name}.json"
@@ -67,11 +91,25 @@ class Image(BaseModel):
     data: str
 
 
-def get_wikipedia_link(name):
-    # TODO(bjafek) shouldn't just be the USA flag every time
-    return "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
+def download_svg(url):
+    """
+    Downloads an SVG file from the given URL and saves it with the specified filename.
+    https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy
 
-
-def get_image_link(name):
-    # TODO(bjafek) shouldn't just be the USA flag every time
-    return "/home/bjafek/personal/draw_flags/flag_ims/usa/usa.png"
+    Args:
+    url: The URL of the SVG file.
+    filename: The filename to save the downloaded SVG file.
+    """
+    try:
+        response = requests.get(
+            url,
+            stream=True,
+            headers={
+                "User-Agent": "DrawFlags/0.0 (https://github.com/jafekb/draw_flags/"
+                "; jafek91@gmail.com)"
+            },
+        )
+        response.raise_for_status()
+        return response.text
+    except requests.exceptions.RequestException as e:
+        print(f"Error downloading SVG: {e}")
