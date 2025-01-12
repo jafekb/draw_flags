@@ -13,8 +13,11 @@ class Flag(BaseModel):
     """
 
     name: str
-    wikipedia_link: str = "wiki"
-    image_link: str = ""
+    wikipedia_page: str
+    wikipedia_link: str
+    wikipedia_image_link: str
+    local_image_link: str
+    verification_method: str
     score: float = 0.0
 
 

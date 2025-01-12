@@ -3,8 +3,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.flag_searcher import FlagSearcher
 
-from common.dataclasses import Flag, Flags, Image
+from common.flag_data import Flag, Flags, Image
 
+# TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
 flag_searcher = FlagSearcher(top_k=8)
 

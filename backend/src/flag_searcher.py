@@ -13,7 +13,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from src.load_flags import load_all_flag_info
 
-from common.dataclasses import Flag, Flags
+from common.flag_data import Flag, Flags
 
 
 class FlagSearcher:
