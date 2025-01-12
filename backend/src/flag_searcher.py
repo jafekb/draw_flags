@@ -29,7 +29,7 @@ class FlagSearcher:
 
         print("Loading & encoding images...", end=" ")
         start = time.time()
-        self._image_list, self._label_list = load_all_flag_info(mode="wikimedia_commons")
+        self._image_list, self._label_list = load_all_flag_info(mode="open_flags")
         print(f"Images loaded ({time.time() - start:.2f}s)!")
 
         start = time.time()

@@ -32,7 +32,7 @@ const FlagList = () => {
 
   const addFlag = async (flagName) => {
     try {
-      await api.post('/flags', { name: flagName });
+      await api.post('/flags', { "flag": flagName });
       fetchFlags();  // Refresh the list after adding a flag
     } catch (error) {
       console.error("Error adding flag", error);
@@ -44,7 +44,7 @@ const FlagList = () => {
       await api.post('/upload_image', {data: imageData });
       fetchImageFlags();  // Refresh the list after adding a flag
     } catch (error) {
-      console.error("Error adding flag", error);
+      console.error("Error adding image flag", error);
     }
   };
 

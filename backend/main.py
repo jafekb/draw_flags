@@ -1,9 +1,9 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from src.flag_searcher import FlagSearcher
 
-from common.flag_data import Flag, Flags, Image
+from common.flag_data import Flags, Image
 
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
@@ -29,18 +29,26 @@ memory_db = {
 }
 
 
-@app.get("/flags", response_model=Flags)
+@app.get(path="/flags", response_model=Flags)
 def get_flags():
-    return memory_db["text_flags"]
+    text_flags = memory_db["text_flags"]
+    # Clear it afterwards
+    memory_db["text_flags"] = Flags(flags=[])
+
+    return text_flags
 
 
 # TODO(bjafek) this isn't adding a flag, it's querying based on text
-@app.post("/flags")
-def add_flag(flag: Flag):
+# TODO(bjafek) this works again, but it doesn't make sense to me why
+#  this function had to be re-written this way when the get_image_flags()
+#  was working fine. I think it has something to do with the Flag redefinition?
+@app.post(path="/flags")
+async def add_flag(flag: Request):
+    data = await flag.json()  # Get the JSON data
     if memory_db["text_flags"]:
         memory_db["text_flags"] = Flags(flags=[])
 
-    flags = flag_searcher.query(flag.name, is_image=False)
+    flags = flag_searcher.query(data["flag"], is_image=False)
     memory_db["text_flags"] = flags
 
     # But always log the query.
@@ -49,13 +57,17 @@ def add_flag(flag: Flag):
     return
 
 
-@app.get("/upload_image", response_model=Flags)
+@app.get(path="/upload_image", response_model=Flags)
 def get_image_flags():
     print(memory_db["image_flags"])
-    return memory_db["image_flags"]
+    image_flags = memory_db["image_flags"]
+    # Clear it afterwards
+    memory_db["image_flags"] = Flags(flags=[])
+
+    return image_flags
 
 
-@app.post("/upload_image")
+@app.post(path="/upload_image")
 def get_uploaded_image(img: Image):
     """
     TODO(bjafek) describe
