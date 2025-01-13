@@ -18,6 +18,7 @@ class Flag(BaseModel):
 
     name: str
     wikipedia_page: str
+    # TODO(bjafek) We could generalize this to just 'info_url' and 'image_url'
     wikipedia_url: str
     wikipedia_image_url: str
     # You don't have to specify this at build time, save_image() can define it for you
@@ -43,8 +44,19 @@ class Flag(BaseModel):
         out_name = out_dir / f"{self.name}.png"
         had_to_download = False
         if not out_name.is_file():
-            svg = download_svg(self.wikipedia_image_url)
-            cairosvg.svg2png(svg, write_to=str(out_name))
+            suffix = self.wikipedia_image_url.split(".")[-1]
+            if suffix in ("svg", "SVG"):
+                out_name = out_dir / f"{self.name}.png"
+                svg = download_svg(self.wikipedia_image_url)
+                cairosvg.svg2png(svg, write_to=str(out_name))
+            elif suffix in ("png", "PNG"):
+                out_name = out_dir / f"{self.name}.png"
+                download_png(self.wikipedia_image_url, out_name)
+            elif suffix in ("gif", "GIF"):
+                out_name = out_dir / f"{self.name}.gif"
+                download_png(self.wikipedia_image_url, out_name)
+            else:
+                raise NotImplementedError(f"We can't yet handle the suffix '{suffix}' you gave us!")
             had_to_download = True
         self.local_image_link = str(out_name)
 
@@ -117,7 +129,16 @@ class Image(BaseModel):
     data: str
 
 
-def download_svg(url):
+def download_png(image_url: str, out_name: Path) -> None:
+    """
+    Download a png file from the internet, save it to 'out_name'
+    """
+    img_data = requests.get(image_url).content
+    with out_name.open("wb") as f:
+        f.write(img_data)
+
+
+def download_svg(url: str) -> None:
     """
     Downloads an SVG file from the given URL and saves it with the specified filename.
     https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy

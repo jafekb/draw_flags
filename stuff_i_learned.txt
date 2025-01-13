@@ -10,6 +10,8 @@ https://flagid.org/
 https://en.wikipedia.org/wiki/Lists_of_flags
     This looks like the best balance of "gives information about them" and "coverage"
 
+https://www.crwflags.com/fotw/flags/
+
 # ~Just download a bunch of stuff from wikimedia commons.~
 # ~I now have a directory of downloads/Flags/ with ~1GB of images.~
 # ~BUT I don't think this is the move, since I don't have any associated information with them.~
