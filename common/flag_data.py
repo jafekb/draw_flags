@@ -81,6 +81,32 @@ class FlagList(BaseModel):
     """
 
     flags: List[Flag]
+    # TODO(bjafek) this should actually be required, I just have to refactor some stuff
+    embeddings_filename: str = ""
+
+    # TODO(bjafek) maybe I want to use a standard name, and an out_dir instead?
+    def to_json(self, out_name: Path) -> None:
+        """
+        Save everything to a json in the specified output directory
+        """
+        if not out_name.parent.is_dir():
+            raise ValueError(f"out_name parent must be a valid directory! got '{out_name}'")
+
+        with out_name.open("w") as f:
+            json.dump(self.dict(), f, indent=1)
+        return
+
+
+def flaglist_from_json(file_name: Path) -> Flag:
+    if isinstance(file_name, str):
+        print("warning: please use pathlib.Path instead of str :)")
+        file_name = Path(file_name)
+    if not file_name.is_file():
+        raise ValueError(f"File does not exist! {file_name}")
+
+    with file_name.open() as f:
+        data = json.load(f)
+    return FlagList(**data)
 
 
 class Image(BaseModel):

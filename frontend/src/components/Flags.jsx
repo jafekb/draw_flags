@@ -60,6 +60,7 @@ const FlagList = () => {
 
   // TODO(bjafek) this if statement is clumsy.
   // TODO(bjafek) don't know how to clear the image_flags one
+  // TODO(bjafek) consider making the ClearButton its own class
   if (flags.length === 0 && image_flags.length === 0) {
       return (
         <div>
@@ -76,7 +77,6 @@ const FlagList = () => {
           <SubmitDescriptionForm addFlag={addFlag} />
           <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
-          // TODO(bjafek) consider making the ClearButton its own class
           <button
           onClick={handleClick}
           style={{ backgroundColor: '#FFCECE', color: 'black' }}

@@ -3,47 +3,28 @@ Class that can take in an image and output a bunch of
 other images of flags that look like it.
 """
 
-import time
 from pathlib import Path
 
+import torch
 from PIL import Image
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from backend.src.load_flags import load_all_flag_info
-from common.flag_data import FlagList
+from common.flag_data import FlagList, flaglist_from_json
 
-ROOT_DIR = Path("/home/bjafek/personal/draw_flags/data/national_flags/data")
+FLAGS_FILE = Path("/home/bjafek/personal/draw_flags/data/national_flags/flag_searcher/flags.json")
 
 
 class FlagSearcher:
     def __init__(self, top_k, verbose=True):
         self._top_k = top_k
+        self._verbose = verbose
 
-        # Load the OpenAI CLIP Model
-        print("Loading CLIP Model...", end=" ")
-        start = time.time()
-        # TODO(bjafek) other models?
+        # TODO(bjafek) pull out name to a config
         self._model = SentenceTransformer("clip-ViT-B-32")
-        if verbose:
-            print(f"success ({time.time() - start:.2f}s)!")
-            print("Loading & encoding images...", end=" ")
-        start = time.time()
-        self._image_list, self._flags = load_all_flag_info(root_dir=ROOT_DIR)
-        if verbose:
-            print(f"Images loaded ({time.time() - start:.2f}s)!")
 
-        start = time.time()
-        # TODO(bjafek) just store the embeddings
-        self._encoded_images = self._model.encode(
-            self._image_list,
-            batch_size=128,
-            convert_to_tensor=True,
-            show_progress_bar=verbose,
-        )
-
-        if verbose:
-            print(f"Images encoded ({time.time() - start:.2f}s)!")
+        self._flags = flaglist_from_json(FLAGS_FILE)
+        self._encoded_images = torch.load(self._flags.embeddings_filename, weights_only=True)
 
     def query(self, img, is_image) -> FlagList:
         """

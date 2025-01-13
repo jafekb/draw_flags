@@ -38,6 +38,9 @@ for idx, im in tqdm(enumerate(ims), total=n_ims):
         base = "Flag of Georgia (country)"
     elif base == "Flag of the Republic of Abkhazia":
         base = "Flag_of_Abkhazia"
+    elif "Ivoire" in base:
+        # TODO(bjafek) fix ivory coast / c'ote d'voire
+        base = "Flag of Ivory Coast"
 
     flag_page = wikipedia.page(base, auto_suggest=False)
 
