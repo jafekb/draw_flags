@@ -9,15 +9,15 @@ from pathlib import Path
 from PIL import Image
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-from src.load_flags import load_all_flag_info
 
+from backend.src.load_flags import load_all_flag_info
 from common.flag_data import Flags
 
 ROOT_DIR = Path("/home/bjafek/personal/draw_flags/data/national_flags/data")
 
 
 class FlagSearcher:
-    def __init__(self, top_k):
+    def __init__(self, top_k, verbose=True):
         self._top_k = top_k
 
         # Load the OpenAI CLIP Model
@@ -25,12 +25,13 @@ class FlagSearcher:
         start = time.time()
         # TODO(bjafek) other models?
         self._model = SentenceTransformer("clip-ViT-B-32")
-        print(f"success ({time.time() - start:.2f}s)!")
-
-        print("Loading & encoding images...", end=" ")
+        if verbose:
+            print(f"success ({time.time() - start:.2f}s)!")
+            print("Loading & encoding images...", end=" ")
         start = time.time()
         self._image_list, self._flags = load_all_flag_info(root_dir=ROOT_DIR)
-        print(f"Images loaded ({time.time() - start:.2f}s)!")
+        if verbose:
+            print(f"Images loaded ({time.time() - start:.2f}s)!")
 
         start = time.time()
         # TODO(bjafek) just store the embeddings
@@ -38,9 +39,11 @@ class FlagSearcher:
             self._image_list,
             batch_size=128,
             convert_to_tensor=True,
-            show_progress_bar=True,
+            show_progress_bar=verbose,
         )
-        print(f"Images encoded ({time.time() - start:.2f}s)!")
+
+        if verbose:
+            print(f"Images encoded ({time.time() - start:.2f}s)!")
 
     def query(self, img, is_image) -> Flags:
         """

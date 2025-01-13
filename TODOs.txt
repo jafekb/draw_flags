@@ -10,5 +10,6 @@
     a. Find more flags
     b. DONE standardize the format
     c. Speed up the loading
+    d. Make a single config file for everything.
 5. Add a painter?
     a. probably not

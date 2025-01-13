@@ -1,8 +1,8 @@
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from src.flag_searcher import FlagSearcher
 
+from backend.src.flag_searcher import FlagSearcher
 from common.flag_data import Flags, Image
 
 # TODO(bjafek) remove the debug eventually
