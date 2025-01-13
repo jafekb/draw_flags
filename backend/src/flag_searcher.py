@@ -1,19 +1,19 @@
 """
 Class that can take in an image and output a bunch of
 other images of flags that look like it.
-
-Uses:
-https://docs.openflags.net/implementations/python/
 """
 
 import time
+from pathlib import Path
 
 from PIL import Image
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from src.load_flags import load_all_flag_info
 
-from common.flag_data import Flag, Flags
+from common.flag_data import Flags
+
+ROOT_DIR = Path("/home/bjafek/personal/draw_flags/data/national_flags/data")
 
 
 class FlagSearcher:
@@ -29,7 +29,7 @@ class FlagSearcher:
 
         print("Loading & encoding images...", end=" ")
         start = time.time()
-        self._image_list, self._label_list = load_all_flag_info(mode="open_flags")
+        self._image_list, self._flags = load_all_flag_info(root_dir=ROOT_DIR)
         print(f"Images loaded ({time.time() - start:.2f}s)!")
 
         start = time.time()
@@ -62,14 +62,13 @@ class FlagSearcher:
         new_embedding = self._model.encode([img])
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
         top_k_indices = similarity_scores.argsort()[0][::-1][: self._top_k]
-        sorted_scores = similarity_scores.ravel()[top_k_indices]
+        sorted_scores = similarity_scores.ravel()[top_k_indices].tolist()
 
         flags = []
         for ind, score in zip(top_k_indices, sorted_scores):
-            flag = Flag(
-                name=self._label_list[ind],
-                score=score,
-            )
+            # Use the stored Flag, just update the score with the similarity score.
+            flag = self._flags.flags[ind]
+            flag.score = score
             flags.append(flag)
 
         return Flags(flags=flags)
