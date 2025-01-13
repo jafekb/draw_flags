@@ -30,9 +30,9 @@ const FlagList = () => {
     }
   };
 
-  const addFlag = async (flagName) => {
+  const addFlag = async (textQuery) => {
     try {
-      await api.post('/flags', { "flag": flagName });
+      await api.post('/flags', { "text_query": textQuery });
       fetchFlags();  // Refresh the list after adding a flag
     } catch (error) {
       console.error("Error adding flag", error);
@@ -76,7 +76,13 @@ const FlagList = () => {
           <SubmitDescriptionForm addFlag={addFlag} />
           <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
-          <button onClick={handleClick}> Clear </button>
+          // TODO(bjafek) consider making the ClearButton its own class
+          <button
+          onClick={handleClick}
+          style={{ backgroundColor: '#FFCECE', color: 'black' }}
+          >
+            Clear
+          </button>
           <ImageGrid images={flags} title="I bet it's..."/>
         </div>
       );
@@ -87,7 +93,12 @@ const FlagList = () => {
           <SubmitDescriptionForm addFlag={addFlag} />
           <h2>Or upload a picture</h2>
           <ImageUploader addImageUpload={addImageUpload} />
-          <button onClick={handleClick}> Clear </button>
+          <button
+          onClick={handleClick}
+          style={{ backgroundColor: '#FFCECE', color: 'black' }}
+          >
+            Clear
+          </button>
           <ImageGrid images={image_flags} title="I bet it's..."/>
         </div>
       );

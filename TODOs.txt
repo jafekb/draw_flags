@@ -1,4 +1,4 @@
-1. Finish the app
+1. Finish the frontend
     a. DONE add image upload
     b. Need to figure out how to clear the image preview.
     c. Also display the text query alongside the images
@@ -6,6 +6,9 @@
 2. Figure out image similarity methods
     a. Figure out the scoring
     b. ???
-3. Find more flags
-4. Add a painter?
+4. Improve the backend
+    a. Find more flags
+    b. DONE standardize the format
+    c. Speed up the loading
+5. Add a painter?
     a. probably not

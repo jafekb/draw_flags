@@ -43,23 +43,22 @@ def get_flags():
 #  this function had to be re-written this way when the get_image_flags()
 #  was working fine. I think it has something to do with the Flag redefinition?
 @app.post(path="/flags")
-async def add_flag(flag: Request):
-    data = await flag.json()  # Get the JSON data
+async def add_flag(text_query: Request):
+    data = await text_query.json()  # Get the JSON data
     if memory_db["text_flags"]:
         memory_db["text_flags"] = Flags(flags=[])
 
-    flags = flag_searcher.query(data["flag"], is_image=False)
+    flags = flag_searcher.query(data["text_query"], is_image=False)
     memory_db["text_flags"] = flags
 
     # But always log the query.
-    memory_db["most_recent_query"] = flag
+    memory_db["most_recent_query"] = text_query
 
     return
 
 
 @app.get(path="/upload_image", response_model=Flags)
 def get_image_flags():
-    print(memory_db["image_flags"])
     image_flags = memory_db["image_flags"]
     # Clear it afterwards
     memory_db["image_flags"] = Flags(flags=[])
