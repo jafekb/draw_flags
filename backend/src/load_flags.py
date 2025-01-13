@@ -10,7 +10,7 @@ from pathlib import Path
 from PIL import Image
 from tqdm import tqdm
 
-from common.flag_data import Flags, flag_from_json
+from common.flag_data import FlagList, flag_from_json
 
 OPEN_FLAGS_TMP_DIR = Path("/home/bjafek/personal/draw_flags/tmp")
 OPEN_FLAGS_TMP_DIR.mkdir(exist_ok=True, parents=False)
@@ -26,7 +26,7 @@ WIKIMEDIA_COMMONS_IMAGES = Path(
 def load_all_flag_info(root_dir):
     """
     This is now the accepted way to do this.
-    # TODO(bjafek) use the Flags object instead of this
+    # TODO(bjafek) use the FlagList object instead of this
     # TODO(bjafek) If you want to load open_flags or wikimedia_commons,
         you need to align with this format.
 
@@ -49,4 +49,4 @@ def load_all_flag_info(root_dir):
         # works pretty well.
         img = Image.open(flag.local_image_link)
         image_list.append(img)
-    return image_list, Flags(flags=flags)
+    return image_list, FlagList(flags=flags)

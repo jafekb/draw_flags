@@ -11,7 +11,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from backend.src.load_flags import load_all_flag_info
-from common.flag_data import Flags
+from common.flag_data import FlagList
 
 ROOT_DIR = Path("/home/bjafek/personal/draw_flags/data/national_flags/data")
 
@@ -45,7 +45,7 @@ class FlagSearcher:
         if verbose:
             print(f"Images encoded ({time.time() - start:.2f}s)!")
 
-    def query(self, img, is_image) -> Flags:
+    def query(self, img, is_image) -> FlagList:
         """
         Run the recognizer, comparing to all the existing stuff.
 
@@ -55,7 +55,7 @@ class FlagSearcher:
                 and image querying.
 
         Returns:
-            Flags
+            FlagList
         """
         if is_image:
             # TODO(bjafek) again, this should be a usable format when it
@@ -74,4 +74,4 @@ class FlagSearcher:
             flag.score = score
             flags.append(flag)
 
-        return Flags(flags=flags)
+        return FlagList(flags=flags)

@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.src.flag_searcher import FlagSearcher
-from common.flag_data import Flags, Image
+from common.flag_data import FlagList, Image
 
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
@@ -24,16 +24,16 @@ app.add_middleware(
 
 memory_db = {
     "most_recent_query": "",
-    "text_flags": Flags(flags=[]),
-    "image_flags": Flags(flags=[]),
+    "text_flags": FlagList(flags=[]),
+    "image_flags": FlagList(flags=[]),
 }
 
 
-@app.get(path="/flags", response_model=Flags)
+@app.get(path="/flags", response_model=FlagList)
 def get_flags():
     text_flags = memory_db["text_flags"]
     # Clear it afterwards
-    memory_db["text_flags"] = Flags(flags=[])
+    memory_db["text_flags"] = FlagList(flags=[])
 
     return text_flags
 
@@ -46,7 +46,7 @@ def get_flags():
 async def add_flag(text_query: Request):
     data = await text_query.json()  # Get the JSON data
     if memory_db["text_flags"]:
-        memory_db["text_flags"] = Flags(flags=[])
+        memory_db["text_flags"] = FlagList(flags=[])
 
     flags = flag_searcher.query(data["text_query"], is_image=False)
     memory_db["text_flags"] = flags
@@ -57,11 +57,11 @@ async def add_flag(text_query: Request):
     return
 
 
-@app.get(path="/upload_image", response_model=Flags)
+@app.get(path="/upload_image", response_model=FlagList)
 def get_image_flags():
     image_flags = memory_db["image_flags"]
     # Clear it afterwards
-    memory_db["image_flags"] = Flags(flags=[])
+    memory_db["image_flags"] = FlagList(flags=[])
 
     return image_flags
 
@@ -74,7 +74,7 @@ def get_uploaded_image(img: Image):
     # TODO(bjafek) how to actually pass the image instead
     #  of this incomplete filename?
     if memory_db["image_flags"]:
-        memory_db["image_flags"] = Flags(flags=[])
+        memory_db["image_flags"] = FlagList(flags=[])
     flags = flag_searcher.query(img, is_image=True)
 
     memory_db["image_flags"] = flags

@@ -1,6 +1,10 @@
 """
 We want to make sure that it doesn't take too long to set-up
 or run individual frames with the FlagSearcher. This is a benchmark.
+
+
+TODO(bjafek) This should have at least some basic logic to make
+sure the output is correct, not just fast lol.
 """
 
 import random

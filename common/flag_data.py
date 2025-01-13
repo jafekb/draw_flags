@@ -75,7 +75,7 @@ def flag_from_json(file_name: Path) -> Flag:
     return Flag(**data)
 
 
-class Flags(BaseModel):
+class FlagList(BaseModel):
     """
     Just a bunch of flags
     """
