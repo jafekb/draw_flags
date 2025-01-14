@@ -10,9 +10,13 @@ import wikipedia
 from tqdm import tqdm
 
 OUT_NAME = Path("/home/bjafek/personal/draw_flags/data_mining/national_flags/flag_pages.txt")
+OUT_NAME.touch()
 ALREADY_CHECKED_NAME = Path(
     "/home/bjafek/personal/draw_flags/data_mining/national_flags/already_checked_pages.txt"
 )
+ALREADY_CHECKED_NAME.touch()
+IGNORED_NAME = Path("/home/bjafek/personal/draw_flags/data_mining/national_flags/ignored_pages.txt")
+IGNORED_NAME.touch()
 
 
 def get_flag_pages():
@@ -22,6 +26,9 @@ def get_flag_pages():
 
     with ALREADY_CHECKED_NAME.open("r") as f:
         already_checked = f.read().split("\n")
+
+    with IGNORED_NAME.open("r") as f:
+        ignored_pages = f.read().split("\n")
 
     while pages:
         idx += 1
@@ -44,8 +51,11 @@ def get_flag_pages():
                         #  but _don't_ try guessing.
                         continue
                     list_links.append(cur_page)
-                if "flag of" in lower:
+                elif "flag of" in lower:
                     flag_links.add(lower)
+                else:
+                    ignored_pages.append(link)
+                already_checked.append(link)
 
             new_pages.extend(list_links)
             all_flag_pages.update(flag_links)
@@ -57,10 +67,16 @@ def get_flag_pages():
             print(f"Wrote out {len(all_flag_pages)} lines to {OUT_NAME}")
 
             # And keep track of pages we've already listed through
-            already_checked = sorted(set(new_pages + already_checked))
+            already_checked = sorted(set(already_checked))
             with ALREADY_CHECKED_NAME.open("w") as f:
                 f.write("\n".join(already_checked))
             print(f"Already checked {len(already_checked)} pages.")
+
+            # And keep track of ignored pages
+            ignored_pages = sorted(set(ignored_pages))
+            with IGNORED_NAME.open("w") as f:
+                f.write("\n".join(ignored_pages))
+            print(f"Ignored {len(ignored_pages)} pages.")
 
         pages = new_pages.copy()
 
