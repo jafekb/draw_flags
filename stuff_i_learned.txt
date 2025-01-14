@@ -20,3 +20,8 @@ https://www.crwflags.com/fotw/flags/
 # This is looking like it's going to give me (a) a lot of examples, and (b) really well-formed examples that will be possible to link to wikipedia articles.
 # This still has a few FPs/FNs, but it should be very good.
 /home/bjafek/personal/wikimedia-downloader/downloader.py
+
+
+https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/
+
+heirarchical navigable small world search (HNSW)
