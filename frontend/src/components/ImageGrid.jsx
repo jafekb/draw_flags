@@ -8,7 +8,9 @@ const ImageGrid = ({ images, title }) => {
                 {images.map((image, index) => (
                     <div className="grid-item" key={index}>
                         <img src={image.wikipedia_image_url} alt={image.wikipedia_image_url} />
-                        <p>{image.name + ": " + image.score.toFixed(3)}</p>
+                        <a href={image.wikipedia_url} target="_blank">{image.name}</a> ({(image.score * 100).toFixed(1)}%)
+
+
                     </div>
                 ))}
             </div>
