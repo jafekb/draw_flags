@@ -20,7 +20,6 @@ IGNORED_NAME.touch()
 
 
 def get_flag_pages():
-    all_flag_pages = set()
     pages = [wikipedia.page("Lists of flags", auto_suggest=False)]
     idx = 0
 
@@ -29,6 +28,9 @@ def get_flag_pages():
 
     with IGNORED_NAME.open("r") as f:
         ignored_pages = f.read().split("\n")
+
+    with OUT_NAME.open("r") as f:
+        all_flag_pages = set(f.read().split("\n"))
 
     while pages:
         idx += 1
@@ -46,9 +48,10 @@ def get_flag_pages():
 
                     try:
                         cur_page = wikipedia.page(link, auto_suggest=False)
-                    except wikipedia.exceptions.PageError:
+                    except:  # noqa: E722
                         # If you can't find it just don't worry about it,
-                        #  but _don't_ try guessing.
+                        #  but _don't_ try guessing. I tried to list out the
+                        #  exception but there's too many
                         continue
                     list_links.append(cur_page)
                 elif "flag of" in lower:
