@@ -12,7 +12,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from common.flag_data import FlagList, flaglist_from_json
 
-FLAGS_FILE = Path("/home/bjafek/personal/draw_flags/data/national_flags/flag_searcher/flags.json")
+FLAGS_FILE = Path("backend/data/flags.json")
 
 
 class FlagSearcher:

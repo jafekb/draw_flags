@@ -1,0 +1,1850 @@
+{
+ "flags": [
+  {
+   "name": "Antigua and Barbuda",
+   "wikipedia_page": "Flag of Antigua and Barbuda",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Antigua_and_Barbuda",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_Antigua_and_Barbuda.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Antigua and Barbuda.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Kazakhstan",
+   "wikipedia_page": "Flag of Kazakhstan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kazakhstan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Kazakhstan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Belarus",
+   "wikipedia_page": "Flag of Belarus",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Belarus",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Flag_of_Belarus.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Belarus.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Angola",
+   "wikipedia_page": "Flag of Angola",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Angola",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Angola.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Angola.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Uruguay",
+   "wikipedia_page": "Flag of Uruguay",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Uruguay",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Uruguay.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Chile",
+   "wikipedia_page": "Flag of Chile",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Chile",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Chile.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Netherlands",
+   "wikipedia_page": "Flag of the Netherlands",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Netherlands",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Netherlands.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Tanzania",
+   "wikipedia_page": "Flag of Tanzania",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tanzania",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Tanzania.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Tanzania.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Tonga",
+   "wikipedia_page": "Flag of Tonga",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tonga",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Tonga.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Tonga.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Russia",
+   "wikipedia_page": "Flag of Russia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Russia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Russia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Rwanda",
+   "wikipedia_page": "Flag of Rwanda",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Rwanda",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Rwanda.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Rwanda.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Kenya",
+   "wikipedia_page": "Flag of Kenya",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kenya",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Kenya.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Jamaica",
+   "wikipedia_page": "Flag of Jamaica",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Jamaica",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Jamaica.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Jamaica.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Egypt",
+   "wikipedia_page": "Flag of Egypt",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Egypt",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Egypt.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Eswatini",
+   "wikipedia_page": "Flag of Eswatini",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Eswatini",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_Eswatini.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Eswatini.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Nepal",
+   "wikipedia_page": "Flag of Nepal",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nepal",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Nepal.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Palau",
+   "wikipedia_page": "Flag of Palau",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Palau",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Palau.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Palau.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Belize",
+   "wikipedia_page": "Flag of Belize",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Belize",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Flag_of_Belize.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Belize.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Cambodia",
+   "wikipedia_page": "Flag of Cambodia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cambodia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_Cambodia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Cambodia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Bangladesh",
+   "wikipedia_page": "Flag of Bangladesh",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Bangladesh.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Lithuania",
+   "wikipedia_page": "Flag of Lithuania",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Lithuania",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Lithuania.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Lithuania.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Austria",
+   "wikipedia_page": "Flag of Austria",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Austria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Austria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Peru",
+   "wikipedia_page": "Flag of Peru",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Peru",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Peru.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Belgium",
+   "wikipedia_page": "Flag of Belgium",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Belgium",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Belgium.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Romania",
+   "wikipedia_page": "Flag of Romania",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Romania",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Romania.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Romania.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Niger",
+   "wikipedia_page": "Flag of Niger",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Niger",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Flag_of_Niger.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Niger.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+   "wikipedia_page": "Flag of S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/S\u00e3o Tom\u00e9 and Pr\u00edncipe.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Kuwait",
+   "wikipedia_page": "Flag of Kuwait",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kuwait",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Flag_of_Kuwait.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Kuwait.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Norway",
+   "wikipedia_page": "Flag of Norway",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Norway",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Norway.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Djibouti",
+   "wikipedia_page": "Flag of Djibouti",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Djibouti",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_Djibouti.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Djibouti.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Bahrain",
+   "wikipedia_page": "Flag of Bahrain",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bahrain",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Bahrain.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Bahrain.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ethiopia",
+   "wikipedia_page": "Flag of Ethiopia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ethiopia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ethiopia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Qatar",
+   "wikipedia_page": "Flag of Qatar",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Qatar",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Qatar.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Qatar.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Papua New Guinea",
+   "wikipedia_page": "Flag of Papua New Guinea",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Papua_New_Guinea",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Flag_of_Papua_New_Guinea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Papua New Guinea.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Estonia",
+   "wikipedia_page": "Flag of Estonia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Estonia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Flag_of_Estonia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Estonia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Czech Republic",
+   "wikipedia_page": "Flag of the Czech Republic",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Czech_Republic",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_Czech_Republic.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Czech Republic.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Slovakia",
+   "wikipedia_page": "Flag of Slovakia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Slovakia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Flag_of_Slovakia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Slovakia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Bulgaria",
+   "wikipedia_page": "Flag of Bulgaria",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bulgaria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Bulgaria.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Bulgaria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Sierra Leone",
+   "wikipedia_page": "Flag of Sierra Leone",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Sierra_Leone.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Sierra Leone.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Federated States of Micronesia",
+   "wikipedia_page": "Flag of the Federated States of Micronesia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Federated_States_of_Micronesia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Flag_of_the_Federated_States_of_Micronesia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Federated States of Micronesia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Sri Lanka",
+   "wikipedia_page": "Flag of Sri Lanka",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sri_Lanka",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Sri Lanka.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Dominica",
+   "wikipedia_page": "Flag of Dominica",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Dominica",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Flag_of_Dominica_%28variant_6%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Dominica.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Malaysia",
+   "wikipedia_page": "Flag of Malaysia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Malaysia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Malaysia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Suriname",
+   "wikipedia_page": "Flag of Suriname",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Suriname",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Flag_of_Suriname.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Suriname.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Cape Verde",
+   "wikipedia_page": "Flag of Cape Verde",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cape_Verde",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Cape_Verde.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Cape Verde.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Yemen",
+   "wikipedia_page": "Flag of Yemen",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Yemen",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_Yemen.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Yemen.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Uganda",
+   "wikipedia_page": "Flag of Uganda",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Uganda",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Flag_of_Uganda.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Uganda.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Lesotho",
+   "wikipedia_page": "Flag of Lesotho",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Lesotho",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Flag_of_Lesotho.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Lesotho.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Myanmar",
+   "wikipedia_page": "Flag of Myanmar",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Myanmar",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Flag_of_Myanmar.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Myanmar.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Jordan",
+   "wikipedia_page": "Flag of Jordan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Jordan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Jordan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Jordan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Western Sahara",
+   "wikipedia_page": "Flag of the Sahrawi Arab Democratic Republic",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Western_Sahara",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Western Sahara.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Namibia",
+   "wikipedia_page": "Flag of Namibia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Namibia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Namibia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Namibia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "South Korea",
+   "wikipedia_page": "Flag of South Korea",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_South_Korea",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/South Korea.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Slovenia",
+   "wikipedia_page": "Flag of Slovenia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Slovenia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Flag_of_Slovenia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Slovenia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Gabon",
+   "wikipedia_page": "Flag of Gabon",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Gabon",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Gabon.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Gabon.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Monaco",
+   "wikipedia_page": "Flag of Monaco",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Monaco",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Flag_of_Monaco.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Monaco.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Nauru",
+   "wikipedia_page": "Flag of Nauru",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nauru",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Flag_of_Nauru.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Nauru.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Saint Lucia",
+   "wikipedia_page": "Flag of Saint Lucia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Saint_Lucia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Saint_Lucia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Saint Lucia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Uzbekistan",
+   "wikipedia_page": "Flag of Uzbekistan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Uzbekistan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Bosnia and Herzegovina",
+   "wikipedia_page": "Flag of Bosnia and Herzegovina",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bosnia_and_Herzegovina",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Flag_of_Bosnia_and_Herzegovina.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Bosnia and Herzegovina.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Libya",
+   "wikipedia_page": "Flag of Libya",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Libya",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Libya.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Libya.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the United Arab Emirates",
+   "wikipedia_page": "Flag of the United Arab Emirates",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_United_Arab_Emirates",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the United Arab Emirates.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Kosovo",
+   "wikipedia_page": "Flag of Kosovo",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kosovo",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Flag_of_Kosovo.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Kosovo.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Comoros",
+   "wikipedia_page": "Flag of the Comoros",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Comoros",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Flag_of_the_Comoros.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Comoros.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Israel",
+   "wikipedia_page": "Flag of Israel",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Israel",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Israel.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "South Sudan",
+   "wikipedia_page": "Flag of South Sudan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_South_Sudan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Flag_of_South_Sudan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/South Sudan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Switzerland",
+   "wikipedia_page": "Flag of Switzerland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Switzerland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Switzerland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Switzerland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Trinidad and Tobago",
+   "wikipedia_page": "Flag of Trinidad and Tobago",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Trinidad_and_Tobago",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Flag_of_Trinidad_and_Tobago.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Trinidad and Tobago.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Algeria",
+   "wikipedia_page": "Flag of Algeria",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Algeria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Algeria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Botswana",
+   "wikipedia_page": "Flag of Botswana",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Botswana",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_Botswana.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Botswana.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Brunei",
+   "wikipedia_page": "Flag of Brunei",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Brunei",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Brunei.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Brunei.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "India",
+   "wikipedia_page": "Flag of India",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_India",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/India.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Denmark",
+   "wikipedia_page": "Flag of Denmark",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Denmark",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Denmark.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Spain",
+   "wikipedia_page": "Flag of Spain",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Spain",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Spain.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Armenia",
+   "wikipedia_page": "Flag of Armenia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Armenia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_Armenia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Armenia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Singapore",
+   "wikipedia_page": "Flag of Singapore",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Singapore",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Singapore.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Mozambique",
+   "wikipedia_page": "Flag of Mozambique",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mozambique",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Mozambique.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Mozambique.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Azerbaijan",
+   "wikipedia_page": "Flag of Azerbaijan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Azerbaijan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Azerbaijan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Azerbaijan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Afghanistan",
+   "wikipedia_page": "Flag of the Taliban",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Afghanistan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Afghanistan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Zimbabwe",
+   "wikipedia_page": "Flag of Zimbabwe",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Zimbabwe",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Zimbabwe.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Lebanon",
+   "wikipedia_page": "Flag of Lebanon",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Lebanon",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Flag_of_Lebanon.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Lebanon.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Colombia",
+   "wikipedia_page": "Flag of Colombia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Colombia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Colombia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Zambia",
+   "wikipedia_page": "Flag of Zambia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Zambia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Zambia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Zambia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Philippines",
+   "wikipedia_page": "Flag of the Philippines",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Philippines",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Philippines.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Guinea-Bissau",
+   "wikipedia_page": "Flag of Guinea-Bissau",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Guinea-Bissau",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Guinea-Bissau.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Guinea-Bissau.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Indonesia",
+   "wikipedia_page": "Flag of Indonesia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Indonesia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Indonesia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Paraguay",
+   "wikipedia_page": "Flag of Paraguay",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Paraguay",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Paraguay.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Paraguay.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Malawi",
+   "wikipedia_page": "Flag of Malawi",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Malawi",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Flag_of_Malawi.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Malawi.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Turkey",
+   "wikipedia_page": "Flag of Turkey",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Turkey",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Turkey.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Costa Rica",
+   "wikipedia_page": "Flag of Costa Rica",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Costa_Rica",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Flag_of_Costa_Rica.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Costa Rica.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Greece",
+   "wikipedia_page": "Flag of Greece",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Greece",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Greece.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "San Marino",
+   "wikipedia_page": "Flag of San Marino",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_San_Marino",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Flag_of_San_Marino.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/San Marino.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Mali",
+   "wikipedia_page": "Flag of Mali",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mali",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Mali.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Bolivia",
+   "wikipedia_page": "Flag of Bolivia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bolivia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Bolivia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Bolivia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Abkhazia",
+   "wikipedia_page": "Flag_of_Abkhazia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Abkhazia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Abkhazia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Germany",
+   "wikipedia_page": "Flag of Germany",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Germany",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Germany.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Syria",
+   "wikipedia_page": "Flag of Syria",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Syria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Flag_of_Syria_%282024%E2%80%93present%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Syria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Panama",
+   "wikipedia_page": "Flag of Panama",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Panama",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_Panama.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Panama.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Burundi",
+   "wikipedia_page": "Flag of Burundi",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Burundi",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Flag_of_Burundi.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Burundi.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Latvia",
+   "wikipedia_page": "Flag of Latvia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Latvia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Latvia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Latvia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Symbols of North and East Syria",
+   "wikipedia_page": "Flag of Rojava",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Symbols_of_North_and_East_Syria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_North_Macedonia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Symbols of North and East Syria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Montenegro",
+   "wikipedia_page": "Flag of Montenegro",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Montenegro",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Flag_of_Montenegro.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Montenegro.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Central African Republic",
+   "wikipedia_page": "Flag of the Central African Republic",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Central_African_Republic",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Central_African_Republic.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Central African Republic.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Morocco",
+   "wikipedia_page": "Flag of Morocco",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Morocco",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Morocco.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "France",
+   "wikipedia_page": "Flag of France",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_France",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/France.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "China",
+   "wikipedia_page": "Flag of the People's Republic of China",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_China",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/China.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Democratic Republic of the Congo",
+   "wikipedia_page": "Flag of the Democratic Republic of the Congo",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Democratic_Republic_of_the_Congo",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Democratic_Republic_of_the_Congo.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Democratic Republic of the Congo.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Finland",
+   "wikipedia_page": "Flag of Finland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Finland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Finland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Iceland",
+   "wikipedia_page": "Flag of Iceland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Iceland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Iceland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Iceland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Argentina",
+   "wikipedia_page": "Flag of Argentina",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Argentina",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Argentina.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Sudan",
+   "wikipedia_page": "Flag of Sudan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sudan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Sudan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Sudan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Italy",
+   "wikipedia_page": "Flag of Italy",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Italy",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Italy.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Guyana",
+   "wikipedia_page": "Flag of Guyana",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Guyana",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_Guyana.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Guyana.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Oman",
+   "wikipedia_page": "Flag of Oman",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Oman",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Oman.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Croatia",
+   "wikipedia_page": "Flag of Croatia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Croatia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Croatia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Luxembourg",
+   "wikipedia_page": "Flag of Luxembourg",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Luxembourg",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Flag_of_Luxembourg.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Luxembourg.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Laos",
+   "wikipedia_page": "Flag of Laos",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Laos",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Laos.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Laos.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "North Macedonia",
+   "wikipedia_page": "Flag of North Macedonia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_North_Macedonia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_North_Macedonia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/North Macedonia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Turkmenistan",
+   "wikipedia_page": "Flag of Turkmenistan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Turkmenistan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Turkmenistan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Turkmenistan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Liechtenstein",
+   "wikipedia_page": "Flag of Liechtenstein",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Flag_of_Liechtenstein.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Liechtenstein.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Moldova",
+   "wikipedia_page": "Flag of Moldova",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Moldova",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Moldova.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Moldova.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Saudi Arabia",
+   "wikipedia_page": "Flag of Saudi Arabia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Saudi_Arabia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Saudi Arabia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Solomon Islands",
+   "wikipedia_page": "Flag of the Solomon Islands",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Solomon_Islands",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Flag_of_the_Solomon_Islands.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Solomon Islands.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Nigeria",
+   "wikipedia_page": "Flag of Nigeria",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nigeria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Nigeria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ireland",
+   "wikipedia_page": "Flag of Ireland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ireland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ireland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Kiribati",
+   "wikipedia_page": "Flag of Kiribati",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kiribati",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kiribati.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Kiribati.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "New Zealand",
+   "wikipedia_page": "Flag of New Zealand",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_New_Zealand",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/New Zealand.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Grenada",
+   "wikipedia_page": "Flag of Grenada",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Grenada",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Grenada.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Grenada.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Australia",
+   "wikipedia_page": "Flag of Australia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Australia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Australia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Puntland",
+   "wikipedia_page": "Flag of Puntland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Puntland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Flag_of_Puntland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Puntland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Venezuela",
+   "wikipedia_page": "Flag of Venezuela",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Venezuela",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Venezuela.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Venezuela.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Vietnam",
+   "wikipedia_page": "Flag of Vietnam",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Vietnam",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Vietnam.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ossetia",
+   "wikipedia_page": "Flag of South Ossetia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ossetia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ossetia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Vanuatu",
+   "wikipedia_page": "Flag of Vanuatu",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Vanuatu",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Vanuatu.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Vanuatu.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Sweden",
+   "wikipedia_page": "Flag of Sweden",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sweden",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Sweden.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Somalia",
+   "wikipedia_page": "Flag of Somalia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Somalia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Flag_of_Somalia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Somalia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Tunisia",
+   "wikipedia_page": "Flag of Tunisia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tunisia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Tunisia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Tunisia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Timor-Leste",
+   "wikipedia_page": "Flag of East Timor",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Timor-Leste",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Sierra_Leone.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Timor-Leste.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Bahamas",
+   "wikipedia_page": "Flag of the Bahamas",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Bahamas",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Flag_of_the_Bahamas.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Bahamas.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Equatorial Guinea",
+   "wikipedia_page": "Flag of Equatorial Guinea",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Equatorial_Guinea",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Equatorial_Guinea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Equatorial Guinea.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Pakistan",
+   "wikipedia_page": "Flag of Pakistan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Pakistan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Pakistan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Thailand",
+   "wikipedia_page": "Flag of Thailand",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Thailand",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Thailand.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Georgia (country)",
+   "wikipedia_page": "Flag of Georgia (country)",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Georgia_(country)",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Georgia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Georgia (country).png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Honduras",
+   "wikipedia_page": "Flag of Honduras",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Honduras",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Flag_of_Honduras.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Honduras.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Senegal",
+   "wikipedia_page": "Flag of Senegal",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Senegal",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Senegal.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Mongolia",
+   "wikipedia_page": "Flag of Mongolia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mongolia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Flag_of_Mongolia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Mongolia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Brazil",
+   "wikipedia_page": "Flag of Brazil",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Brazil",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Brazil.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ghana",
+   "wikipedia_page": "Flag of Ghana",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ghana",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Ghana.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ghana.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Bhutan",
+   "wikipedia_page": "Flag of Bhutan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bhutan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Flag_of_Bhutan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Bhutan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Burkina Faso",
+   "wikipedia_page": "Flag of Burkina Faso",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Burkina_Faso",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Burkina_Faso.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Burkina Faso.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Malta",
+   "wikipedia_page": "Flag of Malta",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Malta",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Malta.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Malta.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "El Salvador",
+   "wikipedia_page": "Flag of El Salvador",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_El_Salvador.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/El Salvador.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Dominican Republic",
+   "wikipedia_page": "Flag of the Dominican Republic",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Dominican_Republic",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_the_Dominican_Republic.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Dominican Republic.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the United States",
+   "wikipedia_page": "Flag of the United States",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_United_States",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the United States.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Tuvalu",
+   "wikipedia_page": "Flag of Tuvalu",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tuvalu",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Tuvalu.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Tuvalu.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Iran",
+   "wikipedia_page": "Flag of Iran",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Iran",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Iran.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Marshall Islands",
+   "wikipedia_page": "Flag of the Marshall Islands",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Marshall_Islands",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Flag_of_the_Marshall_Islands.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Marshall Islands.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Canada",
+   "wikipedia_page": "Flag of Canada",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Canada",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/c/cf/Flag_of_Canada.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Canada.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Cuba",
+   "wikipedia_page": "Flag of Cuba",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cuba",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Cuba.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ecuador",
+   "wikipedia_page": "Flag of Ecuador",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ecuador",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ecuador.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Nicaragua",
+   "wikipedia_page": "Flag of Nicaragua",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nicaragua",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Nicaragua.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Nicaragua.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Andorra",
+   "wikipedia_page": "Flag of Andorra",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Andorra",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Andorra.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Andorra.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Vatican City",
+   "wikipedia_page": "Flag of Vatican City",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Vatican_City",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_Vatican_City_%282023%E2%80%93present%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Vatican City.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Republic of China",
+   "wikipedia_page": "Flag of the Republic of China",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Flag_of_the_Republic_of_China.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Republic of China.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Benin",
+   "wikipedia_page": "Flag of Benin",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Benin",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Benin.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Benin.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Republic of the Congo",
+   "wikipedia_page": "Flag of the Republic of the Congo",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_the_Congo",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_the_Republic_of_the_Congo.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Republic of the Congo.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Cyprus",
+   "wikipedia_page": "Flag of Cyprus",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cyprus",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Cyprus.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Cyprus.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Tajikistan",
+   "wikipedia_page": "Flag of Tajikistan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tajikistan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Tajikistan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Tajikistan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Gambia",
+   "wikipedia_page": "Flag of The Gambia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Gambia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Gambia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Mauritius",
+   "wikipedia_page": "Flag of Mauritius",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mauritius",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Mauritius.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Mauritius.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Hungary",
+   "wikipedia_page": "Flag of Hungary",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Hungary",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Hungary.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Iraq",
+   "wikipedia_page": "Flag of Iraq",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Iraq",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Iraq.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Fiji",
+   "wikipedia_page": "Flag of Fiji",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Fiji",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Fiji.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Fiji.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Transnistria",
+   "wikipedia_page": "Flag of Transnistria",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Transnistria",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Transnistria_%28state%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Transnistria.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Poland",
+   "wikipedia_page": "Flag of Poland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Poland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Poland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Guatemala",
+   "wikipedia_page": "Flag of Guatemala",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Guatemala",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Guatemala.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Guatemala.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Haiti",
+   "wikipedia_page": "Flag of Haiti",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Haiti",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Haiti.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Haiti.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the Maldives",
+   "wikipedia_page": "Flag of Maldives",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_Maldives",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Maldives.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the Maldives.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Chad",
+   "wikipedia_page": "Flag of Chad",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Chad",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Chad.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Chad.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Saint Kitts and Nevis",
+   "wikipedia_page": "Flag of Saint Kitts and Nevis",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Saint_Kitts_and_Nevis",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Saint_Kitts_and_Nevis.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Saint Kitts and Nevis.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Samoa",
+   "wikipedia_page": "Flag of Samoa",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Samoa",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Samoa.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Samoa.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Mauritania",
+   "wikipedia_page": "Flag of Mauritania",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mauritania",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Flag_of_Mauritania.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Mauritania.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "South Africa",
+   "wikipedia_page": "Flag of South Africa",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_South_Africa",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/South Africa.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Serbia",
+   "wikipedia_page": "Flag of Serbia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Serbia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Flag_of_Serbia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Serbia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Cameroon",
+   "wikipedia_page": "Flag of Cameroon",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cameroon",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Flag_of_Cameroon.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Cameroon.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Albania",
+   "wikipedia_page": "Flag of Albania",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Albania",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Albania.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Palestine",
+   "wikipedia_page": "Flag of Palestine",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Palestine",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Palestine.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Palestine.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Somaliland",
+   "wikipedia_page": "Flag of Somaliland",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Somaliland",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Flag_of_Somaliland.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Somaliland.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ivory Coast",
+   "wikipedia_page": "Flag of C\u00f4te d'Ivoire",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ivory_Coast",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Flag_of_Barbados.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ivory Coast.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Togo",
+   "wikipedia_page": "Flag of Togo",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Togo",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Flag_of_Togo_%283-2%29.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Togo.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "the United Kingdom",
+   "wikipedia_page": "Flag of the United Kingdom",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/the United Kingdom.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Seychelles",
+   "wikipedia_page": "Flag of Seychelles",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Seychelles",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Seychelles.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Seychelles.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Japan",
+   "wikipedia_page": "Flag of Japan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Japan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Japan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Kyrgyzstan",
+   "wikipedia_page": "Flag of Kyrgyzstan",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kyrgyzstan",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Flag_of_Kyrgyzstan.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Kyrgyzstan.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Barbados",
+   "wikipedia_page": "Flag of Barbados",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Barbados",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Flag_of_Barbados.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Barbados.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Madagascar",
+   "wikipedia_page": "Flag of Madagascar",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Madagascar",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Madagascar.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Madagascar.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Eritrea",
+   "wikipedia_page": "Flag of Eritrea",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Eritrea",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_Eritrea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Eritrea.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Ukraine",
+   "wikipedia_page": "Flag of Ukraine",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ukraine",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Ukraine.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Portugal",
+   "wikipedia_page": "Flag of Portugal",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Portugal",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Portugal.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Liberia",
+   "wikipedia_page": "Flag of Liberia",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Liberia",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Liberia.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Guinea",
+   "wikipedia_page": "Flag of Guinea",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Guinea",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Guinea.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "North Korea",
+   "wikipedia_page": "Flag of North Korea",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_North_Korea",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Flag_of_North_Korea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/North Korea.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Saint Vincent and the Grenadines",
+   "wikipedia_page": "Flag of Saint Vincent and the Grenadines",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Saint_Vincent_and_the_Grenadines",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Flag_of_Saint_Vincent_and_the_Grenadines.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Saint Vincent and the Grenadines.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Mexico",
+   "wikipedia_page": "Flag of Mexico",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mexico",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Mexico.png",
+   "verification_method": "table",
+   "score": 1.0
+  },
+  {
+   "name": "Northern Cyprus",
+   "wikipedia_page": "Flag of the Turkish Republic of Northern Cyprus",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Northern_Cyprus",
+   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Flag_of_North_Korea.svg",
+   "local_image_link": "/home/bjafek/personal/draw_flags/data/national_flags/images/Northern Cyprus.png",
+   "verification_method": "table",
+   "score": 1.0
+  }
+ ],
+ "embeddings_filename": "backend/data/embeddings.pt"
+}
