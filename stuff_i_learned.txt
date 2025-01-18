@@ -11,6 +11,7 @@ https://en.wikipedia.org/wiki/Lists_of_flags
     This looks like the best balance of "gives information about them" and "coverage"
 
 https://www.crwflags.com/fotw/flags/
+https://www.crwflags.com/fotw/flags/ftp.html#download
 
 # ~Just download a bunch of stuff from wikimedia commons.~
 # ~I now have a directory of downloads/Flags/ with ~1GB of images.~
