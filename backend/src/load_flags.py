@@ -26,7 +26,7 @@ WIKIMEDIA_COMMONS_IMAGES = Path(
 def load_all_flag_info(root_dir):
     """
     This is now the accepted way to do this.
-    # TODO(bjafek) use the FlagList object instead of this
+    Can handle any file format that PIL Image can (png, jpg, gif?)
     # TODO(bjafek) If you want to load open_flags or wikimedia_commons,
         you need to align with this format.
 
@@ -38,6 +38,8 @@ def load_all_flag_info(root_dir):
     n_jsons = len(jsons)
     image_list = []
     flags = []
+    # TODO(bjafek) this can only handle up to ~1000 images, then we get a
+    #  TooManyFilesOpen error.
     for idx, fn in tqdm(enumerate(jsons), total=n_jsons):
         flag = flag_from_json(fn)
 

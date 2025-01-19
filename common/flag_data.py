@@ -4,6 +4,7 @@ Utils file for the FlagSearcher & backend.
 
 import json
 from pathlib import Path
+from shutil import copyfile
 from typing import List
 
 import cairosvg
@@ -45,16 +46,32 @@ class Flag(BaseModel):
         had_to_download = False
         if not out_name.is_file():
             suffix = self.wikipedia_image_url.split(".")[-1]
+            if self.local_image_link:
+                # TODO(bjafek) assert suffix in allowed_suffices
+                # TODO(bjafek) also feels like we could streamline this logic
+                if suffix in ("svg", "SVG"):
+                    # TODO(bjafek) just work through this a little more, svgs are tricky
+                    # with open(self.local_image_link, "r") as f:
+                    # svg = f.read()
+                    # out_name = out_dir / f"{self.name}.png"
+                    # cairosvg.svg2png(svg, write_to=str(out_name))
+                    raise NotImplementedError("I don't want to handle svgs yet!")
+                copyfile(self.local_image_link, out_dir / out_name)
+                return False
+
             if suffix in ("svg", "SVG"):
                 out_name = out_dir / f"{self.name}.png"
                 svg = download_svg(self.wikipedia_image_url)
                 cairosvg.svg2png(svg, write_to=str(out_name))
             elif suffix in ("png", "PNG"):
                 out_name = out_dir / f"{self.name}.png"
-                download_png(self.wikipedia_image_url, out_name)
+                download_image(self.wikipedia_image_url, out_name)
             elif suffix in ("gif", "GIF"):
                 out_name = out_dir / f"{self.name}.gif"
-                download_png(self.wikipedia_image_url, out_name)
+                download_image(self.wikipedia_image_url, out_name)
+            elif suffix in ("jpg", "jpeg", "JPG", "JPEG"):
+                out_name = out_dir / f"{self.name}.jpg"
+                download_image(self.wikipedia_image_url, out_name)
             else:
                 raise NotImplementedError(f"We can't yet handle the suffix '{suffix}' you gave us!")
             had_to_download = True
@@ -129,9 +146,9 @@ class Image(BaseModel):
     data: str
 
 
-def download_png(image_url: str, out_name: Path) -> None:
+def download_image(image_url: str, out_name: Path) -> None:
     """
-    Download a png file from the internet, save it to 'out_name'
+    Download a jpg/png file from the internet, save it to 'out_name'
     """
     img_data = requests.get(image_url).content
     with out_name.open("wb") as f:
