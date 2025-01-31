@@ -26,3 +26,5 @@ https://www.crwflags.com/fotw/flags/ftp.html#download
 https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/
 
 heirarchical navigable small world search (HNSW)
+
+https://github.com/prefix-dev/pixi
