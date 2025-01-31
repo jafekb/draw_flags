@@ -4,6 +4,7 @@
 # images (you can override this if absolutely necessary)
 *.png
 *.jpg
+data/
 
 
 # Byte-compiled / optimized / DLL files
