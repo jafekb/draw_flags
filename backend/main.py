@@ -42,7 +42,7 @@ def get_flags():
 # TODO(bjafek) this works again, but it doesn't make sense to me why
 #  this function had to be re-written this way when the get_image_flags()
 #  was working fine. I think it has something to do with the Flag redefinition?
-@app.post(path="/flags")
+@app.post(path="/flags", response_model=FlagList)
 async def add_flag(text_query: Request):
     data = await text_query.json()  # Get the JSON data
     if memory_db["text_flags"]:
@@ -54,7 +54,8 @@ async def add_flag(text_query: Request):
     # But always log the query.
     memory_db["most_recent_query"] = text_query
 
-    return
+    # return flags
+    return flags
 
 
 @app.get(path="/upload_image", response_model=FlagList)
