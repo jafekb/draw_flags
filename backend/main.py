@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,7 +11,6 @@ flag_searcher = FlagSearcher(top_k=8)
 
 origins = [
     "http://localhost:5173",
-    # Add more origins here
 ]
 
 app.add_middleware(
@@ -22,9 +22,13 @@ app.add_middleware(
 )
 
 
-# TODO(bjafek) this isn't adding a flag, it's querying based on text
+# TODO(bjafek) this isn't 'adding a flag', it's querying based on text
 @app.post(path="/flags", response_model=FlagList)
 async def add_flag(text_query: Request):
     data = await text_query.json()  # Get the JSON data
     flags = flag_searcher.query(data["text_query"], is_image=False)
     return flags
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
