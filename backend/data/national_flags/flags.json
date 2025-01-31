@@ -1846,5 +1846,5 @@
    "score": 1.0
   }
  ],
- "embeddings_filename": "backend/data/embeddings.pt"
+ "embeddings_filename": "backend/data/national_flags/embeddings.pt"
 }
