@@ -28,3 +28,5 @@ https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-ef
 heirarchical navigable small world search (HNSW)
 
 https://github.com/prefix-dev/pixi
+
+draw_flags -> Settings -> Pages -> Source: "Github Actions" (NOT "Deploy from a branch")
