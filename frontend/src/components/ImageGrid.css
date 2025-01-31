@@ -23,7 +23,14 @@
 }
 
 .grid-item p {
-    padding: 10px;
+    margin: 0;
     font-size: 14px;
     color: #555;
+}
+
+.flag-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    padding: 12px 0;
 }
