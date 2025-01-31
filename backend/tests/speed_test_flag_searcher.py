@@ -25,7 +25,7 @@ print(f"Time to import: {time.time() - start:.2f}s")
 n_builds = 2
 start = time.time()
 for i in trange(n_builds, leave=False):
-    flag_searcher = FlagSearcher(top_k=8, verbose=False)
+    flag_searcher = FlagSearcher(top_k=8)
 elapsed = (time.time() - start) / n_builds
 print(f"Time to build: {elapsed:.2f}s")
 

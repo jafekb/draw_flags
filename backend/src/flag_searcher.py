@@ -6,7 +6,6 @@ other images of flags that look like it.
 from pathlib import Path
 
 import torch
-from PIL import Image
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -17,9 +16,8 @@ FLAGS_FILE = Path("backend/data/national_flags/flags.json")
 
 
 class FlagSearcher:
-    def __init__(self, top_k, verbose=True):
+    def __init__(self, top_k):
         self._top_k = top_k
-        self._verbose = verbose
 
         # TODO(bjafek) pull out name to a config
         self._model = SentenceTransformer("clip-ViT-B-32")
@@ -40,10 +38,11 @@ class FlagSearcher:
             FlagList
         """
         if is_image:
+            raise NotImplementedError
             # TODO(bjafek) again, this should be a usable format when it
             #  gets passed, instead of this junk.
-            fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
-            img = Image.open(fn)
+            # fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
+            # img = Image.open(fn)
         new_embedding = self._model.encode([img])
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
         top_k_indices = similarity_scores.argsort()[0][::-1][: self._top_k]

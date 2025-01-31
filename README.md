@@ -13,7 +13,7 @@ $ poetry shell
 
 ### Frontend
 ```
-$ cd ./frontend/src/components
+$ cd ./frontend/
 $ npm run dev
 ```
 
