@@ -13,3 +13,10 @@
     d. Make a single config file for everything.
 5. Add a painter?
     a. probably not
+
+
+errors:
+1. timor-leste
+2. abkhazia
+3. western sahara
+4. ivory coast
