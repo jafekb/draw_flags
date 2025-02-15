@@ -19,4 +19,3 @@ errors:
 1. timor-leste
 2. abkhazia
 3. western sahara
-4. ivory coast

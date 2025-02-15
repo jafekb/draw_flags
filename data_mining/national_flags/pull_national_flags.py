@@ -18,13 +18,16 @@ def clean_img_url(url):
     """
     base_name = url.split("/")[-1].split(".")[0].replace("_", " ").split(".")[0]
     remove_parens = re.sub(r"%28.*?%29", "", base_name).strip()
-    return unquote(remove_parens)
+    final = unquote(remove_parens)
+    if final == "Flag of Côte d'Ivoire":
+        final = "Flag of Ivory Coast"
+    return final
 
 
 page = wikipedia.page("List of national flags of sovereign states")
 images_on_page = page.images
 images_on_page = [(i, clean_img_url(i)) for i in images_on_page]
-ims = [i for i in page.images if "Flag_of" in i]
+ims = sorted([i for i in page.images if "Flag_of" in i], key=lambda x: x.split("/")[-1])
 n_ims = len(ims)
 
 out_dir = Path("/home/bjafek/personal/draw_flags/data/national_flags")
@@ -39,8 +42,10 @@ for idx, im in tqdm(enumerate(ims), total=n_ims):
     elif base == "Flag of the Republic of Abkhazia":
         base = "Flag_of_Abkhazia"
     elif "Ivoire" in base:
-        # TODO(bjafek) fix ivory coast / c'ote d'voire
         base = "Flag of Ivory Coast"
+    elif "Abkhazia" in base:
+        print("TO FIX bjafek")
+    print(base)
 
     flag_page = wikipedia.page(base, auto_suggest=False)
 
