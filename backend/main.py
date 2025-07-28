@@ -1,3 +1,8 @@
+import sys
+
+# TODO(bjafek) why
+sys.path.append("/home/bjafek/personal/draw_flags")
+
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware

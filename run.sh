@@ -3,4 +3,4 @@ export PROJECT_DIR="$(pwd)"
 export PYTHONPATH="$PROJECT_DIR:$PYTHONPATH"
 
 
-python $1
+python3 $1
