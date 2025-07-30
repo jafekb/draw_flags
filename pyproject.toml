@@ -110,3 +110,11 @@ docstring-code-format = false
 # This only has an effect when the `docstring-code-format` setting is
 # enabled.
 docstring-code-line-length = "dynamic"
+
+
+# Add this minimal project definition for uv
+[project]
+name = "draw-flags-root-placeholder"  # A unique, descriptive name
+version = "0.0.1"
+# No dependencies or other fields needed here, they are defined in
+# backend/pyproject.toml
