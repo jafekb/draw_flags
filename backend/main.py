@@ -16,6 +16,8 @@ flag_searcher = FlagSearcher(top_k=8)
 
 origins = [
     "http://localhost:5173",
+    "http://whatsthatflag.com",
+    "http://www.whatsthatflag.com",
 ]
 
 app.add_middleware(
