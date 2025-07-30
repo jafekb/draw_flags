@@ -17,7 +17,7 @@ from tqdm import trange
 from common.flag_data import Image
 
 start = time.time()
-from backend.src.flag_searcher import FlagSearcher  # noqa: E402
+from src.flag_searcher import FlagSearcher  # noqa: E402
 
 print(f"Time to import: {time.time() - start:.2f}s")
 
