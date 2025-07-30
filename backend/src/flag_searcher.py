@@ -5,7 +5,7 @@ other images of flags that look like it.
 
 from pathlib import Path
 
-import torch
+import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -23,7 +23,7 @@ class FlagSearcher:
         self._model = SentenceTransformer("clip-ViT-B-32")
 
         self._flags = flaglist_from_json(FLAGS_FILE)
-        self._encoded_images = torch.load(self._flags.embeddings_filename, weights_only=True)
+        self._encoded_images = np.load(self._flags.embeddings_filename)
 
     def query(self, img, is_image) -> FlagList:
         """
