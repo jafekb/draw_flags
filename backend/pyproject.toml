@@ -20,4 +20,6 @@ dependencies = [
     "pillow",
     "fastapi==0.115.6",
     "pydantic==2.10.4",
+    "sentence-transformers==3.2.1",
+    "onnx>=1.18.0",
 ]

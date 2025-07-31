@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 import onnxruntime as ort
+from sentence_transformers import SentenceTransformer
 from common.flag_data import FlagList, flaglist_from_json
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import CLIPTokenizer
@@ -29,6 +30,7 @@ class FlagSearcher:
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename)
+        self._model = SentenceTransformer("clip-ViT-B-32")
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""
@@ -40,19 +42,14 @@ class FlagSearcher:
             "attention_mask": inputs["attention_mask"]
         })
 
-        # Get the text embeddings (last hidden state)
+        # The ONNX model now outputs the final embeddings directly
+        # (including EOS token selection and text projection)
         text_embeddings = outputs[0]
 
-        # Take the mean pooling over the sequence length (excluding padding)
-        # This is a simple approach - you might want to use the EOS token embedding instead
-        attention_mask = inputs["attention_mask"]
-        masked_embeddings = text_embeddings * attention_mask[:, :, np.newaxis]
-        pooled_embeddings = masked_embeddings.sum(axis=1) / attention_mask.sum(axis=1, keepdims=True)
-
         # Normalize embeddings
-        pooled_embeddings = pooled_embeddings / np.linalg.norm(pooled_embeddings, axis=-1, keepdims=True)
+        text_embeddings = text_embeddings / np.linalg.norm(text_embeddings, axis=-1, keepdims=True)
 
-        return pooled_embeddings
+        return text_embeddings
 
     def query(self, text_query, is_image) -> FlagList:
         """
@@ -75,6 +72,11 @@ class FlagSearcher:
 
         # Encode the text query
         new_embedding = self._encode_text(text_query)
+        orig_embedding = self._model.encode([text_query])
+        
+        # Debug: Check similarity between ONNX and sentence-transformers
+        similarity = cosine_similarity(new_embedding, orig_embedding)[0][0]
+        print(f"ONNX vs Sentence-transformers similarity: {similarity:.6f}")
 
         # Calculate similarity with pre-computed embeddings
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
