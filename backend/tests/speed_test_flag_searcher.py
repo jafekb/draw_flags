@@ -16,6 +16,7 @@ from pathlib import Path
 from tqdm import trange
 
 # Add parent directory to path for imports
+# TODO(bjafek) why do we keep needing this???
 sys.path.append(str(Path(__file__).parent.parent))
 
 from common.flag_data import Image
