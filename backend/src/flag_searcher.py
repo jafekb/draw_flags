@@ -6,10 +6,10 @@ other images of flags that look like it.
 from pathlib import Path
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-
+import onnxruntime as ort
 from common.flag_data import FlagList, flaglist_from_json
+from sklearn.metrics.pairwise import cosine_similarity
+from transformers import CLIPTokenizer
 
 FLAGS_FILE = Path("data/national_flags/flags.json")
 # FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
@@ -19,11 +19,40 @@ class FlagSearcher:
     def __init__(self, top_k):
         self._top_k = top_k
 
-        # TODO(bjafek) pull out name to a config
-        self._model = SentenceTransformer("clip-ViT-B-32")
+        # Load ONNX model and tokenizer
+        model_path = "models/clip-text-encoder.onnx"
+        if not Path(model_path).exists():
+            raise FileNotFoundError(f"ONNX model not found at {model_path}. Please run the model conversion script.")
+
+        self._session = ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
+        self._tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename)
+
+    def _encode_text(self, text):
+        """Encode text using CLIP text encoder via ONNX"""
+        inputs = self._tokenizer(text, return_tensors="np", padding=True, truncation=True)
+
+        # Run inference
+        outputs = self._session.run(None, {
+            "input_ids": inputs["input_ids"],
+            "attention_mask": inputs["attention_mask"]
+        })
+
+        # Get the text embeddings (last hidden state)
+        text_embeddings = outputs[0]
+
+        # Take the mean pooling over the sequence length (excluding padding)
+        # This is a simple approach - you might want to use the EOS token embedding instead
+        attention_mask = inputs["attention_mask"]
+        masked_embeddings = text_embeddings * attention_mask[:, :, np.newaxis]
+        pooled_embeddings = masked_embeddings.sum(axis=1) / attention_mask.sum(axis=1, keepdims=True)
+
+        # Normalize embeddings
+        pooled_embeddings = pooled_embeddings / np.linalg.norm(pooled_embeddings, axis=-1, keepdims=True)
+
+        return pooled_embeddings
 
     def query(self, text_query, is_image) -> FlagList:
         """
@@ -43,7 +72,11 @@ class FlagSearcher:
             #  gets passed, instead of this junk.
             # fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
             # img = Image.open(fn)
-        new_embedding = self._model.encode([text_query])
+
+        # Encode the text query
+        new_embedding = self._encode_text(text_query)
+
+        # Calculate similarity with pre-computed embeddings
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)
         top_k_indices = similarity_scores.argsort()[0][::-1][: self._top_k]
         sorted_scores = similarity_scores.ravel()[top_k_indices].tolist()
