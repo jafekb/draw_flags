@@ -71,6 +71,7 @@ class FlagSearcher:
             # img = Image.open(fn)
 
         # Encode the text query
+        # TODO(bjafek) obviously don't just do this twice, remove this.
         new_embedding = self._encode_text(text_query)
         orig_embedding = self._model.encode([text_query])
         
