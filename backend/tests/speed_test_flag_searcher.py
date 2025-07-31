@@ -10,9 +10,13 @@ sure the output is correct, not just fast lol.
 import random
 import string
 import time
+import sys
 from pathlib import Path
 
 from tqdm import trange
+
+# Add parent directory to path for imports
+sys.path.append(str(Path(__file__).parent.parent))
 
 from common.flag_data import Image
 
