@@ -7,8 +7,8 @@ from pathlib import Path
 
 import numpy as np
 import onnxruntime as ort
-from common.flag_data import FlagList, flaglist_from_json
-from src.minimal_tokenizer import create_minimal_tokenizer
+from backend.common.flag_data import FlagList, flaglist_from_json
+from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
 FLAGS_FILE = Path("backend/data/national_flags/flags.json")
 # FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")

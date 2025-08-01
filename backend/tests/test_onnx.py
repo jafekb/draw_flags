@@ -11,7 +11,7 @@ from transformers import CLIPTokenizer
 def test_onnx_model():
     """Test the ONNX model with a sample query"""
     
-    model_path = Path("models/clip-text-encoder.onnx")
+    model_path = Path("backend/models/clip-text-encoder.onnx")
     if not model_path.exists():
         print("ONNX model not found. Please run convert_to_onnx.py first.")
         return

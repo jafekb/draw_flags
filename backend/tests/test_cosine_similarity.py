@@ -7,9 +7,9 @@ produces the same results as scikit-learn's version.
 import numpy as np
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent))
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from src.flag_searcher import cosine_similarity
+from backend.src.flag_searcher import cosine_similarity
 
 def test_cosine_similarity_equivalence():
     """Test that our cosine similarity matches scikit-learn's implementation"""

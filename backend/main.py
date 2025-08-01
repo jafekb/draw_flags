@@ -1,14 +1,9 @@
-import sys
-
-# TODO(bjafek) why
-sys.path.append("/home/bjafek/personal/draw_flags/backend")
-
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.flag_searcher import FlagSearcher
-from common.flag_data import FlagList
+from backend.src.flag_searcher import FlagSearcher
+from backend.common.flag_data import FlagList
 
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
