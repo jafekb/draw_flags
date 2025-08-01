@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import onnxruntime as ort
 from common.flag_data import FlagList, flaglist_from_json
-from transformers import CLIPTokenizer
+from src.minimal_tokenizer import create_minimal_tokenizer
 
 FLAGS_FILE = Path("data/national_flags/flags.json")
 # FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
@@ -34,7 +34,7 @@ class FlagSearcher:
             raise FileNotFoundError(f"ONNX model not found at {model_path}. Please run the model conversion script.")
 
         self._session = ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
-        self._tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
+        self._tokenizer = create_minimal_tokenizer()
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename)

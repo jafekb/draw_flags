@@ -51,15 +51,15 @@ uv run python main.py
 
 ## Dependencies
 
-- **Production**: Core dependencies needed to run the application (47 packages)
+- **Production**: Core dependencies needed to run the application (44 packages)
 - **Development**: Production + linting, formatting, and development tools (106 packages)
 - **Test**: Production + testing framework and utilities
 
 ## Size Comparison
 
-- **Production**: 47 packages (ultra-minimal deployment)
+- **Production**: 44 packages (ultra-minimal deployment)
 - **Development**: 106 packages (includes torch, sentence-transformers, dev tools)
-- **Reduction**: 59 fewer packages in production (56% smaller!)
+- **Reduction**: 62 fewer packages in production (58% smaller!)
 
 ## Production Dependencies
 
@@ -71,15 +71,16 @@ Only the absolute essential packages needed for the web API:
 - `pillow` - Image processing
 - `requests` - HTTP client
 - `cairosvg` - SVG processing
-- `transformers` - CLIP tokenizer
+- `tokenizers` - Minimal tokenizer (replaces heavy transformers)
 - `onnxruntime` - ONNX inference
 - `numpy` - Numerical operations (cosine similarity)
 
 ## Benefits
 
 - **Ultra-small deployment size**: Production environment excludes all unused dependencies
-- **Much faster deployment**: 59 fewer packages to install
+- **Much faster deployment**: 62 fewer packages to install
 - **Better security**: Minimal attack surface with only essential packages
 - **Flexibility**: Easy to switch between environments
 - **ONNX optimization**: Uses ONNX models instead of PyTorch for inference
-- **Custom cosine similarity**: Replaced scikit-learn with simple numpy implementation 
+- **Custom cosine similarity**: Replaced scikit-learn with simple numpy implementation
+- **Minimal tokenizer**: Replaced heavy transformers with lightweight tokenizers library 
