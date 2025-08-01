@@ -10,8 +10,9 @@ import onnxruntime as ort
 from common.flag_data import FlagList, flaglist_from_json
 from src.minimal_tokenizer import create_minimal_tokenizer
 
-FLAGS_FILE = Path("data/national_flags/flags.json")
+FLAGS_FILE = Path("backend/data/national_flags/flags.json")
 # FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
+MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
 
 
 def cosine_similarity(a, b):
@@ -29,11 +30,10 @@ class FlagSearcher:
         self._top_k = top_k
 
         # Load ONNX model and tokenizer
-        model_path = "models/clip-text-encoder.onnx"
-        if not Path(model_path).exists():
-            raise FileNotFoundError(f"ONNX model not found at {model_path}. Please run the model conversion script.")
+        if not MODEL_PATH.exists():
+            raise FileNotFoundError(f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script.")
 
-        self._session = ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
+        self._session = ort.InferenceSession(str(MODEL_PATH), providers=["CPUExecutionProvider"])
         self._tokenizer = create_minimal_tokenizer()
 
         self._flags = flaglist_from_json(FLAGS_FILE)
