@@ -7,9 +7,15 @@ from pathlib import Path
 from shutil import copyfile
 from typing import List
 
-import cairosvg
 import requests
 from pydantic import BaseModel, validator
+
+# Only import cairosvg when needed for data preparation
+try:
+    import cairosvg
+    CAIROSVG_AVAILABLE = True
+except ImportError:
+    CAIROSVG_AVAILABLE = False
 
 
 class Flag(BaseModel):
@@ -42,6 +48,9 @@ class Flag(BaseModel):
             had_to_download(bool) whether or not the file already existed. If it did not,
                 then we had to bother wikipedia so we should pause for a sec.
         """
+        if not CAIROSVG_AVAILABLE:
+            raise ImportError("cairosvg is required for save_image() but not available in production")
+            
         out_name = out_dir / f"{self.name}.png"
         had_to_download = False
         if not out_name.is_file():
