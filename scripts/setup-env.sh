@@ -9,9 +9,9 @@ ENV=${1:-dev}
 
 echo "Setting up $ENV environment..."
 
-# Always pull LFS files first
+# Try to pull LFS files (many cloud platforms have git-lfs pre-installed)
 echo "Pulling Git LFS files..."
-git lfs pull
+git lfs pull || echo "Warning: Git LFS pull failed, continuing anyway..."
 
 case $ENV in
     "dev")
