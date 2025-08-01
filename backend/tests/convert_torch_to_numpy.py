@@ -4,8 +4,8 @@ import os
 
 # Define the path to your .pt file and where you want to save the .npy file
 # Adjust these paths if your 'data' directory is located elsewhere relative to your script
-pt_file_path = "data/national_flags/embeddings.pt"
-npy_file_path = "data/national_flags/embeddings.npy"
+pt_file_path = "backend/data/national_flags/embeddings.pt"
+npy_file_path = "backend/data/national_flags/embeddings.npy"
 
 # Ensure the directory for the .npy file exists
 os.makedirs(os.path.dirname(npy_file_path), exist_ok=True)

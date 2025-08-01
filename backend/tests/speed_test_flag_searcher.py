@@ -15,14 +15,13 @@ from pathlib import Path
 
 from tqdm import trange
 
-# Add parent directory to path for imports
-# TODO(bjafek) why do we keep needing this???
-sys.path.append(str(Path(__file__).parent.parent))
+# Add project root to path for imports
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from common.flag_data import Image
+from backend.common.flag_data import Image
 
 start = time.time()
-from src.flag_searcher import FlagSearcher  # noqa: E402
+from backend.src.flag_searcher import FlagSearcher  # noqa: E402
 
 print(f"Time to import: {time.time() - start:.2f}s")
 

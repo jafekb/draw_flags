@@ -5,9 +5,9 @@ Test script to verify that the flag searcher produces consistent embeddings.
 
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent))
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from src.flag_searcher import FlagSearcher
+from backend.src.flag_searcher import FlagSearcher
 
 def test_flag_searcher():
     """Test the flag searcher with a sample query"""
