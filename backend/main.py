@@ -13,6 +13,7 @@ origins = [
     "http://localhost:5173",
     "http://whatsthatflag.com",
     "http://www.whatsthatflag.com",
+    "https://draw-flags-frontend.onrender.com",
 ]
 
 app.add_middleware(
@@ -25,11 +26,20 @@ app.add_middleware(
 
 
 # TODO(bjafek) this isn't 'adding a flag', it's querying based on text
-@app.post(path="/flags", response_model=FlagList)
+@app.post("/", response_model=FlagList)
 async def add_flag(text_query: Request):
     data = await text_query.json()  # Get the JSON data
     flags = flag_searcher.query(data["text_query"], is_image=False)
     return flags
+
+
+@app.get("/flags")
+async def flags_info():
+    return {
+        "message": "Draw Flags API",
+        "usage": "POST to / with JSON: {\"text_query\": \"your flag description\"}",
+        "status": "running"
+    }
 
 
 if __name__ == "__main__":
