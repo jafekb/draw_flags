@@ -7,7 +7,6 @@ from pathlib import Path
 
 import numpy as np
 import onnxruntime as ort
-from sentence_transformers import SentenceTransformer
 from common.flag_data import FlagList, flaglist_from_json
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import CLIPTokenizer
@@ -30,7 +29,6 @@ class FlagSearcher:
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename)
-        self._model = SentenceTransformer("clip-ViT-B-32")
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""
@@ -70,14 +68,8 @@ class FlagSearcher:
             # fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
             # img = Image.open(fn)
 
-        # Encode the text query
-        # TODO(bjafek) obviously don't just do this twice, remove this.
+        # Encode the text query using ONNX
         new_embedding = self._encode_text(text_query)
-        orig_embedding = self._model.encode([text_query])
-        
-        # Debug: Check similarity between ONNX and sentence-transformers
-        similarity = cosine_similarity(new_embedding, orig_embedding)[0][0]
-        print(f"ONNX vs Sentence-transformers similarity: {similarity:.6f}")
 
         # Calculate similarity with pre-computed embeddings
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)

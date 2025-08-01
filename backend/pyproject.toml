@@ -19,7 +19,6 @@ dependencies = [
     "tqdm==4.66.5",
     "levenshtein==0.25.1",
     "coloredlogs==15.0.1",
-    "sentence-transformers==3.2.1",
     "onnx>=1.18.0",
 ]
 
@@ -31,6 +30,8 @@ dev = [
     "black",
     "mypy",
     "pre-commit",
+    "sentence-transformers==3.2.1",
+    "torch",
 ]
 test = [
     "pytest",
