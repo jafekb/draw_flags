@@ -124,6 +124,7 @@ dependencies = [
     "pydantic==2.10.4",
     "requests",
     "tokenizers",
+    "numpy==1.26.4",
     "onnxruntime>=1.16.0",
 ]
 
