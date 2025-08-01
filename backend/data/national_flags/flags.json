@@ -1641,5 +1641,5 @@
    "score": 1.0
   }
  ],
- "embeddings_filename": "data/national_flags/embeddings.npy"
+ "embeddings_filename": "backend/data/national_flags/embeddings.npy"
 }
