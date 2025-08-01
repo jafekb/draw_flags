@@ -9,6 +9,10 @@ ENV=${1:-dev}
 
 echo "Setting up $ENV environment..."
 
+# Always pull LFS files first
+echo "Pulling Git LFS files..."
+git lfs pull
+
 case $ENV in
     "dev")
         echo "Installing development dependencies..."

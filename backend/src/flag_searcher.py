@@ -37,15 +37,7 @@ class FlagSearcher:
         self._tokenizer = create_minimal_tokenizer()
 
         self._flags = flaglist_from_json(FLAGS_FILE)
-
-        # Resolve embeddings file path relative to project root
-        embeddings_path = Path(self._flags.embeddings_filename)
-        if not embeddings_path.is_absolute():
-            # If it's a relative path, make it relative to the project root
-            project_root = Path(__file__).parent.parent.parent
-            embeddings_path = project_root / embeddings_path
-
-        self._encoded_images = np.load(embeddings_path)
+        self._encoded_images = np.load(self._flags.embeddings_filename)
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""
