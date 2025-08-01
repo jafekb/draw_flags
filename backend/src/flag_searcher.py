@@ -8,11 +8,20 @@ from pathlib import Path
 import numpy as np
 import onnxruntime as ort
 from common.flag_data import FlagList, flaglist_from_json
-from sklearn.metrics.pairwise import cosine_similarity
 from transformers import CLIPTokenizer
 
 FLAGS_FILE = Path("data/national_flags/flags.json")
 # FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
+
+
+def cosine_similarity(a, b):
+    """Simple cosine similarity implementation using numpy"""
+    # Normalize vectors
+    a_norm = a / np.linalg.norm(a, axis=-1, keepdims=True)
+    b_norm = b / np.linalg.norm(b, axis=-1, keepdims=True)
+    
+    # Compute cosine similarity
+    return np.dot(a_norm, b_norm.T)
 
 
 class FlagSearcher:
