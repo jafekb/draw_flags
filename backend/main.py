@@ -11,8 +11,8 @@ flag_searcher = FlagSearcher(top_k=8)
 
 origins = [
     "http://localhost:5173",
-    "http://whatsthatflag.com",
-    "http://www.whatsthatflag.com",
+    "https://whatsthatflag.com",
+    "https://www.whatsthatflag.com",
     "https://draw-flags-frontend.onrender.com",
 ]
 
