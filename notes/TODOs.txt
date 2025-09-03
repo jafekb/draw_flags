@@ -8,7 +8,6 @@
     b. ???
 4. Improve the backend
     a. Find more flags
-    b. DONE standardize the format
 5. Add a painter?
     a. probably not
 
