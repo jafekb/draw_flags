@@ -38,7 +38,7 @@ async def flags_info():
     return {
         "message": "Draw Flags API",
         "usage": 'POST to / with JSON: {"text_query": "your flag description"}',
-        "status": "running"
+        "status": "running",
     }
 
 

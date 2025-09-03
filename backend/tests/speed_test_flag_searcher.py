@@ -18,7 +18,6 @@ from tqdm import trange
 # Add project root to path for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from backend.common.flag_data import Image
 
 start = time.time()
 from backend.src.flag_searcher import FlagSearcher  # noqa: E402
@@ -52,8 +51,8 @@ print(f"Time per text query: {elapsed:.2e}s")
 
 # start = time.time()
 # for i in trange(n_image_queries, leave=False):
-    # Just roll over back to the beginning if you don't have enough.
-    # img_fn = images[i % len(images)]
-    # flags = flag_searcher.query(img_fn, is_image=True)
+# Just roll over back to the beginning if you don't have enough.
+# img_fn = images[i % len(images)]
+# flags = flag_searcher.query(img_fn, is_image=True)
 # elapsed = (time.time() - start) / n_image_queries
 # print(f"Time to query image: {elapsed:.2f}s")

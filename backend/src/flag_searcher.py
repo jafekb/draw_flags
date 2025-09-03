@@ -21,7 +21,7 @@ def cosine_similarity(a, b):
     # Normalize vectors
     a_norm = a / np.linalg.norm(a, axis=-1, keepdims=True)
     b_norm = b / np.linalg.norm(b, axis=-1, keepdims=True)
-    
+
     # Compute cosine similarity
     return np.dot(a_norm, b_norm.T)
 
@@ -47,10 +47,9 @@ class FlagSearcher:
         inputs = self._tokenizer(text, return_tensors="np", padding=True, truncation=True)
 
         # Run inference
-        outputs = self._session.run(None, {
-            "input_ids": inputs["input_ids"],
-            "attention_mask": inputs["attention_mask"]
-        })
+        outputs = self._session.run(
+            None, {"input_ids": inputs["input_ids"], "attention_mask": inputs["attention_mask"]}
+        )
 
         # The ONNX model now outputs the final embeddings directly
         # (including EOS token selection and text projection)
