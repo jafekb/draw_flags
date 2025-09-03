@@ -1,5 +1,5 @@
 1. Finish the frontend
-    a. DONE add image upload
+    a. add image upload
     b. Need to figure out how to clear the image preview.
     c. Also display the text query alongside the images
     d. Probably unify the preview into a separate place, which is sometimes a text and sometimes and image query.
@@ -9,8 +9,6 @@
 4. Improve the backend
     a. Find more flags
     b. DONE standardize the format
-    c. Speed up the loading
-    d. Make a single config file for everything.
 5. Add a painter?
     a. probably not
 

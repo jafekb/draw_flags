@@ -1,8 +1,1 @@
 https://docs.github.com/en/repositories/working-with-files/managing-large-files
-
-
-
-Stuff I have to do now that onnx is working
-1. Create separate dev and deploy environments.
-2. Try out render.com again (!!)
-3. Make the onnx file generation easier
