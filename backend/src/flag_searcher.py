@@ -32,7 +32,9 @@ class FlagSearcher:
 
         # Load ONNX model and tokenizer
         if not MODEL_PATH.exists():
-            raise FileNotFoundError(f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script.")
+            raise FileNotFoundError(
+                f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script."
+            )
 
         self._session = ort.InferenceSession(str(MODEL_PATH), providers=["CPUExecutionProvider"])
         self._tokenizer = create_minimal_tokenizer()

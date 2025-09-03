@@ -49,19 +49,22 @@ def test_cosine_similarity_properties():
     a = np.array([[1, 2, 3]])
     b = np.array([[1, 2, 3]])
     result = cosine_similarity(a, b)
-    assert abs(result[0, 0] - 1.0) < 1e-10, f"Identical vectors should have similarity 1.0, got {result[0, 0]}"
+    error_msg = f"Identical vectors should have similarity 1.0, got {result[0, 0]}"
+    assert abs(result[0, 0] - 1.0) < 1e-10, error_msg
     
     # Test with orthogonal vectors (should be 0.0)
     a = np.array([[1, 0, 0]])
     b = np.array([[0, 1, 0]])
     result = cosine_similarity(a, b)
-    assert abs(result[0, 0]) < 1e-10, f"Orthogonal vectors should have similarity 0.0, got {result[0, 0]}"
+    error_msg = f"Orthogonal vectors should have similarity 0.0, got {result[0, 0]}"
+    assert abs(result[0, 0]) < 1e-10, error_msg
     
     # Test with opposite vectors (should be -1.0)
     a = np.array([[1, 2, 3]])
     b = np.array([[-1, -2, -3]])
     result = cosine_similarity(a, b)
-    assert abs(result[0, 0] - (-1.0)) < 1e-10, f"Opposite vectors should have similarity -1.0, got {result[0, 0]}"
+    error_msg = f"Opposite vectors should have similarity -1.0, got {result[0, 0]}"
+    assert abs(result[0, 0] - (-1.0)) < 1e-10, error_msg
     
     print("✅ Cosine similarity properties test passed!")
 

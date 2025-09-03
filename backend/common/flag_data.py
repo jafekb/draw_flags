@@ -49,7 +49,9 @@ class Flag(BaseModel):
                 then we had to bother wikipedia so we should pause for a sec.
         """
         if not CAIROSVG_AVAILABLE:
-            raise ImportError("cairosvg is required for save_image() but not available in production")
+            raise ImportError(
+                "cairosvg is required for save_image() but not available in production"
+            )
             
         out_name = out_dir / f"{self.name}.png"
         had_to_download = False

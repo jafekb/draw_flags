@@ -99,7 +99,10 @@ def convert_clip_to_onnx():
     print("ONNX model test successful!")
     print(f"ONNX output shape: {outputs[0].shape}")
     print(f"Sentence-transformers output shape: {st_embedding.shape}")
-    print(f"Cosine similarity: {torch.cosine_similarity(torch.from_numpy(outputs[0]), torch.from_numpy(st_embedding), dim=1).item():.6f}")
+    cosine_sim = torch.cosine_similarity(
+        torch.from_numpy(outputs[0]), torch.from_numpy(st_embedding), dim=1
+    ).item()
+    print(f"Cosine similarity: {cosine_sim:.6f}")
     print(f"Model size: {onnx_path.stat().st_size / (1024*1024):.2f} MB")
 
 if __name__ == "__main__":

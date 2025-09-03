@@ -69,9 +69,12 @@ def debug_clip_processing():
     st_embedding_tensor = torch.from_numpy(st_embedding)
     
     print("\nCosine similarities:")
-    print(f"ST vs Mean pooled: {torch.cosine_similarity(st_embedding_tensor, mean_pooled, dim=1).item():.6f}")
-    print(f"ST vs EOS token: {torch.cosine_similarity(st_embedding_tensor, eos_embeddings, dim=1).item():.6f}")
-    print(f"ST vs CLS token: {torch.cosine_similarity(st_embedding_tensor, cls_embeddings, dim=1).item():.6f}")
+    st_vs_mean_sim = torch.cosine_similarity(st_embedding_tensor, mean_pooled, dim=1).item()
+    print(f"ST vs Mean pooled: {st_vs_mean_sim:.6f}")
+    st_vs_eos_sim = torch.cosine_similarity(st_embedding_tensor, eos_embeddings, dim=1).item()
+    print(f"ST vs EOS token: {st_vs_eos_sim:.6f}")
+    st_vs_cls_sim = torch.cosine_similarity(st_embedding_tensor, cls_embeddings, dim=1).item()
+    print(f"ST vs CLS token: {st_vs_cls_sim:.6f}")
     
     # Check if sentence-transformers applies any additional processing
     print("\nChecking if ST applies additional processing...")
@@ -81,7 +84,8 @@ def debug_clip_processing():
     
     # Let's also check what the sentence-transformers CLIP model does
     print("\nChecking sentence-transformers CLIP model structure...")
-    print(f"CLIP model attributes: {[attr for attr in dir(clip_module.model) if not attr.startswith('_')]}")
+    clip_attrs = [attr for attr in dir(clip_module.model) if not attr.startswith("_")]
+    print(f"CLIP model attributes: {clip_attrs}")
     
     # Try to understand the text projection
     if hasattr(clip_module.model, "text_projection"):
@@ -98,17 +102,22 @@ def debug_clip_processing():
         print(f"Projected EOS norm: {torch.norm(projected_eos):.6f}")
         print(f"Projected CLS norm: {torch.norm(projected_cls):.6f}")
         
-        print(f"ST vs Projected mean: {torch.cosine_similarity(st_embedding_tensor, projected_mean, dim=1).item():.6f}")
-        print(f"ST vs Projected EOS: {torch.cosine_similarity(st_embedding_tensor, projected_eos, dim=1).item():.6f}")
-        print(f"ST vs Projected CLS: {torch.cosine_similarity(st_embedding_tensor, projected_cls, dim=1).item():.6f}")
+        st_vs_proj_mean = torch.cosine_similarity(st_embedding_tensor, projected_mean, dim=1).item()
+        print(f"ST vs Projected mean: {st_vs_proj_mean:.6f}")
+        st_vs_proj_eos = torch.cosine_similarity(st_embedding_tensor, projected_eos, dim=1).item()
+        print(f"ST vs Projected EOS: {st_vs_proj_eos:.6f}")
+        st_vs_proj_cls = torch.cosine_similarity(st_embedding_tensor, projected_cls, dim=1).item()
+        print(f"ST vs Projected CLS: {st_vs_proj_cls:.6f}")
     
     # Let's look at the actual CLIP model's text projection
     if hasattr(clip_module.model, "text_projection"):
-        print(f"\nCLIP model text_projection shape: {clip_module.model.text_projection.weight.shape}")
+        text_proj_shape = clip_module.model.text_projection.weight.shape
+        print(f"\nCLIP model text_projection shape: {text_proj_shape}")
         
         # Check if there's a text projection in the raw CLIP model
         if hasattr(text_model, "text_projection"):
-            print(f"Raw text model text_projection shape: {text_model.text_projection.weight.shape}")
+            raw_text_proj_shape = text_model.text_projection.weight.shape
+            print(f"Raw text model text_projection shape: {raw_text_proj_shape}")
         else:
             print("Raw text model has no text_projection")
     
@@ -134,9 +143,18 @@ def debug_clip_processing():
         projected_norm_eos = clip_model.text_projection(normalized_eos)
         projected_norm_cls = clip_model.text_projection(normalized_cls)
         
-        print(f"ST vs Normalized+Projected mean: {torch.cosine_similarity(st_embedding_tensor, projected_norm_mean, dim=1).item():.6f}")
-        print(f"ST vs Normalized+Projected EOS: {torch.cosine_similarity(st_embedding_tensor, projected_norm_eos, dim=1).item():.6f}")
-        print(f"ST vs Normalized+Projected CLS: {torch.cosine_similarity(st_embedding_tensor, projected_norm_cls, dim=1).item():.6f}")
+        st_vs_norm_mean = torch.cosine_similarity(
+            st_embedding_tensor, projected_norm_mean, dim=1
+        ).item()
+        print(f"ST vs Normalized+Projected mean: {st_vs_norm_mean:.6f}")
+        st_vs_norm_eos = torch.cosine_similarity(
+            st_embedding_tensor, projected_norm_eos, dim=1
+        ).item()
+        print(f"ST vs Normalized+Projected EOS: {st_vs_norm_eos:.6f}")
+        st_vs_norm_cls = torch.cosine_similarity(
+            st_embedding_tensor, projected_norm_cls, dim=1
+        ).item()
+        print(f"ST vs Normalized+Projected CLS: {st_vs_norm_cls:.6f}")
 
 if __name__ == "__main__":
     debug_clip_processing() 

@@ -28,7 +28,8 @@ def debug_model_structure():
         print("Found text_encoder attribute")
     else:
         print("No text model found in expected attributes")
-        print(f"Available attributes: {[attr for attr in dir(first_module) if not attr.startswith('_')]}")
+        available_attrs = [attr for attr in dir(first_module) if not attr.startswith("_")]
+        print(f"Available attributes: {available_attrs}")
 
 if __name__ == "__main__":
     debug_model_structure() 
