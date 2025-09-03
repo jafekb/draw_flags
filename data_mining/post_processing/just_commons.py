@@ -3,9 +3,8 @@ import json
 from pathlib import Path
 from urllib.parse import unquote
 
-from tqdm import tqdm
-
 from common.flag_data import Flag
+from tqdm import tqdm
 
 DIR_NAME = Path(
     "/home/bjafek/personal/draw_flags/data_mining/wikimedia-downloader/commons_verified/data"

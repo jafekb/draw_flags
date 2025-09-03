@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 import onnxruntime as ort
+
 from backend.common.flag_data import FlagList, flaglist_from_json
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
@@ -20,7 +21,7 @@ def cosine_similarity(a, b):
     # Normalize vectors
     a_norm = a / np.linalg.norm(a, axis=-1, keepdims=True)
     b_norm = b / np.linalg.norm(b, axis=-1, keepdims=True)
-    
+
     # Compute cosine similarity
     return np.dot(a_norm, b_norm.T)
 
@@ -31,7 +32,9 @@ class FlagSearcher:
 
         # Load ONNX model and tokenizer
         if not MODEL_PATH.exists():
-            raise FileNotFoundError(f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script.")
+            raise FileNotFoundError(
+                f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script."
+            )
 
         self._session = ort.InferenceSession(str(MODEL_PATH), providers=["CPUExecutionProvider"])
         self._tokenizer = create_minimal_tokenizer()
@@ -44,10 +47,9 @@ class FlagSearcher:
         inputs = self._tokenizer(text, return_tensors="np", padding=True, truncation=True)
 
         # Run inference
-        outputs = self._session.run(None, {
-            "input_ids": inputs["input_ids"],
-            "attention_mask": inputs["attention_mask"]
-        })
+        outputs = self._session.run(
+            None, {"input_ids": inputs["input_ids"], "attention_mask": inputs["attention_mask"]}
+        )
 
         # The ONNX model now outputs the final embeddings directly
         # (including EOS token selection and text projection)

@@ -13,6 +13,7 @@ from pydantic import BaseModel, validator
 # Only import cairosvg when needed for data preparation
 try:
     import cairosvg
+
     CAIROSVG_AVAILABLE = True
 except ImportError:
     CAIROSVG_AVAILABLE = False
@@ -49,8 +50,10 @@ class Flag(BaseModel):
                 then we had to bother wikipedia so we should pause for a sec.
         """
         if not CAIROSVG_AVAILABLE:
-            raise ImportError("cairosvg is required for save_image() but not available in production")
-            
+            raise ImportError(
+                "cairosvg is required for save_image() but not available in production"
+            )
+
         out_name = out_dir / f"{self.name}.png"
         had_to_download = False
         if not out_name.is_file():

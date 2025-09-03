@@ -1,6 +1,7 @@
-import torch
+from pathlib import Path
+
 import numpy as np
-import os
+import torch
 
 # Define the path to your .pt file and where you want to save the .npy file
 # Adjust these paths if your 'data' directory is located elsewhere relative to your script
@@ -8,7 +9,7 @@ pt_file_path = "backend/data/national_flags/embeddings.pt"
 npy_file_path = "backend/data/national_flags/embeddings.npy"
 
 # Ensure the directory for the .npy file exists
-os.makedirs(os.path.dirname(npy_file_path), exist_ok=True)
+Path(npy_file_path).parent.mkdir(parents=True, exist_ok=True)
 
 print(f"Loading {pt_file_path}...")
 try:
@@ -18,7 +19,7 @@ try:
     # If your .pt file was saved with weights_only=True and contains a complex model state_dict,
     # you might need to adjust this loading logic based on how it was originally saved.
     # For a simple tensor of embeddings, this line should work.
-    tensor_data = torch.load(pt_file_path, map_location='cpu')
+    tensor_data = torch.load(pt_file_path, map_location="cpu")
 
     # Convert the PyTorch tensor to a NumPy array
     numpy_array = tensor_data.numpy()

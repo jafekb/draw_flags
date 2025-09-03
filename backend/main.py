@@ -2,8 +2,8 @@ import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.src.flag_searcher import FlagSearcher
 from backend.common.flag_data import FlagList
+from backend.src.flag_searcher import FlagSearcher
 
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
@@ -37,8 +37,8 @@ async def add_flag(text_query: Request):
 async def flags_info():
     return {
         "message": "Draw Flags API",
-        "usage": "POST to / with JSON: {\"text_query\": \"your flag description\"}",
-        "status": "running"
+        "usage": 'POST to / with JSON: {"text_query": "your flag description"}',
+        "status": "running",
     }
 
 
