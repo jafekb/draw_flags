@@ -6,7 +6,6 @@ import ImageUploadForm from "./ImageUploadForm";
 
 const FlagList = () => {
   const [flags, setFlags] = useState([]);
-  const [searchMode, setSearchMode] = useState('text'); // 'text' or 'image'
   const [loading, setLoading] = useState(false);
 
   const handleTextSearch = async (textQuery) => {
@@ -35,59 +34,71 @@ const FlagList = () => {
     }
   };
 
-  const searchModeStyle = {
+  const containerStyle = {
     display: 'flex',
-    marginBottom: '20px',
-    backgroundColor: '#f0f0f0',
-    borderRadius: '8px',
-    padding: '4px'
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    gap: '40px',
+    margin: '30px 0',
+    flexWrap: 'wrap'
   };
 
-  const tabStyle = (isActive) => ({
-    flex: 1,
-    padding: '10px 20px',
-    textAlign: 'center',
-    backgroundColor: isActive ? '#007bff' : 'transparent',
-    color: isActive ? 'white' : '#007bff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    transition: 'all 0.3s ease'
-  });
+  const searchSectionStyle = {
+    flex: '1',
+    minWidth: '300px',
+    maxWidth: '400px',
+    padding: '20px',
+    backgroundColor: '#f9f9f9',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+  };
+
+  const orStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '60px',
+    height: '60px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    borderRadius: '50%',
+    fontSize: '24px',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginTop: '40px',
+    flexShrink: 0
+  };
 
   return (
     <div>
-      <h2>Find similar flags</h2>
+      <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>Find similar flags</h2>
+      <p style={{ textAlign: 'center', color: '#666', marginBottom: '30px' }}>
+        Describe the flag in words or upload an image
+      </p>
       
-      {/* Search mode selector */}
-      <div style={searchModeStyle}>
-        <button 
-          style={tabStyle(searchMode === 'text')}
-          onClick={() => setSearchMode('text')}
-        >
-          📝 Describe with words
-        </button>
-        <button 
-          style={tabStyle(searchMode === 'image')}
-          onClick={() => setSearchMode('image')}
-        >
-          🖼️ Upload an image
-        </button>
-      </div>
-
-      {/* Search interface */}
-      {searchMode === 'text' ? (
-        <div>
-          <h3>Describe the flag</h3>
+      {/* Side-by-side search interface */}
+      <div style={containerStyle}>
+        {/* Text search section */}
+        <div style={searchSectionStyle}>
+          <h3 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>
+            📝 Describe with words
+          </h3>
           <SubmitDescriptionForm addFlag={handleTextSearch} />
         </div>
-      ) : (
-        <div>
-          <h3>Upload a flag image</h3>
+
+        {/* OR separator */}
+        <div style={orStyle}>
+          OR
+        </div>
+
+        {/* Image search section */}
+        <div style={searchSectionStyle}>
+          <h3 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>
+            🖼️ Upload an image
+          </h3>
           <ImageUploadForm onImageUpload={handleImageSearch} />
         </div>
-      )}
+      </div>
 
       {/* Loading indicator */}
       {loading && (
