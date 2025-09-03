@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Debug script to understand the structure of the sentence-transformers CLIP model.
 """

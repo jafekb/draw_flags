@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Test to verify that our custom cosine similarity implementation
 produces the same results as scikit-learn's version.

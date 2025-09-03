@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Test script to verify that the flag searcher produces consistent embeddings.
 """

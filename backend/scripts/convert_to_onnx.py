@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Convert CLIP text encoder to ONNX format for smaller deployment size.
 This script extracts the text encoder from sentence-transformers CLIP and converts it to ONNX.

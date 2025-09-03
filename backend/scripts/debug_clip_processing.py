@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Debug script to understand how sentence-transformers processes CLIP embeddings
 and compare with our ONNX approach.
