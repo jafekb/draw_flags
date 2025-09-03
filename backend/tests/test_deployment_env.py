@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Test script to verify deployment environment works identically to local development.
 This simulates what Render.com will do during deployment.
@@ -6,8 +5,7 @@ This simulates what Render.com will do during deployment.
 
 import subprocess
 import sys
-import tempfile
-import os
+
 
 def test_deployment_environment():
     """Test that the deployment environment works exactly like local"""
@@ -74,4 +72,4 @@ if __name__ == "__main__":
     sys.path.insert(0, str(project_root))
     
     success = test_deployment_environment()
-    sys.exit(0 if success else 1) 
+    sys.exit(0 if success else 1)

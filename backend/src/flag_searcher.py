@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 import onnxruntime as ort
+
 from backend.common.flag_data import FlagList, flaglist_from_json
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 

@@ -3,9 +3,9 @@ Minimal tokenizer implementation using just the tokenizers library
 to replace the heavy transformers dependency.
 """
 
+
 import numpy as np
 from tokenizers import Tokenizer
-from pathlib import Path
 
 
 class MinimalCLIPTokenizer:

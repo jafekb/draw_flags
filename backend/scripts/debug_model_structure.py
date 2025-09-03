@@ -5,6 +5,7 @@ Debug script to understand the structure of the sentence-transformers CLIP model
 
 from sentence_transformers import SentenceTransformer
 
+
 def debug_model_structure():
     """Debug the model structure"""
     
@@ -20,11 +21,11 @@ def debug_model_structure():
     print(f"First module attributes: {dir(first_module)}")
     
     # Try to find the text model
-    if hasattr(first_module, 'text_model'):
+    if hasattr(first_module, "text_model"):
         print("Found text_model attribute")
-    elif hasattr(first_module, 'text'):
+    elif hasattr(first_module, "text"):
         print("Found text attribute")
-    elif hasattr(first_module, 'text_encoder'):
+    elif hasattr(first_module, "text_encoder"):
         print("Found text_encoder attribute")
     else:
         print("No text model found in expected attributes")

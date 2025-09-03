@@ -1,12 +1,13 @@
-#!/usr/bin/env python3
 """
 Test script to verify ONNX model works correctly.
 """
 
-import numpy as np
 from pathlib import Path
+
+import numpy as np
 import onnxruntime as ort
 from transformers import CLIPTokenizer
+
 
 def test_onnx_model():
     """Test the ONNX model with a sample query"""
@@ -17,7 +18,7 @@ def test_onnx_model():
         return
     
     # Load the model and tokenizer
-    session = ort.InferenceSession(str(model_path), providers=['CPUExecutionProvider'])
+    session = ort.InferenceSession(str(model_path), providers=["CPUExecutionProvider"])
     tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
     
     # Test with sample queries
@@ -35,8 +36,8 @@ def test_onnx_model():
         
         # Run inference
         outputs = session.run(None, {
-            'input_ids': inputs['input_ids'],
-            'attention_mask': inputs['attention_mask']
+            "input_ids": inputs["input_ids"],
+            "attention_mask": inputs["attention_mask"]
         })
         
         # Get embeddings and normalize
@@ -49,4 +50,4 @@ def test_onnx_model():
     print("\nONNX model test completed successfully!")
 
 if __name__ == "__main__":
-    test_onnx_model() 
+    test_onnx_model()

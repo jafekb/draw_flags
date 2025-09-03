@@ -4,12 +4,15 @@ Test to verify that our custom cosine similarity implementation
 produces the same results as scikit-learn's version.
 """
 
-import numpy as np
 import sys
 from pathlib import Path
+
+import numpy as np
+
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from backend.src.flag_searcher import cosine_similarity
+
 
 def test_cosine_similarity_equivalence():
     """Test that our cosine similarity matches scikit-learn's implementation"""

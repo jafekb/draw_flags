@@ -5,9 +5,8 @@ from pathlib import Path
 from urllib.parse import unquote
 
 import wikipedia
-from tqdm import tqdm
-
 from common.flag_data import Flag
+from tqdm import tqdm
 
 
 def clean_img_url(url):

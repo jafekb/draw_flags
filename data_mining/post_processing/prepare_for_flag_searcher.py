@@ -14,11 +14,10 @@ to create the deployment file for FlagSearcher.
 from pathlib import Path
 
 import torch
+from common.flag_data import FlagList, flag_from_json
 from PIL import Image
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
-
-from common.flag_data import FlagList, flag_from_json
 
 # DATA_DIR = Path("/home/bjafek/personal/draw_flags/data/national_flags")
 # ROOT_DIR = Path("/home/bjafek/personal/draw_flags/data/national_flags/data")

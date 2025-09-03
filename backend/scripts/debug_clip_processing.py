@@ -4,10 +4,11 @@ Debug script to understand how sentence-transformers processes CLIP embeddings
 and compare with our ONNX approach.
 """
 
-import torch
 import numpy as np
+import torch
 from sentence_transformers import SentenceTransformer
 from transformers import CLIPTokenizer
+
 
 def debug_clip_processing():
     """Debug how sentence-transformers processes CLIP embeddings"""
@@ -46,7 +47,7 @@ def debug_clip_processing():
         print(f"Raw CLIP last_hidden_state shape: {last_hidden_state.shape}")
         
         # Try different pooling strategies
-        attention_mask = inputs['attention_mask']
+        attention_mask = inputs["attention_mask"]
         
         # Mean pooling (excluding padding)
         masked_embeddings = last_hidden_state * attention_mask.unsqueeze(-1)
@@ -68,23 +69,23 @@ def debug_clip_processing():
     # Compare similarities
     st_embedding_tensor = torch.from_numpy(st_embedding)
     
-    print(f"\nCosine similarities:")
+    print("\nCosine similarities:")
     print(f"ST vs Mean pooled: {torch.cosine_similarity(st_embedding_tensor, mean_pooled, dim=1).item():.6f}")
     print(f"ST vs EOS token: {torch.cosine_similarity(st_embedding_tensor, eos_embeddings, dim=1).item():.6f}")
     print(f"ST vs CLS token: {torch.cosine_similarity(st_embedding_tensor, cls_embeddings, dim=1).item():.6f}")
     
     # Check if sentence-transformers applies any additional processing
-    print(f"\nChecking if ST applies additional processing...")
+    print("\nChecking if ST applies additional processing...")
     
     # Let's look at the CLIP module's forward method
     print(f"CLIP module forward method: {clip_module.forward}")
     
     # Let's also check what the sentence-transformers CLIP model does
-    print(f"\nChecking sentence-transformers CLIP model structure...")
+    print("\nChecking sentence-transformers CLIP model structure...")
     print(f"CLIP model attributes: {[attr for attr in dir(clip_module.model) if not attr.startswith('_')]}")
     
     # Try to understand the text projection
-    if hasattr(clip_module.model, 'text_projection'):
+    if hasattr(clip_module.model, "text_projection"):
         text_projection = clip_module.model.text_projection
         print(f"Text projection type: {type(text_projection)}")
         print(f"Text projection weight shape: {text_projection.weight.shape}")
@@ -103,25 +104,25 @@ def debug_clip_processing():
         print(f"ST vs Projected CLS: {torch.cosine_similarity(st_embedding_tensor, projected_cls, dim=1).item():.6f}")
     
     # Let's look at the actual CLIP model's text projection
-    if hasattr(clip_module.model, 'text_projection'):
+    if hasattr(clip_module.model, "text_projection"):
         print(f"\nCLIP model text_projection shape: {clip_module.model.text_projection.weight.shape}")
         
         # Check if there's a text projection in the raw CLIP model
-        if hasattr(text_model, 'text_projection'):
+        if hasattr(text_model, "text_projection"):
             print(f"Raw text model text_projection shape: {text_model.text_projection.weight.shape}")
         else:
             print("Raw text model has no text_projection")
     
     # Let's try to understand how sentence-transformers processes the embeddings
     # by looking at the CLIP model's forward method
-    print(f"\nExamining CLIP model forward method...")
+    print("\nExamining CLIP model forward method...")
     
     # Let's check if there's a text projection in the CLIP model
     clip_model = clip_module.model
     print(f"CLIP model type: {type(clip_model)}")
     
     # Check if the CLIP model has a text_projection
-    if hasattr(clip_model, 'text_projection'):
+    if hasattr(clip_model, "text_projection"):
         print(f"CLIP model text_projection exists: {clip_model.text_projection.weight.shape}")
         
         # Try applying the projection to our raw embeddings

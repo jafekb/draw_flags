@@ -5,10 +5,9 @@ from pathlib import Path
 from urllib.parse import unquote
 
 import wikipedia
+from common.flag_data import Flag
 from Levenshtein import distance as levenshtein_distance
 from tqdm import tqdm
-
-from common.flag_data import Flag
 
 
 def clean_img_url(url):

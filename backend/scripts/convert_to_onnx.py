@@ -4,12 +4,13 @@ Convert CLIP text encoder to ONNX format for smaller deployment size.
 This script extracts the text encoder from sentence-transformers CLIP and converts it to ONNX.
 """
 
-import torch
-import onnx
+from pathlib import Path
+
 import onnxruntime as ort
+import torch
 from sentence_transformers import SentenceTransformer
 from transformers import CLIPTokenizer
-from pathlib import Path
+
 
 class CLIPTextEncoderWithProjection(torch.nn.Module):
     """Wrapper that includes both the text encoder and text projection"""
@@ -65,38 +66,38 @@ def convert_clip_to_onnx():
     
     torch.onnx.export(
         combined_model,
-        (inputs['input_ids'], inputs['attention_mask']),
+        (inputs["input_ids"], inputs["attention_mask"]),
         onnx_path,
         export_params=True,
         opset_version=14,
         do_constant_folding=True,
-        input_names=['input_ids', 'attention_mask'],
-        output_names=['text_embeddings'],
+        input_names=["input_ids", "attention_mask"],
+        output_names=["text_embeddings"],
         dynamic_axes={
-            'input_ids': {0: 'batch_size', 1: 'sequence_length'},
-            'attention_mask': {0: 'batch_size', 1: 'sequence_length'},
-            'text_embeddings': {0: 'batch_size'}
+            "input_ids": {0: "batch_size", 1: "sequence_length"},
+            "attention_mask": {0: "batch_size", 1: "sequence_length"},
+            "text_embeddings": {0: "batch_size"}
         }
     )
     
     print(f"ONNX model saved to {onnx_path}")
     
     # Test the ONNX model
-    session = ort.InferenceSession(str(onnx_path), providers=['CPUExecutionProvider'])
+    session = ort.InferenceSession(str(onnx_path), providers=["CPUExecutionProvider"])
     
     # Test with a sample input
     test_text = "red and white stripes"
     test_inputs = tokenizer(test_text, return_tensors="np", padding=True, truncation=True)
     
     outputs = session.run(None, {
-        'input_ids': test_inputs['input_ids'],
-        'attention_mask': test_inputs['attention_mask']
+        "input_ids": test_inputs["input_ids"],
+        "attention_mask": test_inputs["attention_mask"]
     })
     
     # Compare with sentence-transformers output
     st_embedding = st_model.encode([test_text])
     
-    print(f"ONNX model test successful!")
+    print("ONNX model test successful!")
     print(f"ONNX output shape: {outputs[0].shape}")
     print(f"Sentence-transformers output shape: {st_embedding.shape}")
     print(f"Cosine similarity: {torch.cosine_similarity(torch.from_numpy(outputs[0]), torch.from_numpy(st_embedding), dim=1).item():.6f}")
