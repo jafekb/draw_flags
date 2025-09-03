@@ -24,6 +24,8 @@ def test_deployment_environment():
     print("\n2. Testing imports...")
     try:
         # Test the exact imports that main.py uses
+        import backend.main  # noqa: F401
+
         print("✅ All imports work correctly")
     except Exception as e:
         print(f"❌ Import failed: {e}")
@@ -33,6 +35,8 @@ def test_deployment_environment():
     print("\n3. Testing app startup...")
     try:
         # Import the app object
+        from backend.main import app  # noqa: F401
+
         print("✅ App object created successfully")
     except Exception as e:
         print(f"❌ App creation failed: {e}")
