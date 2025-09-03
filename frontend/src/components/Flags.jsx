@@ -35,65 +35,62 @@ const FlagList = () => {
   };
 
   const containerStyle = {
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    gap: '40px',
-    margin: '30px 0',
-    flexWrap: 'wrap'
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    gap: "40px",
+    margin: "30px 0",
+    flexWrap: "wrap",
   };
 
   const searchSectionStyle = {
-    flex: '1',
-    minWidth: '300px',
-    maxWidth: '400px',
-    padding: '20px',
-    backgroundColor: '#f9f9f9',
-    borderRadius: '12px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+    flex: "1",
+    minWidth: "300px",
+    maxWidth: "400px",
+    padding: "20px",
+    backgroundColor: "#f9f9f9",
+    borderRadius: "12px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
   };
 
   const orStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: '60px',
-    height: '60px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    borderRadius: '50%',
-    fontSize: '24px',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: '40px',
-    flexShrink: 0
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: "60px",
+    height: "60px",
+    backgroundColor: "#007bff",
+    color: "white",
+    borderRadius: "50%",
+    fontSize: "24px",
+    fontWeight: "bold",
+    alignSelf: "center",
+    marginTop: "60px",
+    flexShrink: 0,
   };
 
   return (
     <div>
-      <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>Find similar flags</h2>
-      <p style={{ textAlign: 'center', color: '#666', marginBottom: '30px' }}>
-        Describe the flag in words or upload an image
-      </p>
-      
       {/* Side-by-side search interface */}
       <div style={containerStyle}>
         {/* Text search section */}
         <div style={searchSectionStyle}>
-          <h3 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>
+          <h3
+            style={{ textAlign: "center", marginBottom: "20px", color: "#333" }}
+          >
             📝 Describe with words
           </h3>
           <SubmitDescriptionForm addFlag={handleTextSearch} />
         </div>
 
         {/* OR separator */}
-        <div style={orStyle}>
-          OR
-        </div>
+        <div style={orStyle}>OR</div>
 
         {/* Image search section */}
         <div style={searchSectionStyle}>
-          <h3 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>
+          <h3
+            style={{ textAlign: "center", marginBottom: "20px", color: "#333" }}
+          >
             🖼️ Upload an image
           </h3>
           <ImageUploadForm onImageUpload={handleImageSearch} />
@@ -102,7 +99,7 @@ const FlagList = () => {
 
       {/* Loading indicator */}
       {loading && (
-        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <div style={{ textAlign: "center", margin: "20px 0" }}>
           <p>🔍 Searching for similar flags...</p>
         </div>
       )}
@@ -112,14 +109,14 @@ const FlagList = () => {
         <>
           <button
             onClick={() => setFlags([])}
-            style={{ 
-              backgroundColor: "#FFCECE", 
+            style={{
+              backgroundColor: "#FFCECE",
               color: "black",
               padding: "10px 20px",
               border: "none",
               borderRadius: "4px",
               cursor: "pointer",
-              margin: "10px 0"
+              margin: "10px 0",
             }}
           >
             Clear Results
