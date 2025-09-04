@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import FlagList from './components/Flags';
+import React from "react";
+import "./App.css";
+import FlagList from "./components/Flags";
 
 const App = () => {
   return (
