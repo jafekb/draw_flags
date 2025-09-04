@@ -1,36 +1,36 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    background-color: #f0f0f0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
 .grid-item {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rbga(0, 0, 0, 0.1);
-    overflow: hidden;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rbga(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .grid-item img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-bottom: 1px solid #ddd;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #ddd;
 }
 
 .grid-item p {
-    margin: 0;
-    font-size: 14px;
-    color: #555;
+  margin: 0;
+  font-size: 14px;
+  color: #555;
 }
 
 .flag-info {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1px;
-    padding: 12px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  padding: 12px 0;
 }

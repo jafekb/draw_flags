@@ -9,8 +9,7 @@ const FlagList = () => {
   const addFlag = async (textQuery) => {
     try {
       const response = await api.post("/", { text_query: textQuery });
-      setFlags(response.data.flags)
-
+      setFlags(response.data.flags);
     } catch (error) {
       console.error("Error adding flag", error);
     }

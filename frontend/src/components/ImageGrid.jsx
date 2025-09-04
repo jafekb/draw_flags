@@ -1,7 +1,7 @@
 import React from "react";
 import "./ImageGrid.css";
 const ImageGrid = ({ images, title }) => {
-    console.log({images})
+  console.log({ images });
   return (
     <div>
       {title && <h2 className="grid-title">{title}</h2>}
@@ -14,10 +14,10 @@ const ImageGrid = ({ images, title }) => {
             />
 
             <div className="flag-info">
-                <a href={image.wikipedia_url} target="_blank">
+              <a href={image.wikipedia_url} target="_blank">
                 {image.name}
-                </a>{" "}
-                <p>({(image.score * 100).toFixed(1)}%)</p>
+              </a>{" "}
+              <p>({(image.score * 100).toFixed(1)}%)</p>
             </div>
           </div>
         ))}
