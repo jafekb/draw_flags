@@ -129,8 +129,7 @@ dependencies = [
     "onnxruntime==1.22.1",  # Pin to avoid sympy compilation
     "pillow",  # For image processing
     "python-multipart",  # For file uploads in FastAPI
-    # Note: sentence-transformers is lazy-loaded only for image processing
-    "sentence-transformers==3.2.1",  # Required for image encoding (lazy-loaded)
+    "torch",  # Required for CLIP image processing (CPU-only)
 ]
 
 [project.optional-dependencies]
@@ -141,8 +140,9 @@ dev = [
     "black",
     "mypy",
     "pre-commit",
-    "sentence-transformers==3.2.1",
+    "sentence-transformers==3.2.1",  # For comparison/testing only
     "torch",
+    "transformers>=4.35.0",  # Required for production CLIP processing
     "aiohttp==3.10.11",
     "rich>=13.9.4",
     "tqdm==4.66.5",

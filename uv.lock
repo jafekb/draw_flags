@@ -524,9 +524,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "python-multipart" },
     { name = "requests" },
-    { name = "sentence-transformers" },
     { name = "sympy" },
     { name = "tokenizers" },
+    { name = "torch" },
     { name = "uvicorn" },
 ]
 
@@ -585,10 +585,10 @@ requires-dist = [
     { name = "rich", marker = "extra == 'dev'", specifier = ">=13.9.4" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.9.1" },
     { name = "scikit-learn", marker = "extra == 'dev'", specifier = "==1.3.2" },
-    { name = "sentence-transformers", specifier = "==3.2.1" },
     { name = "sentence-transformers", marker = "extra == 'dev'", specifier = "==3.2.1" },
     { name = "sympy", specifier = "==1.14.0" },
     { name = "tokenizers" },
+    { name = "torch" },
     { name = "torch", marker = "extra == 'dev'" },
     { name = "tqdm", marker = "extra == 'dev'", specifier = "==4.66.5" },
     { name = "transformers", marker = "extra == 'dev'", specifier = ">=4.35.0" },
