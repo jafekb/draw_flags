@@ -9,7 +9,7 @@ import numpy as np
 import onnxruntime as ort
 
 from backend.common.flag_data import FlagList, flaglist_from_json
-from backend.src.clip_image_encoder import CLIPImageEncoder
+from backend.src.image_processor import encode_image
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
 FLAGS_FILE = Path("backend/data/national_flags/flags.json")
@@ -40,8 +40,7 @@ class FlagSearcher:
         self._session = ort.InferenceSession(str(MODEL_PATH), providers=["CPUExecutionProvider"])
         self._tokenizer = create_minimal_tokenizer()
 
-        # Load CLIP image encoder for image processing
-        self._image_encoder = CLIPImageEncoder()
+        # Note: Image encoder is lazy-loaded only when needed
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename)
@@ -64,9 +63,9 @@ class FlagSearcher:
 
         return text_embeddings
 
-    def _encode_image(self, image_data: bytes):
-        """Encode image using CLIP image encoder"""
-        embedding = self._image_encoder.encode_image(image_data)
+    def _encode_image(self, image_data):
+        """Encode image using lazy-loaded CLIP image encoder"""
+        embedding = encode_image(image_data)
 
         # Ensure it's a 2D array for consistency with text embeddings
         if embedding.ndim == 1:
