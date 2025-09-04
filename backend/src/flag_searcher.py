@@ -1,5 +1,5 @@
 """
-Class that can take in an image and output a bunch of
+Class that can take in text or an image and output a bunch of
 other images of flags that look like it.
 """
 
@@ -9,6 +9,7 @@ import numpy as np
 import onnxruntime as ort
 
 from backend.common.flag_data import FlagList, flaglist_from_json
+from backend.src.clip_image_encoder import CLIPImageEncoder
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
 FLAGS_FILE = Path("backend/data/national_flags/flags.json")
@@ -30,7 +31,7 @@ class FlagSearcher:
     def __init__(self, top_k):
         self._top_k = top_k
 
-        # Load ONNX model and tokenizer
+        # Load ONNX model and tokenizer for text processing
         if not MODEL_PATH.exists():
             raise FileNotFoundError(
                 f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script."
@@ -38,6 +39,9 @@ class FlagSearcher:
 
         self._session = ort.InferenceSession(str(MODEL_PATH), providers=["CPUExecutionProvider"])
         self._tokenizer = create_minimal_tokenizer()
+
+        # Load CLIP image encoder for image processing
+        self._image_encoder = CLIPImageEncoder()
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename)
@@ -60,27 +64,40 @@ class FlagSearcher:
 
         return text_embeddings
 
-    def query(self, text_query, is_image) -> FlagList:
+    def _encode_image(self, image_data: bytes):
+        """Encode image using CLIP image encoder"""
+        embedding = self._image_encoder.encode_image(image_data)
+
+        # Ensure it's a 2D array for consistency with text embeddings
+        if embedding.ndim == 1:
+            embedding = embedding.reshape(1, -1)
+
+        # The embedding is already normalized by sentence-transformers
+        return embedding
+
+    def query(self, text_query=None, image_data=None) -> FlagList:
         """
         Run the recognizer, comparing to all the existing stuff.
 
         Arguments:
-            text_query:
-            is_image (bool): TODO(bjafek) this currently handles both text
-                and image querying.
+            text_query: String description of the flag
+            image_data: Raw image bytes (PNG, JPEG, etc.)
+
+        Note: Exactly one of text_query or image_data should be provided
 
         Returns:
             FlagList
         """
-        if is_image:
-            raise NotImplementedError
-            # TODO(bjafek) again, this should be a usable format when it
-            #  gets passed, instead of this junk.
-            # fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
-            # img = Image.open(fn)
+        if text_query is not None and image_data is not None:
+            raise ValueError("Provide either text_query OR image_data, not both")
+        if text_query is None and image_data is None:
+            raise ValueError("Must provide either text_query OR image_data")
 
-        # Encode the text query using ONNX
-        new_embedding = self._encode_text(text_query)
+        # Encode the query (text or image)
+        if text_query is not None:
+            new_embedding = self._encode_text(text_query)
+        else:
+            new_embedding = self._encode_image(image_data)
 
         # Calculate similarity with pre-computed embeddings
         similarity_scores = cosine_similarity(new_embedding, self._encoded_images)

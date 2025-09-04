@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const SubmitDescriptionForm = ({ addFlag }) => {
-  const [flagName, setFlagName] = useState('');
+  const [flagName, setFlagName] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (flagName) {
       addFlag(flagName);
-      setFlagName('');
+      setFlagName("");
     }
   };
 

@@ -1,5 +1,8 @@
+from io import BytesIO
+from typing import Annotated
+
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.common.flag_data import FlagList
@@ -25,11 +28,35 @@ app.add_middleware(
 )
 
 
-# TODO(bjafek) this isn't 'adding a flag', it's querying based on text
+# Text-based flag search
+@app.post("/search/text", response_model=FlagList)
+async def search_by_text(text_query: Request):
+    data = await text_query.json()  # Get the JSON data
+    flags = flag_searcher.query(text_query=data["text_query"])
+    return flags
+
+
+# Image-based flag search
+@app.post("/search/image", response_model=FlagList)
+async def search_by_image(file: Annotated[UploadFile, File(...)]):
+    # Validate file type
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="File must be an image")
+
+    # Read the image data
+    image_data = await file.read()
+    image_bytes = BytesIO(image_data)
+
+    # Search for similar flags
+    flags = flag_searcher.query(image_data=image_bytes)
+    return flags
+
+
+# Legacy endpoint for backward compatibility
 @app.post("/", response_model=FlagList)
 async def add_flag(text_query: Request):
     data = await text_query.json()  # Get the JSON data
-    flags = flag_searcher.query(data["text_query"], is_image=False)
+    flags = flag_searcher.query(text_query=data["text_query"])
     return flags
 
 
@@ -37,7 +64,13 @@ async def add_flag(text_query: Request):
 async def flags_info():
     return {
         "message": "Draw Flags API",
-        "usage": 'POST to / with JSON: {"text_query": "your flag description"}',
+        "endpoints": {
+            "text_search": (
+                'POST to /search/text with JSON: {"text_query": "your flag description"}'
+            ),
+            "image_search": "POST to /search/image with multipart/form-data file upload",
+            "legacy": 'POST to / with JSON: {"text_query": "your flag description"} (deprecated)',
+        },
         "status": "running",
     }
 
