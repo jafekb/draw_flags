@@ -84,6 +84,15 @@ unfixable = []
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu" },
+]
+
 [tool.ruff.format]
 # Like Black, use double quotes for strings.
 quote-style = "double"
@@ -124,13 +133,13 @@ dependencies = [
     "pydantic==2.10.4",
     "requests",
     "tokenizers",
-    "numpy==1.26.4",
+    "numpy>=1.26.0",
     "sympy==1.14.0",
     "onnxruntime==1.22.1",
-    "pillow",  # For image processing
-    "python-multipart",  # For file uploads in FastAPI
-    "torch",  # Required for CLIP image processing (CPU-only)
-    "transformers>=4.35.0",
+    "pillow", # For image processing
+    "python-multipart", # For file uploads in FastAPI
+    "transformers>=4.35.0", # Required for image search
+    "torch", # Required for image search (will be CPU-only in deployment)
 ]
 
 [project.optional-dependencies]
@@ -142,7 +151,6 @@ dev = [
     "mypy",
     "pre-commit",
     "sentence-transformers==3.2.1",  # For comparison/testing only
-    "torch",
     "aiohttp==3.10.11",
     "rich>=13.9.4",
     "tqdm==4.66.5",
