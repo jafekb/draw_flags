@@ -5,7 +5,7 @@ Main script to orchestrate collection of all flags from different sources.
 import argparse
 import json
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Tuple
 
 from backend.common.flag_data import Flag, FlagList
 from backend.scripts.data_collection.collectors.national_flags import NationalFlagCollector
@@ -17,7 +17,7 @@ from backend.scripts.data_collection.fotw_scraper import FOTWScraper
 from backend.scripts.data_collection.deduplicator import FlagDeduplicator
 
 
-def collect_all_flags(test_mode: bool = False) -> List[Flag]:
+def collect_all_flags(test_mode: bool = False) -> Tuple[List[Flag], Dict]:
     """
     Collect flags from all sources.
     
@@ -25,9 +25,10 @@ def collect_all_flags(test_mode: bool = False) -> List[Flag]:
         test_mode: If True, only collect a small subset for testing (~50 flags, <2 min)
     
     Returns:
-        List of all collected flags
+        Tuple of (list of all collected flags, collectors_info dict)
     """
     all_flags = []
+    collectors_info = {}
     
     if test_mode:
         print("\n" + "="*80)
@@ -55,6 +56,15 @@ def collect_all_flags(test_mode: bool = False) -> List[Flag]:
     
     national_flags = national_collector.collect()
     all_flags.extend(national_flags)
+    
+    # Store national collector info for metadata
+    if hasattr(national_collector, 'attempted_countries') and hasattr(national_collector, 'failed_countries'):
+        collectors_info['national_flags'] = {
+            'attempted_count': len(national_collector.attempted_countries),
+            'failed_count': len(national_collector.failed_countries),
+            'failed_countries': national_collector.failed_countries
+        }
+    
     if test_mode:
         print(f"  Test mode: Collected {len(national_flags)} national flags")
     
@@ -110,7 +120,7 @@ def collect_all_flags(test_mode: bool = False) -> List[Flag]:
     print("="*80)
     print(f"Total flags collected (before deduplication): {len(all_flags)}")
     
-    return all_flags
+    return all_flags, collectors_info
 
 
 def save_raw_flags(flags: List[Flag], output_dir: Path):
@@ -162,7 +172,7 @@ Examples:
         print("This will take several hours to complete.\n")
     
     # Collect all flags
-    all_flags = collect_all_flags(test_mode=args.test)
+    all_flags, collectors_info = collect_all_flags(test_mode=args.test)
     
     # Save raw collection
     output_dir = Path("backend/data/comprehensive_flags")
@@ -192,7 +202,8 @@ Examples:
         'sources': [
             'Wikipedia (national flags, subdivisions, organizations, historical, cities)',
             'FOTW (Flags of the World)',
-        ]
+        ],
+        'collectors': collectors_info
     }
     
     metadata_file = output_dir / "collection_metadata.json"

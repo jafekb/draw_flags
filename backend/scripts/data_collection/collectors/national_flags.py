@@ -76,6 +76,10 @@ class NationalFlagCollector(WikipediaScraper):
         """
         print("Starting national flag collection from Wikipedia...")
         
+        # Track which countries we attempted and which failed
+        self.attempted_countries = []
+        self.failed_countries = []
+        
         # Method 1: Collect from gallery/list pages
         for page in self.NATIONAL_FLAG_SOURCES:
             print(f"\nCollecting from page: {page}")
@@ -90,6 +94,9 @@ class NationalFlagCollector(WikipediaScraper):
         new_count = 0
         
         for i, country in enumerate(self.COUNTRY_PAGES):
+            # Track that we attempted this country
+            self.attempted_countries.append(country)
+            
             # Check if we already have this country
             country_name = country.replace('_', ' ')
             if country_name.lower() in collected_names:
@@ -99,12 +106,21 @@ class NationalFlagCollector(WikipediaScraper):
             if self._collect_from_country_page(country):
                 new_count += 1
                 collected_names.add(country_name.lower())
+            else:
+                # Track failed country
+                self.failed_countries.append(country)
             
             # Progress update every 50 countries
             if (i + 1) % 50 == 0:
                 print(f"  Progress: {i + 1}/{len(self.COUNTRY_PAGES)} countries checked, {new_count} new flags added")
         
         print(f"  Collected {new_count} additional flags from country pages")
+        
+        if self.failed_countries:
+            print(f"  Failed to collect: {len(self.failed_countries)} countries")
+            print(f"  Failed countries: {', '.join(self.failed_countries[:10])}")
+            if len(self.failed_countries) > 10:
+                print(f"  ... and {len(self.failed_countries) - 10} more")
         
         self.print_stats()
         return self.collected_flags
