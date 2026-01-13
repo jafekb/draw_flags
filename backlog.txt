@@ -1,0 +1,12 @@
+1. duplicate ottoman empire
+2. fix the image sizing/formatting
+3. more flags
+4. be able to filter by "national only", "region", etc
+5. add more metadata
+6. Be able to upload an image
+7. use something smarter than np.linalg.norm
+8. needs to be small enough to deploy
+9. check that we're using <5% of FOTW
+10. Add attribution to FOTW
+11. other copyright compliance FOTW
+12. other wikipedia compliance?

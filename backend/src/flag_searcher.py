@@ -11,9 +11,9 @@ import onnxruntime as ort
 from backend.common.flag_data import FlagList, flaglist_from_json
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
-FLAGS_FILE = Path("backend/data/comprehensive_flags_2/flags.json")
+FLAGS_FILE = Path("backend/data/comprehensive_flags_3/flags.json")
+# FLAGS_FILE = Path("backend/data/comprehensive_flags_2/flags.json")
 # FLAGS_FILE = Path("backend/data/national_flags/flags.json")
-# FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
 MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
 
 
@@ -97,9 +97,9 @@ class FlagSearcher:
 
         flags = []
         for ind, score in zip(top_k_indices, sorted_scores):
-            # Use the stored Flag, just update the score with the similarity score.
+            # Create a copy of the flag with the similarity score
             flag = self._flags.flags[ind]
-            flag.score = score
-            flags.append(flag)
+            flag_with_score = flag.model_copy(update={"score": score})
+            flags.append(flag_with_score)
 
         return FlagList(flags=flags)

@@ -11,6 +11,7 @@ flag_searcher = FlagSearcher(top_k=15)  # Increased for larger dataset
 
 origins = [
     "http://localhost:5173",
+    "http://10.0.9.167:5173",
     "https://whatsthatflag.com",
     "https://www.whatsthatflag.com",
     "https://draw-flags-frontend.onrender.com",

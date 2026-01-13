@@ -1,1 +1,15 @@
 https://docs.github.com/en/repositories/working-with-files/managing-large-files
+
+FOTW copyright.
+Copyright
+Most text and images contained in the website are made by the contributors themselves. If the contributor states the source of the information, we report it, otherwise we assume it is new material and the copyright is owned by the contributor. Our editorial policy is to include images only when we can ascertain that we have permission to use them. However, it is often the case that an image is provided to us with little back-up information associated with it. In such cases we try to assess if the image is owned by someone before posting it. If you encounter an image which you think may be from your site and used on FOTW without permission, please contact the editor of the page to advise him. Our intent is to provide as complete a collection of the world's flags as possible, and we would be most grateful to be able to use your image. If we know where it comes from, we will credit it.
+Some pictures are derived from cliparts of graphical programs. Cliparts normally can be incorporated into drawings without any copyright problems. Therefore we add them to the website without declaring anything about their origin.
+You can freely use any material copyrighted by the contributors of the website, provided that:
+you limit your use to a maximum of 5% of the images or content of the website
+you quote the author
+you quote the website (as "FOTW Flags Of The World website at https://www.fotw.info/")
+you do not alter in any way the images or the content of the text
+you use the material for non-commercial and non-political purposes only
+if you distribute our material by a non-Internet way (e.g., floppy disks or CD-ROM) you must add this copyright text on every copy of the medium
+if you distribute our materials by a non-Internet way (e.g., floppy disks or CD-ROM) you cannot sell these media
+If you want to reuse FOTW GeoIndex maps and boundaries' data, read these rules

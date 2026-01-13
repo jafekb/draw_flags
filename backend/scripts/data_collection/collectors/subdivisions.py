@@ -157,13 +157,25 @@ class SubdivisionFlagCollector(WikipediaScraper):
             flag_data_list = self.extract_flags_from_gallery(soup)
 
         # Create Flag objects
+        # Determine entity_type from subdivision_type
+        if "state" in subdivision_type.lower():
+            entity_type = "state"
+        elif "province" in subdivision_type.lower():
+            entity_type = "province"
+        elif "territory" in subdivision_type.lower():
+            entity_type = "territory"
+        else:
+            entity_type = "state"  # default
+        
         for flag_data in flag_data_list:
             flag = self.create_flag(
                 name=flag_data["name"],
                 wikipedia_page=flag_data["page_title"],
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="subdivision",
+                entity_type=entity_type,
+                country=country,
             )
 
             if flag:
