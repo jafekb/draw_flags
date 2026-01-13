@@ -11,16 +11,24 @@ import onnxruntime as ort
 from backend.common.flag_data import FlagList, flaglist_from_json
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
-FLAGS_FILE = Path("backend/data/national_flags/flags.json")
+FLAGS_FILE = Path("backend/data/comprehensive_flags_2/flags.json")
+# FLAGS_FILE = Path("backend/data/national_flags/flags.json")
 # FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
 MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
 
 
 def cosine_similarity(a, b):
     """Simple cosine similarity implementation using numpy"""
-    # Normalize vectors
-    a_norm = a / np.linalg.norm(a, axis=-1, keepdims=True)
-    b_norm = b / np.linalg.norm(b, axis=-1, keepdims=True)
+    # Normalize vectors, handling zero vectors
+    a_norm_val = np.linalg.norm(a, axis=-1, keepdims=True)
+    b_norm_val = np.linalg.norm(b, axis=-1, keepdims=True)
+    
+    # Replace zero norms with 1 to avoid division by zero (will result in 0 similarity)
+    a_norm_val = np.where(a_norm_val == 0, 1, a_norm_val)
+    b_norm_val = np.where(b_norm_val == 0, 1, b_norm_val)
+    
+    a_norm = a / a_norm_val
+    b_norm = b / b_norm_val
 
     # Compute cosine similarity
     return np.dot(a_norm, b_norm.T)
