@@ -11,9 +11,9 @@ import onnxruntime as ort
 from backend.common.flag_data import FlagList, flaglist_from_json
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 
-FLAGS_FILE = Path("backend/data/comprehensive_flags_2/flags.json")
+FLAGS_FILE = Path("backend/data/comprehensive_flags_3/flags.json")
+# FLAGS_FILE = Path("backend/data/comprehensive_flags_2/flags.json")
 # FLAGS_FILE = Path("backend/data/national_flags/flags.json")
-# FLAGS_FILE = Path("backend/data/commons_plus_national/flags.json")
 MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
 
 

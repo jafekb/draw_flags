@@ -304,12 +304,21 @@ class CityFlagCollector(WikipediaScraper):
 
         # Create Flag objects
         for flag_data in flag_data_list:
+            # Try to extract country from city name if it has a comma
+            country = None
+            if "," in flag_data["name"]:
+                parts = flag_data["name"].split(",")
+                if len(parts) >= 2:
+                    country = parts[-1].strip()
+            
             flag = self.create_flag(
                 name=flag_data["name"],
                 wikipedia_page=flag_data["page_title"],
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="city",
+                entity_type="city",
+                country=country,
             )
 
             if flag:
@@ -337,13 +346,22 @@ class CityFlagCollector(WikipediaScraper):
         if flag_data:
             # Clean up name
             name = page_title.replace("_", " ")
+            
+            # Try to extract country from city name if it has a comma
+            country = None
+            if "," in name:
+                parts = name.split(",")
+                if len(parts) >= 2:
+                    country = parts[-1].strip()
 
             flag = self.create_flag(
                 name=name,
                 wikipedia_page=page_title,
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="city",
+                entity_type="city",
+                country=country,
             )
 
             if flag:

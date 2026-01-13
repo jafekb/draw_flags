@@ -144,7 +144,9 @@ class FOTWScraper(BaseScraper):
             wikipedia_page=name,
             wikipedia_url=url,
             wikipedia_image_url=flag_image,
-            verification_method="check_options",
+            category="fotw",
+            entity_type="historical",  # FOTW often has historical/specialized flags
+            country=None,
         )
 
         return flag

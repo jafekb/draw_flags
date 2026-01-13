@@ -118,7 +118,9 @@ class OrganizationFlagCollector(WikipediaScraper):
                 wikipedia_page=flag_data["page_title"],
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="organization",
+                entity_type="organization",
+                country=None,
             )
 
             if flag:
@@ -149,7 +151,9 @@ class OrganizationFlagCollector(WikipediaScraper):
                 wikipedia_page=page_title,
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="organization",
+                entity_type="organization",
+                country=None,
             )
 
             if flag:

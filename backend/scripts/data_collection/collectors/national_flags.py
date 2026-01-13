@@ -306,7 +306,9 @@ class NationalFlagCollector(WikipediaScraper):
                 wikipedia_page=flag_data["page_title"],
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="national",
+                entity_type="country",
+                country=None,
             )
 
             if flag:
@@ -340,7 +342,9 @@ class NationalFlagCollector(WikipediaScraper):
                 wikipedia_page=page_title,
                 wikipedia_url=flag_data["page_url"],
                 wikipedia_image_url=flag_data["image_url"],
-                verification_method="table",
+                category="national",
+                entity_type="country",
+                country=None,
             )
 
             if flag:

@@ -138,10 +138,11 @@ class BaseScraper(ABC):
         wikipedia_page: str,
         wikipedia_url: str,
         wikipedia_image_url: str,
-        verification_method: str = "table",
-        category: str = "unknown",
-        country: str = "",
-        source: str = "",
+        category: str,
+        entity_type: str,
+        country: Optional[str] = None,
+        adoption_year: Optional[int] = None,
+        tags: Optional[List[str]] = None,
     ) -> Optional[Flag]:
         """
         Create a Flag object with validation.
@@ -151,10 +152,11 @@ class BaseScraper(ABC):
             wikipedia_page: Wikipedia page title
             wikipedia_url: Full Wikipedia URL
             wikipedia_image_url: URL to flag image
-            verification_method: How the flag was verified
-            category: Flag category (national, subdivision, city, etc.)
+            category: Flag category (national, subdivision, city, organization, historical, fotw)
+            entity_type: Entity type (country, state, province, territory, city, organization, historical)
             country: Parent country (for subdivisions/cities)
-            source: Data source
+            adoption_year: Year flag was adopted
+            tags: List of searchable tags
 
         Returns:
             Flag object or None if validation failed
@@ -178,13 +180,20 @@ class BaseScraper(ABC):
                 )
                 return None
 
+            # Generate basic tags if not provided
+            if tags is None:
+                tags = self._generate_basic_tags(name, category, entity_type, country)
+
             flag = Flag(
                 name=name,
                 wikipedia_page=wikipedia_page,
                 wikipedia_url=wikipedia_url,
                 wikipedia_image_url=wikipedia_image_url,
-                verification_method=verification_method,
-                score=1.0,
+                category=category,
+                entity_type=entity_type,
+                country=country,
+                adoption_year=adoption_year,
+                tags=tags,
             )
 
             return flag
@@ -193,6 +202,37 @@ class BaseScraper(ABC):
             self.errors.append({"name": name, "error": str(e), "type": "creation_failed"})
             print(f"Failed to create flag for {name}: {e}")
             return None
+    
+    def _generate_basic_tags(
+        self, name: str, category: str, entity_type: str, country: Optional[str]
+    ) -> List[str]:
+        """Generate basic tags for a flag."""
+        import re
+        
+        tags = [category]
+        if entity_type != category:
+            tags.append(entity_type)
+        
+        if country:
+            tags.append(country.lower())
+        
+        # Parse name for keywords
+        name_clean = name.lower().replace("flag of ", "").replace("the ", "")
+        words = re.split(r'[,\s\-]+', name_clean)
+        for word in words:
+            word = word.strip()
+            if len(word) > 2 and word not in ['flag', 'the', 'and', 'for']:
+                tags.append(word)
+        
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_tags = []
+        for tag in tags:
+            if tag not in seen:
+                seen.add(tag)
+                unique_tags.append(tag)
+        
+        return unique_tags
 
     @abstractmethod
     def collect(self) -> List[Flag]:

@@ -5,10 +5,10 @@ Utils file for the FlagSearcher & backend.
 import json
 from pathlib import Path
 from shutil import copyfile
-from typing import List
+from typing import List, Optional
 
 import requests
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 
 # Only import cairosvg when needed for data preparation
 try:
@@ -21,29 +21,41 @@ except ImportError:
 
 class Flag(BaseModel):
     """
-    Stuff for a single flag - image & metadata
+    Flag data model with metadata for searchability and organization.
     """
 
+    # Core identification
     name: str
     wikipedia_page: str
-    # TODO(bjafek) We could generalize this to just 'info_url' and 'image_url'
     wikipedia_url: str
     wikipedia_image_url: str
-    # You don't have to specify this at build time, save_image() can define it for you
-    local_image_link: str = ""
-    verification_method: str = ""
-    score: float = 0.0
 
-    @validator("verification_method")
-    def validate_my_field(cls, v):
-        allowed_values = {"check_options", "commons", "table"}
+    # New metadata fields for enhanced searchability
+    category: str  # "national", "subdivision", "city", "organization", "historical", "fotw"
+    entity_type: str  # "country", "state", "province", "territory", "city", "organization", "historical"
+    country: Optional[str] = None  # Parent country for subdivisions/cities
+    adoption_year: Optional[int] = None  # Year flag was adopted
+    tags: List[str] = []  # Searchable keywords
+
+    @field_validator("category")
+    @classmethod
+    def validate_category(cls, v):
+        allowed_values = {"national", "subdivision", "city", "organization", "historical", "fotw"}
         if v not in allowed_values:
-            raise ValueError(f"Invalid 'verification_method'. Allowed values are: {allowed_values}")
+            raise ValueError(f"Invalid 'category'. Allowed values are: {allowed_values}")
         return v
 
-    def save_image(self, out_dir: Path) -> None:
+    @field_validator("entity_type")
+    @classmethod
+    def validate_entity_type(cls, v):
+        allowed_values = {"country", "state", "province", "territory", "city", "organization", "historical"}
+        if v not in allowed_values:
+            raise ValueError(f"Invalid 'entity_type'. Allowed values are: {allowed_values}")
+        return v
+
+    def save_image(self, out_dir: Path) -> bool:
         """
-        Save the wikipedia_image_url to a local path, and update the local_image_link
+        Save the wikipedia_image_url to a local path.
 
         Returns:
             had_to_download(bool) whether or not the file already existed. If it did not,
@@ -54,42 +66,29 @@ class Flag(BaseModel):
                 "cairosvg is required for save_image() but not available in production"
             )
 
-        out_name = out_dir / f"{self.name}.png"
-        had_to_download = False
-        if not out_name.is_file():
-            suffix = self.wikipedia_image_url.split(".")[-1]
-            if self.local_image_link:
-                # TODO(bjafek) assert suffix in allowed_suffices
-                # TODO(bjafek) also feels like we could streamline this logic
-                if suffix in ("svg", "SVG"):
-                    # TODO(bjafek) just work through this a little more, svgs are tricky
-                    # with open(self.local_image_link, "r") as f:
-                    # svg = f.read()
-                    # out_name = out_dir / f"{self.name}.png"
-                    # cairosvg.svg2png(svg, write_to=str(out_name))
-                    raise NotImplementedError("I don't want to handle svgs yet!")
-                copyfile(self.local_image_link, out_dir / out_name)
-                return False
+        suffix = self.wikipedia_image_url.split(".")[-1]
+        
+        if suffix in ("svg", "SVG"):
+            out_name = out_dir / f"{self.name}.png"
+        elif suffix in ("png", "PNG"):
+            out_name = out_dir / f"{self.name}.png"
+        elif suffix in ("gif", "GIF"):
+            out_name = out_dir / f"{self.name}.gif"
+        elif suffix in ("jpg", "jpeg", "JPG", "JPEG"):
+            out_name = out_dir / f"{self.name}.jpg"
+        else:
+            raise NotImplementedError(f"We can't yet handle the suffix '{suffix}' you gave us!")
 
-            if suffix in ("svg", "SVG"):
-                out_name = out_dir / f"{self.name}.png"
-                svg = download_svg(self.wikipedia_image_url)
-                cairosvg.svg2png(svg, write_to=str(out_name))
-            elif suffix in ("png", "PNG"):
-                out_name = out_dir / f"{self.name}.png"
-                download_image(self.wikipedia_image_url, out_name)
-            elif suffix in ("gif", "GIF"):
-                out_name = out_dir / f"{self.name}.gif"
-                download_image(self.wikipedia_image_url, out_name)
-            elif suffix in ("jpg", "jpeg", "JPG", "JPEG"):
-                out_name = out_dir / f"{self.name}.jpg"
-                download_image(self.wikipedia_image_url, out_name)
-            else:
-                raise NotImplementedError(f"We can't yet handle the suffix '{suffix}' you gave us!")
-            had_to_download = True
-        self.local_image_link = str(out_name)
+        if out_name.is_file():
+            return False
 
-        return had_to_download
+        if suffix in ("svg", "SVG"):
+            svg = download_svg(self.wikipedia_image_url)
+            cairosvg.svg2png(svg, write_to=str(out_name))
+        else:
+            download_image(self.wikipedia_image_url, out_name)
+
+        return True
 
     def to_json(self, out_dir: Path) -> None:
         """
@@ -100,7 +99,7 @@ class Flag(BaseModel):
         out_name = out_dir / f"{self.name}.json"
 
         with out_name.open("w") as f:
-            json.dump(self.dict(), f, indent=1)
+            json.dump(self.model_dump(), f, indent=1)
         return
 
 
@@ -134,7 +133,7 @@ class FlagList(BaseModel):
             raise ValueError(f"out_name parent must be a valid directory! got '{out_name}'")
 
         with out_name.open("w") as f:
-            json.dump(self.dict(), f, indent=1)
+            json.dump(self.model_dump(), f, indent=1)
         return
 
 
