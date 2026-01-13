@@ -223,13 +223,14 @@ def generate_tags(flag: Dict, category: str, entity_type: str, country: Optional
     name = flag["name"].lower()
     name_clean = name.replace("flag of ", "").replace("the ", "")
     
-    # Split on common delimiters and add significant words
-    words = re.split(r'[,\s\-]+', name_clean)
-    for word in words:
-        word = word.strip()
-        # Skip common/short words
-        if len(word) > 2 and word not in ['flag', 'the', 'and', 'for']:
-            tags.append(word)
+    # Split by comma to separate location from country/region
+    parts = [p.strip() for p in name_clean.split(',')]
+    
+    # Add the main location name (before first comma) as a complete tag
+    if parts:
+        location_name = parts[0].strip()
+        if location_name and location_name not in ['flag', 'the']:
+            tags.append(location_name)
     
     # Add special keywords
     if "united states" in name or country == "United States":
