@@ -1,6 +1,15 @@
 # draw_flags
 Draw a flag, have it recognized
 
+## Prerequisites
+
+### Install uv
+This project uses [uv](https://github.com/astral-sh/uv) for Python dependency management.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 ## Quickstart
 
 
