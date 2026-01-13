@@ -269,7 +269,7 @@ def print_statistics(dataset_dir: Path):
 
 def main():
     """Main validation function."""
-    dataset_dir = Path("backend/data/comprehensive_flags")
+    dataset_dir = Path("backend/data/comprehensive_flags_2")
     
     if not dataset_dir.exists():
         print(f"Error: Dataset directory not found: {dataset_dir}")
