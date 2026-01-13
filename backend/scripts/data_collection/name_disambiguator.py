@@ -116,6 +116,7 @@ def disambiguate_flag_group(flags: List[Flag]) -> List[Flag]:
         return flags
     
     base_name = flags[0].name
+    is_generic_name = base_name.lower() in ['flag', 'banner', 'ensign']
     updated_flags = []
     variants_used = set()
     
@@ -132,31 +133,46 @@ def disambiguate_flag_group(flags: List[Flag]) -> List[Flag]:
         variant = extract_variant_from_url(url)
         
         # For generic names like "Flag", try aggressive extraction
-        if not variant and base_name.lower() in ['flag', 'banner', 'ensign']:
+        if not variant and is_generic_name:
             variant = extract_variant_from_filename_aggressive(url, base_name)
         
         if variant and variant not in variants_used:
-            flag_copy.name = f"{base_name} ({variant})"
+            # For generic names like "Flag", replace entirely instead of adding parentheses
+            if is_generic_name:
+                flag_copy.name = variant
+            else:
+                flag_copy.name = f"{base_name} ({variant})"
             variants_used.add(variant)
             flags_with_variants.append(flag_copy)
         else:
             flags_without_variants.append(flag_copy)
     
     # Second pass: for flags without unique variants, use numbering
+    # Only add variant numbers if there are 2 or more flags that need numbers
     if len(flags_without_variants) > 0:
-        # If we found some variants, number the rest continuing from where variants left off
         if len(flags_with_variants) > 0:
-            for i, flag in enumerate(flags_without_variants, start=1):
-                # Try to find a unique number
+            # We have some variants - number the rest starting from 2
+            for i, flag in enumerate(flags_without_variants, start=2):
                 counter = i
                 while f"variant {counter}" in variants_used:
                     counter += 1
-                flag.name = f"{base_name} (variant {counter})"
+                if is_generic_name:
+                    flag.name = f"{base_name} (variant {counter})"
+                else:
+                    flag.name = f"{base_name} (variant {counter})"
                 variants_used.add(f"variant {counter}")
         else:
-            # No variants found for any, just number them all
-            for i, flag in enumerate(flags_without_variants, start=1):
-                flag.name = f"{base_name} (variant {i})"
+            # No variants found - keep first one bare, number the rest
+            for i, flag in enumerate(flags_without_variants):
+                if i == 0:
+                    # Keep the first one with the original name (bare)
+                    pass
+                else:
+                    # Number subsequent ones starting from 2
+                    if is_generic_name:
+                        flag.name = f"{base_name} (variant {i + 1})"
+                    else:
+                        flag.name = f"{base_name} (variant {i + 1})"
     
     updated_flags = flags_with_variants + flags_without_variants
     return updated_flags
