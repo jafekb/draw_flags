@@ -80,10 +80,11 @@ class WikipediaScraper(BaseScraper):
                     break
         
         # If no specific flag row, look for first image in infobox (often the flag)
+        # But only if it looks like a flag
         if not flag_row:
             for row in infobox.find_all('tr'):
                 img = row.find('img')
-                if img:
+                if img and self._image_looks_like_flag(img):
                     flag_row = row
                     break
         
@@ -102,11 +103,81 @@ class WikipediaScraper(BaseScraper):
         # Convert thumbnail to full resolution
         src = self._convert_to_full_image_url(src)
         
+        # Final validation: make sure this looks like a flag image
+        if not self._url_looks_like_flag(src):
+            return None
+        
         return {
             'image_url': src,
             'page_title': page_title,
             'page_url': f"{self.WIKIPEDIA_BASE}/wiki/{quote(page_title.replace(' ', '_'))}"
         }
+    
+    def _image_looks_like_flag(self, img: Tag) -> bool:
+        """
+        Check if an image element looks like it could be a flag.
+        
+        Args:
+            img: BeautifulSoup img tag
+            
+        Returns:
+            True if the image appears to be a flag
+        """
+        src = img.get('src', '').lower()
+        alt = img.get('alt', '').lower()
+        
+        # Check for flag-related keywords in filename or alt text
+        flag_keywords = ['flag', 'coat_of_arms', 'emblem', 'ensign']
+        if any(keyword in src or keyword in alt for keyword in flag_keywords):
+            return True
+        
+        # Prefer SVG files (almost always flags/symbols)
+        if src.endswith('.svg'):
+            return True
+        
+        # Reject obvious non-flags
+        non_flag_keywords = ['map', 'location', 'photo', 'image', 'view', 'city', 'landscape', 
+                            'building', 'palace', 'dome', 'church', 'temple', 'mosque']
+        if any(keyword in src or keyword in alt for keyword in non_flag_keywords):
+            return False
+        
+        return False
+    
+    def _url_looks_like_flag(self, url: str) -> bool:
+        """
+        Check if a URL looks like it points to a flag image.
+        
+        Args:
+            url: Image URL
+            
+        Returns:
+            True if the URL appears to be a flag
+        """
+        url_lower = url.lower()
+        
+        # Strong positive indicators
+        flag_indicators = ['flag', 'coat_of_arms', 'emblem', 'ensign', 'banner']
+        if any(indicator in url_lower for indicator in flag_indicators):
+            return True
+        
+        # SVG files are almost always flags/symbols (not photos)
+        if url_lower.endswith('.svg'):
+            return True
+        
+        # Reject JPG/JPEG files unless they have "flag" in the name
+        # (Photos of landmarks are usually JPG, flags are usually SVG or PNG)
+        if url_lower.endswith(('.jpg', '.jpeg')):
+            if 'flag' not in url_lower:
+                return False
+        
+        # Reject obvious non-flags in filename
+        non_flag_keywords = ['map', 'location', 'photo', 'city', 'landscape', 'view',
+                            'building', 'palace', 'dome', 'church', 'temple', 'mosque',
+                            'cathedral', 'skyline', 'panorama', 'mountain', 'river']
+        if any(keyword in url_lower for keyword in non_flag_keywords):
+            return False
+        
+        return False
     
     def _convert_to_full_image_url(self, thumbnail_url: str) -> str:
         """
