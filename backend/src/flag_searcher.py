@@ -22,11 +22,11 @@ def cosine_similarity(a, b):
     # Normalize vectors, handling zero vectors
     a_norm_val = np.linalg.norm(a, axis=-1, keepdims=True)
     b_norm_val = np.linalg.norm(b, axis=-1, keepdims=True)
-    
+
     # Replace zero norms with 1 to avoid division by zero (will result in 0 similarity)
     a_norm_val = np.where(a_norm_val == 0, 1, a_norm_val)
     b_norm_val = np.where(b_norm_val == 0, 1, b_norm_val)
-    
+
     a_norm = a / a_norm_val
     b_norm = b / b_norm_val
 
