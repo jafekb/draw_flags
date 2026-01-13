@@ -124,7 +124,7 @@ def save_raw_flags(flags: List[Flag], output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / "flags_raw.json"
     
-    data = [flag.dict() for flag in flags]
+    data = [flag.model_dump() for flag in flags]
     with output_file.open('w') as f:
         json.dump(data, f, indent=2)
     
