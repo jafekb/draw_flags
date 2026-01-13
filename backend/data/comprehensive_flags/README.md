@@ -75,7 +75,7 @@ comprehensive_flags/
 **Step 1: Collect flags from all sources**
 ```bash
 cd backend
-python scripts/collect_all_flags.py
+uv run scripts/collect_all_flags.py
 ```
 
 This will:
@@ -89,7 +89,7 @@ This will:
 **Step 2: Download images and generate embeddings**
 ```bash
 cd backend
-python scripts/download_and_process.py
+uv run scripts/download_and_process.py
 ```
 
 This will:
@@ -103,7 +103,7 @@ This will:
 **Step 3: Validate the dataset**
 ```bash
 cd backend
-python scripts/validate_dataset.py
+uv run scripts/validate_dataset.py
 ```
 
 This will:
@@ -128,7 +128,7 @@ FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
 Then restart your backend server:
 ```bash
 cd backend
-python main.py
+uv run main.py
 ```
 
 ## Data Quality Assurance
@@ -143,15 +143,20 @@ The collection process includes several quality assurance measures:
 
 ## Dependencies
 
-Required Python packages:
+The project uses `uv` for dependency management. Required packages are already specified in `pyproject.toml`.
+
+To install development dependencies (includes all packages needed for data collection):
 ```bash
-pip install beautifulsoup4 requests numpy pillow sentence-transformers
+uv pip install -e ".[dev]"
 ```
 
-Optional (for SVG conversion):
-```bash
-pip install cairosvg
-```
+This includes:
+- beautifulsoup4 (HTML parsing)
+- requests (HTTP requests)
+- numpy (numerical operations)
+- pillow (image processing)
+- sentence-transformers (CLIP embeddings)
+- cairosvg (SVG conversion)
 
 ## Ethical Considerations
 

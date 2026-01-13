@@ -4,14 +4,11 @@ This guide will help you quickly set up and use the comprehensive flags database
 
 ## Prerequisites
 
-Ensure you have the required Python packages installed:
+Ensure you have the required dependencies installed:
 
 ```bash
-# Required packages
-pip install beautifulsoup4 requests numpy pillow sentence-transformers
-
-# Optional (for SVG support)
-pip install cairosvg
+# Install development dependencies (includes everything needed for data collection)
+uv pip install -e ".[dev]"
 ```
 
 ## Three-Step Setup
@@ -20,7 +17,7 @@ pip install cairosvg
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
-python scripts/collect_all_flags.py
+uv run scripts/collect_all_flags.py
 ```
 
 **What this does:**
@@ -42,7 +39,7 @@ python scripts/collect_all_flags.py
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
-python scripts/download_and_process.py
+uv run scripts/download_and_process.py
 ```
 
 **What this does:**
@@ -65,7 +62,7 @@ python scripts/download_and_process.py
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
-python scripts/validate_dataset.py
+uv run scripts/validate_dataset.py
 ```
 
 **What this does:**
@@ -98,7 +95,7 @@ FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
 **Restart your backend:**
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
-python main.py
+uv run main.py
 ```
 
 **Test it out:**
@@ -132,7 +129,7 @@ collector = SubdivisionFlagCollector(rate_limit_seconds=3.0)  # Increase from 2.
 
 ### Problem: SVG conversion fails
 **Solution:** 
-1. Install cairosvg: `pip install cairosvg`
+1. Install cairosvg: `uv pip install cairosvg` (or it should already be in dev dependencies)
 2. Or skip SVG conversion - PNG embeddings will still work for non-SVG flags
 
 ---

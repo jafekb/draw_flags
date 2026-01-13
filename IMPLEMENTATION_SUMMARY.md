@@ -184,15 +184,18 @@ backend/data/comprehensive_flags/
 ### Quick Start (3 commands)
 
 ```bash
-# Step 1: Collect flags (4-12 hours)
+# Step 0: Install dependencies (first time only)
 cd backend
-python scripts/collect_all_flags.py
+uv pip install -e ".[dev]"
+
+# Step 1: Collect flags (4-12 hours)
+uv run scripts/collect_all_flags.py
 
 # Step 2: Download images and generate embeddings (6-12 hours)
-python scripts/download_and_process.py
+uv run scripts/download_and_process.py
 
 # Step 3: Validate
-python scripts/validate_dataset.py
+uv run scripts/validate_dataset.py
 ```
 
 ### Switch to New Dataset
@@ -204,7 +207,7 @@ FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
 
 **Restart backend:**
 ```bash
-python main.py
+uv run main.py
 ```
 
 ---
@@ -258,15 +261,19 @@ python main.py
 
 ## Dependencies
 
-### Required
+### Using uv (Project Standard)
 ```bash
-pip install beautifulsoup4 requests numpy pillow sentence-transformers
+# Install all development dependencies (includes everything needed)
+cd backend
+uv pip install -e ".[dev]"
 ```
 
-### Optional
-```bash
-pip install cairosvg  # For SVG to PNG conversion
-```
+This includes:
+- beautifulsoup4, requests (web scraping)
+- numpy, pillow (image processing)
+- sentence-transformers (CLIP embeddings)
+- cairosvg (SVG conversion)
+- And more development tools
 
 ---
 
@@ -338,7 +345,9 @@ The comprehensive flag database expansion system is **complete and ready to use*
 4. **Full compatibility** - Works with existing codebase
 5. **Complete documentation** - Easy for others to use and maintain
 
-**Next Step:** Run the collection scripts to build your comprehensive flag database!
+**Next Steps:** 
+1. Install dependencies: `uv pip install -e ".[dev]"`
+2. Run the collection scripts to build your comprehensive flag database!
 
 **Estimated Total Time:** 12-24 hours (mostly automated)
 **Estimated Database Size:** 3,500-6,000 flags (conservative), up to 20,000+ with extended collection

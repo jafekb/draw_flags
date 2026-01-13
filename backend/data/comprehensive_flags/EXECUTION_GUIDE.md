@@ -11,10 +11,11 @@ This guide provides the exact commands to build your comprehensive flags databas
 Before starting, ensure you have:
 
 1. **Python 3.10+** (your project uses Python 3.10)
-2. **Dependencies installed** (the project uses `uv` for dependency management)
-3. **Stable internet connection** (for downloading thousands of images)
-4. **Sufficient disk space** (5-10 GB recommended)
-5. **Time** (12-24 hours total, mostly unattended)
+2. **uv installed** (the project uses `uv` for dependency management)
+3. **Dependencies installed** - run: `uv pip install -e ".[dev]"`
+4. **Stable internet connection** (for downloading thousands of images)
+5. **Sufficient disk space** (5-10 GB recommended)
+6. **Time** (12-24 hours total, mostly unattended)
 
 ---
 
@@ -25,11 +26,11 @@ Before starting, ensure you have:
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
 
-# Check if dependencies are available
-python -c "import requests, bs4, numpy; print('✓ Core dependencies OK')"
+# Install development dependencies (includes all data collection packages)
+uv pip install -e ".[dev]"
 
-# If the above fails, you may need to install additional packages
-# The project uses 'uv' so dependencies should already be managed
+# Check if dependencies are available
+uv run python -c "import requests, bs4, numpy; print('✓ Core dependencies OK')"
 ```
 
 ### Step 1: Collect Flags from All Sources
@@ -41,7 +42,7 @@ python -c "import requests, bs4, numpy; print('✓ Core dependencies OK')"
 cd /home/bjafek/personal/draw_flags/backend
 
 # Run the collection script
-python scripts/collect_all_flags.py
+uv run scripts/collect_all_flags.py
 ```
 
 **What happens:**
@@ -104,7 +105,7 @@ Saved deduplicated flags to backend/data/comprehensive_flags/flags_deduplicated.
 cd /home/bjafek/personal/draw_flags/backend
 
 # Run the download and processing script
-python scripts/download_and_process.py
+uv run scripts/download_and_process.py
 ```
 
 **What happens:**
@@ -186,7 +187,7 @@ To use this dataset, update backend/src/flag_searcher.py:
 cd /home/bjafek/personal/draw_flags/backend
 
 # Run the validation script
-python scripts/validate_dataset.py
+uv run scripts/validate_dataset.py
 ```
 
 **Expected output:**
@@ -306,15 +307,16 @@ python main.py
 **Solution:** Install missing dependencies. The project uses `uv` for dependency management:
 
 ```bash
-# If using uv (recommended for this project)
 cd /home/bjafek/personal/draw_flags/backend
-uv pip install beautifulsoup4 requests numpy pillow sentence-transformers
 
-# Or with regular pip
-pip install beautifulsoup4 requests numpy pillow sentence-transformers
+# Install all development dependencies (includes everything needed)
+uv pip install -e ".[dev]"
 
-# Optional: for SVG support
-pip install cairosvg
+# This includes:
+# - beautifulsoup4, requests, numpy, pillow
+# - sentence-transformers (for embeddings)
+# - cairosvg (for SVG support)
+# - and more
 ```
 
 ### Problem: Rate limit errors or connection timeouts
@@ -343,8 +345,8 @@ These scripts take many hours. Start them before bed or when you won't need your
 
 ```bash
 # Run in background (Linux/Mac)
-nohup python scripts/collect_all_flags.py > collection.log 2>&1 &
-nohup python scripts/download_and_process.py > processing.log 2>&1 &
+nohup uv run scripts/collect_all_flags.py > collection.log 2>&1 &
+nohup uv run scripts/download_and_process.py > processing.log 2>&1 &
 
 # Check progress
 tail -f collection.log
@@ -428,17 +430,20 @@ If you encounter issues:
 # Complete workflow
 cd /home/bjafek/personal/draw_flags/backend
 
+# Step 0: Install dependencies (first time only)
+uv pip install -e ".[dev]"
+
 # Step 1: Collect (4-12 hours)
-python scripts/collect_all_flags.py
+uv run scripts/collect_all_flags.py
 
 # Step 2: Process (6-12 hours)
-python scripts/download_and_process.py
+uv run scripts/download_and_process.py
 
 # Step 3: Validate (< 1 minute)
-python scripts/validate_dataset.py
+uv run scripts/validate_dataset.py
 
 # Step 4: Update flag_searcher.py and restart backend
-python main.py
+uv run main.py
 ```
 
 That's it! Your comprehensive flag database is ready to use. 🚩

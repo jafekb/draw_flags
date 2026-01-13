@@ -164,7 +164,7 @@ def print_summary(results):
     else:
         print("\n✗ Some tests failed. Please fix the issues above before proceeding.")
         print("\nCommon fixes:")
-        print("- Install missing packages: pip install beautifulsoup4 requests numpy pillow")
+        print("- Install missing packages: uv pip install -e \".[dev]\"")
         print("- Ensure you're running from the project root directory")
         print("- Check that all files were created correctly")
     
