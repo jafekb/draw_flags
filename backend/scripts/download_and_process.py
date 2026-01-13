@@ -151,10 +151,13 @@ def generate_embeddings(flags: List[Flag], images_dir: Path, output_file: Path):
     
     try:
         from sentence_transformers import SentenceTransformer
-        from PIL import Image
-    except ImportError:
-        print("Required libraries not available")
-        print("Install with: pip install sentence-transformers pillow")
+        from PIL import Image as PILImage
+    except ImportError as e:
+        print(f"Required libraries not available: {e}")
+        print("Install with: uv pip install sentence-transformers pillow")
+        # Create dummy embeddings file so the script can continue
+        print("Creating placeholder embeddings file...")
+        np.save(output_file, np.zeros((len(flags), 512)))
         return
     
     # Load CLIP model
@@ -187,7 +190,7 @@ def generate_embeddings(flags: List[Flag], images_dir: Path, output_file: Path):
         
         try:
             # Load and encode image
-            image = Image.open(image_file).convert('RGB')
+            image = PILImage.open(image_file).convert('RGB')
             embedding = model.encode(image, convert_to_numpy=True)
             embeddings.append(embedding)
             successful += 1
@@ -236,7 +239,7 @@ def create_final_dataset(flags: List[Flag], embeddings_file: Path, output_dir: P
 def main():
     """Main processing function."""
     # Load deduplicated flags
-    flags_file = Path("backend/data/comprehensive_flags/flags_deduplicated.json")
+    flags_file = Path("backend/data/comprehensive_flags_2/flags_deduplicated.json")
     
     if not flags_file.exists():
         print(f"Error: {flags_file} not found")
@@ -251,7 +254,7 @@ def main():
     print(f"Loaded {len(flags)} flags")
     
     # Setup paths
-    output_dir = Path("backend/data/comprehensive_flags")
+    output_dir = Path("backend/data/comprehensive_flags_2")
     images_dir = output_dir / "images"
     embeddings_file = output_dir / "embeddings.npy"
     
