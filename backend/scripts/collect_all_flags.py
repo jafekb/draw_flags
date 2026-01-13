@@ -31,9 +31,9 @@ def collect_all_flags(test_mode: bool = False) -> List[Flag]:
     
     if test_mode:
         print("\n" + "="*80)
-        print("TEST MODE: Collecting small subset (~50 flags)")
+        print("TEST MODE: Collecting small subset (~20 flags)")
         print("="*80)
-        print("This will take ~1-2 minutes")
+        print("This will take ~1-2 minutes (includes network requests)")
         print("For full collection, run without --test flag")
         print("="*80 + "\n")
     
@@ -42,13 +42,21 @@ def collect_all_flags(test_mode: bool = False) -> List[Flag]:
     print("PHASE 1: Collecting from high-quality structured sources")
     print("="*80)
     
-    # National flags (existing dataset) - fast, no network requests
+    # National flags
     print("\n--- National Flags ---")
     national_collector = NationalFlagCollector(rate_limit_seconds=0.5 if test_mode else 1.0)
+    
+    if test_mode:
+        # In test mode, limit to just a few countries for speed
+        print("  Test mode: Collecting subset of national flags (first 20 countries)")
+        national_collector.COUNTRY_PAGES = national_collector.COUNTRY_PAGES[:20]
+        # Skip the gallery pages in test mode to save time
+        national_collector.NATIONAL_FLAG_SOURCES = []
+    
     national_flags = national_collector.collect()
     all_flags.extend(national_flags)
     if test_mode:
-        print(f"  Test mode: Using all {len(national_flags)} existing national flags")
+        print(f"  Test mode: Collected {len(national_flags)} national flags")
     
     if test_mode:
         # In test mode, skip the time-consuming collectors
@@ -148,7 +156,7 @@ Examples:
     
     if args.test:
         print("Starting QUICK TEST collection...")
-        print("This will take ~1-2 minutes and collect ~200 flags.\n")
+        print("This will take ~1-2 minutes and collect ~20 flags.\n")
     else:
         print("Starting comprehensive flag data collection...")
         print("This will take several hours to complete.\n")
