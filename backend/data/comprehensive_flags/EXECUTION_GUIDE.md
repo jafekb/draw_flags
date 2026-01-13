@@ -35,13 +35,27 @@ uv run python -c "import requests, bs4, numpy; print('✓ Core dependencies OK')
 
 ### Step 1: Collect Flags from All Sources
 
-**Time:** 4-12 hours  
-**Output:** `backend/data/comprehensive_flags/flags_deduplicated.json`
+**Option A: Quick Test (recommended first)**
+- **Time:** 1-2 minutes  
+- **Flags:** ~200 (existing national flags)
+- **Output:** `backend/data/comprehensive_flags/flags_deduplicated.json`
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
 
-# Run the collection script
+# Run in test mode
+uv run scripts/collect_all_flags.py --test
+```
+
+**Option B: Full Collection**
+- **Time:** 4-12 hours  
+- **Flags:** 5,000+
+- **Output:** `backend/data/comprehensive_flags/flags_deduplicated.json`
+
+```bash
+cd /home/bjafek/personal/draw_flags/backend
+
+# Run the full collection script
 uv run scripts/collect_all_flags.py
 ```
 
@@ -433,10 +447,21 @@ cd /home/bjafek/personal/draw_flags/backend
 # Step 0: Install dependencies (first time only)
 uv pip install -e ".[dev]"
 
-# Step 1: Collect (4-12 hours)
+# OPTION A: Quick test run (~5 minutes total)
+# Step 1: Collect test dataset (1-2 minutes, ~200 flags)
+uv run scripts/collect_all_flags.py --test
+
+# Step 2: Process test dataset (~3-5 minutes)
+uv run scripts/download_and_process.py
+
+# Step 3: Validate (< 1 minute)
+uv run scripts/validate_dataset.py
+
+# OPTION B: Full collection (12-24 hours total)
+# Step 1: Collect full dataset (4-12 hours, 5000+ flags)
 uv run scripts/collect_all_flags.py
 
-# Step 2: Process (6-12 hours)
+# Step 2: Process full dataset (6-12 hours)
 uv run scripts/download_and_process.py
 
 # Step 3: Validate (< 1 minute)

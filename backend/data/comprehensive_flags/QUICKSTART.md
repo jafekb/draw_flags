@@ -13,8 +13,15 @@ uv pip install -e ".[dev]"
 
 ## Three-Step Setup
 
-### Step 1: Collect Flags (4-12 hours)
+### Step 1: Collect Flags
 
+**Quick Test (recommended first):** Collect ~200 flags in ~1-2 minutes to verify setup
+```bash
+cd /home/bjafek/personal/draw_flags/backend
+uv run scripts/collect_all_flags.py --test
+```
+
+**Full Collection:** Collect 5,000+ flags (4-12 hours)
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
 uv run scripts/collect_all_flags.py

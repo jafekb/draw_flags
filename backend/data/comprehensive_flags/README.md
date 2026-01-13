@@ -73,6 +73,14 @@ comprehensive_flags/
 ### Running Data Collection
 
 **Step 1: Collect flags from all sources**
+
+Quick test (1-2 minutes, ~200 flags):
+```bash
+cd backend
+uv run scripts/collect_all_flags.py --test
+```
+
+Full collection (4-12 hours, 5000+ flags):
 ```bash
 cd backend
 uv run scripts/collect_all_flags.py
