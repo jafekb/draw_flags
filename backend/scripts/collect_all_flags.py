@@ -178,7 +178,7 @@ Examples:
     
     # Save deduplicated flags
     output_file = output_dir / "flags_deduplicated.json"
-    data = [flag.dict() for flag in unique_flags]
+    data = [flag.model_dump() for flag in unique_flags]
     with output_file.open('w') as f:
         json.dump(data, f, indent=2)
     
