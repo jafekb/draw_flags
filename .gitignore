@@ -4,6 +4,12 @@
 # images (you can override this if absolutely necessary)
 *.png
 *.jpg
+*.svg
+*.gif
+*.jpeg
+
+# Flag dataset images directories
+backend/data/*/images/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -7,7 +7,7 @@ from backend.src.flag_searcher import FlagSearcher
 
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
-flag_searcher = FlagSearcher(top_k=8)
+flag_searcher = FlagSearcher(top_k=15)  # Increased for larger dataset
 
 origins = [
     "http://localhost:5173",
