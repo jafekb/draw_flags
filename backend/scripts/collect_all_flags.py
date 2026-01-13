@@ -15,6 +15,7 @@ from backend.scripts.data_collection.collectors.organizations import Organizatio
 from backend.scripts.data_collection.collectors.subdivisions import SubdivisionFlagCollector
 from backend.scripts.data_collection.deduplicator import FlagDeduplicator
 from backend.scripts.data_collection.fotw_scraper import FOTWScraper
+from backend.scripts.data_collection.name_disambiguator import disambiguate_flag_names
 
 
 def collect_all_flags(test_mode: bool = False) -> Tuple[List[Flag], Dict]:
@@ -180,7 +181,7 @@ Examples:
     output_dir = Path("backend/data/comprehensive_flags_4")
     save_raw_flags(all_flags, output_dir)
 
-    # Deduplicate
+    # Deduplicate (removes exact duplicates - same name + same image URL)
     print("\n" + "=" * 80)
     print("DEDUPLICATION")
     print("=" * 80)
@@ -188,7 +189,15 @@ Examples:
     deduplicator = FlagDeduplicator(name_similarity_threshold=0.85)
     unique_flags = deduplicator.deduplicate(all_flags)
 
-    # Save deduplicated flags
+    # Disambiguate duplicate names (same name + different image URLs)
+    print("\n" + "=" * 80)
+    print("NAME DISAMBIGUATION")
+    print("=" * 80)
+    print("Ensuring all flags have unique names...")
+    
+    unique_flags = disambiguate_flag_names(unique_flags, verbose=True)
+
+    # Save deduplicated flags with unique names
     output_file = output_dir / "flags_deduplicated.json"
     data = [flag.model_dump() for flag in unique_flags]
     with output_file.open("w") as f:
