@@ -36,6 +36,9 @@ class Flag(BaseModel):
     country: Optional[str] = None  # Parent country for subdivisions/cities
     adoption_year: Optional[int] = None  # Year flag was adopted
     tags: List[str] = []  # Searchable keywords
+    
+    # Query result field (not stored in database, used only for search results)
+    score: Optional[float] = None  # Similarity score from search queries
 
     @field_validator("category")
     @classmethod
