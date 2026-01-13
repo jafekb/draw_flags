@@ -1,18 +1,37 @@
 # draw_flags
 Draw a flag, have it recognized
 
+## Prerequisites
+
+### Install uv
+This project uses [uv](https://github.com/astral-sh/uv) for Python dependency management.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 ## Quickstart
 
 
 ### Frontend
+```bash
+cd frontend/
+npm install
+npm run build
+npm run dev
 ```
-$ cd ./frontend/
-$ npm run dev
-```
+
+The frontend will be available at `http://localhost:5173` (or `http://<your-ip>:5173` for network access)
 
 
 ### Backend
+```bash
+./scripts/setup-env.sh deploy
+./run_backend.sh
 ```
-cd backend/
-uv run uvicorn main:app --host 0.0.0.0 --port 8000
+
+Note: If you encounter Python version compatibility issues, the project requires Python 3.10-3.13. You can install and pin a compatible version:
+```bash
+uv python install 3.13
+uv python pin 3.13
 ```
