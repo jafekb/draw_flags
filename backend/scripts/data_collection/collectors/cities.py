@@ -310,7 +310,7 @@ class CityFlagCollector(WikipediaScraper):
                 parts = flag_data["name"].split(",")
                 if len(parts) >= 2:
                     country = parts[-1].strip()
-            
+
             flag = self.create_flag(
                 name=flag_data["name"],
                 wikipedia_page=flag_data["page_title"],
@@ -346,7 +346,7 @@ class CityFlagCollector(WikipediaScraper):
         if flag_data:
             # Clean up name
             name = page_title.replace("_", " ")
-            
+
             # Try to extract country from city name if it has a comma
             country = None
             if "," in name:

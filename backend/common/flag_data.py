@@ -4,7 +4,6 @@ Utils file for the FlagSearcher & backend.
 
 import json
 from pathlib import Path
-from shutil import copyfile
 from typing import List, Optional
 
 import requests
@@ -32,11 +31,14 @@ class Flag(BaseModel):
 
     # New metadata fields for enhanced searchability
     category: str  # "national", "subdivision", "city", "organization", "historical", "fotw"
-    entity_type: str  # "country", "state", "province", "territory", "city", "organization", "historical"
+    entity_type: (
+        str  # "country", "state", "province", "territory", "city", "organization", "historical"
+    )
     country: Optional[str] = None  # Parent country for subdivisions/cities
+    continent: Optional[str] = None  # Continent for geographic filtering
     adoption_year: Optional[int] = None  # Year flag was adopted
     tags: List[str] = []  # Searchable keywords
-    
+
     # Query result field (not stored in database, used only for search results)
     score: Optional[float] = None  # Similarity score from search queries
 
@@ -51,9 +53,35 @@ class Flag(BaseModel):
     @field_validator("entity_type")
     @classmethod
     def validate_entity_type(cls, v):
-        allowed_values = {"country", "state", "province", "territory", "city", "organization", "historical"}
+        allowed_values = {
+            "country",
+            "state",
+            "province",
+            "territory",
+            "city",
+            "organization",
+            "historical",
+        }
         if v not in allowed_values:
             raise ValueError(f"Invalid 'entity_type'. Allowed values are: {allowed_values}")
+        return v
+
+    @field_validator("continent")
+    @classmethod
+    def validate_continent(cls, v):
+        if v is None:
+            return v
+        allowed_values = {
+            "Africa",
+            "Antarctica",
+            "Asia",
+            "Europe",
+            "North America",
+            "Oceania",
+            "South America",
+        }
+        if v not in allowed_values:
+            raise ValueError(f"Invalid 'continent'. Allowed values are: {allowed_values}")
         return v
 
     def save_image(self, out_dir: Path) -> bool:
@@ -70,10 +98,8 @@ class Flag(BaseModel):
             )
 
         suffix = self.wikipedia_image_url.split(".")[-1]
-        
-        if suffix in ("svg", "SVG"):
-            out_name = out_dir / f"{self.name}.png"
-        elif suffix in ("png", "PNG"):
+
+        if suffix in ("svg", "SVG") or suffix in ("png", "PNG"):
             out_name = out_dir / f"{self.name}.png"
         elif suffix in ("gif", "GIF"):
             out_name = out_dir / f"{self.name}.gif"

@@ -64,8 +64,15 @@ def validate_flags_json(flags_file: Path):
         print(f"✓ Successfully loaded {len(flags)} flags")
 
         # Check required fields
-        required_fields = ["name", "wikipedia_page", "wikipedia_url", "wikipedia_image_url", 
-                          "category", "entity_type", "tags"]
+        required_fields = [
+            "name",
+            "wikipedia_page",
+            "wikipedia_url",
+            "wikipedia_image_url",
+            "category",
+            "entity_type",
+            "tags",
+        ]
         missing_fields = []
 
         for i, flag in enumerate(flags[:100]):  # Check first 100
@@ -80,14 +87,14 @@ def validate_flags_json(flags_file: Path):
                 print(f"  Flag {idx} ({name}): missing {field}")
         else:
             print("✓ All required fields present (checked first 100 flags)")
-        
+
         # Check new schema fields
         print("\n--- New Schema Fields ---")
         categories = {}
         entity_types = {}
         flags_with_country = 0
         flags_with_adoption_year = 0
-        
+
         for flag in flags:
             categories[flag.category] = categories.get(flag.category, 0) + 1
             entity_types[flag.entity_type] = entity_types.get(flag.entity_type, 0) + 1
@@ -95,11 +102,15 @@ def validate_flags_json(flags_file: Path):
                 flags_with_country += 1
             if flag.adoption_year:
                 flags_with_adoption_year += 1
-        
+
         print(f"Categories: {dict(sorted(categories.items()))}")
         print(f"Entity Types: {dict(sorted(entity_types.items()))}")
-        print(f"Flags with country: {flags_with_country}/{len(flags)} ({100*flags_with_country/len(flags):.1f}%)")
-        print(f"Flags with adoption_year: {flags_with_adoption_year}/{len(flags)} ({100*flags_with_adoption_year/len(flags):.1f}%)")
+        print(
+            f"Flags with country: {flags_with_country}/{len(flags)} ({100 * flags_with_country / len(flags):.1f}%)"
+        )
+        print(
+            f"Flags with adoption_year: {flags_with_adoption_year}/{len(flags)} ({100 * flags_with_adoption_year / len(flags):.1f}%)"
+        )
 
         # Check image URLs
         invalid_urls = []

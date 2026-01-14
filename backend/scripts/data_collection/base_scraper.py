@@ -202,7 +202,7 @@ class BaseScraper(ABC):
             self.errors.append({"name": name, "error": str(e), "type": "creation_failed"})
             print(f"Failed to create flag for {name}: {e}")
             return None
-    
+
     def _generate_basic_tags(
         self, name: str, category: str, entity_type: str, country: Optional[str]
     ) -> List[str]:
@@ -210,22 +210,22 @@ class BaseScraper(ABC):
         tags = [category]
         if entity_type != category:
             tags.append(entity_type)
-        
+
         if country:
             tags.append(country.lower())
-        
+
         # Parse name for keywords - keep multi-word names together
         name_clean = name.lower().replace("flag of ", "").replace("the ", "")
-        
+
         # Split by comma to separate location from country/region
-        parts = [p.strip() for p in name_clean.split(',')]
-        
+        parts = [p.strip() for p in name_clean.split(",")]
+
         # Add the main location name (before first comma) as a complete tag
         if parts:
             location_name = parts[0].strip()
-            if location_name and location_name not in ['flag', 'the']:
+            if location_name and location_name not in ["flag", "the"]:
                 tags.append(location_name)
-        
+
         # Remove duplicates while preserving order
         seen = set()
         unique_tags = []
@@ -233,7 +233,7 @@ class BaseScraper(ABC):
             if tag not in seen:
                 seen.add(tag)
                 unique_tags.append(tag)
-        
+
         return unique_tags
 
     @abstractmethod
