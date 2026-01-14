@@ -9,9 +9,12 @@ ENV=${1:-dev}
 
 echo "Setting up $ENV environment..."
 
-# Try to pull LFS files (many cloud platforms have git-lfs pre-installed)
-echo "Pulling Git LFS files..."
-git lfs pull || echo "Warning: Git LFS pull failed, continuing anyway..."
+# Try to pull only required LFS files (many cloud platforms have git-lfs pre-installed)
+echo "Pulling required Git LFS files..."
+git lfs pull --include "\
+backend/models/clip-text-encoder.onnx,\
+backend/data/comprehensive_flags_3/embeddings.npy\
+" || echo "Warning: Git LFS pull failed, continuing anyway..."
 
 case $ENV in
     "dev")
