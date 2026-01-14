@@ -166,7 +166,7 @@ class SubdivisionFlagCollector(WikipediaScraper):
             entity_type = "territory"
         else:
             entity_type = "state"  # default
-        
+
         for flag_data in flag_data_list:
             flag = self.create_flag(
                 name=flag_data["name"],
