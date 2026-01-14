@@ -4,22 +4,16 @@ This script reads flags.json, adds continent field based on country mapping,
 and writes the updated data back.
 
 Uses country_converter package for accurate country-to-continent mapping.
-Install with: pip install country_converter
 """
 
 import json
+import shutil
 from pathlib import Path
 from typing import Optional
 
-try:
-    import country_converter as coco
+import country_converter as coco
 
-    cc = coco.CountryConverter()
-    COUNTRY_CONVERTER_AVAILABLE = True
-except ImportError:
-    print("Warning: country_converter not installed. Using fallback mapping.")
-    print("Install with: pip install country_converter")
-    COUNTRY_CONVERTER_AVAILABLE = False
+cc = coco.CountryConverter()
 
 
 def get_continent_for_flag(flag: dict) -> Optional[str]:
@@ -34,46 +28,34 @@ def get_continent_for_flag(flag: dict) -> Optional[str]:
     """
     # For subdivisions and cities, use the parent country
     if flag.get("country"):
-        parent_country = flag["country"]
-        if COUNTRY_CONVERTER_AVAILABLE:
-            try:
-                continent = cc.convert(names=parent_country, to="continent")
-                # country_converter returns the country name if not found
-                # Only return if it looks like a continent
-                if continent in [
-                    "Africa",
-                    "Asia",
-                    "Europe",
-                    "North America",
-                    "South America",
-                    "Oceania",
-                    "Antarctica",
-                ]:
-                    return continent
-            except Exception:
-                pass
+        continent = cc.convert(names=flag["country"], to="continent")
+        # country_converter returns the country name if not found
+        # Only return if it looks like a continent
+        if continent in [
+            "Africa",
+            "Asia",
+            "Europe",
+            "North America",
+            "South America",
+            "Oceania",
+            "Antarctica",
+        ]:
+            return continent
         return None
 
     # For national flags, try to match the flag name to a country
     if flag.get("category") == "national":
-        flag_name = flag["name"]
-
-        # Try direct lookup by name
-        if COUNTRY_CONVERTER_AVAILABLE:
-            try:
-                continent = cc.convert(names=flag_name, to="continent")
-                if continent in [
-                    "Africa",
-                    "Asia",
-                    "Europe",
-                    "North America",
-                    "South America",
-                    "Oceania",
-                    "Antarctica",
-                ]:
-                    return continent
-            except Exception:
-                pass
+        continent = cc.convert(names=flag["name"], to="continent")
+        if continent in [
+            "Africa",
+            "Asia",
+            "Europe",
+            "North America",
+            "South America",
+            "Oceania",
+            "Antarctica",
+        ]:
+            return continent
 
     # Organizations and historical flags don't have a specific continent
     if flag.get("category") in ["organization", "historical"]:
@@ -140,8 +122,6 @@ if __name__ == "__main__":
     # Create backup first
     backup_file = data_dir / "flags_backup.json"
     print(f"Creating backup at {backup_file}...")
-    import shutil
-
     shutil.copy(input_file, backup_file)
 
     # Run migration
