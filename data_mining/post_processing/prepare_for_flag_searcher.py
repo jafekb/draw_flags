@@ -26,28 +26,16 @@ sys.path.append(str(PROJECT_ROOT))
 from backend.common.flag_data import FlagList, flag_from_json, flaglist_from_json  # noqa: E402
 from backend.scripts.download_and_process import download_flag_images  # noqa: E402
 
-# Prefer the comprehensive dataset if present.
 DATASET_DIR = PROJECT_ROOT / "backend" / "data" / "comprehensive_flags_3"
+if not DATASET_DIR.joinpath("flags.json").is_file():
+    raise FileNotFoundError(f"Dataset flags.json not found at {DATASET_DIR}")
 
-# Legacy layout fallback (per-flag JSON files).
-DATA_DIR = PROJECT_ROOT / "data" / "commons_plus_national"
-ROOT_DIR = DATA_DIR / "data"
-DIR_BASE = "flag_searcher"
-OUT_DIR_NAME = DATA_DIR / DIR_BASE
-
-if DATASET_DIR.joinpath("flags.json").is_file():
-    OUT_DIR_NAME = DATASET_DIR
-    OUT_DIR_NAME.mkdir(exist_ok=True)
-    flags_list = flaglist_from_json(DATASET_DIR / "flags.json")
-    flags = flags_list.flags
-    IMAGES_DIR = DATASET_DIR / "images"
-    use_dataset_images = True
-else:
-    OUT_DIR_NAME.mkdir(exist_ok=True)
-    jsons = list(ROOT_DIR.rglob("*.json"))
-    flags = [flag_from_json(fn) for fn in jsons]
-    IMAGES_DIR = None
-    use_dataset_images = False
+OUT_DIR_NAME = DATASET_DIR
+OUT_DIR_NAME.mkdir(exist_ok=True)
+flags_list = flaglist_from_json(DATASET_DIR / "flags.json")
+flags = flags_list.flags
+IMAGES_DIR = DATASET_DIR / "images"
+use_dataset_images = True
 
 # TODO(bjafek) pull out this name of the model to a central config
 MODEL = SentenceTransformer("clip-ViT-B-32")
