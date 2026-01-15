@@ -59,12 +59,22 @@ class FlagSearcher:
         self._tokenizer = create_minimal_tokenizer()
 
         self._flags = flaglist_from_json(FLAGS_FILE)
-        self._encoded_images = np.load(self._flags.embeddings_filename, mmap_mode="r")
         self._metadata_store = LocalMetadataStore(self._flags)
 
         embeddings_path = Path(self._flags.embeddings_filename)
         index_path = embeddings_path.with_suffix(".hnsw.bin")
-        self._vector_index = HnswIndex.load_or_build(self._encoded_images, index_path)
+        meta_path = embeddings_path.with_suffix(".hnsw.meta.json")
+        embeddings = None
+        if not index_path.exists() or not meta_path.exists():
+            if not embeddings_path.exists():
+                raise FileNotFoundError(
+                    f"Embeddings not found at {embeddings_path}. Cannot build index."
+                )
+            embeddings = np.load(embeddings_path, mmap_mode="r")
+
+        self._vector_index = HnswIndex.load_or_build(
+            embeddings, index_path, meta_path
+        )
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""

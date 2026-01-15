@@ -13,7 +13,7 @@ echo "Setting up $ENV environment..."
 echo "Pulling required Git LFS files..."
 git lfs pull --include "\
 backend/models/clip-text-encoder.onnx,\
-backend/data/comprehensive_flags_3/embeddings.npy\
+backend/data/comprehensive_flags_3/embeddings.hnsw.bin\
 " || echo "Warning: Git LFS pull failed, continuing anyway..."
 
 case $ENV in
