@@ -24,9 +24,11 @@ def test_flag_searcher():
     # Run the query
     results = searcher.query(test_query, is_image=False)
 
-    print(f"Found {len(results.flags)} flags")
-    for i, flag in enumerate(results.flags):
-        print(f"{i + 1}. {flag.name} (score: {flag.score:.4f})")
+    assert len(results.flags) == 5
+    assert all(flag.score is not None for flag in results.flags)
+
+    scores = [flag.score for flag in results.flags]
+    assert scores == sorted(scores, reverse=True)
 
 
 if __name__ == "__main__":

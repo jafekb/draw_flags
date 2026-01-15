@@ -3,6 +3,7 @@ Class that can take in an image and output a bunch of
 other images of flags that look like it.
 """
 
+import os
 from pathlib import Path
 
 import numpy as np
@@ -42,11 +43,20 @@ class FlagSearcher:
                 f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script."
             )
 
-        self._session = ort.InferenceSession(str(MODEL_PATH), providers=["CPUExecutionProvider"])
+        session_options = ort.SessionOptions()
+        session_options.enable_cpu_mem_arena = False
+        session_options.enable_mem_pattern = False
+        session_options.intra_op_num_threads = int(os.getenv("ORT_INTRA_OP_NUM_THREADS", "1"))
+        session_options.inter_op_num_threads = int(os.getenv("ORT_INTER_OP_NUM_THREADS", "1"))
+        self._session = ort.InferenceSession(
+            str(MODEL_PATH),
+            providers=["CPUExecutionProvider"],
+            sess_options=session_options,
+        )
         self._tokenizer = create_minimal_tokenizer()
 
         self._flags = flaglist_from_json(FLAGS_FILE)
-        self._encoded_images = np.load(self._flags.embeddings_filename)
+        self._encoded_images = np.load(self._flags.embeddings_filename, mmap_mode="r")
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""

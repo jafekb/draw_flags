@@ -1,5 +1,9 @@
 from typing import List, Optional
 
+import logging
+import os
+from pathlib import Path
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,9 +12,34 @@ from pydantic import BaseModel
 from backend.common.flag_data import FlagList
 from backend.src.flag_searcher import FlagSearcher
 
+MEMORY_LOG_REQUESTS = int(os.getenv("MEMORY_LOG_REQUESTS", "5"))
+logger = logging.getLogger("uvicorn.error")
+
+
+def _get_rss_mb() -> float:
+    status_path = Path("/proc/self/status")
+    if status_path.exists():
+        for line in status_path.read_text().splitlines():
+            if line.startswith("VmRSS:"):
+                parts = line.split()
+                if len(parts) >= 2 and parts[1].isdigit():
+                    return int(parts[1]) / 1024.0
+    try:
+        import resource
+
+        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
+    except Exception:
+        return -1.0
+
+
+def _log_memory(event: str) -> None:
+    rss_mb = _get_rss_mb()
+    logger.info("memory_rss_mb=%.2f event=%s", rss_mb, event)
+
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
-flag_searcher = FlagSearcher(top_k=15)  # Server-side filtering with top 15 results
+app.state.flag_searcher = None
+app.state.memory_log_requests_remaining = MEMORY_LOG_REQUESTS
 
 origins = [
     "http://localhost:5173",
@@ -27,6 +56,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.on_event("startup")
+async def startup_event():
+    _log_memory("startup_begin")
+    app.state.flag_searcher = FlagSearcher(top_k=15)  # Server-side filtering with top 15 results
+    _log_memory("startup_end")
+
+
+@app.middleware("http")
+async def log_memory_middleware(request, call_next):
+    response = await call_next(request)
+    remaining = app.state.memory_log_requests_remaining
+    if remaining and remaining > 0:
+        app.state.memory_log_requests_remaining = remaining - 1
+        _log_memory(f"request:{request.method} {request.url.path}")
+    return response
 
 
 class SearchRequest(BaseModel):
@@ -46,7 +92,7 @@ async def add_flag(request: SearchRequest):
         "continent": request.continent,
         "country": request.country,
     }
-    flags = flag_searcher.query(request.text_query, is_image=False, filters=filters)
+    flags = app.state.flag_searcher.query(request.text_query, is_image=False, filters=filters)
     return flags
 
 
