@@ -1,17 +1,16 @@
 # Server-Side Filtering Plan (Efficient Implementation)
 
 ## Overview
-Implement server-side filtering by filtering flags BEFORE computing cosine similarities, making it more efficient than computing similarities on all 2,753 flags and more reliable than client-side filtering.
+Implement server-side filtering by retrieving ANN candidates from the vector index and filtering by metadata, so the vector store remains the only supported search path.
 
 ## Architecture
 
 ### Data Flow
 1. Frontend sends: `{text_query: "red white blue", filters: {categories: ["national"], continent: "Africa"}}`
-2. Backend filters dataset: 2,753 flags → 57 African national flags
-3. Backend extracts embeddings for those 57 flags
-4. Backend computes similarities only on those 57 embeddings
-5. Backend returns top 15 from those 57
-6. Frontend displays all 15 results
+2. Backend encodes text and queries HNSW for `candidate_k` neighbors
+3. Backend filters candidates by metadata
+4. Backend returns top 15 matching candidates
+5. Frontend displays all 15 results
 
 ## Implementation Details
 
@@ -45,88 +44,24 @@ async def add_flag(request: SearchRequest):
 #### 2. Update FlagSearcher
 **File:** `backend/src/flag_searcher.py`
 
-Add efficient filtering before similarity computation:
+Use ANN candidates and filter by metadata:
 
 ```python
-def _get_filtered_indices(self, filters):
-    """
-    Return indices of flags matching the filters.
-    
-    Returns:
-        List[int]: Indices of matching flags
-    """
-    if not filters:
-        return list(range(len(self._flags.flags)))
-    
-    matching_indices = []
-    
-    for idx, flag in enumerate(self._flags.flags):
-        # Category filter
-        if filters.get("categories"):
-            if flag.category not in filters["categories"]:
-                continue
-        
-        # Continent filter
-        if filters.get("continent"):
-            if flag.continent != filters["continent"]:
-                continue
-        
-        # Country filter (national flag OR from that country)
-        if filters.get("country"):
-            is_national = flag.category == "national" and flag.name == filters["country"]
-            is_from_country = flag.country == filters["country"]
-            if not (is_national or is_from_country):
-                continue
-        
-        matching_indices.append(idx)
-    
-    return matching_indices
+def search_by_vector(self, vector, top_k, filters=None) -> FlagList:
+    if filters:
+        candidate_k = min(self._filtered_candidate_k, total_flags)
+        ids, scores = self._vector_index.search(vector, candidate_k)
+        flags = self._metadata_store.get_many(ids)
 
-def query(self, text_query, is_image, filters=None):
-    """
-    Search for flags matching the query, with optional filtering.
-    
-    Args:
-        text_query: Text description of the flag
-        is_image: Whether query is an image (not implemented)
-        filters: Optional dict with keys: categories, continent, country
-    
-    Returns:
-        FlagList with top_k matching flags
-    """
-    if is_image:
-        raise NotImplementedError
-    
-    # 1. Get indices of flags matching filters
-    filtered_indices = self._get_filtered_indices(filters)
-    
-    # Handle empty filter results
-    if len(filtered_indices) == 0:
-        return FlagList(flags=[])
-    
-    # 2. Extract embeddings for filtered flags only
-    filtered_embeddings = self._encoded_images[filtered_indices]
-    
-    # 3. Encode the text query
-    query_embedding = self._encode_text(text_query)
-    
-    # 4. Compute similarities ONLY on filtered embeddings
-    similarities = cosine_similarity(query_embedding, filtered_embeddings)
-    
-    # 5. Get top K from filtered set
-    num_results = min(self._top_k, len(filtered_indices))
-    top_k_local_indices = similarities.argsort()[0][::-1][:num_results]
-    sorted_scores = similarities.ravel()[top_k_local_indices].tolist()
-    
-    # 6. Map back to original flags and add scores
-    results = []
-    for local_idx, score in zip(top_k_local_indices, sorted_scores):
-        original_idx = filtered_indices[local_idx]
-        flag = self._flags.flags[original_idx]
-        flag_with_score = flag.model_copy(update={"score": score})
-        results.append(flag_with_score)
-    
-    return FlagList(flags=results)
+        filtered_flags = []
+        for flag, score in zip(flags, scores):
+            if not self._matches_filters(flag, filters):
+                continue
+            filtered_flags.append(flag.model_copy(update={"score": score}))
+            if len(filtered_flags) >= top_k:
+                break
+        return FlagList(flags=filtered_flags)
+    ...
 ```
 
 #### 3. Keep top_k at 15
@@ -194,19 +129,15 @@ const FlagList = () => {
 
 ## Benefits
 
-1. **Efficient**: Only compute similarities on filtered subset (e.g., 57 instead of 2,753)
-2. **Complete Results**: Always get 15 results if available in filtered set
-3. **Clean Separation**: Backend handles filtering, frontend handles display
-4. **Scalable**: Performance improves when filters reduce dataset size
+1. **Vector store only**: Single search path for all queries
+2. **Efficient**: ANN candidate search keeps latency low
+3. **Clean separation**: Backend handles filtering, frontend handles display
+4. **Configurable**: Tune `candidate_k` without changing the API
 
-## Performance Comparison
+## Performance Notes
 
-| Scenario | Flags | Similarities Computed | Time |
-|----------|-------|----------------------|------|
-| No filter | 2,753 | 2,753 | ~100ms |
-| Africa filter | 57 | 57 | ~5ms |
-| Africa + National | 57 | 57 | ~5ms |
-| USA + subdivisions | ~200 | ~200 | ~10ms |
+- Filtered queries are approximate: results depend on `candidate_k`.
+- Larger `candidate_k` improves recall but costs more time.
 
 ## Files to Modify
 
@@ -223,12 +154,8 @@ const FlagList = () => {
 5. Test combined filters - all conditions met
 6. Test empty results - no matches
 
-## Migration from Current Code
+## Migration Notes
 
-Since we just implemented client-side filtering, we need to:
-1. Revert the client-side filtering logic in Flags.jsx
-2. Add SearchRequest model to main.py
-3. Add filtering methods to flag_searcher.py
-4. Keep FilterPanel component (already works!)
-5. Test thoroughly
+- Filtering is now performed on ANN candidates instead of full-vector scans.
+- The vector index is the only supported query path.
 

@@ -127,6 +127,7 @@ dependencies = [
     "numpy==1.26.4",
     "sympy==1.14.0",  # Pin to avoid compilation
     "onnxruntime==1.22.1",  # Pin to avoid sympy compilation
+    "hnswlib>=0.8.0",
 ]
 
 [project.optional-dependencies]
