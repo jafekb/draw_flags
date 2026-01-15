@@ -4,4 +4,3 @@ This is a little bit better than even the incredible FOTW database, because it d
 
 # How I'm going to do that
 ~For now I'm just gonna make a couple of selenium scripts for individual wikipedia compilation pages, and see how far that gets me.~
-wikimedia-downloader with a couple extra filters seems like it's going to be great.
