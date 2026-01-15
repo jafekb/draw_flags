@@ -36,8 +36,9 @@ def cosine_similarity(a, b):
 
 
 class FlagSearcher:
-    def __init__(self, top_k):
+    def __init__(self, top_k, filtered_candidate_k=1000):
         self._top_k = top_k
+        self._filtered_candidate_k = filtered_candidate_k
 
         # Load ONNX model and tokenizer
         if not MODEL_PATH.exists():
@@ -119,28 +120,43 @@ class FlagSearcher:
 
         return matching_indices
 
+    def _matches_filters(self, flag, filters) -> bool:
+        if not filters or all(v is None or v == [] for v in filters.values()):
+            return True
+
+        if filters.get("categories") and flag.category not in filters["categories"]:
+            return False
+
+        if filters.get("continent") and flag.continent != filters["continent"]:
+            return False
+
+        if filters.get("country"):
+            is_national = flag.category == "national" and flag.name == filters["country"]
+            is_from_country = flag.country == filters["country"]
+            if not (is_national or is_from_country):
+                return False
+
+        return True
+
     def search_by_vector(self, vector, top_k, filters=None) -> FlagList:
         total_flags = len(self._flags.flags)
         if total_flags == 0:
             return FlagList(flags=[])
         top_k = min(top_k, total_flags)
         if filters and any(v is not None and v != [] for v in filters.values()):
-            filtered_indices = self._get_filtered_indices(filters)
-            if len(filtered_indices) == 0:
-                return FlagList(flags=[])
+            candidate_k = min(self._filtered_candidate_k, total_flags)
+            ids, scores = self._vector_index.search(vector, candidate_k)
+            flags = self._metadata_store.get_many(ids)
 
-            filtered_embeddings = self._encoded_images[filtered_indices]
-            similarity_scores = cosine_similarity(vector, filtered_embeddings)
-            num_results = min(top_k, len(filtered_indices))
-            top_k_local_indices = similarity_scores.argsort()[0][::-1][:num_results]
-            sorted_scores = similarity_scores.ravel()[top_k_local_indices].tolist()
+            filtered_flags = []
+            for flag, score in zip(flags, scores):
+                if not self._matches_filters(flag, filters):
+                    continue
+                filtered_flags.append(flag.model_copy(update={"score": score}))
+                if len(filtered_flags) >= top_k:
+                    break
 
-            original_indices = [filtered_indices[local_idx] for local_idx in top_k_local_indices]
-            flags = self._metadata_store.get_many(original_indices)
-            flags_with_score = [
-                flag.model_copy(update={"score": score}) for flag, score in zip(flags, sorted_scores)
-            ]
-            return FlagList(flags=flags_with_score)
+            return FlagList(flags=filtered_flags)
 
         if top_k <= 0:
             return FlagList(flags=[])
