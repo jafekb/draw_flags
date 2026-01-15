@@ -47006,5 +47006,5 @@
    "score": null
   }
  ],
- "embeddings_filename": "/home/bjafek/personal/draw_flags/backend/data/comprehensive_flags_3/embeddings.npy"
+ "embeddings_filename": "backend/data/comprehensive_flags_3/embeddings.npy"
 }

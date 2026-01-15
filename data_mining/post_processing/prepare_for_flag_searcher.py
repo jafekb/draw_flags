@@ -104,7 +104,7 @@ flag_list = FlagList(flags=flags)
 out_name_npy = OUT_DIR_NAME / "embeddings.npy"
 out_name_json = OUT_DIR_NAME / "flags.json"
 
-flag_list.embeddings_filename = str(out_name_npy)
+flag_list.embeddings_filename = str(out_name_npy.relative_to(PROJECT_ROOT))
 
 np.save(out_name_npy, ENCODED_IMAGES)
 flag_list.to_json(out_name_json)
