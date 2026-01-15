@@ -10,7 +10,9 @@ import numpy as np
 import onnxruntime as ort
 
 from backend.common.flag_data import FlagList, flaglist_from_json
+from backend.src.metadata_store import LocalMetadataStore
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
+from backend.src.vector_index import HnswIndex
 
 FLAGS_FILE = Path("backend/data/comprehensive_flags_3/flags.json")
 MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
@@ -57,6 +59,11 @@ class FlagSearcher:
 
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._encoded_images = np.load(self._flags.embeddings_filename, mmap_mode="r")
+        self._metadata_store = LocalMetadataStore(self._flags)
+
+        embeddings_path = Path(self._flags.embeddings_filename)
+        index_path = embeddings_path.with_suffix(".hnsw.bin")
+        self._vector_index = HnswIndex.load_or_build(self._encoded_images, index_path)
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""
@@ -112,7 +119,43 @@ class FlagSearcher:
 
         return matching_indices
 
-    def query(self, text_query, is_image, filters=None) -> FlagList:
+    def search_by_vector(self, vector, top_k, filters=None) -> FlagList:
+        total_flags = len(self._flags.flags)
+        if total_flags == 0:
+            return FlagList(flags=[])
+        top_k = min(top_k, total_flags)
+        if filters and any(v is not None and v != [] for v in filters.values()):
+            filtered_indices = self._get_filtered_indices(filters)
+            if len(filtered_indices) == 0:
+                return FlagList(flags=[])
+
+            filtered_embeddings = self._encoded_images[filtered_indices]
+            similarity_scores = cosine_similarity(vector, filtered_embeddings)
+            num_results = min(top_k, len(filtered_indices))
+            top_k_local_indices = similarity_scores.argsort()[0][::-1][:num_results]
+            sorted_scores = similarity_scores.ravel()[top_k_local_indices].tolist()
+
+            original_indices = [filtered_indices[local_idx] for local_idx in top_k_local_indices]
+            flags = self._metadata_store.get_many(original_indices)
+            flags_with_score = [
+                flag.model_copy(update={"score": score}) for flag, score in zip(flags, sorted_scores)
+            ]
+            return FlagList(flags=flags_with_score)
+
+        if top_k <= 0:
+            return FlagList(flags=[])
+        ids, scores = self._vector_index.search(vector, top_k)
+        flags = self._metadata_store.get_many(ids)
+        flags_with_score = [
+            flag.model_copy(update={"score": score}) for flag, score in zip(flags, scores)
+        ]
+        return FlagList(flags=flags_with_score)
+
+    def search_by_text(self, text_query, top_k, filters=None) -> FlagList:
+        new_embedding = self._encode_text(text_query)
+        return self.search_by_vector(new_embedding, top_k, filters=filters)
+
+    def query(self, text_query, is_image, filters=None, top_k=None) -> FlagList:
         """
         Search for flags matching the query, with optional filtering.
 
@@ -134,33 +177,7 @@ class FlagSearcher:
             # fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
             # img = Image.open(fn)
 
-        # 1. Get indices of flags matching filters
-        filtered_indices = self._get_filtered_indices(filters)
-
-        # Handle empty filter results
-        if len(filtered_indices) == 0:
+        effective_top_k = self._top_k if top_k is None else top_k
+        if effective_top_k <= 0:
             return FlagList(flags=[])
-
-        # 2. Extract embeddings for filtered flags only
-        filtered_embeddings = self._encoded_images[filtered_indices]
-
-        # 3. Encode the text query
-        new_embedding = self._encode_text(text_query)
-
-        # 4. Compute similarities ONLY on filtered embeddings
-        similarity_scores = cosine_similarity(new_embedding, filtered_embeddings)
-
-        # 5. Get top K from filtered set
-        num_results = min(self._top_k, len(filtered_indices))
-        top_k_local_indices = similarity_scores.argsort()[0][::-1][:num_results]
-        sorted_scores = similarity_scores.ravel()[top_k_local_indices].tolist()
-
-        # 6. Map back to original flags and add scores
-        flags = []
-        for local_idx, score in zip(top_k_local_indices, sorted_scores):
-            original_idx = filtered_indices[local_idx]
-            flag = self._flags.flags[original_idx]
-            flag_with_score = flag.model_copy(update={"score": score})
-            flags.append(flag_with_score)
-
-        return FlagList(flags=flags)
+        return self.search_by_text(text_query, effective_top_k, filters=filters)

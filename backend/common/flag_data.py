@@ -24,6 +24,7 @@ class Flag(BaseModel):
     """
 
     # Core identification
+    id: Optional[str] = None
     name: str
     wikipedia_page: str
     wikipedia_url: str

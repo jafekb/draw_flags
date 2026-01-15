@@ -543,6 +543,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi" },
+    { name = "hnswlib" },
     { name = "numpy" },
     { name = "onnxruntime" },
     { name = "pydantic" },
@@ -592,6 +593,7 @@ requires-dist = [
     { name = "coloredlogs", marker = "extra == 'dev'", specifier = "==15.0.1" },
     { name = "country-converter", marker = "extra == 'dev'", specifier = ">=1.2" },
     { name = "fastapi", specifier = "==0.115.6" },
+    { name = "hnswlib", specifier = ">=0.8.0" },
     { name = "httpx", marker = "extra == 'test'" },
     { name = "levenshtein", marker = "extra == 'dev'", specifier = "==0.25.1" },
     { name = "lxml", marker = "extra == 'dev'", specifier = ">=4.9.0" },
@@ -791,6 +793,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/c9/65/4b2ddb0e3e983f2508528eb4501288ae2f84963586fbdfae596836d5e57a/hf_xet-1.1.5-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:83088ecea236d5113de478acb2339f92c95b4fb0462acaa30621fac02f5a534a", size = 3279245, upload-time = "2025-06-20T21:48:36.051Z" },
     { url = "https://files.pythonhosted.org/packages/f0/55/ef77a85ee443ae05a9e9cba1c9f0dd9241eb42da2aeba1dc50f51154c81a/hf_xet-1.1.5-cp37-abi3-win_amd64.whl", hash = "sha256:73e167d9807d166596b4b2f0b585c6d5bd84a26dea32843665a8b58f6edba245", size = 2738931, upload-time = "2025-06-20T21:48:39.482Z" },
 ]
+
+[[package]]
+name = "hnswlib"
+version = "0.8.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cf/7a/1a9b1405f2eb59515f06c3074750b03e0e96edf7fee0f6dd6df81d9c21d7/hnswlib-0.8.0.tar.gz", hash = "sha256:cb6d037eedebb34a7134e7dc78966441dfd04c9cf5ee93911be911ced951c44c", size = 36206, upload-time = "2023-12-03T04:16:17.55Z" }
 
 [[package]]
 name = "httpcore"

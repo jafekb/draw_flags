@@ -79,6 +79,7 @@ class SearchRequest(BaseModel):
     """Request model for flag search with optional filters"""
 
     text_query: str
+    top_k: Optional[int] = None
     categories: Optional[List[str]] = None  # e.g., ["national", "subdivision"]
     continent: Optional[str] = None  # e.g., "Europe"
     country: Optional[str] = None  # e.g., "United States"
@@ -92,7 +93,12 @@ async def add_flag(request: SearchRequest):
         "continent": request.continent,
         "country": request.country,
     }
-    flags = app.state.flag_searcher.query(request.text_query, is_image=False, filters=filters)
+    flags = app.state.flag_searcher.query(
+        request.text_query,
+        is_image=False,
+        filters=filters,
+        top_k=request.top_k,
+    )
     return flags
 
 
@@ -100,7 +106,7 @@ async def add_flag(request: SearchRequest):
 async def flags_info():
     return {
         "message": "Draw Flags API",
-        "usage": 'POST to / with JSON: {"text_query": "your flag description"}',
+        "usage": 'POST to / with JSON: {"text_query": "your flag description", "top_k": 15}',
         "status": "running",
     }
 
