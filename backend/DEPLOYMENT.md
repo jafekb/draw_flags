@@ -71,7 +71,8 @@ Only the absolute essential packages needed for the web API:
 - `requests` - HTTP client
 - `tokenizers` - Minimal tokenizer (replaces heavy transformers)
 - `onnxruntime` - ONNX inference
-- `numpy` - Numerical operations (cosine similarity)
+- `numpy` - Numerical operations
+- `hnswlib` - Vector index search
 
 ## Benefits
 
@@ -80,6 +81,6 @@ Only the absolute essential packages needed for the web API:
 - **Better security**: Minimal attack surface with only essential packages
 - **Flexibility**: Easy to switch between environments
 - **ONNX optimization**: Uses ONNX models instead of PyTorch for inference
-- **Custom cosine similarity**: Replaced scikit-learn with simple numpy implementation
+- **Vector index search**: ANN retrieval via HNSW for fast similarity search
 - **Minimal tokenizer**: Replaced heavy transformers with lightweight tokenizers library
-- **No image processing**: Removed pillow and cairosvg (only needed for data preparation) 
+- **No image processing**: Removed pillow and cairosvg (only needed for data preparation)
