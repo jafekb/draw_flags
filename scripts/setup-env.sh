@@ -6,6 +6,16 @@
 set -e
 
 ENV=${1:-dev}
+PYTHON_VERSION_FILE=".python-version"
+
+if [ -f "$PYTHON_VERSION_FILE" ]; then
+    PYTHON_VERSION=$(cat "$PYTHON_VERSION_FILE")
+    if [ -n "$PYTHON_VERSION" ]; then
+        echo "Using Python $PYTHON_VERSION from $PYTHON_VERSION_FILE..."
+        export UV_PYTHON="$PYTHON_VERSION"
+        uv python install "$PYTHON_VERSION" >/dev/null 2>&1 || true
+    fi
+fi
 
 echo "Setting up $ENV environment..."
 

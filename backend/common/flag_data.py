@@ -4,7 +4,7 @@ Utils file for the FlagSearcher & backend.
 
 import json
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import requests
 from pydantic import BaseModel, field_validator
@@ -39,6 +39,7 @@ class Flag(BaseModel):
     continent: Optional[str] = None  # Continent for geographic filtering
     adoption_year: Optional[int] = None  # Year flag was adopted
     tags: List[str] = []  # Searchable keywords
+    color_coverage: Dict[str, float] = {}  # Palette color -> percent of pixels (includes gray)
 
     # Query result field (not stored in database, used only for search results)
     score: Optional[float] = None  # Similarity score from search queries
