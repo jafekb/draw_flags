@@ -61,6 +61,12 @@ def parse_args() -> argparse.Namespace:
         help="Output path (defaults to overwrite input)",
     )
     parser.add_argument(
+        "--images-dir",
+        type=Path,
+        default=None,
+        help="Optional local images directory to load instead of downloading",
+    )
+    parser.add_argument(
         "--max-dimension",
         type=int,
         default=256,
@@ -89,6 +95,7 @@ def parse_args() -> argparse.Namespace:
 def fetch_image(url: str) -> Image.Image:
     if not PIL_AVAILABLE:
         raise RuntimeError("Pillow is required to load images")
+    Image.MAX_IMAGE_PIXELS = None
     response = requests.get(url, headers=WIKIMEDIA_HEADERS, timeout=30)
     response.raise_for_status()
     content = response.content
@@ -97,9 +104,33 @@ def fetch_image(url: str) -> Image.Image:
     if suffix == "svg":
         if not CAIROSVG_AVAILABLE:
             raise RuntimeError("cairosvg is required to process SVG images")
-        png_bytes = cairosvg.svg2png(bytestring=content)
+        png_bytes = cairosvg.svg2png(bytestring=content, unsafe=True)
         return Image.open(io.BytesIO(png_bytes))
     return Image.open(io.BytesIO(content))
+
+
+def safe_image_name(name: str) -> str:
+    safe_name = "".join(c for c in name if c.isalnum() or c in (" ", "-", "_")).strip()
+    return safe_name.replace(" ", "_")
+
+
+def load_local_image(images_dir: Path, flag_name: str) -> Image.Image | None:
+    if not PIL_AVAILABLE:
+        return None
+    Image.MAX_IMAGE_PIXELS = None
+    safe_name = safe_image_name(flag_name)
+    for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg"):
+        candidate = images_dir / f"{safe_name}{ext}"
+        if not candidate.exists():
+            continue
+        if candidate.suffix.lower() == ".svg":
+            if not CAIROSVG_AVAILABLE:
+                continue
+            svg_bytes = candidate.read_bytes()
+            png_bytes = cairosvg.svg2png(bytestring=svg_bytes, unsafe=True)
+            return Image.open(io.BytesIO(png_bytes))
+        return Image.open(candidate)
+    return None
 
 
 def resize_image(image: Image.Image, max_dimension: int) -> Image.Image:
@@ -190,6 +221,7 @@ def main() -> None:
     args = parse_args()
     flags_path = args.flags_json
     output_path = args.output or flags_path
+    images_dir = args.images_dir
 
     if not flags_path.is_file():
         raise FileNotFoundError(flags_path)
@@ -199,6 +231,9 @@ def main() -> None:
 
     flags = data.get("flags", [])
     names, palette_values = palette_lab()
+    if images_dir is None:
+        candidate = flags_path.parent / "images"
+        images_dir = candidate if candidate.is_dir() else None
 
     processed = 0
     for flag in flags:
@@ -213,15 +248,22 @@ def main() -> None:
             processed += 1
             continue
 
-        image = fetch_image(image_url)
-        image = resize_image(image, args.max_dimension)
-        coverage = compute_color_coverage(
-            image=image,
-            palette_names=names,
-            palette_lab_values=palette_values,
-            sample_max=args.sample_max,
-        )
-        flag["color_coverage"] = coverage
+        try:
+            image = None
+            if images_dir is not None:
+                image = load_local_image(images_dir, flag.get("name", ""))
+            if image is None:
+                image = fetch_image(image_url)
+            image = resize_image(image, args.max_dimension)
+            coverage = compute_color_coverage(
+                image=image,
+                palette_names=names,
+                palette_lab_values=palette_values,
+                sample_max=args.sample_max,
+            )
+            flag["color_coverage"] = coverage
+        except Exception as exc:
+            print(f"Failed to process {flag.get('name', 'unknown')}: {exc}")
         processed += 1
 
     data["flags"] = flags
