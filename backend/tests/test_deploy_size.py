@@ -31,7 +31,9 @@ def _dir_size(path: Path) -> int:
     return total
 
 
-def _largest_files(root: Path, top_n: int = 10, ignore: Iterable[str] = ()) -> Tuple[Tuple[int, Path], ...]:
+def _largest_files(
+    root: Path, top_n: int = 10, ignore: Iterable[str] = ()
+) -> Tuple[Tuple[int, Path], ...]:
     ignore_set = set(ignore)
     candidates = []
     for entry in root.rglob("*"):

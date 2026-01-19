@@ -11,9 +11,9 @@ Then you can call this script to do the rest of the preparations
 to create the deployment file for FlagSearcher.
 """
 
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 import numpy as np
 from PIL import Image
@@ -23,7 +23,7 @@ from tqdm import tqdm
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.append(str(PROJECT_ROOT))
 
-from backend.common.flag_data import FlagList, flag_from_json, flaglist_from_json  # noqa: E402
+from backend.common.flag_data import FlagList, flaglist_from_json  # noqa: E402
 from backend.scripts.download_and_process import download_flag_images  # noqa: E402
 
 DATASET_DIR = PROJECT_ROOT / "backend" / "data" / "comprehensive_flags_3"
@@ -40,6 +40,7 @@ use_dataset_images = True
 # TODO(bjafek) pull out this name of the model to a central config
 MODEL = SentenceTransformer("clip-ViT-B-32")
 EMBEDDING_DIM = 512
+
 
 def find_image_file(flag_name: str, images_dir: Path) -> Path | None:
     safe_name = "".join(c for c in flag_name if c.isalnum() or c in (" ", "-", "_")).strip()
@@ -62,6 +63,7 @@ def find_image_file(flag_name: str, images_dir: Path) -> Path | None:
                 return None
         return png_candidate
     return None
+
 
 if use_dataset_images:
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -86,7 +88,7 @@ for idx, flag in tqdm(enumerate(flags), total=len(flags)):
             img = Image.open(img_path)
         else:
             img = Image.open(flag.local_image_link)
-    except Exception:  # noqa: E722
+    except Exception:
         print(f"Failed to load image for {flag.name}; using zero embedding")
         encodings.append(np.zeros(EMBEDDING_DIM))
         failed += 1
