@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+from backend.common.flag_cleanup import clean_flags
 from backend.common.flag_data import Flag
 from backend.scripts.data_collection.collectors.cities import CityFlagCollector
 from backend.scripts.data_collection.collectors.historical import HistoricalFlagCollector
@@ -18,7 +19,7 @@ from backend.scripts.data_collection.fotw_scraper import FOTWScraper
 from backend.scripts.data_collection.name_disambiguator import disambiguate_flag_names
 
 
-def collect_all_flags(test_mode: bool = False) -> Tuple[List[Flag], Dict]:
+def collect_all_flags(*, test_mode: bool = False) -> Tuple[List[Flag], Dict]:
     """
     Collect flags from all sources.
 
@@ -196,6 +197,7 @@ Examples:
     print("Ensuring all flags have unique names...")
 
     unique_flags = disambiguate_flag_names(unique_flags, verbose=True)
+    unique_flags = clean_flags(unique_flags, validate_wikipedia=True)
 
     # Save deduplicated flags with unique names
     output_file = output_dir / "flags_deduplicated.json"

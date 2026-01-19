@@ -10,6 +10,7 @@ from typing import List
 import numpy as np
 import requests
 
+from backend.common.flag_cleanup import clean_flags
 from backend.common.flag_data import Flag, FlagList
 
 
@@ -56,9 +57,11 @@ def download_flag_images(flags: List[Flag], output_dir: Path, rate_limit_seconds
         if output_file.exists():
             skipped += 1
             if (i + 1) % 100 == 0:
-                print(
-                    f"  Progress: {i + 1}/{len(flags)} (successful: {successful}, failed: {failed}, skipped: {skipped})"
+                progress_message = (
+                    f"  Progress: {i + 1}/{len(flags)} (successful: {successful}, "
+                    f"failed: {failed}, skipped: {skipped})"
                 )
+                print(progress_message)
             continue
 
         # Download with retry logic
@@ -73,7 +76,10 @@ def download_flag_images(flags: List[Flag], output_dir: Path, rate_limit_seconds
                     flag.wikipedia_image_url,
                     timeout=30,
                     headers={
-                        "User-Agent": "DrawFlags/1.0 (https://github.com/jafekb/draw_flags/; jafek91@gmail.com)"
+                        "User-Agent": (
+                            "DrawFlags/1.0 (https://github.com/jafekb/draw_flags/; "
+                            "jafek91@gmail.com)"
+                        )
                     },
                 )
                 response.raise_for_status()
@@ -97,9 +103,11 @@ def download_flag_images(flags: List[Flag], output_dir: Path, rate_limit_seconds
 
         # Progress update
         if (i + 1) % 100 == 0:
-            print(
-                f"  Progress: {i + 1}/{len(flags)} (successful: {successful}, failed: {failed}, skipped: {skipped})"
+            progress_message = (
+                f"  Progress: {i + 1}/{len(flags)} (successful: {successful}, "
+                f"failed: {failed}, skipped: {skipped})"
             )
+            print(progress_message)
 
     print("\nDownload complete:")
     print(f"  Successful: {successful}")
@@ -255,6 +263,7 @@ def main():
         data = json.load(f)
 
     flags = [Flag(**flag_data) for flag_data in data]
+    flags = clean_flags(flags, validate_wikipedia=True)
     print(f"Loaded {len(flags)} flags")
 
     # Setup paths
