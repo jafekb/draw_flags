@@ -55,9 +55,7 @@ class FlagSearcher:
                 )
             embeddings = np.load(embeddings_path, mmap_mode="r")
 
-        self._vector_index = HnswIndex.load_or_build(
-            embeddings, index_path, meta_path
-        )
+        self._vector_index = HnswIndex.load_or_build(embeddings, index_path, meta_path)
 
     def _encode_text(self, text):
         """Encode text using CLIP text encoder via ONNX"""

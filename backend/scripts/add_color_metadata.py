@@ -6,11 +6,10 @@ import json
 import random
 from pathlib import Path
 
+import cairosvg
 import numpy as np
 import requests
 from PIL import Image
-
-import cairosvg
 
 COLOR_PALETTE = {
     "black": (0, 0, 0),
@@ -144,11 +143,10 @@ def rgb_to_lab(rgb: np.ndarray) -> np.ndarray:
     delta = 6 / 29
     delta3 = delta**3
     f = np.where(xyz > delta3, xyz ** (1 / 3), (xyz / (3 * delta**2)) + (4 / 29))
-    l = (116 * f[:, 1]) - 16
-    a = 500 * (f[:, 0] - f[:, 1])
-    b = 200 * (f[:, 1] - f[:, 2])
-    return np.stack([l, a, b], axis=1)
-
+    l_val = (116 * f[:, 1]) - 16
+    a_val = 500 * (f[:, 0] - f[:, 1])
+    b_val = 200 * (f[:, 1] - f[:, 2])
+    return np.stack([l_val, a_val, b_val], axis=1)
 
 
 def palette_lab() -> tuple[list[str], np.ndarray]:
@@ -190,9 +188,7 @@ def compute_color_coverage(
 
     coverage = counts.astype(np.float32) / float(total)
     return {
-        palette_names[i]: float(coverage[i])
-        for i in range(len(palette_names))
-        if counts[i] > 0
+        palette_names[i]: float(coverage[i]) for i in range(len(palette_names)) if counts[i] > 0
     }
 
 

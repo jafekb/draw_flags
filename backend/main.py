@@ -1,8 +1,7 @@
-from typing import List, Optional
-
 import logging
 import os
 from pathlib import Path
+from typing import List, Optional
 
 import uvicorn
 from fastapi import FastAPI
@@ -35,6 +34,7 @@ def _get_rss_mb() -> float:
 def _log_memory(event: str) -> None:
     rss_mb = _get_rss_mb()
     logger.info("memory_rss_mb=%.2f event=%s", rss_mb, event)
+
 
 # TODO(bjafek) remove the debug eventually
 app = FastAPI(debug=True)
