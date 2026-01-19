@@ -8,22 +8,9 @@ from pathlib import Path
 
 import numpy as np
 import requests
-from typing import Any
+from PIL import Image
 
-try:
-    from PIL import Image
-
-    PIL_AVAILABLE = True
-except ImportError:
-    PIL_AVAILABLE = False
-    Image = Any  # type: ignore
-
-try:
-    import cairosvg
-
-    CAIROSVG_AVAILABLE = True
-except ImportError:
-    CAIROSVG_AVAILABLE = False
+import cairosvg
 
 COLOR_PALETTE = {
     "black": (0, 0, 0),
@@ -93,8 +80,6 @@ def parse_args() -> argparse.Namespace:
 
 
 def fetch_image(url: str) -> Image.Image:
-    if not PIL_AVAILABLE:
-        raise RuntimeError("Pillow is required to load images")
     Image.MAX_IMAGE_PIXELS = None
     response = requests.get(url, headers=WIKIMEDIA_HEADERS, timeout=30)
     response.raise_for_status()
@@ -102,8 +87,6 @@ def fetch_image(url: str) -> Image.Image:
 
     suffix = url.split(".")[-1].lower()
     if suffix == "svg":
-        if not CAIROSVG_AVAILABLE:
-            raise RuntimeError("cairosvg is required to process SVG images")
         png_bytes = cairosvg.svg2png(bytestring=content, unsafe=True)
         return Image.open(io.BytesIO(png_bytes))
     return Image.open(io.BytesIO(content))
@@ -115,8 +98,6 @@ def safe_image_name(name: str) -> str:
 
 
 def load_local_image(images_dir: Path, flag_name: str) -> Image.Image | None:
-    if not PIL_AVAILABLE:
-        return None
     Image.MAX_IMAGE_PIXELS = None
     safe_name = safe_image_name(flag_name)
     for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg"):
@@ -124,8 +105,6 @@ def load_local_image(images_dir: Path, flag_name: str) -> Image.Image | None:
         if not candidate.exists():
             continue
         if candidate.suffix.lower() == ".svg":
-            if not CAIROSVG_AVAILABLE:
-                continue
             svg_bytes = candidate.read_bytes()
             png_bytes = cairosvg.svg2png(bytestring=svg_bytes, unsafe=True)
             return Image.open(io.BytesIO(png_bytes))
