@@ -152,6 +152,78 @@ def rgb_to_lab(rgb: np.ndarray) -> np.ndarray:
     return np.stack([l_val, a_val, b_val], axis=1)
 
 
+def delta_e_ciede2000(lab1: np.ndarray, lab2: np.ndarray) -> np.ndarray:
+    l1, a1, b1 = lab1[:, 0], lab1[:, 1], lab1[:, 2]
+    l2, a2, b2 = lab2[:, 0], lab2[:, 1], lab2[:, 2]
+
+    c1 = np.sqrt(a1 * a1 + b1 * b1)
+    c2 = np.sqrt(a2 * a2 + b2 * b2)
+    c_bar = 0.5 * (c1 + c2)
+
+    c_bar7 = c_bar**7
+    g = 0.5 * (1 - np.sqrt(c_bar7 / (c_bar7 + 25**7)))
+    a1p = (1 + g) * a1
+    a2p = (1 + g) * a2
+    c1p = np.sqrt(a1p * a1p + b1 * b1)
+    c2p = np.sqrt(a2p * a2p + b2 * b2)
+
+    h1p = np.degrees(np.arctan2(b1, a1p)) % 360.0
+    h2p = np.degrees(np.arctan2(b2, a2p)) % 360.0
+
+    dlp = l2 - l1
+    dcp = c2p - c1p
+
+    dhp = h2p - h1p
+    dhp = np.where(dhp > 180, dhp - 360, dhp)
+    dhp = np.where(dhp < -180, dhp + 360, dhp)
+    dhp = np.where((c1p * c2p) == 0, 0.0, dhp)
+    dhp = np.radians(dhp)
+    dhp = 2 * np.sqrt(c1p * c2p) * np.sin(dhp / 2)
+
+    l_bar = 0.5 * (l1 + l2)
+    c_bar_p = 0.5 * (c1p + c2p)
+
+    h_sum = h1p + h2p
+    h_bar = np.where(
+        (c1p * c2p) == 0,
+        h_sum,
+        np.where(
+            np.abs(h1p - h2p) > 180,
+            h_sum + 360,
+            h_sum,
+        ),
+    )
+    h_bar = (h_bar / 2) % 360.0
+
+    t = (
+        1
+        - 0.17 * np.cos(np.radians(h_bar - 30))
+        + 0.24 * np.cos(np.radians(2 * h_bar))
+        + 0.32 * np.cos(np.radians(3 * h_bar + 6))
+        - 0.20 * np.cos(np.radians(4 * h_bar - 63))
+    )
+
+    delta_theta = 30 * np.exp(-(((h_bar - 275) / 25) ** 2))
+    r_c = 2 * np.sqrt((c_bar_p**7) / (c_bar_p**7 + 25**7))
+    s_l = 1 + (0.015 * (l_bar - 50) ** 2) / np.sqrt(20 + (l_bar - 50) ** 2)
+    s_c = 1 + 0.045 * c_bar_p
+    s_h = 1 + 0.015 * c_bar_p * t
+    r_t = -np.sin(np.radians(2 * delta_theta)) * r_c
+
+    d_e = np.sqrt(
+        (dlp / s_l) ** 2 + (dcp / s_c) ** 2 + (dhp / s_h) ** 2 + r_t * (dcp / s_c) * (dhp / s_h)
+    )
+    return d_e
+
+
+def lab_distances(samples: np.ndarray, centroids: np.ndarray) -> np.ndarray:
+    distances = np.zeros((samples.shape[0], centroids.shape[0]), dtype=np.float32)
+    for idx in range(centroids.shape[0]):
+        centroid = np.repeat(centroids[idx][None, :], samples.shape[0], axis=0)
+        distances[:, idx] = delta_e_ciede2000(samples, centroid)
+    return distances
+
+
 def rgb_to_hsv(rgb: np.ndarray) -> np.ndarray:
     rgb = rgb.astype(np.float32) / 255.0
     c_max = np.max(rgb, axis=1)
@@ -190,8 +262,7 @@ def nearest_palette_indices(
     blocked_indices: np.ndarray | None = None,
     blocked_mask: np.ndarray | None = None,
 ) -> np.ndarray:
-    diffs = pixels_lab[:, None, :] - palette[None, :, :]
-    distances = np.sum(diffs * diffs, axis=2)
+    distances = lab_distances(pixels_lab, palette)
     if blocked_indices is not None and blocked_mask is not None and blocked_mask.any():
         distances[blocked_mask[:, None], blocked_indices] = np.inf
     return np.argmin(distances, axis=1)
