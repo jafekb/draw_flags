@@ -78,6 +78,24 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Only process first N flags (debug)",
     )
+    parser.add_argument(
+        "--progress-path",
+        type=Path,
+        default=None,
+        help="Optional path to write progress updates",
+    )
+    parser.add_argument(
+        "--checkpoint-path",
+        type=Path,
+        default=None,
+        help="Optional path to write intermediate flags JSON",
+    )
+    parser.add_argument(
+        "--checkpoint-every",
+        type=int,
+        default=100,
+        help="Write intermediate output every N flags",
+    )
     return parser.parse_args()
 
 
@@ -315,6 +333,9 @@ def main() -> None:
     flags_path = args.flags_json
     output_path = args.output or flags_path
     images_dir = args.images_dir
+    progress_path = args.progress_path
+    checkpoint_path = args.checkpoint_path
+    checkpoint_every = args.checkpoint_every
 
     if not flags_path.is_file():
         raise FileNotFoundError(flags_path)
@@ -328,10 +349,14 @@ def main() -> None:
         candidate = flags_path.parent / "images"
         images_dir = candidate if candidate.is_dir() else None
 
+    total = len(flags)
     processed = 0
-    for flag in flags:
+    for idx, flag in enumerate(flags, start=1):
         if args.limit is not None and processed >= args.limit:
             break
+        if progress_path is not None:
+            flag_name = flag.get("name", "unknown")
+            progress_path.write_text(f"getting idx {idx} of {total} ({flag_name})\n")
         if not args.force and flag.get("color_coverage"):
             processed += 1
             continue
@@ -358,6 +383,14 @@ def main() -> None:
         except Exception as exc:
             print(f"Failed to process {flag.get('name', 'unknown')}: {exc}")
         processed += 1
+        if (
+            checkpoint_path is not None
+            and checkpoint_every > 0
+            and processed % checkpoint_every == 0
+        ):
+            data["flags"] = flags
+            with checkpoint_path.open("w", encoding="utf-8") as f:
+                json.dump(data, f, indent=1, ensure_ascii=False)
 
     data["flags"] = flags
     with output_path.open("w", encoding="utf-8") as f:
