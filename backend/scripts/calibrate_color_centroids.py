@@ -16,7 +16,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--colors-dir",
         type=Path,
-        default=Path("colors"),
+        default=Path("backend/data/colors"),
         help="Root directory with labeled subdirectories",
     )
     parser.add_argument(
