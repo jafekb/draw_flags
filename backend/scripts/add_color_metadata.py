@@ -15,15 +15,18 @@ COLOR_PALETTE = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
     "gray": (128, 128, 128),
-    "red": (255, 0, 0),
-    "orange": (255, 140, 0),
+    "red": (154, 45, 61),
+    "orange": (226, 111, 45),
     "yellow": (255, 215, 0),
     "green": (0, 128, 0),
-    "blue": (0, 38, 84),
+    "blue": (33, 74, 143),
     "light_blue": (135, 206, 235),
-    "purple": (128, 0, 128),
-    "pink": (255, 105, 180),
+    "purple": (136, 41, 109),
+    "pink": (221, 100, 144),
 }
+
+MIN_SATURATION = 0.33620688
+MIN_VALUE = 0.4627451
 
 WIKIMEDIA_HEADERS = {
     "User-Agent": "DrawFlags/0.0 (https://github.com/jafekb/draw_flags/; jafek91@gmail.com)"
@@ -149,15 +152,48 @@ def rgb_to_lab(rgb: np.ndarray) -> np.ndarray:
     return np.stack([l_val, a_val, b_val], axis=1)
 
 
+def rgb_to_hsv(rgb: np.ndarray) -> np.ndarray:
+    rgb = rgb.astype(np.float32) / 255.0
+    c_max = np.max(rgb, axis=1)
+    c_min = np.min(rgb, axis=1)
+    delta = c_max - c_min
+
+    hue = np.zeros_like(c_max)
+    nonzero = delta > 0
+    r, g, b = rgb[:, 0], rgb[:, 1], rgb[:, 2]
+
+    red_mask = nonzero & (c_max == r)
+    green_mask = nonzero & (c_max == g)
+    blue_mask = nonzero & (c_max == b)
+
+    hue[red_mask] = (60 * ((g[red_mask] - b[red_mask]) / delta[red_mask])) % 360
+    hue[green_mask] = 60 * ((b[green_mask] - r[green_mask]) / delta[green_mask] + 2)
+    hue[blue_mask] = 60 * ((r[blue_mask] - g[blue_mask]) / delta[blue_mask] + 4)
+
+    saturation = np.zeros_like(c_max)
+    nonzero_value = c_max > 0
+    saturation[nonzero_value] = delta[nonzero_value] / c_max[nonzero_value]
+
+    value = c_max
+    return np.stack([hue, saturation, value], axis=1)
+
+
 def palette_lab() -> tuple[list[str], np.ndarray]:
     names = list(COLOR_PALETTE.keys())
     rgb = np.array([COLOR_PALETTE[name] for name in names], dtype=np.float32)
     return names, rgb_to_lab(rgb)
 
 
-def nearest_palette_indices(pixels_lab: np.ndarray, palette: np.ndarray) -> np.ndarray:
+def nearest_palette_indices(
+    pixels_lab: np.ndarray,
+    palette: np.ndarray,
+    blocked_indices: np.ndarray | None = None,
+    blocked_mask: np.ndarray | None = None,
+) -> np.ndarray:
     diffs = pixels_lab[:, None, :] - palette[None, :, :]
     distances = np.sum(diffs * diffs, axis=2)
+    if blocked_indices is not None and blocked_mask is not None and blocked_mask.any():
+        distances[blocked_mask[:, None], blocked_indices] = np.inf
     return np.argmin(distances, axis=1)
 
 
@@ -179,7 +215,18 @@ def compute_color_coverage(
         rgb = rgb[indices]
 
     lab = rgb_to_lab(rgb)
-    palette_indices = nearest_palette_indices(lab, palette_lab_values)
+    hsv = rgb_to_hsv(rgb)
+    guardrail_mask = (hsv[:, 1] < MIN_SATURATION) | (hsv[:, 2] < MIN_VALUE)
+    protected = np.array(
+        [palette_names.index(name) for name in ("red", "pink", "purple")],
+        dtype=np.int64,
+    )
+    palette_indices = nearest_palette_indices(
+        lab,
+        palette_lab_values,
+        blocked_indices=protected,
+        blocked_mask=guardrail_mask,
+    )
     counts = np.bincount(palette_indices, minlength=len(palette_names))
 
     total = counts.sum()
