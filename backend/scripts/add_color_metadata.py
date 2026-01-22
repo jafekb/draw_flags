@@ -264,7 +264,7 @@ def nearest_palette_indices(
 ) -> np.ndarray:
     distances = lab_distances(pixels_lab, palette)
     if blocked_indices is not None and blocked_mask is not None and blocked_mask.any():
-        distances[blocked_mask[:, None], blocked_indices] = np.inf
+        distances[blocked_mask][:, blocked_indices] = np.inf
     return np.argmin(distances, axis=1)
 
 
@@ -360,8 +360,8 @@ def main() -> None:
         processed += 1
 
     data["flags"] = flags
-    with output_path.open("w") as f:
-        json.dump(data, f, indent=1)
+    with output_path.open("w", encoding="utf-8") as f:
+        json.dump(data, f, indent=1, ensure_ascii=False)
 
 
 if __name__ == "__main__":
