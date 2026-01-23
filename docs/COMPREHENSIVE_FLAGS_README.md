@@ -11,7 +11,7 @@ This directory contains a comprehensive database of flags collected from multipl
 ## Dataset Structure
 
 ```
-comprehensive_flags/
+all_flags/
 ├── flags.json                    # Main dataset file (FlagList format)
 ├── embeddings.npy                # CLIP embeddings for all flags
 ├── collection_metadata.json      # Statistics about data collection
@@ -29,7 +29,7 @@ comprehensive_flags/
 
 ### Phase 1: High-Quality Structured Sources
 1. **National Flags** (~200 flags)
-   - Reused existing dataset from `backend/data/national_flags/`
+   - Collected from Wikipedia via the national flag collector
 
 2. **Country Subdivisions** (~2,000-3,000 flags)
    - US states and territories
@@ -126,11 +126,7 @@ This will:
 Once the dataset is created and validated, update `backend/src/flag_searcher.py`:
 
 ```python
-# Change from:
-FLAGS_FILE = Path("backend/data/national_flags/flags.json")
-
-# To:
-FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
+FLAGS_FILE = Path("backend/data/all_flags/flags.json")
 ```
 
 Then restart your backend server:

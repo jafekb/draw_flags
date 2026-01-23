@@ -28,7 +28,7 @@ def load_flags_from_json(input_file: Path) -> tuple[List[Flag], dict, bool]:
     Returns:
         Tuple of (flags_list, extra_data, has_wrapper)
     """
-    with open(input_file, encoding="utf-8") as f:
+    with input_file.open(encoding="utf-8") as f:
         data = json.load(f)
 
     # Handle both dict structure (with 'flags' key) and direct list
@@ -47,7 +47,9 @@ def load_flags_from_json(input_file: Path) -> tuple[List[Flag], dict, bool]:
     return flags, extra_data, has_wrapper
 
 
-def save_flags_to_json(flags: List[Flag], output_file: Path, extra_data: dict, has_wrapper: bool):
+def save_flags_to_json(
+    flags: List[Flag], output_file: Path, extra_data: dict, *, has_wrapper: bool
+):
     """
     Save flags to JSON file, preserving the original format.
 
@@ -61,16 +63,13 @@ def save_flags_to_json(flags: List[Flag], output_file: Path, extra_data: dict, h
     flags_data = [flag.model_dump() for flag in flags]
 
     # Preserve the original structure
-    if has_wrapper:
-        output_data = {"flags": flags_data, **extra_data}
-    else:
-        output_data = flags_data
+    output_data = {"flags": flags_data, **extra_data} if has_wrapper else flags_data
 
-    with open(output_file, "w", encoding="utf-8") as f:
+    with output_file.open("w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=1, ensure_ascii=False)
 
 
-def fix_duplicate_names(input_file: Path, output_file: Path, dry_run: bool = False):
+def fix_duplicate_names(input_file: Path, output_file: Path, *, dry_run: bool = False):
     """
     Main function to fix duplicate flag names in an existing dataset.
 
@@ -93,7 +92,7 @@ def fix_duplicate_names(input_file: Path, output_file: Path, dry_run: bool = Fal
     if not dry_run:
         # Save updated flags
         print(f"\nSaving updated flags to {output_file}")
-        save_flags_to_json(updated_flags, output_file, extra_data, has_wrapper)
+        save_flags_to_json(updated_flags, output_file, extra_data, has_wrapper=has_wrapper)
         print("Done!")
     else:
         print("\n[DRY RUN] No changes saved. Run without --dry-run to apply changes.")
@@ -106,13 +105,13 @@ def main():
     parser.add_argument(
         "--input",
         type=str,
-        default="backend/data/comprehensive_flags_3/flags.json",
+        default="backend/data/all_flags/flags.json",
         help="Input flags.json file",
     )
     parser.add_argument(
         "--output",
         type=str,
-        default="backend/data/comprehensive_flags_3/flags.json",
+        default="backend/data/all_flags/flags.json",
         help="Output flags.json file",
     )
     parser.add_argument(

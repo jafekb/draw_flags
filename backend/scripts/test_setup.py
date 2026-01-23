@@ -3,6 +3,7 @@ Quick test script to verify the environment is ready for data collection.
 """
 
 import sys
+from importlib import import_module
 from pathlib import Path
 
 
@@ -26,21 +27,25 @@ def test_imports():
 
     # Test required packages
     for package, description in required_packages.items():
-        try:
-            __import__(package)
+        imported, error = safe_import(package)
+        if imported:
             print(f"  ✓ {package:20s} - {description}")
-        except ImportError:
+        else:
             print(f"  ✗ {package:20s} - {description} - MISSING")
+            if error:
+                print(f"    Error: {error}")
             all_ok = False
 
     # Test optional packages
     print("\nOptional packages:")
     for package, description in optional_packages.items():
-        try:
-            __import__(package)
+        imported, error = safe_import(package)
+        if imported:
             print(f"  ✓ {package:25s} - {description}")
-        except ImportError:
+        else:
             print(f"  ⚠ {package:25s} - {description} - Not installed (optional)")
+            if error:
+                print(f"    Error: {error}")
 
     return all_ok
 
@@ -52,7 +57,7 @@ def test_project_structure():
     required_dirs = [
         "backend/scripts/data_collection",
         "backend/scripts/data_collection/collectors",
-        "backend/data/comprehensive_flags",
+        "backend/data/all_flags",
     ]
 
     required_files = [
@@ -94,10 +99,10 @@ def test_project_structure():
 
 
 def test_existing_data():
-    """Test that existing national flags data is accessible."""
+    """Test that existing comprehensive flags data is accessible."""
     print("\nTesting existing data...")
 
-    flags_file = Path("backend/data/national_flags/flags.json")
+    flags_file = Path("backend/data/all_flags/flags.json")
 
     if not flags_file.exists():
         print(f"  ✗ {flags_file} - MISSING")
@@ -111,7 +116,7 @@ def test_existing_data():
 
         num_flags = len(data.get("flags", []))
         print(f"  ✓ {flags_file}")
-        print(f"    Found {num_flags} existing national flags")
+        print(f"    Found {num_flags} existing flags")
         return True
     except Exception as e:
         print(f"  ✗ Error reading {flags_file}: {e}")
@@ -132,12 +137,13 @@ def test_module_imports():
     all_ok = True
 
     for module_name, description in modules_to_test:
-        try:
-            __import__(module_name)
+        imported, error = safe_import(module_name)
+        if imported:
             print(f"  ✓ {module_name:50s} - {description}")
-        except ImportError as e:
+        else:
             print(f"  ✗ {module_name:50s} - {description}")
-            print(f"    Error: {e}")
+            if error:
+                print(f"    Error: {error}")
             all_ok = False
 
     return all_ok
@@ -171,6 +177,14 @@ def print_summary(results):
         print("- Check that all files were created correctly")
 
     return all_passed
+
+
+def safe_import(module_name: str):
+    try:
+        import_module(module_name)
+        return True, None
+    except ImportError as exc:
+        return False, str(exc)
 
 
 def main():

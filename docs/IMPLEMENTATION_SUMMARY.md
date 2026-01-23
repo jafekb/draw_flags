@@ -25,7 +25,7 @@ Expand the flag database from ~200 national flags to 10,000-50,000 flags coverin
 
 Each collector targets a specific flag category:
 
-1. **`national_flags.py`** - Reuses existing ~200 national flags
+1. **`national_flags.py`** - Collects national flags from Wikipedia
 2. **`subdivisions.py`** - Collects flags from 25+ countries' subdivisions
    - US states, Canadian provinces, Australian states
    - German states, Russian federal subjects, Indian states
@@ -78,7 +78,7 @@ Each collector targets a specific flag category:
 
 ### 3. Documentation
 
-**Location:** `backend/data/comprehensive_flags/`
+**Location:** `backend/data/all_flags/`
 
 - **`README.md`** - Comprehensive documentation covering:
   - Dataset overview and structure
@@ -148,7 +148,7 @@ backend/
 │   ├── download_and_process.py          # Image download & embeddings
 │   └── validate_dataset.py              # Validation & testing
 └── data/
-    └── comprehensive_flags/
+    └── all_flags/
         ├── README.md                    # Full documentation
         ├── QUICKSTART.md                # Quick start guide
         └── (output files will be created here)
@@ -161,7 +161,7 @@ backend/
 After running the complete pipeline, you'll have:
 
 ```
-backend/data/comprehensive_flags/
+backend/data/all_flags/
 ├── flags.json                       # Final dataset (FlagList format)
 ├── embeddings.npy                   # CLIP embeddings (N × 512)
 ├── collection_metadata.json         # Collection statistics
@@ -202,7 +202,7 @@ uv run scripts/validate_dataset.py
 
 **Edit:** `backend/src/flag_searcher.py` (line 14)
 ```python
-FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
+FLAGS_FILE = Path("backend/data/all_flags/flags.json")
 ```
 
 **Restart backend:**

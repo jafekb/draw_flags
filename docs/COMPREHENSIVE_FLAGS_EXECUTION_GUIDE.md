@@ -37,8 +37,8 @@ uv run python -c "import requests, bs4, numpy; print('✓ Core dependencies OK')
 
 **Option A: Quick Test (recommended first)**
 - **Time:** 1-2 minutes  
-- **Flags:** ~200 (existing national flags)
-- **Output:** `backend/data/comprehensive_flags/flags_deduplicated.json`
+- **Flags:** ~200 (national flags)
+- **Output:** `backend/data/all_flags/flags_deduplicated.json`
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
@@ -50,7 +50,7 @@ uv run scripts/collect_all_flags.py --test
 **Option B: Full Collection**
 - **Time:** 4-12 hours  
 - **Flags:** 5,000+
-- **Output:** `backend/data/comprehensive_flags/flags_deduplicated.json`
+- **Output:** `backend/data/all_flags/flags_deduplicated.json`
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
@@ -74,8 +74,8 @@ PHASE 1: Collecting from high-quality structured sources
 ================================================================================
 
 --- National Flags ---
-Loading existing flags from backend/data/national_flags/flags.json
-  Loaded 200 existing national flags
+Collecting national flags from Wikipedia...
+  Collected ~200 national flags
 
 --- Subdivision Flags ---
 Starting subdivision flag collection...
@@ -100,20 +100,20 @@ Deduplication complete:
   Duplicates removed: 312
   Final count: 4922
 
-Saved deduplicated flags to backend/data/comprehensive_flags/flags_deduplicated.json
+Saved deduplicated flags to backend/data/all_flags/flags_deduplicated.json
 ```
 
 **Monitoring progress:**
 - The script prints progress updates as it works
 - You can safely interrupt (Ctrl+C) and restart - it will skip already-collected data
-- Check `backend/data/comprehensive_flags/flags_raw.json` to see raw collected data
+- Check `backend/data/all_flags/flags_raw.json` to see raw collected data
 
 ---
 
 ### Step 2: Download Images and Generate Embeddings
 
 **Time:** 6-12 hours  
-**Output:** `backend/data/comprehensive_flags/flags.json` + `embeddings.npy`
+**Output:** `backend/data/all_flags/flags.json` + `embeddings.npy`
 
 ```bash
 cd /home/bjafek/personal/draw_flags/backend
@@ -130,7 +130,7 @@ uv run scripts/download_and_process.py
 
 **Expected output:**
 ```
-Loading flags from backend/data/comprehensive_flags/flags_deduplicated.json...
+Loading flags from backend/data/all_flags/flags_deduplicated.json...
 Loaded 4922 flags
 
 ================================================================================
@@ -167,27 +167,27 @@ Embedding generation complete:
   Successful: 4850
   Failed: 72
   Total: 4922
-  Saved to: backend/data/comprehensive_flags/embeddings.npy
+  Saved to: backend/data/all_flags/embeddings.npy
 
 ================================================================================
 STEP 4: Creating final dataset
 ================================================================================
-Created final dataset: backend/data/comprehensive_flags/flags.json
+Created final dataset: backend/data/all_flags/flags.json
   Total flags: 4922
-  Embeddings: backend/data/comprehensive_flags/embeddings.npy
+  Embeddings: backend/data/all_flags/embeddings.npy
 
 ================================================================================
 PROCESSING COMPLETE
 ================================================================================
 
-Final dataset location: backend/data/comprehensive_flags
+Final dataset location: backend/data/all_flags
 To use this dataset, update backend/src/flag_searcher.py:
-  FLAGS_FILE = Path('backend/data/comprehensive_flags/flags.json')
+  FLAGS_FILE = Path('backend/data/all_flags/flags.json')
 ```
 
 **Monitoring progress:**
 - Progress updates every 100 flags
-- You can check `backend/data/comprehensive_flags/images/` to see downloaded images
+- You can check `backend/data/all_flags/images/` to see downloaded images
 - Failed downloads are logged but don't stop the process
 
 ---
@@ -209,7 +209,7 @@ uv run scripts/validate_dataset.py
 ================================================================================
 COMPREHENSIVE FLAGS DATASET VALIDATION
 ================================================================================
-Dataset directory: backend/data/comprehensive_flags
+Dataset directory: backend/data/all_flags
 
 ================================================================================
 VALIDATION: Dataset Structure
@@ -253,7 +253,7 @@ Testing sample queries...
 
 ✓ Dataset is compatible with FlagSearcher
   To use this dataset, update backend/src/flag_searcher.py:
-    FLAGS_FILE = Path('backend/data/comprehensive_flags/flags.json')
+    FLAGS_FILE = Path('backend/data/all_flags/flags.json')
 
 ================================================================================
 STATISTICS
@@ -285,7 +285,7 @@ The comprehensive flags dataset is ready to use.
 
 To use this dataset in your application:
 1. Update backend/src/flag_searcher.py:
-   FLAGS_FILE = Path('backend/data/comprehensive_flags/flags.json')
+   FLAGS_FILE = Path('backend/data/all_flags/flags.json')
 2. Restart your backend server
 3. Test with various flag descriptions
 ```
@@ -296,14 +296,9 @@ To use this dataset in your application:
 
 **Edit:** `backend/src/flag_searcher.py`
 
-Find line 14:
+Update the path:
 ```python
-FLAGS_FILE = Path("backend/data/national_flags/flags.json")
-```
-
-Change to:
-```python
-FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
+FLAGS_FILE = Path("backend/data/all_flags/flags.json")
 ```
 
 **Restart the backend:**
@@ -392,7 +387,7 @@ Just re-run the same command to continue where you left off.
 After completing all steps, you should have:
 
 ```
-backend/data/comprehensive_flags/
+backend/data/all_flags/
 ├── flags.json                    # 4,000-6,000 flags
 ├── embeddings.npy                # ~20-30 MB
 ├── collection_metadata.json      # Statistics
