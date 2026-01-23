@@ -4,13 +4,7 @@ import argparse
 from pathlib import Path
 
 import numpy as np
-from add_color_metadata import (
-    COLOR_PALETTE,
-    MIN_SATURATION,
-    MIN_VALUE,
-    rgb_to_hsv,
-    rgb_to_lab,
-)
+from add_color_metadata import COLOR_PALETTE, lab_distances, palette_lab, rgb_to_lab
 from PIL import Image
 
 
@@ -42,11 +36,6 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional max pixels to sample (None disables sampling)",
     )
-    parser.add_argument(
-        "--use-guardrail",
-        action="store_true",
-        help="Apply saturation/value guardrail to red/pink/purple mapping",
-    )
     return parser.parse_args()
 
 
@@ -60,35 +49,20 @@ def resize_image(image: Image.Image, max_dimension: int) -> Image.Image:
 
 
 def palette_arrays() -> tuple[list[str], np.ndarray, np.ndarray]:
-    names = list(COLOR_PALETTE.keys())
+    names, lab = palette_lab()
     rgb = np.array([COLOR_PALETTE[name] for name in names], dtype=np.float32)
-    lab = rgb_to_lab(rgb)
     return names, rgb, lab
 
 
 def map_pixels_to_palette(
     rgba: np.ndarray,
-    palette_names: list[str],
     palette_rgb: np.ndarray,
     palette_lab: np.ndarray,
-    *,
-    use_guardrail: bool,
 ) -> np.ndarray:
     alpha = rgba[:, 3:4]
     rgb = rgba[:, :3]
     lab = rgb_to_lab(rgb)
-    diffs = lab[:, None, :] - palette_lab[None, :, :]
-    distances = np.sum(diffs * diffs, axis=2)
-
-    if use_guardrail:
-        hsv = rgb_to_hsv(rgb)
-        guardrail_mask = (hsv[:, 1] < MIN_SATURATION) | (hsv[:, 2] < MIN_VALUE)
-        protected = np.array(
-            [palette_names.index(name) for name in ("red", "pink", "purple")],
-            dtype=np.int64,
-        )
-        distances[guardrail_mask][:, protected] = np.inf
-
+    distances = lab_distances(lab, palette_lab)
     indices = np.argmin(distances, axis=1)
     mapped_rgb = palette_rgb[indices].astype(np.uint8)
     return np.concatenate([mapped_rgb, alpha], axis=1)
@@ -101,7 +75,7 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     Image.MAX_IMAGE_PIXELS = None
 
-    palette_names, palette_rgb, palette_lab = palette_arrays()
+    _, palette_rgb, palette_lab = palette_arrays()
     supported_ext = {".png", ".jpg", ".jpeg", ".gif"}
 
     for path in sorted(images_dir.iterdir()):
@@ -118,24 +92,12 @@ def main() -> None:
         if args.sample_max and rgba.shape[0] > args.sample_max:
             indices = np.random.choice(rgba.shape[0], size=args.sample_max, replace=False)
             sampled = rgba[indices]
-            mapped = map_pixels_to_palette(
-                sampled,
-                palette_names,
-                palette_rgb,
-                palette_lab,
-                use_guardrail=args.use_guardrail,
-            )
+            mapped = map_pixels_to_palette(sampled, palette_rgb, palette_lab)
             mapped_full = rgba.copy()
             mapped_full[indices] = mapped
             mapped_rgba = mapped_full
         else:
-            mapped_rgba = map_pixels_to_palette(
-                rgba,
-                palette_names,
-                palette_rgb,
-                palette_lab,
-                use_guardrail=args.use_guardrail,
-            )
+            mapped_rgba = map_pixels_to_palette(rgba, palette_rgb, palette_lab)
 
         mapped_image = Image.fromarray(mapped_rgba.reshape(image.size[1], image.size[0], 4))
         combined = Image.new("RGBA", (image.width * 2, image.height))
