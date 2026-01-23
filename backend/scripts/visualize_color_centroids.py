@@ -14,7 +14,7 @@ IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff", ".webp"}
 def parse_args() -> argparse.Namespace:
     default_images_dir = Path(__file__).resolve().parents[1] / "data" / "colors"
     parser = argparse.ArgumentParser(
-        description="Visualize color pixels and palette centroids in CIELAB space.",
+        description="Visualize color pixels and palette centroids in LAB or RGB space.",
     )
     parser.add_argument(
         "--images-dir",
@@ -45,6 +45,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=7,
         help="Random seed used for pixel sampling.",
+    )
+    parser.add_argument(
+        "--space",
+        choices=("lab", "rgb"),
+        default="lab",
+        help="Color space to visualize (lab or rgb).",
     )
     return parser.parse_args()
 
@@ -140,6 +146,47 @@ def plot_lab_colors(rgb_samples: np.ndarray) -> None:
     plt.show()
 
 
+def plot_rgb_colors(rgb_samples: np.ndarray) -> None:
+    rgb_samples = rgb_samples.astype(np.float32)
+    colors = rgb_samples / 255.0
+
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection="3d")
+    ax.scatter(
+        rgb_samples[:, 0],
+        rgb_samples[:, 1],
+        rgb_samples[:, 2],
+        c=colors,
+        s=6,
+        alpha=0.6,
+        linewidths=0,
+    )
+
+    palette_names = list(COLOR_PALETTE.keys())
+    palette_rgb = np.array(list(COLOR_PALETTE.values()), dtype=np.float32)
+    palette_colors = palette_rgb / 255.0
+
+    ax.scatter(
+        palette_rgb[:, 0],
+        palette_rgb[:, 1],
+        palette_rgb[:, 2],
+        c=palette_colors,
+        s=160,
+        edgecolors="black",
+        linewidths=0.6,
+    )
+
+    for name, (r_val, g_val, b_val) in zip(palette_names, palette_rgb):
+        ax.text(r_val, g_val, b_val, name, fontsize=9)
+
+    ax.set_xlabel("R")
+    ax.set_ylabel("G")
+    ax.set_zlabel("B")
+    ax.set_title("RGB Color Distribution with Palette Centroids")
+    plt.tight_layout()
+    plt.show()
+
+
 def main() -> None:
     args = parse_args()
     image_paths = iter_image_paths(args.images_dir)
@@ -150,7 +197,10 @@ def main() -> None:
         max_images=args.max_images,
         seed=args.seed,
     )
-    plot_lab_colors(rgb_samples)
+    if args.space == "lab":
+        plot_lab_colors(rgb_samples)
+    else:
+        plot_rgb_colors(rgb_samples)
 
 
 if __name__ == "__main__":
