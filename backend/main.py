@@ -1,5 +1,6 @@
 import logging
 import os
+import random
 from pathlib import Path
 from typing import List, Optional
 
@@ -85,6 +86,16 @@ class SearchRequest(BaseModel):
     country: Optional[str] = None  # e.g., "United States"
 
 
+class BannerFlag(BaseModel):
+    name: str
+    wikipedia_url: str
+    wikipedia_image_url: str
+
+
+class BannerFlagList(BaseModel):
+    flags: List[BannerFlag]
+
+
 # TODO(bjafek) this isn't 'adding a flag', it's querying based on text
 @app.post("/", response_model=FlagList)
 async def add_flag(request: SearchRequest):
@@ -100,6 +111,30 @@ async def add_flag(request: SearchRequest):
         top_k=request.top_k,
     )
     return flags
+
+
+@app.get("/flags/random", response_model=BannerFlagList)
+async def random_flags(limit: int = 12):
+    if app.state.flag_searcher is None:
+        return BannerFlagList(flags=[])
+    flags = app.state.flag_searcher._flags.flags
+    if not flags:
+        return BannerFlagList(flags=[])
+
+    safe_limit = max(0, min(limit, 50))
+    if safe_limit == 0:
+        return BannerFlagList(flags=[])
+    sample = random.sample(flags, k=min(safe_limit, len(flags)))
+    return BannerFlagList(
+        flags=[
+            BannerFlag(
+                name=flag.name,
+                wikipedia_url=flag.wikipedia_url,
+                wikipedia_image_url=flag.wikipedia_image_url,
+            )
+            for flag in sample
+        ]
+    )
 
 
 @app.get("/flags")
