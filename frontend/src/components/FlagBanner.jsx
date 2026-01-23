@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import api from "../api";
 import "./FlagBanner.css";
 
-const DEFAULT_LIMIT = 12;
+const DEFAULT_LIMIT = 30;
 const DEFAULT_REFRESH_INTERVAL_MS = 45000;
 
 const FlagBanner = ({
