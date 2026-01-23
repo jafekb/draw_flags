@@ -1,8 +1,8 @@
 .flag-banner {
   width: 100%;
   overflow: hidden;
-  padding: 0.25rem 0;
   margin-bottom: 1rem;
+  margin-top: -2.5rem;
 }
 
 .flag-banner__track {
@@ -10,7 +10,7 @@
   align-items: center;
   gap: 1rem;
   width: max-content;
-  animation: flag-banner-scroll 45s linear infinite;
+  animation: flag-banner-scroll 60s linear infinite;
   will-change: transform;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .flag-banner__item img {
-  height: 36px;
+  height: 144px;
   width: auto;
   display: block;
   object-fit: contain;
