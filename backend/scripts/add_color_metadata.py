@@ -15,10 +15,10 @@ COLOR_PALETTE = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
     "gray": (128, 128, 128),
-    "red": (154, 45, 61),
+    "red": (181, 50, 53),
     "orange": (226, 111, 45),
     "yellow": (255, 215, 0),
-    "green": (0, 128, 0),
+    "green": (58, 131, 64),
     "blue": (33, 74, 143),
     "light_blue": (135, 206, 235),
     "purple": (136, 41, 109),
@@ -31,6 +31,8 @@ MIN_VALUE = 0.4627451
 WIKIMEDIA_HEADERS = {
     "User-Agent": "DrawFlags/0.0 (https://github.com/jafekb/draw_flags/; jafek91@gmail.com)"
 }
+
+SKIP_FLAG_NAMES = {"Paris (variant 2)"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -60,6 +62,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=256,
         help="Max width/height to resize images for faster processing",
+    )
+    parser.add_argument(
+        "--max-pixels",
+        type=int,
+        default=50_000_000,
+        help="Skip images larger than this pixel count",
     )
     parser.add_argument(
         "--sample-max",
@@ -333,6 +341,7 @@ def main() -> None:
     flags_path = args.flags_json
     output_path = args.output or flags_path
     images_dir = args.images_dir
+    max_pixels = args.max_pixels
     progress_path = args.progress_path
     checkpoint_path = args.checkpoint_path
     checkpoint_every = args.checkpoint_every
@@ -357,6 +366,9 @@ def main() -> None:
         if progress_path is not None:
             flag_name = flag.get("name", "unknown")
             progress_path.write_text(f"getting idx {idx} of {total} ({flag_name})\n")
+        if flag.get("name") in SKIP_FLAG_NAMES:
+            processed += 1
+            continue
         if not args.force and flag.get("color_coverage"):
             processed += 1
             continue
@@ -372,6 +384,8 @@ def main() -> None:
                 image = load_local_image(images_dir, flag.get("name", ""))
             if image is None:
                 image = fetch_image(image_url)
+            if image.size[0] * image.size[1] > max_pixels:
+                raise ValueError(f"Image too large: {image.size[0]}x{image.size[1]}")
             image = resize_image(image, args.max_dimension)
             coverage = compute_color_coverage(
                 image=image,
