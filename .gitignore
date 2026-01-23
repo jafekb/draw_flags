@@ -7,6 +7,10 @@
 *.svg
 *.gif
 *.jpeg
+.DS_Store
+
+# Allow curated color samples (tracked via git-lfs)
+!backend/data/colors/**/*.png
 
 # Flag dataset images directories
 backend/data/*/images/
