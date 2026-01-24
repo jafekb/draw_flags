@@ -14,7 +14,7 @@ from backend.src.metadata_store import LocalMetadataStore
 from backend.src.minimal_tokenizer import create_minimal_tokenizer
 from backend.src.vector_index import HnswIndex
 
-FLAGS_FILE = Path("backend/data/comprehensive_flags_3/flags.json")
+FLAGS_FILE = Path("backend/data/all_flags/flags.json")
 MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
 
 
@@ -152,3 +152,6 @@ class FlagSearcher:
         if effective_top_k <= 0:
             return FlagList(flags=[])
         return self.search_by_text(text_query, effective_top_k, filters=filters)
+
+    def all_flags(self) -> FlagList:
+        return self._flags

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The flag database schema has been refactored to improve searchability and provide more useful metadata for users. This document describes the changes made in the migration from `comprehensive_flags_2` to `comprehensive_flags_3`.
+The flag database schema has been refactored to improve searchability and provide more useful metadata for users. This document describes the changes made in the migration from `comprehensive_flags_2` to `all_flags`.
 
 ## Schema Changes
 
@@ -113,7 +113,7 @@ The migration from v2 to v3 was performed using `backend/scripts/migrate_flag_sc
    - Wikipedia page disambiguation patterns
 4. Generated searchable tags from name, category, and country
 5. Copied embeddings.npy (unchanged)
-6. Wrote new schema to `comprehensive_flags_3/`
+6. Wrote new schema to `all_flags/`
 
 ### Category Inference Logic
 
@@ -152,9 +152,9 @@ All data collectors have been updated to output the new schema:
 ### Files Modified
 
 - `backend/common/flag_data.py` - Updated Flag model with new schema
-- `backend/src/flag_searcher.py` - Updated to use `comprehensive_flags_3`
+- `backend/src/flag_searcher.py` - Updated to use `all_flags`
 - `backend/scripts/validate_dataset.py` - Updated validation logic
-- `backend/scripts/collect_all_flags.py` - Updated to output to `comprehensive_flags_4` for future collections
+- `backend/scripts/collect_all_flags.py` - Updated to output to `all_flags` for future collections
 - `backend/scripts/download_and_process.py` - Updated paths for future collections
 - All collector files updated with new schema
 
@@ -172,7 +172,7 @@ As part of this refactor, the codebase was also updated for Pydantic v2:
 ```python
 from backend.common.flag_data import flaglist_from_json
 
-flags = flaglist_from_json("backend/data/comprehensive_flags_3/flags.json")
+flags = flaglist_from_json("backend/data/all_flags/flags.json")
 
 for flag in flags.flags:
     print(f"{flag.name}")
@@ -231,7 +231,7 @@ Potential improvements for future versions:
 ## Migration Timeline
 
 - **2026-01-13**: Schema v3 created
-- **Dataset**: comprehensive_flags_3 (2,753 flags)
+- **Dataset**: all_flags (2,753 flags)
 - **Previous**: comprehensive_flags_2 (2,753 flags, old schema)
-- **Next**: comprehensive_flags_4 (future collections will use new schema)
+- **Next**: all_flags (future collections will use new schema)
 

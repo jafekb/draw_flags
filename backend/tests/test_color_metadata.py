@@ -12,7 +12,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from backend.scripts.add_color_metadata import compute_color_coverage, palette_lab
 
-IMAGES_DIR = Path(__file__).resolve().parents[1] / "data" / "comprehensive_flags_3" / "images"
+IMAGES_DIR = Path(__file__).resolve().parents[1] / "data" / "all_flags" / "images"
 
 
 def test_color_coverage_simple_flags() -> None:

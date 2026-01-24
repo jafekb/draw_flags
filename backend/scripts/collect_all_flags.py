@@ -179,7 +179,7 @@ Examples:
     all_flags, collectors_info = collect_all_flags(test_mode=args.test)
 
     # Save raw collection
-    output_dir = Path("backend/data/comprehensive_flags_4")
+    output_dir = Path("backend/data/all_flags")
     save_raw_flags(all_flags, output_dir)
 
     # Deduplicate (removes exact duplicates - same name + same image URL)

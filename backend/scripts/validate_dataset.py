@@ -105,11 +105,12 @@ def validate_flags_json(flags_file: Path):
 
         print(f"Categories: {dict(sorted(categories.items()))}")
         print(f"Entity Types: {dict(sorted(entity_types.items()))}")
+        country_pct = 100 * flags_with_country / len(flags)
+        adoption_pct = 100 * flags_with_adoption_year / len(flags)
+        print(f"Flags with country: {flags_with_country}/{len(flags)} ({country_pct:.1f}%)")
         print(
-            f"Flags with country: {flags_with_country}/{len(flags)} ({100 * flags_with_country / len(flags):.1f}%)"
-        )
-        print(
-            f"Flags with adoption_year: {flags_with_adoption_year}/{len(flags)} ({100 * flags_with_adoption_year / len(flags):.1f}%)"
+            "Flags with adoption_year: "
+            f"{flags_with_adoption_year}/{len(flags)} ({adoption_pct:.1f}%)"
         )
 
         # Check image URLs
@@ -300,7 +301,7 @@ def print_statistics(dataset_dir: Path):
 
 def main():
     """Main validation function."""
-    dataset_dir = Path("backend/data/comprehensive_flags_3")
+    dataset_dir = Path("backend/data/all_flags")
 
     if not dataset_dir.exists():
         print(f"Error: Dataset directory not found: {dataset_dir}")
@@ -343,7 +344,7 @@ def main():
         print("\nThe comprehensive flags dataset is ready to use.")
         print("\nTo use this dataset in your application:")
         print("1. Update backend/src/flag_searcher.py:")
-        print("   FLAGS_FILE = Path('backend/data/comprehensive_flags/flags.json')")
+        print("   FLAGS_FILE = Path('backend/data/all_flags/flags.json')")
         print("2. Restart your backend server")
         print("3. Test with various flag descriptions")
     else:

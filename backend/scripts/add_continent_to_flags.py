@@ -97,7 +97,7 @@ def migrate_flags(input_file: Path, output_file: Path):
     with output_file.open("w") as f:
         json.dump(data, f, indent=1)
 
-    print(f"\nMigration complete!")
+    print("\nMigration complete!")
     print(f"  Flags with continent: {continents_added}")
     print(f"  Flags without continent: {continents_missing}")
 
@@ -108,14 +108,14 @@ def migrate_flags(input_file: Path, output_file: Path):
         if continent:
             continent_counts[continent] = continent_counts.get(continent, 0) + 1
 
-    print(f"\nContinent distribution:")
+    print("\nContinent distribution:")
     for continent in sorted(continent_counts.keys()):
         print(f"  {continent}: {continent_counts[continent]} flags")
 
 
 if __name__ == "__main__":
     # Define paths
-    data_dir = Path("backend/data/comprehensive_flags_3")
+    data_dir = Path("backend/data/all_flags")
     input_file = data_dir / "flags.json"
     output_file = data_dir / "flags.json"  # Overwrite the same file
 

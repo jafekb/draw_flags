@@ -31,7 +31,7 @@ uv run scripts/collect_all_flags.py
 - Scrapes Wikipedia for national flags, subdivisions, organizations, historical flags, and cities
 - Collects sample flags from FOTW
 - Deduplicates the collected flags
-- Saves results to `backend/data/comprehensive_flags/flags_deduplicated.json`
+- Saves results to `backend/data/all_flags/flags_deduplicated.json`
 
 **Output files:**
 - `flags_raw.json` - All collected flags before deduplication
@@ -92,11 +92,7 @@ Once setup is complete, update your flag searcher to use the comprehensive datas
 **Edit:** `backend/src/flag_searcher.py`
 
 ```python
-# Line 14: Change from
-FLAGS_FILE = Path("backend/data/national_flags/flags.json")
-
-# To
-FLAGS_FILE = Path("backend/data/comprehensive_flags/flags.json")
+FLAGS_FILE = Path("backend/data/all_flags/flags.json")
 ```
 
 **Restart your backend:**

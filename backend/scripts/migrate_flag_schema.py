@@ -1,8 +1,10 @@
 """
 Migration script to transform flags from old schema to new schema.
 
-Old schema: name, wikipedia_page, wikipedia_url, wikipedia_image_url, local_image_link, verification_method, score
-New schema: name, wikipedia_page, wikipedia_url, wikipedia_image_url, category, entity_type, country, adoption_year, tags
+Old schema: name, wikipedia_page, wikipedia_url, wikipedia_image_url,
+local_image_link, verification_method, score
+New schema: name, wikipedia_page, wikipedia_url, wikipedia_image_url,
+category, entity_type, country, adoption_year, tags
 """
 
 import json
@@ -296,7 +298,7 @@ def infer_category_and_entity_type(flag: Dict) -> Tuple[str, str]:
             "19th",
             "18th",
             "17th",
-            "–",
+            "-",
             "c. ",
             "navy",
         ]
@@ -568,7 +570,7 @@ def migrate_dataset(input_dir: Path, output_dir: Path):
     # Read input flags.json
     input_file = input_dir / "flags.json"
     print(f"Reading {input_file}...")
-    with open(input_file, encoding="utf-8") as f:
+    with input_file.open(encoding="utf-8") as f:
         data = json.load(f)
 
     old_flags = data["flags"]
@@ -601,7 +603,7 @@ def migrate_dataset(input_dir: Path, output_dir: Path):
         "flags": new_flags,
         "embeddings_filename": data.get("embeddings_filename", "embeddings.npy"),
     }
-    with open(output_file, "w", encoding="utf-8") as f:
+    with output_file.open("w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=1, ensure_ascii=False)
 
     # Copy embeddings.npy
@@ -637,7 +639,7 @@ def main():
     # Define paths
     project_root = Path(__file__).parent.parent.parent
     input_dir = project_root / "backend" / "data" / "comprehensive_flags_2"
-    output_dir = project_root / "backend" / "data" / "comprehensive_flags_3"
+    output_dir = project_root / "backend" / "data" / "all_flags"
 
     # Run migration
     migrate_dataset(input_dir, output_dir)
