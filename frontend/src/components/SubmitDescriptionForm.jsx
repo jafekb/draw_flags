@@ -12,14 +12,17 @@ const SubmitDescriptionForm = ({ addFlag }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="description-form">
       <input
+        className="description-input"
         type="text"
         value={flagName}
         onChange={(e) => setFlagName(e.target.value)}
-        placeholder="Describe it"
+        placeholder="Describe the flag in words"
       />
-      <button type="submit">Submit</button>
+      <button className="description-submit" type="submit">
+        Submit
+      </button>
     </form>
   );
 };

@@ -1,0 +1,63 @@
+.description-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.description-input {
+  width: min(320px, 100%);
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.description-submit {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.or-divider {
+  margin: 16px 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.show-all-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.show-all-label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-right: 8px;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #c8c8c8;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.option-button.active {
+  border-color: #2c4dd9;
+  background: #e8edff;
+}

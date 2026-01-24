@@ -146,5 +146,10 @@ async def flags_info():
     }
 
 
+@app.get("/flags/all", response_model=FlagList)
+async def all_flags():
+    return app.state.flag_searcher.all_flags()
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
