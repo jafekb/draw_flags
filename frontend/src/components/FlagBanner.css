@@ -35,23 +35,15 @@
   .flag-banner__track {
     gap: 0.5rem;
   }
-
-  .flag-banner__item img {
-    height: 96px;
-  }
 }
 
 @media (max-width: 420px) {
   .flag-banner {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
   }
 
   .flag-banner__track {
-    gap: 0.4rem;
-  }
-
-  .flag-banner__item img {
-    height: 80px;
+    gap: 0.25rem;
   }
 }
 
