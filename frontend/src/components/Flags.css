@@ -34,9 +34,11 @@
   margin-bottom: 16px;
 }
 
-.show-all-button {
-  padding: 10px 16px;
+.show-all-label {
   font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-right: 8px;
 }
 
 .filter-options {
