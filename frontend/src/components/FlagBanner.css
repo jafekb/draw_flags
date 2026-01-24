@@ -27,6 +27,34 @@
   object-fit: contain;
 }
 
+@media (max-width: 640px) {
+  .flag-banner {
+    margin-bottom: 0.5rem;
+  }
+
+  .flag-banner__track {
+    gap: 0.5rem;
+  }
+
+  .flag-banner__item img {
+    height: 96px;
+  }
+}
+
+@media (max-width: 420px) {
+  .flag-banner {
+    margin-bottom: 0.4rem;
+  }
+
+  .flag-banner__track {
+    gap: 0.4rem;
+  }
+
+  .flag-banner__item img {
+    height: 80px;
+  }
+}
+
 .flag-banner:hover .flag-banner__track,
 .flag-banner:focus-within .flag-banner__track {
   animation-play-state: paused;
