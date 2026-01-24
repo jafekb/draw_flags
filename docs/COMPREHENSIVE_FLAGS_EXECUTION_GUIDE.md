@@ -122,6 +122,18 @@ cd /home/bjafek/personal/draw_flags/backend
 uv run scripts/download_and_process.py
 ```
 
+**Alternative (if images already exist):**
+
+```bash
+cd /home/bjafek/personal/draw_flags
+
+# Generate embeddings from existing flags.json + images/
+uv run python backend/scripts/generate_embeddings_from_images.py \
+  --flags-json backend/data/all_flags/flags.json \
+  --images-dir backend/data/all_flags/images \
+  --output-embeddings backend/data/all_flags/embeddings.npy
+```
+
 **What happens:**
 - Downloads all flag images (with 1-second rate limiting)
 - Converts SVG files to PNG (if cairosvg is available)
