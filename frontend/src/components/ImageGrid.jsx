@@ -19,10 +19,16 @@ const ImageGrid = ({ images, title }) => {
             />
 
             <div className="flag-info">
-              <a href={image.wikipedia_url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={image.wikipedia_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {image.name}
               </a>{" "}
-              <p>({(image.score * 100).toFixed(1)}%)</p>
+              {typeof image.score === "number" && (
+                <p>({(image.score * 100).toFixed(1)}%)</p>
+              )}
             </div>
           </div>
         ))}
