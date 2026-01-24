@@ -1,0 +1,48 @@
+.flag-banner {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.flag-banner__track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  animation: flag-banner-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.flag-banner__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flag-banner__item img {
+  height: 144px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.flag-banner:hover .flag-banner__track,
+.flag-banner:focus-within .flag-banner__track {
+  animation-play-state: paused;
+}
+
+@keyframes flag-banner-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flag-banner__track {
+    animation: none;
+  }
+}
