@@ -30,7 +30,6 @@
 @media (max-width: 640px) {
   .flag-banner {
     margin-bottom: 0.5rem;
-    max-width: 100vw;
   }
 
   .flag-banner__track {
