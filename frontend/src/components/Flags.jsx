@@ -57,6 +57,7 @@ const FlagList = () => {
 
   const toggleSort = async (nextSort) => {
     await ensureAllFlags();
+    setColorFilter(null);
     if (nextSort === "random") {
       setSortOrder("random");
       setRandomSeed((seed) => seed + 1);
@@ -67,7 +68,7 @@ const FlagList = () => {
 
   const toggleColor = async (nextColor) => {
     await ensureAllFlags();
-    setSortOrder((current) => (current === "random" ? null : current));
+    setSortOrder(null);
     setColorFilter((current) => (current === nextColor ? null : nextColor));
   };
 
