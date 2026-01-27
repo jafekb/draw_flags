@@ -47,8 +47,7 @@
   }
 }
 
-.flag-banner:hover .flag-banner__track,
-.flag-banner:focus-within .flag-banner__track {
+.flag-banner:hover .flag-banner__track {
   animation-play-state: paused;
 }
 

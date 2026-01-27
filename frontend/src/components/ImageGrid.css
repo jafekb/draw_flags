@@ -32,6 +32,12 @@
   flex-direction: column;
 }
 
+.grid-item__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .grid-item img {
   width: 100%;
   height: 200px;

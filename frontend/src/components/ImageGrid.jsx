@@ -28,15 +28,23 @@ const ImageGrid = ({ images, title, coverageColor }) => {
               : null;
           return (
             <div className="grid-item" key={index}>
-              <img
-                src={image.wikipedia_image_url}
-                alt={image.name || "Flag"}
-                loading="lazy"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.parentElement.style.minHeight = "200px";
-                }}
-              />
+              <a
+                className="grid-item__link"
+                href={image.wikipedia_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={image.name || "Flag"}
+              >
+                <img
+                  src={image.wikipedia_image_url}
+                  alt={image.name || "Flag"}
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.parentElement.style.minHeight = "200px";
+                  }}
+                />
+              </a>
 
               <div className="flag-info">
                 <a
