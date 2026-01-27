@@ -19,6 +19,7 @@ const COLOR_OPTIONS = [
 ];
 
 const COLOR_THRESHOLD = 0.0005;
+const PAGE_SIZE = 15;
 
 const COLOR_LABELS = {
   light_blue: "light blue",
@@ -29,10 +30,14 @@ const FlagList = () => {
   const [sortOrder, setSortOrder] = useState(null);
   const [colorFilter, setColorFilter] = useState(null);
   const [randomSeed, setRandomSeed] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [isDescriptionMode, setIsDescriptionMode] = useState(false);
   const addFlag = async (textQuery) => {
     try {
       const response = await api.post("/", { text_query: textQuery });
       setFlags(response.data.flags);
+      setIsDescriptionMode(true);
+      setVisibleCount(PAGE_SIZE);
     } catch (error) {
       console.error("Error adding flag", error);
     }
@@ -42,6 +47,7 @@ const FlagList = () => {
     try {
       const response = await api.get("/flags/all");
       setFlags(response.data.flags);
+      setIsDescriptionMode(false);
     } catch (error) {
       console.error("Error fetching all flags", error);
     }
@@ -121,7 +127,14 @@ const FlagList = () => {
     setFlags([]);
     setSortOrder(null);
     setColorFilter(null);
+    setIsDescriptionMode(false);
+    setVisibleCount(PAGE_SIZE);
   };
+
+  const visibleFlags = isDescriptionMode
+    ? displayFlags.slice(0, visibleCount)
+    : displayFlags;
+  const canShowMore = isDescriptionMode && visibleCount < displayFlags.length;
 
   return (
     <div>
@@ -172,7 +185,18 @@ const FlagList = () => {
           >
             Clear
           </button>
-          <ImageGrid images={displayFlags} coverageColor={colorFilter} />
+          <ImageGrid images={visibleFlags} coverageColor={colorFilter} />
+          {canShowMore && (
+            <div className="show-more-wrapper">
+              <button
+                className="show-more-button"
+                type="button"
+                onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+              >
+                Show more
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>

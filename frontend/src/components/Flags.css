@@ -61,3 +61,17 @@
   border-color: #2c4dd9;
   background: #e8edff;
 }
+
+.show-more-wrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.show-more-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 1px solid #c8c8c8;
+  background: #ffffff;
+  cursor: pointer;
+}
