@@ -26,8 +26,9 @@ class VisualDescription(BaseModel):
 
     description: str = ""  # one vivid sentence: colors + layout + emblems
     layout: str = ""  # e.g. "horizontal triband", "canton", "saltire", "plain field"
-    colors: List[str] = []  # dominant colors
     symbols: List[str] = []  # charges/emblems, e.g. "crescent", "five-pointed star"
+    # Note: color is intentionally NOT stored here. The pixel-based quantizer
+    # (color_coverage) is the single source of truth for color; see build_document.
 
 
 class Flag(BaseModel):

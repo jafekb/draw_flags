@@ -15,33 +15,48 @@ from backend.scripts.add_color_metadata import compute_color_coverage, palette_l
 IMAGES_DIR = Path(__file__).resolve().parents[1] / "data" / "all_flags" / "images"
 
 
+def _coverage(image, names, palette_values, **kw):
+    return compute_color_coverage(
+        image=image,
+        palette_names=names,
+        palette_lab_values=palette_values,
+        sample_max=image.width * image.height,
+        **kw,
+    )
+
+
 def test_color_coverage_simple_flags() -> None:
+    """Without edge suppression, clean solid flags quantize to exact proportions."""
     names, palette_values = palette_lab()
     third = float(np.float32(1 / 3))
 
     poland = Image.open(IMAGES_DIR / "Poland.png")
-    poland_coverage = compute_color_coverage(
-        image=poland,
-        palette_names=names,
-        palette_lab_values=palette_values,
-        sample_max=poland.width * poland.height,
-    )
-    assert poland_coverage == {"red": 0.5, "white": 0.5}
+    assert _coverage(poland, names, palette_values, suppress_edges=False) == {
+        "red": 0.5,
+        "white": 0.5,
+    }
 
     france = Image.open(IMAGES_DIR / "France.png")
-    france_coverage = compute_color_coverage(
-        image=france,
-        palette_names=names,
-        palette_lab_values=palette_values,
-        sample_max=france.width * france.height,
-    )
-    assert france_coverage == {"blue": third, "red": third, "white": third}
+    assert _coverage(france, names, palette_values, suppress_edges=False) == {
+        "blue": third,
+        "red": third,
+        "white": third,
+    }
 
     ireland = Image.open(IMAGES_DIR / "Republic_of_Ireland.png")
-    ireland_coverage = compute_color_coverage(
-        image=ireland,
-        palette_names=names,
-        palette_lab_values=palette_values,
-        sample_max=ireland.width * ireland.height,
-    )
-    assert ireland_coverage == {"green": third, "orange": third, "white": third}
+    assert _coverage(ireland, names, palette_values, suppress_edges=False) == {
+        "green": third,
+        "orange": third,
+        "white": third,
+    }
+
+
+def test_edge_suppression_preserves_proportions() -> None:
+    """With edge suppression on (default), proportions are preserved within tolerance
+    while the anti-aliased boundary seams are dropped."""
+    names, palette_values = palette_lab()
+    france = Image.open(IMAGES_DIR / "France.png")
+    cov = _coverage(france, names, palette_values)
+    assert set(cov) == {"blue", "red", "white"}
+    for color in ("blue", "red", "white"):
+        assert abs(cov[color] - 1 / 3) < 0.05

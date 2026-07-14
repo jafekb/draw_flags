@@ -35,9 +35,7 @@ class HybridExperiment:
         self._prefix = _query_prefix(model_name)
 
         flags = flaglist_from_json(FLAGS_FILE).flags
-        documents = [
-            build_document(f.name, f.visual, include_name=include_name_in_doc) for f in flags
-        ]
+        documents = [build_document(f, include_name=include_name_in_doc) for f in flags]
         corpus = np.asarray(self._model.encode(documents, batch_size=64, show_progress_bar=False))
         self._corpus = corpus / np.clip(np.linalg.norm(corpus, axis=1, keepdims=True), 1e-12, None)
         self._name_token_sets = build_name_token_sets(self._flag_names)

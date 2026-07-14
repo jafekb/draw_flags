@@ -3,32 +3,32 @@
   "top_k": 10,
   "num_queries": 132,
   "overall": {
-    "recall@1": 0.7196969696969697,
-    "recall@5": 0.8787878787878788,
-    "recall@10": 0.9090909090909091,
-    "mrr@10": 0.7892436267436267,
+    "recall@1": 0.7045454545454546,
+    "recall@5": 0.8712121212121212,
+    "recall@10": 0.9015151515151515,
+    "mrr@10": 0.779419191919192,
     "n": 132
   },
   "by_tier": {
     "easy": {
-      "recall@1": 0.9666666666666667,
+      "recall@1": 1.0,
       "recall@5": 1.0,
       "recall@10": 1.0,
-      "mrr@10": 0.9833333333333333,
+      "mrr@10": 1.0,
       "n": 30
     },
     "medium": {
-      "recall@1": 0.6046511627906976,
+      "recall@1": 0.5581395348837209,
       "recall@5": 0.8372093023255814,
       "recall@10": 0.9069767441860465,
-      "mrr@10": 0.7112956810631229,
+      "mrr@10": 0.6848837209302325,
       "n": 43
     },
     "hard": {
-      "recall@1": 0.6779661016949152,
-      "recall@5": 0.847457627118644,
-      "recall@10": 0.864406779661017,
-      "mrr@10": 0.7473634651600752,
+      "recall@1": 0.6610169491525424,
+      "recall@5": 0.8305084745762712,
+      "recall@10": 0.847457627118644,
+      "mrr@10": 0.7361581920903955,
       "n": 59
     }
   },
@@ -43,13 +43,13 @@
         "Japan",
         "Namibia",
         "Oman",
-        "Philippines",
-        "Bangladesh (variant 2)",
-        "Mongolia",
-        "Nepal",
-        "Saint Kitts and Nevis (1707\u20131800)",
         "Papua New Guinea",
-        "Panama"
+        "Philippines",
+        "Nepal",
+        "Bangladesh (variant 2)",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Dominican Republic",
+        "Mongolia"
       ],
       "hit_rank": 1
     },
@@ -61,14 +61,14 @@
       ],
       "returned": [
         "Canada",
-        "Philippines",
-        "Panama",
         "Namibia",
         "Saint Kitts and Nevis (1707\u20131800)",
+        "Dominican Republic",
+        "Philippines",
+        "Panama",
+        "Papua New Guinea",
         "Oman",
         "Bangladesh (variant 2)",
-        "Dominican Republic",
-        "Papua New Guinea",
         "Central African Republic"
       ],
       "hit_rank": 1
@@ -82,14 +82,14 @@
       "returned": [
         "Brazil",
         "Philippines",
+        "Papua New Guinea",
         "Namibia",
         "Haiti",
         "Saint Kitts and Nevis (1707\u20131800)",
         "Panama",
-        "Oman",
-        "Papua New Guinea",
-        "Sri Lanka",
-        "Dominican Republic"
+        "Dominican Republic",
+        "Nicaragua",
+        "Equatorial Guinea"
       ],
       "hit_rank": 1
     },
@@ -100,16 +100,16 @@
         "France"
       ],
       "returned": [
-        "France (variant 2)",
         "France",
-        "Namibia",
+        "France (variant 2)",
         "Philippines",
-        "Oman",
-        "Panama",
+        "Namibia",
         "Papua New Guinea",
         "Dominican Republic",
         "Nepal",
-        "Bangladesh (variant 2)"
+        "Panama",
+        "Sri Lanka (variant 2)",
+        "Oman"
       ],
       "hit_rank": 1
     },
@@ -120,16 +120,16 @@
         "Germany"
       ],
       "returned": [
-        "Germany (1433)",
         "Germany",
+        "Germany (1433)",
         "Nazi Germany (historical)",
-        "Oman",
         "Namibia",
-        "Philippines",
-        "Panama",
-        "Bangladesh (variant 2)",
         "Papua New Guinea",
-        "Dominican Republic"
+        "Oman",
+        "Philippines",
+        "Bangladesh (variant 2)",
+        "Dominican Republic",
+        "Panama"
       ],
       "hit_rank": 1
     },
@@ -141,15 +141,15 @@
       ],
       "returned": [
         "Italy",
-        "Philippines",
-        "Bangladesh (variant 2)",
         "Namibia",
-        "Oman",
+        "Bangladesh (variant 2)",
+        "Philippines",
         "Papua New Guinea",
-        "Nicaragua",
-        "Panama",
         "Dominican Republic",
-        "Saint Kitts and Nevis (1707\u20131800)"
+        "Nicaragua",
+        "Oman",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Panama"
       ],
       "hit_rank": 1
     },
@@ -163,13 +163,13 @@
         "United States",
         "States Flag",
         "United Kingdom",
-        "United Kingdom (1-2)",
-        "Namibia",
         "United Kingdom (1801\u20131816)",
         "Saint Kitts and Nevis (1707\u20131800)",
+        "Namibia",
+        "United Kingdom (1-2)",
+        "Dominican Republic",
         "Panama",
-        "Philippines",
-        "Dominican Republic"
+        "Philippines"
       ],
       "hit_rank": 1
     },
@@ -181,14 +181,14 @@
       ],
       "returned": [
         "Mexico",
+        "Dominican Republic",
         "Oman",
         "Namibia",
-        "Dominican Republic",
-        "Equatorial Guinea",
         "Philippines",
-        "Haiti",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "Panama",
+        "Equatorial Guinea",
+        "Nepal",
+        "Papua New Guinea",
+        "Sri Lanka",
         "Bangladesh (variant 2)"
       ],
       "hit_rank": 1
@@ -202,14 +202,14 @@
       "returned": [
         "India",
         "Oman",
-        "Panama",
-        "Philippines",
-        "Namibia",
-        "Bangladesh (variant 2)",
         "Papua New Guinea",
-        "Sri Lanka",
+        "Namibia",
+        "Philippines",
+        "Bangladesh (variant 2)",
+        "Panama",
         "Nepal",
-        "Saint Kitts and Nevis (1707\u20131800)"
+        "Dominican Republic",
+        "Sri Lanka"
       ],
       "hit_rank": 1
     },
@@ -224,12 +224,12 @@
         "Qing China",
         "Namibia",
         "Philippines",
-        "Panama",
-        "Bangladesh (variant 2)",
         "Nepal",
         "Dominican Republic",
-        "Mongolia",
-        "Oman"
+        "Panama",
+        "Bangladesh (variant 2)",
+        "Ming dynasty",
+        "Sri Lanka"
       ],
       "hit_rank": 1
     },
@@ -244,12 +244,12 @@
         "Korea, South",
         "North Korea",
         "South Sudan",
-        "Namibia",
-        "Union of South American Nations",
         "South Papua",
-        "Panama",
-        "South African team (1994 Winter Olympics)",
-        "South Africa"
+        "Union of South American Nations",
+        "South Africa",
+        "Namibia",
+        "Nepal",
+        "Saint Kitts and Nevis (1707\u20131800)"
       ],
       "hit_rank": 1
     },
@@ -261,14 +261,14 @@
       ],
       "returned": [
         "Australia",
+        "Papua New Guinea",
         "Philippines",
         "Bangladesh (variant 2)",
-        "Papua New Guinea",
         "Namibia",
-        "Oman",
         "Sri Lanka",
+        "Oman",
+        "Dominican Republic",
         "Panama",
-        "Saint Kitts and Nevis (1707\u20131800)",
         "Nepal"
       ],
       "hit_rank": 1
@@ -283,13 +283,13 @@
         "Argentina",
         "Equatorial Guinea",
         "Oman",
-        "Namibia",
         "Philippines",
-        "Saint Kitts and Nevis (1707\u20131800)",
+        "Namibia",
         "Nepal",
+        "Saint Kitts and Nevis (1707\u20131800)",
         "Papua New Guinea",
-        "Bangladesh (variant 2)",
-        "Panama"
+        "Nicaragua",
+        "Sri Lanka (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -304,12 +304,12 @@
         "Bangladesh (variant 2)",
         "Namibia",
         "Philippines",
-        "Oman",
         "Papua New Guinea",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "Panama",
-        "Equatorial Guinea",
-        "Nicaragua"
+        "Oman",
+        "Dominican Republic",
+        "Nicaragua",
+        "Nepal",
+        "Saint Kitts and Nevis (1707\u20131800)"
       ],
       "hit_rank": 1
     },
@@ -324,12 +324,12 @@
         "Egypt (variant 2)",
         "Oman",
         "Bangladesh (variant 2)",
-        "Namibia",
         "Philippines",
-        "Brunei",
         "Nepal",
-        "Sri Lanka",
-        "Papua New Guinea"
+        "Papua New Guinea",
+        "Brunei",
+        "Sri Lanka (variant 2)",
+        "Sri Lanka"
       ],
       "hit_rank": 1
     },
@@ -340,18 +340,18 @@
         "South Africa"
       ],
       "returned": [
-        "State President of South Africa",
         "South Africa",
+        "State President of South Africa",
         "South African team (1994 Winter Olympics)",
         "List of South African flags - 1994\u20132002",
-        "South West Africa (historical)",
         "South Sudan",
+        "South West Africa (historical)",
         "List of South African flags - 2003\u2013present (variant 3)",
         "List of South African flags - 1973\u20131994",
         "List of South African flags - 2003\u2013present",
         "Papua New Guinea"
       ],
-      "hit_rank": 2
+      "hit_rank": 1
     },
     {
       "query": "flag of Nigeria",
@@ -365,11 +365,11 @@
         "Namibia",
         "Panama",
         "Oman",
+        "Dominican Republic",
         "Saint Kitts and Nevis (1707\u20131800)",
         "Bangladesh (variant 2)",
-        "Indonesia - Mekongga",
-        "Sri Lanka",
-        "Dominican Republic"
+        "Sri Lanka (variant 2)",
+        "Philippines"
       ],
       "hit_rank": 1
     },
@@ -382,13 +382,13 @@
       "returned": [
         "Kenya",
         "Oman",
-        "Sri Lanka",
         "Sri Lanka (variant 2)",
-        "Panama",
+        "Sri Lanka",
         "Namibia",
-        "Saint Kitts and Nevis (1707\u20131800)",
         "Dominican Republic",
-        "Haiti",
+        "Panama",
+        "Papua New Guinea",
+        "Saint Kitts and Nevis (1707\u20131800)",
         "Philippines"
       ],
       "hit_rank": 1
@@ -404,12 +404,12 @@
         "Saudi Arabia (variant 2)",
         "Oman",
         "Namibia",
-        "Philippines",
+        "Papua New Guinea",
         "Bangladesh (variant 2)",
         "Sri Lanka",
-        "Nepal",
         "Brunei",
-        "Egypt"
+        "Philippines",
+        "Nepal"
       ],
       "hit_rank": 1
     },
@@ -423,12 +423,12 @@
         "Turkey",
         "Oman",
         "Papua New Guinea",
-        "Namibia",
+        "Sri Lanka (variant 2)",
         "Dominican Republic",
-        "Philippines",
         "Bangladesh (variant 2)",
+        "Philippines",
+        "Namibia",
         "Panama",
-        "Algeria",
         "Comoros"
       ],
       "hit_rank": 1
@@ -442,13 +442,13 @@
       "returned": [
         "Greece",
         "Greece (variant 2)",
-        "Bangladesh (variant 2)",
         "Philippines",
+        "Bangladesh (variant 2)",
         "Namibia",
         "Papua New Guinea",
-        "Oman",
-        "Panama",
         "Nicaragua",
+        "Dominican Republic",
+        "Panama",
         "El Salvador"
       ],
       "hit_rank": 1
@@ -461,15 +461,15 @@
       ],
       "returned": [
         "Sweden",
-        "Oman",
-        "Philippines",
-        "Namibia",
         "Dominican Republic",
-        "Panama",
+        "Oman",
+        "Namibia",
+        "Philippines",
+        "Papua New Guinea",
         "Bangladesh (variant 2)",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "Finland (pre-1906)",
-        "T\u00f3rshavn"
+        "Riga - Flag of Riga given by the Swedish King",
+        "T\u00f3rshavn",
+        "Saint Kitts and Nevis (1707\u20131800)"
       ],
       "hit_rank": 1
     },
@@ -486,10 +486,10 @@
         "Portugal (1495)",
         "Namibia",
         "Panama",
-        "Bangladesh (variant 2)",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "Oman",
-        "Philippines"
+        "Bangladesh (variant 2)",
+        "Dominican Republic",
+        "Papua New Guinea"
       ],
       "hit_rank": 1
     },
@@ -503,13 +503,13 @@
         "Ireland",
         "Saint Kitts and Nevis (1707\u20131800)",
         "Namibia",
-        "Oman",
+        "Papua New Guinea",
         "Bangladesh (variant 2)",
         "Philippines",
-        "Papua New Guinea",
+        "Dominican Republic",
+        "Oman",
         "United Kingdom",
-        "Panama",
-        "Dominican Republic"
+        "Panama"
       ],
       "hit_rank": 1
     },
@@ -521,14 +521,14 @@
       ],
       "returned": [
         "Israel",
-        "Oman",
         "Bangladesh (variant 2)",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "Namibia",
+        "Oman",
         "Papua New Guinea",
+        "Namibia",
+        "Saint Kitts and Nevis (1707\u20131800)",
         "Cyprus (variant 2)",
-        "Panama",
-        "Philippines",
+        "Dominican Republic",
+        "Sri Lanka",
         "Brunei"
       ],
       "hit_rank": 1
@@ -541,15 +541,15 @@
       ],
       "returned": [
         "Vietnam",
-        "Oman",
         "Namibia",
-        "Philippines",
-        "Panama",
-        "Saint Kitts and Nevis (1707\u20131800)",
+        "Oman",
         "Papua New Guinea",
-        "Mongolia",
+        "Philippines",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "South Vietnam (historical)",
         "Sri Lanka",
-        "South Vietnam (historical)"
+        "Panama",
+        "Sri Lanka (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -562,14 +562,14 @@
       "returned": [
         "Thailand",
         "Philippines",
+        "Papua New Guinea",
         "Oman",
         "Namibia",
-        "Papua New Guinea",
         "Haiti",
-        "Bangladesh (variant 2)",
         "Nepal",
-        "Sri Lanka",
-        "Nicaragua"
+        "Sri Lanka (variant 2)",
+        "Nicaragua",
+        "Bangladesh (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -583,13 +583,13 @@
         "Indonesia",
         "Indonesia - Mekongga",
         "Indonesia Arab Association",
-        "Oman",
-        "Namibia",
         "Papua New Guinea",
+        "Namibia",
+        "Oman",
+        "Central All-Indonesian Workers Organization",
         "Philippines",
-        "Mongolia",
         "Bangladesh (variant 2)",
-        "Panama"
+        "East Indonesia Mujahideen"
       ],
       "hit_rank": 1
     },
@@ -602,14 +602,14 @@
       "returned": [
         "Kazakhstan",
         "Oman",
-        "Bangladesh (variant 2)",
         "Philippines",
         "Namibia",
-        "Sri Lanka",
-        "Iran",
+        "Bangladesh (variant 2)",
         "Nicaragua",
-        "Equatorial Guinea",
-        "Egypt"
+        "Sri Lanka (variant 2)",
+        "Papua New Guinea",
+        "Dominican Republic",
+        "Sri Lanka"
       ],
       "hit_rank": 1
     },
@@ -626,9 +626,9 @@
         "Philippines",
         "Fiji",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "Bangladesh (variant 2)",
+        "Dominican Republic",
         "Haiti",
-        "Nepal",
+        "Bangladesh (variant 2)",
         "Brunei"
       ],
       "hit_rank": 1
@@ -640,18 +640,18 @@
         "United States"
       ],
       "returned": [
+        "Liberia",
         "Cuba",
         "United States",
-        "Liberia",
         "Central African Republic",
-        "Israel",
         "North Korea",
         "Uzbekistan",
-        "Togo",
-        "Comoros",
-        "Singapore"
+        "Israel",
+        "Singapore",
+        "Malaysia",
+        "Comoros"
       ],
-      "hit_rank": 2
+      "hit_rank": 3
     },
     {
       "query": "three vertical stripes blue white and red",
@@ -669,7 +669,7 @@
         "Chad",
         "Romania",
         "Nigeria",
-        "Ivory Coast"
+        "Russia (regulation GOST R 51130\u20132023)"
       ],
       "hit_rank": 3
     },
@@ -687,9 +687,9 @@
         "Guinea",
         "Senegal",
         "Republic of Ireland",
-        "France",
+        "Peru",
         "Niger",
-        "Peru"
+        "United Arab Emirates"
       ],
       "hit_rank": null
     },
@@ -706,10 +706,10 @@
         "Mali",
         "Guinea",
         "Senegal",
-        "Niger",
+        "Peru",
         "Republic of Ireland",
-        "France",
-        "Peru"
+        "Niger",
+        "United Arab Emirates"
       ],
       "hit_rank": 1
     },
@@ -730,7 +730,7 @@
         "Luxembourg",
         "Bulgaria",
         "Austria",
-        "Yemen"
+        "Lebanon"
       ],
       "hit_rank": 1
     },
@@ -745,12 +745,12 @@
         "Poland",
         "Croatia (Habsburg)",
         "Netherlands",
-        "Hungary",
         "Indonesia",
+        "Hungary",
         "Luxembourg",
         "Bulgaria",
         "Austria",
-        "Yemen"
+        "Lebanon"
       ],
       "hit_rank": 2
     },
@@ -763,14 +763,14 @@
       "returned": [
         "Germany",
         "Yemen",
-        "Palestine",
-        "Syria",
-        "Netherlands",
-        "Egypt",
         "Lithuania",
+        "Armenia",
+        "Netherlands",
+        "Syria",
+        "Palestine",
         "Austria",
-        "Hungary",
-        "Libya"
+        "Thailand",
+        "Mauritius"
       ],
       "hit_rank": 1
     },
@@ -785,12 +785,12 @@
         "Luxembourg",
         "Thailand",
         "Hungary",
-        "Yemen",
         "Costa Rica",
+        "Yemen",
+        "Armenia",
+        "Austria",
         "Gambia",
-        "Sierra Leone",
-        "Bulgaria",
-        "Austria"
+        "Bulgaria"
       ],
       "hit_rank": null
     },
@@ -804,13 +804,13 @@
       "returned": [
         "Netherlands",
         "Luxembourg",
-        "Hungary",
         "Thailand",
+        "Hungary",
         "Costa Rica",
         "Yemen",
+        "Heilbronn",
+        "Armenia",
         "Gambia",
-        "Cambodia",
-        "Sierra Leone",
         "Bulgaria"
       ],
       "hit_rank": 1
@@ -823,15 +823,15 @@
       ],
       "returned": [
         "Italy",
-        "Mali",
         "Nigeria",
         "Guinea",
-        "Ivory Coast",
+        "Mali",
         "Hungary",
-        "Senegal",
-        "Madagascar",
+        "Peru",
+        "United Arab Emirates",
         "Bulgaria",
-        "Peru"
+        "Ivory Coast",
+        "Senegal"
       ],
       "hit_rank": 1
     },
@@ -846,12 +846,12 @@
         "Netherlands",
         "Bulgaria",
         "Syria",
-        "Yemen",
-        "Sierra Leone",
-        "Suriname",
         "Luxembourg",
-        "Palestine",
-        "Austria"
+        "Sierra Leone",
+        "Yemen",
+        "Suriname",
+        "Lithuania",
+        "Myanmar"
       ],
       "hit_rank": 1
     },
@@ -863,17 +863,17 @@
       ],
       "returned": [
         "Hungary",
-        "Bulgaria",
         "Netherlands",
+        "Bulgaria",
         "Syria",
         "Yemen",
-        "Austria",
-        "Sierra Leone",
-        "Suriname",
         "Luxembourg",
-        "Palestine"
+        "Austria",
+        "Suriname",
+        "Sierra Leone",
+        "Myanmar"
       ],
-      "hit_rank": 2
+      "hit_rank": 3
     },
     {
       "query": "a red circle centered on a plain white field",
@@ -883,15 +883,15 @@
       ],
       "returned": [
         "Japan",
-        "United Kingdom (1-2)",
         "Tunisia",
-        "Turkey",
-        "Montenegro (variant 2)",
+        "United Kingdom (1-2)",
         "Dutch East Indies",
-        "Switzerland",
-        "Switzerland (Pantone)",
+        "Turkey",
         "Vietnam",
-        "Morocco"
+        "Montenegro (variant 2)",
+        "Switzerland",
+        "Morocco",
+        "Switzerland (Pantone)"
       ],
       "hit_rank": 1
     },
@@ -906,12 +906,12 @@
         "Tunisia",
         "Japan",
         "Albania",
-        "Morocco",
         "Maldives",
+        "Latvia (state)",
+        "Dominica",
+        "Morocco",
         "Burundi",
-        "Latvia",
-        "Montenegro (variant 2)",
-        "Latvia (state)"
+        "Montenegro (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -923,15 +923,15 @@
       ],
       "returned": [
         "Palau",
-        "Nauru",
-        "Somalia",
-        "Finland (pre-1906)",
-        "Bosnia and Herzegovina",
         "Sweden",
+        "Somalia",
+        "Nauru",
+        "Bosnia and Herzegovina",
+        "Finland (pre-1906)",
         "Saint Lucia",
-        "Botswana",
-        "Aukra",
-        "Japan"
+        "Israel",
+        "Bosnia and Herzegovina (rotated)",
+        "Aukra"
       ],
       "hit_rank": 1
     },
@@ -945,13 +945,13 @@
         "Switzerland (Pantone)",
         "Switzerland",
         "International Committee of the Red Cross",
-        "United Kingdom (1-2)",
         "Montenegro (variant 2)",
-        "Malta (various)",
         "Denmark",
+        "Malta (various)",
         "Tonga",
-        "Milan",
-        "Georgia (country)"
+        "United Kingdom (1-2)",
+        "Georgia (country)",
+        "Koblenz"
       ],
       "hit_rank": 1
     },
@@ -962,18 +962,18 @@
         "Denmark"
       ],
       "returned": [
-        "Montenegro (variant 2)",
         "Norway",
         "Denmark",
+        "Montenegro (variant 2)",
+        "Switzerland (Pantone)",
         "Switzerland",
         "United Kingdom (1-2)",
-        "Switzerland (Pantone)",
+        "Tonga",
         "Malta (various)",
-        "Iceland",
         "Finland",
-        "Tonga"
+        "Iceland"
       ],
-      "hit_rank": 3
+      "hit_rank": 2
     },
     {
       "query": "a blue field with a yellow Scandinavian cross",
@@ -984,14 +984,14 @@
       "returned": [
         "Finland (pre-1906)",
         "Sweden",
-        "Iceland",
         "Finland",
-        "Norway",
+        "Iceland",
         "Toulon",
+        "Norway",
         "Greece",
+        "Bosnia and Herzegovina (rotated)",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "Palau",
-        "Bosnia and Herzegovina (rotated)"
+        "United Kingdom (1-2)"
       ],
       "hit_rank": 2
     },
@@ -1003,15 +1003,15 @@
       ],
       "returned": [
         "Finland",
+        "Finland (pre-1906)",
         "Iceland",
         "Norway",
-        "Finland (pre-1906)",
+        "United Kingdom (1-2)",
         "Sweden",
         "Greece",
-        "United Kingdom (1-2)",
         "Georgia (country)",
-        "Marseille",
-        "Dominica (variant 2)"
+        "Bosnia and Herzegovina (rotated)",
+        "Israel"
       ],
       "hit_rank": 1
     },
@@ -1023,15 +1023,15 @@
       ],
       "returned": [
         "Norway",
-        "Iceland",
-        "Finland",
         "United Kingdom (1-2)",
-        "Montenegro (variant 2)",
+        "Finland",
+        "Iceland",
         "Switzerland (Pantone)",
         "Finland (pre-1906)",
-        "Switzerland",
+        "Montenegro (variant 2)",
         "Tonga",
-        "Malta (various)"
+        "Georgia (country)",
+        "Switzerland"
       ],
       "hit_rank": 1
     },
@@ -1042,18 +1042,18 @@
         "Iceland"
       ],
       "returned": [
-        "Iceland",
         "Finland",
+        "Iceland",
         "Norway",
-        "Finland (pre-1906)",
         "United Kingdom (1-2)",
+        "Finland (pre-1906)",
         "Greece",
         "Sweden",
+        "Bosnia and Herzegovina (rotated)",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "United Kingdom",
-        "Dominica (variant 2)"
+        "Georgia (country)"
       ],
-      "hit_rank": 1
+      "hit_rank": 2
     },
     {
       "query": "a dark blue flag with the Union Jack in the top-left and white stars",
@@ -1066,12 +1066,12 @@
         "New Zealand",
         "Australia",
         "Tuvalu",
-        "Union for the Mediterranean",
-        "Panama",
         "Saint Kitts and Nevis (1707\u20131800)",
         "Philippines",
-        "Union of South American Nations",
-        "United Kingdom",
+        "Union for the Mediterranean",
+        "Panama",
+        "Marshall Islands",
+        "British Empire",
         "Fiji"
       ],
       "hit_rank": 1
@@ -1083,18 +1083,18 @@
         "Brazil"
       ],
       "returned": [
-        "Palau",
         "Brazil",
+        "Palau",
         "Bangladesh",
         "Japan",
         "Pakistan",
-        "Nauru",
         "Maldives",
+        "Nauru",
         "Dominica",
-        "Morocco",
-        "V\u00f5ru"
+        "Israel",
+        "Azerbaijan (variant 2)"
       ],
-      "hit_rank": 2
+      "hit_rank": 1
     },
     {
       "query": "three horizontal bands black yellow and red from top to bottom",
@@ -1103,18 +1103,18 @@
         "Belgium"
       ],
       "returned": [
-        "Bolivia",
-        "Yemen",
-        "Germany",
-        "Colombia",
         "Netherlands",
-        "Lithuania",
-        "Hungary",
+        "Germany",
+        "Bolivia",
         "Karlsruhe",
-        "Luxembourg",
-        "Belgium"
+        "Colombia",
+        "Yemen",
+        "Lithuania",
+        "Belgium",
+        "Hungary",
+        "Ghana"
       ],
-      "hit_rank": 10
+      "hit_rank": 8
     },
     {
       "query": "three vertical bands black yellow and red",
@@ -1125,14 +1125,14 @@
       "returned": [
         "Belgium",
         "Guinea",
+        "Germany",
         "Mali",
         "Senegal",
-        "Romania",
-        "Yemen",
-        "Germany",
+        "Cameroon",
+        "Peru",
         "Chad",
-        "Bolivia",
-        "Peru"
+        "Romania",
+        "Yemen"
       ],
       "hit_rank": 1
     },
@@ -1146,12 +1146,12 @@
         "Greece",
         "List of South African flags - Proposal for the Flag of South Africa, Southern Cross Stripes Version",
         "Liberia",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "Costa Rica",
-        "Australia",
         "Malaysia",
-        "Dominican Republic",
         "United States",
+        "Costa Rica",
+        "Dominican Republic",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Australia",
         "Namibia"
       ],
       "hit_rank": 1
@@ -1165,14 +1165,14 @@
       "returned": [
         "Greece",
         "Central African Republic",
-        "Dominican Republic",
-        "Comoros",
         "Cuba",
+        "Comoros",
+        "Dominican Republic",
         "Slovakia",
         "Liberia",
+        "Costa Rica",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "United Kingdom",
-        "Costa Rica"
+        "Malaysia"
       ],
       "hit_rank": 1
     },
@@ -1184,16 +1184,16 @@
         "Australia"
       ],
       "returned": [
-        "International Committee of the Red Cross",
         "Dominican Republic",
-        "Iceland",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "United Kingdom (1-2)",
+        "International Committee of the Red Cross",
         "Tonga",
+        "United Kingdom (1-2)",
         "Switzerland (Pantone)",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Norway",
         "United Kingdom",
         "Greece",
-        "Norway"
+        "Iceland"
       ],
       "hit_rank": null
     },
@@ -1206,14 +1206,14 @@
       "returned": [
         "Netherlands",
         "Colombia",
-        "Luxembourg",
-        "Thailand",
         "Armenia",
-        "Gabon",
         "Lithuania",
+        "Thailand",
+        "Luxembourg",
+        "Mauritius",
         "Yemen",
-        "Venezuela",
-        "Gambia"
+        "Germany",
+        "Gabon"
       ],
       "hit_rank": 2
     },
@@ -1227,13 +1227,13 @@
         "Colombia",
         "Ukraine",
         "Indonesia",
-        "Croatia (Habsburg)",
         "Austria (variant 2)",
-        "Namibia",
+        "Croatia (Habsburg)",
         "Bolivia",
-        "Panama",
+        "Namibia",
+        "Costa Rica",
         "Luxembourg",
-        "Austro-Hungarian rule in Bosnia and Herzegovina"
+        "Panama"
       ],
       "hit_rank": 1
     },
@@ -1249,13 +1249,13 @@
         "Germany",
         "Mauritius",
         "Netherlands",
-        "Colombia",
         "Armenia",
-        "Gabon",
+        "Colombia",
         "Thailand",
-        "Luxembourg"
+        "Luxembourg",
+        "Gabon"
       ],
-      "hit_rank": 7
+      "hit_rank": 6
     },
     {
       "query": "three horizontal bands red blue and orange",
@@ -1264,18 +1264,18 @@
         "Armenia"
       ],
       "returned": [
-        "Armenia",
         "Netherlands",
+        "Armenia",
         "Thailand",
         "Luxembourg",
         "Yemen",
         "Costa Rica",
-        "Venezuela",
         "Cambodia",
-        "Gambia",
+        "Malaysia (variant 2)",
+        "Mauritius",
         "Laos"
       ],
-      "hit_rank": 1
+      "hit_rank": 2
     },
     {
       "query": "a pale blue and white flag of two colors used by the UN",
@@ -1284,16 +1284,16 @@
         "Argentina"
       ],
       "returned": [
+        "Honduras",
         "Namibia",
+        "Cabo Verde",
         "K\u00e4rdla",
-        "Panama",
-        "Israel",
         "Dominican Republic",
-        "Saint Kitts and Nevis (1707\u20131800)",
-        "Haiti",
-        "Philippines",
         "Greece",
-        "Costa Rica"
+        "Viljandi",
+        "Costa Rica",
+        "Panama",
+        "Luxembourg"
       ],
       "hit_rank": null
     },
@@ -1308,12 +1308,12 @@
         "Lebanon",
         "Peru",
         "Netherlands",
-        "Somalia (variant 2)",
-        "Luxembourg",
         "Hungary",
-        "North Korea",
-        "Austria",
-        "Malaysia (variant 2)"
+        "Italy",
+        "Luxembourg",
+        "Malaysia (variant 2)",
+        "Somalia (variant 2)",
+        "Nigeria"
       ],
       "hit_rank": 1
     },
@@ -1325,14 +1325,14 @@
       ],
       "returned": [
         "Canada",
-        "United Kingdom (1-2)",
         "Japan",
+        "United Kingdom (1-2)",
         "Lebanon",
-        "Switzerland (Pantone)",
         "Nizhny Novgorod",
-        "Switzerland",
-        "Serbia (variant 2)",
         "Dominican Republic",
+        "Switzerland (Pantone)",
+        "Namibia",
+        "Switzerland",
         "Panama"
       ],
       "hit_rank": 1
@@ -1347,13 +1347,13 @@
         "Lebanon",
         "Nigeria",
         "Italy",
-        "Mali",
         "Madagascar",
-        "Ivory Coast",
         "Senegal",
-        "Guinea",
+        "Mali",
+        "Ivory Coast",
         "Saint Vincent and the Grenadines",
-        "Suriname"
+        "Guinea",
+        "Tajikistan"
       ],
       "hit_rank": 1
     },
@@ -1365,15 +1365,15 @@
       ],
       "returned": [
         "India",
-        "Ivory Coast",
         "Nigeria",
+        "Ivory Coast",
         "Italy",
-        "France",
         "Niger",
+        "France",
         "Saint Vincent and the Grenadines",
         "Senegal",
         "Netherlands",
-        "Mali"
+        "Lesotho"
       ],
       "hit_rank": 1
     },
@@ -1385,15 +1385,15 @@
       ],
       "returned": [
         "India",
-        "Thailand",
         "Hungary",
+        "Thailand",
         "Syria",
         "Netherlands",
-        "Sierra Leone",
         "Lesotho",
+        "Bulgaria",
+        "Sierra Leone",
         "Suriname",
-        "Palestine",
-        "Gabon"
+        "Myanmar"
       ],
       "hit_rank": 1
     },
@@ -1409,17 +1409,17 @@
       ],
       "returned": [
         "Lithuania",
-        "Central African Republic",
-        "Syria",
-        "Hungary",
         "Myanmar",
+        "Syria",
+        "Central African Republic",
+        "Hungary",
+        "Sao Tome and Principe",
         "Tajikistan",
         "Bolivia",
         "Suriname",
-        "Gabon",
-        "Sao Tome and Principe"
+        "Ghana"
       ],
-      "hit_rank": 7
+      "hit_rank": 8
     },
     {
       "query": "vertical bands green yellow red with a black star in the center",
@@ -1429,15 +1429,15 @@
       ],
       "returned": [
         "Senegal",
-        "Cameroon",
         "Guinea-Bissau",
+        "Cameroon",
         "Burkina Faso",
         "Ghana",
         "Myanmar",
         "Sao Tome and Principe",
-        "Suriname",
         "Mauritania",
-        "Mali"
+        "Suriname",
+        "Saint Kitts and Nevis"
       ],
       "hit_rank": 5
     },
@@ -1453,11 +1453,11 @@
         "Ghana",
         "Sao Tome and Principe",
         "Syria",
-        "Tajikistan",
-        "Cameroon",
         "Senegal",
+        "Tajikistan",
+        "Lithuania",
         "Burkina Faso",
-        "Lithuania"
+        "Cameroon"
       ],
       "hit_rank": 3
     },
@@ -1469,18 +1469,18 @@
         "Vietnam"
       ],
       "returned": [
-        "China",
-        "Bangladesh (variant 2)",
         "Papua New Guinea",
-        "Mauritania",
         "Vietnam",
-        "Grenada",
-        "Timor-Leste",
+        "China",
+        "Mauritania",
         "Central African Republic",
-        "Saudi Arabia (variant 2)",
-        "Tunisia"
+        "Bangladesh (variant 2)",
+        "Grenada",
+        "Tunisia",
+        "Burkina Faso",
+        "Timor-Leste"
       ],
-      "hit_rank": 1
+      "hit_rank": 2
     },
     {
       "query": "a plain red field with a large yellow five-pointed star in the center",
@@ -1491,14 +1491,14 @@
       "returned": [
         "Vietnam",
         "China",
-        "North Vietnam (historical)",
         "Morocco",
+        "North Vietnam (historical)",
         "Tunisia",
-        "Wu Yuzhang (variant 2)",
         "Indonesian Socialist Youth",
+        "Wu Yuzhang (variant 2)",
         "Somalia",
-        "Timor-Leste",
-        "Japan"
+        "Turkey",
+        "Timor-Leste"
       ],
       "hit_rank": 1
     },
@@ -1511,14 +1511,14 @@
       "returned": [
         "Pakistan",
         "Algeria",
-        "Comoros",
         "Mauritania",
-        "Togo",
+        "Comoros",
         "Central African Republic",
-        "Turkey",
-        "Cameroon",
+        "Togo",
         "Bangladesh (variant 2)",
-        "Senegal"
+        "Singapore",
+        "Turkey",
+        "Turkmenistan"
       ],
       "hit_rank": 1
     },
@@ -1533,12 +1533,12 @@
         "Tunisia",
         "Maldives",
         "Darul Islam (Indonesia) - War flag (official)",
-        "Pakistan",
         "Somalia (variant 2)",
         "Japan",
+        "Pakistan",
         "Riau-Lingga",
         "Moldova (variant 2)",
-        "Montenegro (variant 2)"
+        "China"
       ],
       "hit_rank": 1
     },
@@ -1551,14 +1551,14 @@
       "returned": [
         "Tunisia",
         "Singapore",
-        "Ottoman Empire (eight pointed star)",
-        "Burundi",
-        "Ottoman Empire (1844\u20131922)",
-        "Somalia (variant 2)",
         "Mosta",
+        "Burundi",
+        "Ottoman Empire (eight pointed star)",
+        "Somalia (variant 2)",
         "Turkey",
         "PETA / Pembela Tanah Air",
-        "Algeria"
+        "Algeria",
+        "Nepal"
       ],
       "hit_rank": 1
     },
@@ -1571,14 +1571,14 @@
       "returned": [
         "China",
         "Vietnam",
-        "Myanmar",
         "Central African Republic",
-        "Panama",
+        "Papua New Guinea",
+        "Myanmar",
         "Grenada",
-        "Togo",
+        "Panama",
         "Mauritania",
-        "Bangladesh (variant 2)",
-        "Papua New Guinea"
+        "Togo",
+        "Singapore"
       ],
       "hit_rank": 1
     },
@@ -1591,14 +1591,14 @@
       "returned": [
         "Argentina",
         "Uruguay",
+        "Rwanda",
+        "Central African Republic",
         "Costa Rica",
         "Cuba",
-        "Rwanda",
-        "Israel",
+        "Kazakhstan",
         "Liberia",
-        "Botswana",
-        "Nauru",
-        "Luxembourg"
+        "Israel",
+        "Namibia"
       ],
       "hit_rank": 1
     },
@@ -1612,13 +1612,13 @@
         "Uruguay",
         "Argentina",
         "Kazakhstan",
-        "Philippines",
         "Rwanda",
-        "Kyrgyzstan",
-        "Israel",
-        "Cuba",
+        "Philippines",
         "Taiwan",
-        "Slovenia"
+        "Israel",
+        "Central African Republic",
+        "Cuba",
+        "Marshall Islands"
       ],
       "hit_rank": 1
     },
@@ -1634,11 +1634,11 @@
         "Namibia",
         "Bangladesh (variant 2)",
         "Sri Lanka (variant 2)",
-        "El Salvador",
+        "Nicaragua",
         "Papua New Guinea",
+        "El Salvador",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "Serbia",
-        "Taiwan"
+        "Johor Bahru"
       ],
       "hit_rank": 1
     },
@@ -1652,13 +1652,13 @@
         "Saudi Arabia",
         "Laskar Jihad",
         "Iraq",
-        "Muhammadiyah",
         "Oman",
-        "Iran",
+        "Muhammadiyah",
         "Aisyiyah",
-        "Algeria",
+        "Iran",
+        "Nahdlatul Ulama",
         "Indonesia Arab Association",
-        "Nahdlatul Ulama"
+        "Gulf Cooperation Council"
       ],
       "hit_rank": 1
     },
@@ -1671,14 +1671,14 @@
       "returned": [
         "Papua New Guinea",
         "Bangladesh (variant 2)",
-        "Namibia",
         "Brunei",
+        "Namibia",
         "Zimbabwe",
         "Panama",
         "Dominica",
         "Philippines",
-        "Australia",
-        "Grenada"
+        "Saint Kitts and Nevis",
+        "Samoa"
       ],
       "hit_rank": 1
     },
@@ -1694,11 +1694,11 @@
         "Togo",
         "Equatorial Guinea",
         "Bangladesh (variant 2)",
-        "Organisation of African, Caribbean and Pacific States",
-        "Algeria",
+        "United Kingdom (1801\u20131816)",
         "Sri Lanka",
         "Comoros",
-        "Sao Tome and Principe"
+        "Organisation of African, Caribbean and Pacific States",
+        "Guyana"
       ],
       "hit_rank": 1
     },
@@ -1711,13 +1711,13 @@
       "returned": [
         "Sri Lanka (variant 2)",
         "Cambodia",
-        "Saint Kitts and Nevis (1707\u20131800)",
         "Philippines",
-        "Oman",
-        "Finland",
         "Nicaragua",
-        "El Salvador",
-        "Israel",
+        "Finland",
+        "Greece",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Dominican Republic",
+        "Oman",
         "Namibia"
       ],
       "hit_rank": 2
@@ -1733,12 +1733,12 @@
         "Sri Lanka",
         "Bangladesh (variant 2)",
         "Namibia",
-        "Papua New Guinea",
         "Qing China",
-        "Orange County, Florida",
-        "Czechia",
+        "Papua New Guinea",
         "Sri Lanka (variant 2)",
-        "Oman"
+        "Oman",
+        "Orange County, Florida",
+        "Ukraine (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -1752,14 +1752,14 @@
       "returned": [
         "Palestine",
         "Sudan",
-        "United Arab Emirates",
         "Kuwait",
+        "United Arab Emirates",
         "Jordan",
         "Madagascar",
         "Sao Tome and Principe",
         "Mozambique",
-        "South Sudan",
-        "Guinea-Bissau"
+        "Guinea-Bissau",
+        "Benin"
       ],
       "hit_rank": 1
     },
@@ -1772,14 +1772,14 @@
       "returned": [
         "Jordan",
         "Palestine",
-        "South Sudan",
         "Sao Tome and Principe",
+        "South Sudan",
         "Guinea-Bissau",
         "North Korea",
-        "Mozambique",
-        "Uzbekistan",
         "Sudan",
-        "Kuwait"
+        "Kuwait",
+        "Mozambique",
+        "Uzbekistan"
       ],
       "hit_rank": 1
     },
@@ -1792,14 +1792,14 @@
       "returned": [
         "Oman",
         "Tonga",
-        "Switzerland (Pantone)",
-        "Brunei",
-        "Serbia",
-        "Egypt",
         "Malta",
-        "Luxembourg (variant 2)",
+        "Sri Lanka (variant 2)",
+        "Serbia",
+        "Brunei",
         "Liberia",
-        "Singapore"
+        "Switzerland (Pantone)",
+        "Egypt",
+        "Chile"
       ],
       "hit_rank": 1
     },
@@ -1812,14 +1812,14 @@
       "returned": [
         "Qatar",
         "Bahrain",
-        "Tonga",
         "Finland",
-        "Denmark",
-        "Trinidad and Tobago",
         "Madagascar",
-        "Pakistan",
         "Guyana",
-        "Greece"
+        "Pakistan",
+        "Tonga",
+        "Latvia",
+        "Greece",
+        "Denmark"
       ],
       "hit_rank": 1
     },
@@ -1833,13 +1833,13 @@
         "Bahrain",
         "Singapore",
         "Comoros",
-        "Switzerland (Pantone)",
-        "Dominican Republic",
-        "Namibia",
         "Cuba",
-        "Tunisia",
-        "Oman",
-        "Papua New Guinea"
+        "Dominican Republic",
+        "Qatar",
+        "Switzerland (Pantone)",
+        "Papua New Guinea",
+        "Philippines",
+        "Oman"
       ],
       "hit_rank": 1
     },
@@ -1852,14 +1852,14 @@
       "returned": [
         "North Macedonia",
         "Imperial Japanese Army",
-        "China",
-        "Philippines",
-        "Antigua and Barbuda",
-        "Tunisia",
         "Ethiopia",
-        "New Mexico",
         "Kyrgyzstan",
-        "Namibia"
+        "Tunisia",
+        "Namibia",
+        "Grenada",
+        "New Mexico",
+        "China",
+        "Philippines"
       ],
       "hit_rank": 1
     },
@@ -1871,15 +1871,15 @@
       ],
       "returned": [
         "Egypt",
-        "Myanmar",
-        "Sao Tome and Principe",
         "Ghana",
-        "Palestine",
+        "Myanmar",
         "Syria",
         "Bolivia",
+        "Sao Tome and Principe",
         "Suriname",
-        "Libya",
-        "Germany"
+        "Lithuania",
+        "Palestine",
+        "Libya"
       ],
       "hit_rank": 1
     },
@@ -1891,15 +1891,15 @@
       ],
       "returned": [
         "Mexico",
-        "Moldova",
         "Serbia",
-        "Egypt",
-        "Poland (variant 2)",
+        "Moldova",
         "Sri Lanka (variant 2)",
+        "Poland (variant 2)",
+        "Egypt",
         "Guatemala",
-        "Serbia (variant 2)",
-        "Kazakhstan",
-        "El Salvador"
+        "Czechia",
+        "Papua New Guinea",
+        "Serbia (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -1911,15 +1911,15 @@
       ],
       "returned": [
         "Angola",
-        "Guinea-Bissau",
         "Saint Kitts and Nevis",
-        "Grenada",
         "Mozambique",
+        "Guinea-Bissau",
         "Timor-Leste",
-        "Ghana",
         "Papua New Guinea",
+        "Grenada",
         "Oman",
-        "South Sudan"
+        "Bangladesh (variant 2)",
+        "Ghana"
       ],
       "hit_rank": 1
     },
@@ -1936,8 +1936,8 @@
         "Peru",
         "Andorra",
         "Guatemala",
-        "France",
         "Serbia",
+        "France",
         "Italy",
         "Chad",
         "Moldova",
@@ -1953,15 +1953,15 @@
       ],
       "returned": [
         "Ecuador",
-        "Andorra",
-        "Colombia",
-        "El Salvador",
-        "Moldova",
         "Serbia",
-        "Guatemala",
+        "Andorra",
         "Netherlands (1815\u20131908)",
-        "Venezuela",
-        "Costa Rica"
+        "Colombia",
+        "Moldova",
+        "El Salvador",
+        "Guatemala",
+        "Nicaragua",
+        "Cambodia"
       ],
       "hit_rank": 1
     },
@@ -1974,17 +1974,17 @@
       ],
       "returned": [
         "Maldives",
-        "Saudi Arabia (variant 2)",
-        "Brunei",
-        "Guyana",
-        "Turkmenistan",
         "Libya (18th century)",
-        "Trinidad and Tobago",
+        "Saudi Arabia (variant 2)",
+        "Turkmenistan",
+        "Brunei",
         "Bangladesh (variant 2)",
-        "Pakistan",
-        "Brazil"
+        "Brazil",
+        "Guyana",
+        "Bhutan",
+        "Pakistan"
       ],
-      "hit_rank": 9
+      "hit_rank": 10
     },
     {
       "query": "a blue white and red horizontal flag with a yellow crest and two llamas or vicunas",
@@ -1996,13 +1996,13 @@
         "Oman",
         "Serbia",
         "Netherlands (1815\u20131908)",
-        "Haiti",
-        "El Salvador",
-        "Guatemala",
-        "Andorra",
         "Equatorial Guinea",
-        "Colombia",
-        "Namibia"
+        "El Salvador",
+        "Andorra",
+        "Guatemala",
+        "Haiti",
+        "Nicaragua",
+        "Costa Rica"
       ],
       "hit_rank": null
     },
@@ -2013,18 +2013,18 @@
         "Peru"
       ],
       "returned": [
-        "Canada",
         "Peru",
+        "Canada",
         "Somalia (variant 2)",
         "Serbia",
         "Netherlands (1815\u20131908)",
         "Andorra",
+        "Italy",
         "Netherlands",
         "Nigeria",
-        "Italy",
-        "Luxembourg"
+        "Croatia"
       ],
-      "hit_rank": 2
+      "hit_rank": 1
     },
     {
       "query": "a red white and blue flag with a yellow sun and inca imagery",
@@ -2034,15 +2034,15 @@
       ],
       "returned": [
         "Namibia",
-        "Nepal",
         "Philippines",
+        "Nepal",
+        "Taiwan",
+        "Malaysia",
         "Uruguay",
         "Haiti",
-        "Bangladesh (variant 2)",
-        "Taiwan",
         "Mongolia",
-        "Oman",
-        "Malaysia"
+        "Bangladesh (variant 2)",
+        "Oman"
       ],
       "hit_rank": null
     },
@@ -2055,15 +2055,15 @@
       ],
       "returned": [
         "Papua New Guinea",
+        "Split",
         "Namibia",
         "Bangladesh (variant 2)",
-        "Split",
-        "Philippines",
-        "Myanmar",
-        "Togo",
-        "Bosnia and Herzegovina",
         "Central African Republic",
-        "Cuba"
+        "Cuba",
+        "Liberia",
+        "Togo",
+        "Philippines",
+        "Johor Bahru"
       ],
       "hit_rank": null
     },
@@ -2076,15 +2076,15 @@
       ],
       "returned": [
         "Benin",
-        "Bangladesh (variant 2)",
-        "Saint Kitts and Nevis",
         "Tanzania",
         "Solomon Islands",
+        "Saint Kitts and Nevis",
+        "Bangladesh (variant 2)",
         "Sao Tome and Principe",
+        "Guinea-Bissau",
         "Oman",
-        "Sudan",
         "Palestine",
-        "Guinea-Bissau"
+        "Seychelles"
       ],
       "hit_rank": null
     },
@@ -2099,15 +2099,15 @@
         "Dominican Republic",
         "Saint Kitts and Nevis (1707\u20131800)",
         "Greece",
-        "Haiti",
         "Fiji",
         "Nepal",
-        "Iceland",
+        "Haiti",
+        "Equatorial Guinea",
         "International Committee of the Red Cross",
-        "Serbia",
-        "Norway"
+        "Netherlands (1815\u20131908)",
+        "Malta"
       ],
-      "hit_rank": 5
+      "hit_rank": 4
     },
     {
       "query": "a light blue flag with a shield and the Union Jack in the canton, Pacific",
@@ -2118,14 +2118,14 @@
       "returned": [
         "Fiji",
         "Tuvalu",
-        "New Zealand",
         "Australia",
+        "New Zealand",
         "Greece",
-        "Saint Kitts and Nevis (1707\u20131800)",
         "Ukraine (variant 2)",
+        "Saint Kitts and Nevis (1707\u20131800)",
         "List of South African flags - 1994\u20132003",
-        "Union for the Mediterranean",
-        "Pacific Islands Forum"
+        "List of South African flags - 2003\u2013present (variant 3)",
+        "Malaysia"
       ],
       "hit_rank": 1
     },
@@ -2137,17 +2137,17 @@
       ],
       "returned": [
         "United Kingdom (1-2)",
-        "Tonga",
         "United Kingdom",
-        "Greece",
+        "Tonga",
         "United Kingdom (1801\u20131816)",
-        "Switzerland (Pantone)",
         "Malta",
-        "Papua New Guinea",
-        "Samoa",
-        "Fiji"
+        "Greece",
+        "Switzerland (Pantone)",
+        "Georgia (country)",
+        "Kingdom of Hungary",
+        "Papua New Guinea"
       ],
-      "hit_rank": 2
+      "hit_rank": 3
     },
     {
       "query": "a flag with a golden harp on a field, or a green white orange arrangement",
@@ -2159,13 +2159,13 @@
         "Bangladesh (variant 2)",
         "Ireland",
         "Orange County, Florida",
-        "Kazakhstan",
         "Brazil",
-        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
         "United Kingdom (1801\u20131816)",
-        "Dominica",
-        "Sri Lanka",
-        "Saint Kitts and Nevis (1707\u20131800)"
+        "Azerbaijan (variant 2)",
+        "Kazakhstan",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Guyana"
       ],
       "hit_rank": 2
     },
@@ -2178,18 +2178,18 @@
         "Serbia"
       ],
       "returned": [
-        "Slovenia",
         "Paraguay",
+        "Slovenia",
         "Slovakia",
         "Croatia",
         "North Korea",
         "Azerbaijan",
         "Serbia",
-        "Venezuela",
         "Singapore",
-        "Jordan"
+        "Equatorial Guinea",
+        "Netherlands (1815\u20131908)"
       ],
-      "hit_rank": 1
+      "hit_rank": 2
     },
     {
       "query": "a white blue red horizontal tricolor with a red shield and a three-peak mountain and crescent",
@@ -2204,10 +2204,10 @@
         "Azerbaijan",
         "Nicaragua",
         "Serbia",
-        "Uzbekistan",
         "Croatia",
-        "Luxembourg",
-        "Netherlands"
+        "Uzbekistan",
+        "Netherlands",
+        "Luxembourg"
       ],
       "hit_rank": 1
     },
@@ -2220,14 +2220,14 @@
       "returned": [
         "Serbia",
         "Slovakia",
-        "Egypt",
         "Netherlands (1815\u20131908)",
-        "L\u00fcbeck",
+        "Egypt",
         "San Marino",
+        "L\u00fcbeck",
+        "Montenegro",
         "Croatia",
         "Moldova",
-        "Montenegro",
-        "El Salvador"
+        "Serbia (variant 2)"
       ],
       "hit_rank": 1
     },
@@ -2241,14 +2241,14 @@
       "returned": [
         "Albania",
         "Serbia (variant 2)",
-        "Novorossiysk",
         "Liechtenstein (1400-1806)",
+        "Novorossiysk",
         "Montenegro",
         "Serbia",
-        "L\u00fcbeck",
+        "Papua New Guinea",
         "Egypt",
-        "Annecy",
-        "Krasnodar"
+        "Sri Lanka (variant 2)",
+        "Annecy"
       ],
       "hit_rank": 1
     },
@@ -2263,12 +2263,12 @@
         "Serbia (variant 2)",
         "Liechtenstein (1400-1806)",
         "Montenegro",
-        "Zambia",
-        "Rijeka",
         "Annecy",
-        "Moldova (variant 2)",
+        "Rijeka",
+        "Zambia",
         "Pula",
-        "Mionica"
+        "Romania (variant 2)",
+        "Dortmund"
       ],
       "hit_rank": 1
     },
@@ -2280,17 +2280,17 @@
       ],
       "returned": [
         "Solomon Islands",
-        "Algeria",
         "Bangladesh (variant 2)",
-        "Myanmar",
-        "Morocco",
-        "Oman",
-        "Paraguay",
+        "Algeria",
         "Burkina Faso",
-        "Burundi",
-        "Cameroon"
+        "Mauritania",
+        "Paraguay",
+        "Oman",
+        "Myanmar",
+        "Suriname",
+        "Togo"
       ],
-      "hit_rank": 5
+      "hit_rank": null
     },
     {
       "query": "a red field with a green five-pointed star outline in the center",
@@ -2300,15 +2300,15 @@
       ],
       "returned": [
         "Morocco",
-        "China",
         "Vietnam",
+        "China",
         "Tunisia",
         "Timor-Leste",
         "Turkey",
-        "Grenada",
         "Dominica",
+        "Grenada",
         "Turkmenistan",
-        "Samoa"
+        "Maldives"
       ],
       "hit_rank": 1
     },
@@ -2323,12 +2323,12 @@
         "Sri Lanka (variant 2)",
         "Cyprus (variant 2)",
         "United Kingdom (1801\u20131816)",
-        "Montenegro",
         "Netherlands (1815\u20131908)",
+        "Montenegro",
         "S\u00eengerei",
         "Bangladesh (variant 2)",
-        "Ukraine (variant 2)",
-        "Czechia"
+        "Czechia",
+        "Dominican Republic"
       ],
       "hit_rank": 1
     },
@@ -2341,14 +2341,14 @@
       "returned": [
         "Madagascar",
         "Oman",
-        "Belarus",
-        "Algeria",
-        "United Arab Emirates",
         "Benin",
         "Guinea-Bissau",
+        "United Arab Emirates",
+        "Belarus",
+        "Algeria",
+        "Palestine",
         "Bangladesh (variant 2)",
-        "Kuwait",
-        "Malta"
+        "Kuwait"
       ],
       "hit_rank": null
     },
@@ -2362,13 +2362,13 @@
         "Sri Lanka (variant 2)",
         "Mexico",
         "El Salvador",
-        "Nepal",
         "Netherlands (1815\u20131908)",
-        "Serbia",
-        "Oman",
+        "Nepal",
         "Nicaragua",
-        "Moldova",
-        "Philippines"
+        "Serbia",
+        "Philippines",
+        "Oman",
+        "Moldova"
       ],
       "hit_rank": null
     },
@@ -2379,16 +2379,16 @@
         "Somalia"
       ],
       "returned": [
-        "K\u00e4rdla",
         "Egypt (variant 2)",
+        "K\u00e4rdla",
         "Namibia",
-        "Dominican Republic",
         "Greece",
+        "Dominican Republic",
         "Philippines",
         "El Salvador",
+        "Nicaragua",
         "Saint Kitts and Nevis (1707\u20131800)",
-        "Nepal",
-        "Israel"
+        "Cyprus"
       ],
       "hit_rank": null
     },
@@ -2405,10 +2405,10 @@
         "Chile",
         "Philippines",
         "Panama",
-        "Israel",
-        "Lyubertsy",
+        "Central African Republic",
         "Nauru",
-        "North Korea"
+        "Lyubertsy",
+        "Qrendi"
       ],
       "hit_rank": 1
     },
@@ -2419,16 +2419,16 @@
         "Burundi"
       ],
       "returned": [
-        "South African team (1994 Winter Olympics)",
         "Oman",
         "Central African Republic",
-        "List of South African flags - 2003\u2013present (variant 2)",
+        "South African team (1994 Winter Olympics)",
+        "Sri Lanka (variant 2)",
+        "Malta",
         "List of South African flags - 2002\u20132003",
-        "Nepal",
+        "List of South African flags - 2003\u2013present (variant 2)",
         "United Kingdom (1801\u20131816)",
-        "Cyprus (variant 2)",
-        "List of South African flags - 2003\u2013present",
-        "Angola"
+        "Kenya",
+        "Cyprus (variant 2)"
       ],
       "hit_rank": null
     },
@@ -2439,18 +2439,18 @@
         "Burundi"
       ],
       "returned": [
+        "Papua New Guinea",
         "Burundi",
         "Bangladesh (variant 2)",
-        "Papua New Guinea",
         "Namibia",
+        "Algeria",
         "Dominican Republic",
         "Uzbekistan",
-        "Algeria",
+        "Singapore",
         "Jordan",
-        "Panama",
-        "Singapore"
+        "Panama"
       ],
-      "hit_rank": 1
+      "hit_rank": 2
     },
     {
       "query": "a flag split by a white saltire into red top and bottom and green left and right with a white disc and stars",
@@ -2460,15 +2460,15 @@
       ],
       "returned": [
         "Burundi",
+        "Namibia",
         "Split",
         "Panama",
-        "Namibia",
-        "Bangladesh (variant 2)",
         "Papua New Guinea",
+        "Bangladesh (variant 2)",
         "Philippines",
         "Luxembourg (variant 2)",
-        "Iran",
-        "Central Sulawesi Youth Movement"
+        "Singapore",
+        "Iran"
       ],
       "hit_rank": 1
     },
@@ -2481,15 +2481,15 @@
       ],
       "returned": [
         "Syria",
-        "Jordan",
         "Suriname",
         "Myanmar",
+        "Jordan",
+        "Hungary",
+        "Sao Tome and Principe",
+        "Ghana",
         "Libya",
         "Tajikistan",
-        "Ghana",
-        "Hungary",
-        "Uzbekistan",
-        "Sao Tome and Principe"
+        "Bulgaria"
       ],
       "hit_rank": 1
     },
@@ -2503,12 +2503,12 @@
         "Iraq",
         "Iran",
         "Egypt",
-        "Jordan",
         "Saudi Arabia",
+        "Jordan",
         "Libya",
         "Brunei",
-        "Syria",
         "Sao Tome and Principe",
+        "Syria",
         "Sudan"
       ],
       "hit_rank": 1
@@ -2521,13 +2521,13 @@
       ],
       "returned": [
         "Syria",
-        "Jordan",
         "Suriname",
-        "Ghana",
         "Myanmar",
+        "Jordan",
+        "Ghana",
         "Hungary",
-        "Libya",
         "Sao Tome and Principe",
+        "Libya",
         "Tajikistan",
         "Iraq"
       ],
@@ -2542,14 +2542,14 @@
       "returned": [
         "Nigeria",
         "Senegal",
-        "Bangladesh (variant 2)",
-        "Ivory Coast",
         "Italy",
-        "Mali",
+        "Bangladesh (variant 2)",
         "Namibia",
+        "Mali",
         "Cameroon",
-        "Algeria",
-        "Oman"
+        "Ivory Coast",
+        "Guinea",
+        "Algeria"
       ],
       "hit_rank": 1
     },
@@ -2562,14 +2562,14 @@
       "returned": [
         "Bulgaria",
         "Nigeria",
-        "Italy",
         "Bolivia",
-        "Ivory Coast",
+        "Italy",
         "Chad",
         "Senegal",
+        "Ivory Coast",
         "Mali",
         "Guinea",
-        "Madagascar"
+        "United Arab Emirates"
       ],
       "hit_rank": 2
     },
@@ -2582,17 +2582,17 @@
       ],
       "returned": [
         "Russian Soviet Federative Socialist Republic (historical)",
-        "List of Chinese flags - Zeng Liansong's original proposal for the PRC flag[20]",
         "Soviet Union (historical)",
         "Kazakh Soviet Socialist Republic (historical)",
-        "Checheno-Ingush ASSR - Flag of Checheno-Ingushetia(de jure; until 16 May 1992)",
+        "List of Chinese flags - Zeng Liansong's original proposal for the PRC flag[20]",
+        "Lithuanian Soviet Socialist Republic (historical)",
         "List of Chinese flags - Design by Chen Duo",
         "Uzbek Soviet Socialist Republic (historical)",
         "Moldavian Soviet Socialist Republic (historical)",
-        "Lithuanian Soviet Socialist Republic (historical)",
-        "List of Chinese flags - Design by Bao Qiquan"
+        "Checheno-Ingush ASSR - Flag of Checheno-Ingushetia(de jure; until 16 May 1992)",
+        "New Zealand"
       ],
-      "hit_rank": 3
+      "hit_rank": 2
     },
     {
       "query": "three vertical bands green yellow and red with a red five-pointed star, Sahel",
@@ -2601,18 +2601,18 @@
         "Senegal"
       ],
       "returned": [
-        "Cameroon",
         "Senegal",
+        "Cameroon",
         "Mauritania",
         "Ghana",
         "Myanmar",
         "Guinea-Bissau",
-        "Suriname",
         "Sao Tome and Principe",
-        "Central African Republic",
-        "Tajikistan"
+        "Syria",
+        "Suriname",
+        "Central African Republic"
       ],
-      "hit_rank": 2
+      "hit_rank": 1
     },
     {
       "query": "three vertical bands green yellow red with a black five-pointed star in the center",
@@ -2621,16 +2621,16 @@
         "Guinea-Bissau"
       ],
       "returned": [
-        "Cameroon",
         "Senegal",
+        "Cameroon",
         "Ghana",
         "Guinea-Bissau",
         "Myanmar",
-        "Sao Tome and Principe",
-        "Suriname",
         "Burkina Faso",
+        "Sao Tome and Principe",
         "Syria",
-        "Mauritania"
+        "Mauritania",
+        "Suriname"
       ],
       "hit_rank": 4
     },
@@ -2643,14 +2643,14 @@
       "returned": [
         "Guinea-Bissau",
         "Sao Tome and Principe",
-        "Mozambique",
-        "Jordan",
-        "United Arab Emirates",
         "Benin",
+        "United Arab Emirates",
+        "Mozambique",
         "Palestine",
-        "South Sudan",
+        "Jordan",
         "Kuwait",
-        "Madagascar"
+        "Madagascar",
+        "Sudan"
       ],
       "hit_rank": 1
     },
@@ -2662,16 +2662,16 @@
         "Mali"
       ],
       "returned": [
-        "Mali",
         "Guinea",
-        "Central African Republic",
-        "Senegal",
+        "Mali",
         "Italy",
-        "Cameroon",
+        "Senegal",
         "Lithuania",
-        "Nigeria",
+        "Central African Republic",
         "Belgium",
-        "Ivory Coast"
+        "Cameroon",
+        "Nigeria",
+        "Peru"
       ],
       "hit_rank": 1
     },
@@ -2682,18 +2682,18 @@
         "Mali"
       ],
       "returned": [
-        "Mali",
         "Guinea",
-        "Senegal",
+        "Mali",
         "Italy",
-        "Central African Republic",
+        "Senegal",
         "Belgium",
         "Lithuania",
         "Cameroon",
         "Nigeria",
-        "Bolivia"
+        "Central African Republic",
+        "Peru"
       ],
-      "hit_rank": 1
+      "hit_rank": 2
     }
   ]
 }

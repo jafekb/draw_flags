@@ -124,6 +124,24 @@ Render Starter's 512 MB / 0.5 CPU. int8 quantization was quality-neutral (fp32 a
 int8 scored within noise). `run_eval.py --experiment production` evaluates the exact
 shipped configuration.
 
+### Color metadata (single source of truth)
+
+Color had drifted into two conflicting sources: the pixel-based quantizer
+(`color_coverage`, an 11-color Lab/CIEDE2000 palette) and the VLM's free-text
+`visual.colors` (33% of flags used off-palette words like navy/gold/cream). We made
+the **quantizer canonical** and dropped `visual.colors`. Improvements:
+
+- Added **gold** `(211,183,115)` and **brown** `(145,65,20)` to the palette,
+  hand-labeling ~100 boundary pixels and *optimizing* those two centroids against the
+  labels (naive label-means regressed neighbors) — label accuracy 80% → 88%, no
+  collateral damage (red stays intact). Gold now tags 743 flags, brown 317.
+- **Edge suppression**: boundary/anti-alias pixels are dropped before counting, which
+  removes spurious colors from blends (e.g. blue↔gold seams that quantized to a fake
+  "green"). `color_coverage` is rounded to 3 decimals with zero entries dropped.
+- The search document's color words now come from `color_coverage` (dominant ≥8%), so
+  free-text color queries, the color-filter chips, and the palette all share one
+  vocabulary. Search quality held (MRR 0.79).
+
 ### Known limitations / next steps
 
 - 46 flags have unrenderable source SVGs and remain name-only (findable by name).

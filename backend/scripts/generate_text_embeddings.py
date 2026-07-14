@@ -34,7 +34,7 @@ def main() -> None:
     args = ap.parse_args()
 
     flags = flaglist_from_json(FLAGS_FILE).flags
-    documents = [build_document(f.name, f.visual, include_name=False) for f in flags]
+    documents = [build_document(f, include_name=False) for f in flags]
 
     encoder = OnnxTextEncoder(Path(args.onnx), Path(args.tokenizer))
     embeddings = encoder.encode(documents).astype(np.float32)

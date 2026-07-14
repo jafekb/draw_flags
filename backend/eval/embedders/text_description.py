@@ -43,9 +43,7 @@ def make_text_description_experiment(
     flags = flaglist_from_json(FLAGS_FILE).flags
     model = _get_model(model_name)
 
-    documents = [
-        build_document(f.name, f.visual, include_name=include_name) for f in flags
-    ]
+    documents = [build_document(f, include_name=include_name) for f in flags]
     corpus = np.asarray(model.encode(documents, batch_size=64, show_progress_bar=False))
 
     prefix = _query_prefix(model_name)

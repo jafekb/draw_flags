@@ -37,7 +37,7 @@ class OnnxHybridExperiment:
         self._flag_names = load_flag_names()
         self._encoder = OnnxTextEncoder(Path(onnx_path), Path(tokenizer_path))
 
-        documents = [build_document(f.name, f.visual, include_name=False) for f in flags]
+        documents = [build_document(f, include_name=False) for f in flags]
         corpus = self._encoder.encode(documents)
         self._corpus = corpus / np.clip(np.linalg.norm(corpus, axis=1, keepdims=True), 1e-12, None)
         self._name_token_sets = build_name_token_sets(self._flag_names)
