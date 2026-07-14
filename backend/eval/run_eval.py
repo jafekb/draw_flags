@@ -101,10 +101,46 @@ class EmbeddingExperiment:
         return ranked
 
 
+def _textdesc(model_name: str, *, include_name: bool):
+    def factory():
+        from backend.eval.embedders.text_description import make_text_description_experiment
+
+        return make_text_description_experiment(model_name, include_name=include_name)
+
+    return factory
+
+
+def _image_clip(model_name: str):
+    def factory():
+        from backend.eval.embedders.image_clip import make_sentence_transformers_clip
+
+        return make_sentence_transformers_clip(model_name)
+
+    return factory
+
+
+def _hybrid(model_name: str, weight: float, *, include_name_in_doc: bool):
+    def factory():
+        from backend.eval.embedders.hybrid import HybridExperiment
+
+        return HybridExperiment(model_name, weight, include_name_in_doc=include_name_in_doc)
+
+    return factory
+
+
 # Registry of runnable experiments (name -> zero-arg factory). Add new experiments
 # here as they are built; heavy imports stay lazy inside the factory.
 EXPERIMENTS: Dict[str, Callable[[], Experiment]] = {
     "baseline": ClipBaselineExperiment,
+    "textdesc_bge_small": _textdesc("BAAI/bge-small-en-v1.5", include_name=True),
+    "textdesc_bge_small_desconly": _textdesc("BAAI/bge-small-en-v1.5", include_name=False),
+    "textdesc_minilm": _textdesc("sentence-transformers/all-MiniLM-L6-v2", include_name=True),
+    "textdesc_bge_base": _textdesc("BAAI/bge-base-en-v1.5", include_name=True),
+    "image_clip_vitb32": _image_clip("clip-ViT-B-32"),
+    "image_clip_vitl14": _image_clip("clip-ViT-L-14"),
+    "hybrid_bge_base_w03": _hybrid("BAAI/bge-base-en-v1.5", 0.3, include_name_in_doc=False),
+    "hybrid_bge_base_w05": _hybrid("BAAI/bge-base-en-v1.5", 0.5, include_name_in_doc=False),
+    "hybrid_bge_small_w05": _hybrid("BAAI/bge-small-en-v1.5", 0.5, include_name_in_doc=False),
 }
 
 

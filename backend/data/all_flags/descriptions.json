@@ -1,0 +1,3290 @@
+{
+ "Afghanistan": {
+  "colors": [
+   "white",
+   "black"
+  ],
+  "description": "a plain white field covered by large black flowing Arabic calligraphy script",
+  "layout": "plain field",
+  "symbols": [
+   "arabic calligraphy"
+  ]
+ },
+ "Albania": {
+  "colors": [
+   "red",
+   "black"
+  ],
+  "description": "a solid red field with a black double-headed eagle centered",
+  "layout": "plain field",
+  "symbols": [
+   "double-headed eagle"
+  ]
+ },
+ "Algeria": {
+  "colors": [
+   "green",
+   "white",
+   "red"
+  ],
+  "description": "a vertical bicolor of green on the hoist and white on the fly with a red crescent and a red five-pointed star in the center",
+  "layout": "vertical bicolor",
+  "symbols": [
+   "crescent",
+   "five-pointed star",
+   "star and crescent"
+  ]
+ },
+ "Andorra": {
+  "colors": [
+   "blue",
+   "yellow",
+   "red"
+  ],
+  "description": "a vertical triband of blue, yellow, and red with an ornate coat of arms bearing a mitre, cattle, and stripes centered on the yellow band",
+  "layout": "vertical triband",
+  "symbols": [
+   "coat of arms",
+   "mitre",
+   "cattle",
+   "shield"
+  ]
+ },
+ "Angola": {
+  "colors": [
+   "red",
+   "black",
+   "yellow"
+  ],
+  "description": "a horizontal bicolor of red over black with a centered yellow emblem of a half gear wheel crossed with a machete and a five-pointed star",
+  "layout": "bicolor",
+  "symbols": [
+   "gear",
+   "machete",
+   "five-pointed star"
+  ]
+ },
+ "Antigua and Barbuda": {
+  "colors": [
+   "red",
+   "black",
+   "blue",
+   "white",
+   "yellow"
+  ],
+  "description": "a red field with a black, blue, and white inverted triangle in the center topped by a rising golden sun with rays against the black band",
+  "layout": "complex",
+  "symbols": [
+   "rising sun"
+  ]
+ },
+ "Argentina": {
+  "colors": [
+   "light blue",
+   "white",
+   "yellow"
+  ],
+  "description": "a horizontal triband of light blue, white, and light blue with a golden sun bearing a human face in the center",
+  "layout": "horizontal triband",
+  "symbols": [
+   "sun with face"
+  ]
+ },
+ "Armenia": {
+  "colors": [
+   "red",
+   "blue",
+   "orange"
+  ],
+  "description": "a horizontal triband of red, blue, and orange",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Australia": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "a dark blue field with a Union Jack in the upper hoist canton, a large white seven-pointed star below it, and five white stars of the Southern Cross in the fly",
+  "layout": "canton",
+  "symbols": [
+   "union jack",
+   "seven-pointed star",
+   "southern cross stars"
+  ]
+ },
+ "Austria": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "a horizontal triband of red, white, and red",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Austria (variant 2)": {
+  "colors": [
+   "black",
+   "yellow",
+   "gold"
+  ],
+  "description": "a horizontal bicolor of black on top and golden yellow on the bottom",
+  "layout": "bicolor",
+  "symbols": []
+ },
+ "Azerbaijan": {
+  "colors": [
+   "light blue",
+   "red",
+   "green",
+   "white"
+  ],
+  "description": "a horizontal triband of light blue, red, and green with a white crescent and a white eight-pointed star centered on the red band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "crescent",
+   "eight-pointed star",
+   "star and crescent"
+  ]
+ },
+ "Azerbaijan (variant 2)": {
+  "colors": [
+   "green",
+   "gold"
+  ],
+  "description": "a green field with a golden walking lion and a large golden sun bearing a human face rising behind it",
+  "layout": "plain field",
+  "symbols": [
+   "lion",
+   "sun with face"
+  ]
+ },
+ "Bahamas": {
+  "colors": [
+   "teal",
+   "gold",
+   "black"
+  ],
+  "description": "a horizontal triband of teal, gold, and teal with a black triangle pointing from the hoist",
+  "layout": "horizontal triband",
+  "symbols": [
+   "triangle"
+  ]
+ },
+ "Bahrain": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "a white band at the hoist and a red field at the fly separated by a serrated line with five white points",
+  "layout": "bicolor",
+  "symbols": [
+   "serrated edge"
+  ]
+ },
+ "Bangladesh": {
+  "colors": [
+   "green",
+   "red"
+  ],
+  "description": "a dark green field with a large red disc positioned slightly toward the hoist of center",
+  "layout": "plain field",
+  "symbols": [
+   "disc"
+  ]
+ },
+ "Bangladesh (variant 2)": {
+  "colors": [
+   "green",
+   "white",
+   "gold",
+   "yellow"
+  ],
+  "description": "a flag divided diagonally into an olive-green lower-hoist triangle sprinkled with tiny gold stars and holding a golden sun with rays, and a plain white upper-fly triangle",
+  "layout": "diagonal",
+  "symbols": [
+   "sun",
+   "stars"
+  ]
+ },
+ "Barbados": {
+  "colors": [
+   "blue",
+   "gold",
+   "black"
+  ],
+  "description": "a vertical triband of blue, gold, and blue with a black broken trident head centered on the gold band",
+  "layout": "vertical triband",
+  "symbols": [
+   "trident"
+  ]
+ },
+ "Belarus": {
+  "colors": [
+   "red",
+   "green",
+   "white"
+  ],
+  "description": "a horizontal bicolor of red over green with a vertical white and red ornamental patterned stripe along the hoist",
+  "layout": "bicolor",
+  "symbols": [
+   "ornamental pattern"
+  ]
+ },
+ "Belgium": {
+  "colors": [
+   "black",
+   "yellow",
+   "red"
+  ],
+  "description": "a vertical triband of black, yellow, and red",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Belize": {
+  "colors": [
+   "blue",
+   "red",
+   "white",
+   "green"
+  ],
+  "description": "a blue field with narrow red stripes at top and bottom and a large white circle in the center containing a coat of arms with two men, a mahogany tree, tools, and a laurel wreath",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "human figures",
+   "tree",
+   "tools",
+   "laurel wreath",
+   "ship"
+  ]
+ },
+ "Benin": {
+  "colors": [
+   "green",
+   "yellow",
+   "red"
+  ],
+  "description": "a green vertical band at the hoist and two horizontal bands of yellow over red at the fly",
+  "layout": "complex",
+  "symbols": []
+ },
+ "Bhutan": {
+  "colors": [
+   "yellow",
+   "orange",
+   "white"
+  ],
+  "description": "a field divided diagonally into yellow upper hoist and orange lower fly with a large white dragon holding jewels across the center",
+  "layout": "diagonal",
+  "symbols": [
+   "dragon"
+  ]
+ },
+ "Bolivia": {
+  "colors": [
+   "red",
+   "yellow",
+   "green"
+  ],
+  "description": "horizontal triband of red on top, yellow in the middle, and green on the bottom with no emblem",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Bosnia and Herzegovina": {
+  "colors": [
+   "blue",
+   "yellow",
+   "white"
+  ],
+  "description": "a blue field with a yellow right triangle along the top and a diagonal row of white five-pointed stars running beside its hypotenuse",
+  "layout": "diagonal",
+  "symbols": [
+   "five-pointed star",
+   "triangle"
+  ]
+ },
+ "Bosnia and Herzegovina (rotated)": {
+  "colors": [
+   "blue",
+   "white",
+   "gold",
+   "gray"
+  ],
+  "description": "a blue field divided by a white diagonal band carrying a wavy gray bend with small crosses, strewn with golden fleur-de-lis and a white star point at the fly",
+  "layout": "diagonal",
+  "symbols": [
+   "fleur-de-lis",
+   "cross",
+   "star"
+  ]
+ },
+ "Botswana": {
+  "colors": [
+   "light blue",
+   "black",
+   "white"
+  ],
+  "description": "light blue field split across the center by a black horizontal band edged with two thin white stripes",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Brazil": {
+  "colors": [
+   "green",
+   "yellow",
+   "blue",
+   "white"
+  ],
+  "description": "green field with a large yellow diamond enclosing a dark blue globe crossed by a white banner reading Ordem e Progresso and scattered white stars",
+  "layout": "complex",
+  "symbols": [
+   "diamond",
+   "globe",
+   "stars",
+   "banner"
+  ]
+ },
+ "Brunei": {
+  "colors": [
+   "yellow",
+   "white",
+   "black",
+   "red"
+  ],
+  "description": "yellow field crossed diagonally by white and black stripes with a central red emblem featuring a crescent, a parasol, upraised hands, wings, and Arabic script",
+  "layout": "diagonal",
+  "symbols": [
+   "crescent",
+   "coat of arms",
+   "hands",
+   "wings",
+   "arabic script"
+  ]
+ },
+ "Bulgaria": {
+  "colors": [
+   "white",
+   "green",
+   "red"
+  ],
+  "description": "horizontal triband of white on top, green in the middle, and red on the bottom with no emblem",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Burkina Faso": {
+  "colors": [
+   "red",
+   "green",
+   "yellow"
+  ],
+  "description": "red band over a green band with a single yellow five-pointed star centered in the middle",
+  "layout": "bicolor",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Burundi": {
+  "colors": [
+   "white",
+   "red",
+   "green"
+  ],
+  "description": "white saltire cross dividing the field into red top and bottom and green left and right, with a central white disc holding three red six-pointed stars edged in green",
+  "layout": "saltire",
+  "symbols": [
+   "saltire",
+   "six-pointed star"
+  ]
+ },
+ "Cambodia": {
+  "colors": [
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "blue-red-blue horizontal bands with a white three-towered temple outlined in black in the center",
+  "layout": "horizontal triband",
+  "symbols": [
+   "temple",
+   "building"
+  ]
+ },
+ "Cameroon": {
+  "colors": [
+   "green",
+   "red",
+   "yellow"
+  ],
+  "description": "vertical triband of green, red, and yellow with a single yellow five-pointed star centered in the red middle stripe",
+  "layout": "vertical triband",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Canada": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "white square in the center flanked by two red vertical bands, with a red eleven-pointed maple leaf in the middle",
+  "layout": "vertical triband",
+  "symbols": [
+   "maple leaf"
+  ]
+ },
+ "Central African Republic": {
+  "colors": [
+   "blue",
+   "white",
+   "green",
+   "yellow",
+   "red"
+  ],
+  "description": "four horizontal stripes of blue, white, green, and yellow crossed by a vertical red band, with a yellow five-pointed star in the upper hoist corner",
+  "layout": "complex",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Chad": {
+  "colors": [
+   "blue",
+   "yellow",
+   "red"
+  ],
+  "description": "vertical triband of dark blue, yellow, and red with no emblem",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Chile": {
+  "colors": [
+   "white",
+   "red",
+   "blue"
+  ],
+  "description": "white band over a red band with a blue square in the upper hoist canton containing a single white five-pointed star",
+  "layout": "canton",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "China": {
+  "colors": [
+   "red",
+   "yellow"
+  ],
+  "description": "red field with a large yellow five-pointed star in the upper hoist and an arc of four smaller yellow stars to its right",
+  "layout": "canton",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Colombia": {
+  "colors": [
+   "yellow",
+   "blue",
+   "red"
+  ],
+  "description": "horizontal bands of yellow filling the top half, then blue and red in the lower half, with no emblem",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Comoros": {
+  "colors": [
+   "yellow",
+   "white",
+   "red",
+   "blue",
+   "green"
+  ],
+  "description": "four horizontal stripes of yellow, white, red, and blue with a green triangle at the hoist bearing a white crescent and four white five-pointed stars",
+  "layout": "complex",
+  "symbols": [
+   "crescent",
+   "five-pointed star",
+   "triangle"
+  ]
+ },
+ "Costa Rica": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "horizontal stripes of blue, white, red, white, and blue with a wide red band across the center and no emblem",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Croatia": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "a horizontal triband of red, white, and blue with a central red-and-white checkerboard shield topped by a crown of five small shields",
+  "layout": "horizontal triband",
+  "symbols": [
+   "coat of arms",
+   "checkerboard shield",
+   "crown"
+  ]
+ },
+ "Croatia (Habsburg)": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "a horizontal bicolor of red on top and white on the bottom",
+  "layout": "bicolor",
+  "symbols": []
+ },
+ "Cuba": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "five horizontal stripes alternating blue and white with a red triangle at the hoist containing a single white five-pointed star",
+  "layout": "complex",
+  "symbols": [
+   "five-pointed star",
+   "triangle"
+  ]
+ },
+ "Cyprus": {
+  "colors": [
+   "white",
+   "orange",
+   "green"
+  ],
+  "description": "a white field with a copper-orange silhouette of an island above two crossed green olive branches",
+  "layout": "plain field",
+  "symbols": [
+   "map",
+   "olive branches"
+  ]
+ },
+ "Cyprus (variant 2)": {
+  "colors": [
+   "white",
+   "gold",
+   "red",
+   "blue",
+   "yellow"
+  ],
+  "description": "a four-quartered banner with a golden Jerusalem cross on white, a crowned red lion rampant on blue-and-white stripes, a red lion on yellow, and a red lion rampant on white",
+  "layout": "complex",
+  "symbols": [
+   "cross",
+   "lion",
+   "crown"
+  ]
+ },
+ "Czech Republic": {
+  "colors": [
+   "white",
+   "red",
+   "blue"
+  ],
+  "description": "white top band over a red bottom band with a blue triangle extending from the hoist toward the center",
+  "layout": "complex",
+  "symbols": [
+   "triangle"
+  ]
+ },
+ "Denmark": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "red field with an off-center white cross whose vertical arm is shifted toward the hoist",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Djibouti": {
+  "colors": [
+   "light blue",
+   "green",
+   "white",
+   "red"
+  ],
+  "description": "light blue top and green bottom bands with a white triangle at the hoist containing a red five-pointed star",
+  "layout": "complex",
+  "symbols": [
+   "five-pointed star",
+   "triangle"
+  ]
+ },
+ "Dominica": {
+  "colors": [
+   "green",
+   "yellow",
+   "black",
+   "white",
+   "red",
+   "purple"
+  ],
+  "description": "a green field crossed by centered yellow, black, and white stripes with a red central disc holding a purple-and-green parrot ringed by ten green five-pointed stars",
+  "layout": "cross",
+  "symbols": [
+   "cross",
+   "parrot",
+   "five-pointed star",
+   "disc"
+  ]
+ },
+ "Dominica (variant 2)": {
+  "colors": [
+   "white",
+   "blue",
+   "gold",
+   "red"
+  ],
+  "description": "a white field with a central blue shield bearing three gold fleur-de-lis, topped by a red and gold royal crown and encircled by a gold laurel chain with trailing yellow ribbons and a cross-shaped pendant below",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "fleur-de-lis",
+   "crown",
+   "cross"
+  ]
+ },
+ "Dominican Republic": {
+  "colors": [
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "a flag divided into four rectangles by a white cross, with blue and red alternating quarters and a small central coat of arms with flags and a laurel branch",
+  "layout": "cross",
+  "symbols": [
+   "cross",
+   "coat of arms",
+   "laurel branch",
+   "flags"
+  ]
+ },
+ "Ecuador": {
+  "colors": [
+   "yellow",
+   "blue",
+   "red"
+  ],
+  "description": "a horizontal triband of a wide yellow top, blue middle, and red bottom with a central coat of arms featuring a condor above an oval mountain-and-ship scene",
+  "layout": "horizontal triband",
+  "symbols": [
+   "condor",
+   "coat of arms",
+   "mountain",
+   "sun",
+   "ship"
+  ]
+ },
+ "Egypt": {
+  "colors": [
+   "red",
+   "white",
+   "black",
+   "gold"
+  ],
+  "description": "a horizontal triband of red, white, and black with a gold eagle emblem centered on the white stripe above small gold Arabic script",
+  "layout": "horizontal triband",
+  "symbols": [
+   "eagle"
+  ]
+ },
+ "Egypt (variant 2)": {
+  "colors": [
+   "white"
+  ],
+  "description": "a plain blank white field with no visible colors or emblems",
+  "layout": "plain field",
+  "symbols": []
+ },
+ "El Salvador": {
+  "colors": [
+   "blue",
+   "white"
+  ],
+  "description": "a horizontal triband of blue, white, and blue with a central round emblem containing a triangle, mountains, and gold lettering",
+  "layout": "horizontal triband",
+  "symbols": [
+   "coat of arms",
+   "triangle",
+   "mountains",
+   "laurel wreath"
+  ]
+ },
+ "Equatorial Guinea": {
+  "colors": [
+   "green",
+   "white",
+   "red",
+   "light blue",
+   "gold"
+  ],
+  "description": "a horizontal triband of green, white, and red with a blue triangle at the hoist and a central coat of arms showing a silver shield with a tree, six gold six-pointed stars above, and a white motto ribbon reading UNIDAD PAZ JUSTICIA",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "tree",
+   "six-pointed star"
+  ]
+ },
+ "Equatorial Guinea (1667)": {
+  "colors": [
+   "white",
+   "red",
+   "gold",
+   "blue"
+  ],
+  "description": "a white field with a central red shield ringed by gold castles surrounding a white inner shield of blue escutcheons with white dots, topped by a gold royal crown with a cross and jewels",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "crown",
+   "castle",
+   "cross"
+  ]
+ },
+ "Eritrea": {
+  "colors": [
+   "red",
+   "green",
+   "blue",
+   "yellow"
+  ],
+  "description": "a red central triangle pointing to the right with a green triangle above and a blue triangle below, and a gold olive wreath emblem on the hoist side",
+  "layout": "complex",
+  "symbols": [
+   "olive wreath",
+   "olive branch"
+  ]
+ },
+ "Estonia": {
+  "colors": [
+   "blue",
+   "black",
+   "white"
+  ],
+  "description": "a horizontal triband of blue, black, and white",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Eswatini": {
+  "colors": [
+   "red",
+   "blue",
+   "yellow",
+   "black",
+   "white"
+  ],
+  "description": "a red central band with blue top and bottom edges separated by yellow stripes, featuring a black and white shield over two spears and a staff with tassels",
+  "layout": "complex",
+  "symbols": [
+   "shield",
+   "spears",
+   "staff",
+   "tassels"
+  ]
+ },
+ "Ethiopia": {
+  "colors": [
+   "green",
+   "yellow",
+   "red",
+   "blue"
+  ],
+  "description": "a horizontal triband of green, yellow, and red with a central blue disc bearing a yellow five-pointed star emitting rays",
+  "layout": "horizontal triband",
+  "symbols": [
+   "five-pointed star",
+   "disc"
+  ]
+ },
+ "Fiji": {
+  "colors": [
+   "light blue",
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "a light blue field with a Union Jack in the upper hoist canton and a white shield coat of arms with a lion, sugar cane, palm, dove, and bananas on the fly",
+  "layout": "canton",
+  "symbols": [
+   "union jack",
+   "coat of arms",
+   "shield",
+   "lion",
+   "cross",
+   "dove",
+   "palm tree"
+  ]
+ },
+ "Finland": {
+  "colors": [
+   "white",
+   "blue"
+  ],
+  "description": "a white field with an off-center dark blue Scandinavian cross whose vertical bar sits closer to the hoist",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Finland (pre-1906)": {
+  "colors": [
+   "blue",
+   "yellow"
+  ],
+  "description": "a blue field with an off-center yellow Scandinavian cross whose vertical bar sits closer to the hoist",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "France": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "a vertical triband of blue, white, and red in equal bands",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "France (variant 2)": {
+  "colors": [
+   "white",
+   "gold"
+  ],
+  "description": "a white field densely strewn with a repeating pattern of gold fleur-de-lis",
+  "layout": "plain field",
+  "symbols": [
+   "fleur-de-lis"
+  ]
+ },
+ "Gabon": {
+  "colors": [
+   "green",
+   "yellow",
+   "blue"
+  ],
+  "description": "a horizontal triband of green, yellow, and blue",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Gambia": {
+  "colors": [
+   "red",
+   "blue",
+   "green",
+   "white"
+  ],
+  "description": "a horizontal triband of red, blue, and green with the blue band separated from the others by thin white stripes",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Georgia (country)": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "a white field with a large central red cross and a smaller red cross in each of the four quarters",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Germany": {
+  "colors": [
+   "black",
+   "red",
+   "gold"
+  ],
+  "description": "a horizontal triband of black, red, and gold in equal bands",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Ghana": {
+  "colors": [
+   "red",
+   "yellow",
+   "green",
+   "black"
+  ],
+  "description": "a horizontal triband of red, yellow, and green with a black five-pointed star centered on the yellow band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Governor of the Dutch East Indies": {
+  "colors": [
+   "white",
+   "red",
+   "blue"
+  ],
+  "description": "white field with three skewed tilted bars in red, blue and red plus a blue bar, arranged diagonally like a stacked abstract triband",
+  "layout": "complex",
+  "symbols": []
+ },
+ "Governor of the Dutch East Indies (1928-1949)": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "horizontal red white and blue triband with two small red dots in the upper hoist white area",
+  "layout": "horizontal triband",
+  "symbols": [
+   "dots"
+  ]
+ },
+ "Governor of the Dutch East Indies (tot 1954)": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "horizontal red white and blue triband with two white discs in the upper hoist corner of the red stripe",
+  "layout": "horizontal triband",
+  "symbols": [
+   "discs"
+  ]
+ },
+ "Greece": {
+  "colors": [
+   "blue",
+   "white"
+  ],
+  "description": "a blue field with a white cross in the upper hoist canton and nine alternating horizontal blue and white stripes",
+  "layout": "canton",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Greece (variant 2)": {
+  "colors": [
+   "red",
+   "gold"
+  ],
+  "description": "a red field divided by a centered gold cross into four quarters, each quarter containing a gold firesteel B-shaped emblem",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Grenada": {
+  "colors": [
+   "red",
+   "yellow",
+   "green"
+  ],
+  "description": "a red border with six yellow stars, a yellow and green field divided into triangles, a central red disc with a yellow star, and a small nutmeg emblem on the hoist",
+  "layout": "complex",
+  "symbols": [
+   "five-pointed star",
+   "disc",
+   "nutmeg"
+  ]
+ },
+ "Guatemala": {
+  "colors": [
+   "light blue",
+   "white",
+   "green"
+  ],
+  "description": "a vertical triband of light blue, white, and light blue with a central coat of arms featuring a green quetzal bird, a scroll, crossed rifles and swords, and a laurel wreath",
+  "layout": "vertical triband",
+  "symbols": [
+   "coat of arms",
+   "quetzal bird",
+   "scroll",
+   "rifles",
+   "swords",
+   "laurel wreath"
+  ]
+ },
+ "Guinea": {
+  "colors": [
+   "red",
+   "yellow",
+   "green"
+  ],
+  "description": "a vertical triband of red, yellow, and green",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Guinea-Bissau": {
+  "colors": [
+   "red",
+   "yellow",
+   "green",
+   "black"
+  ],
+  "description": "a red vertical hoist band with a black five-pointed star, beside horizontal yellow over green bands on the fly",
+  "layout": "complex",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Guyana": {
+  "colors": [
+   "green",
+   "yellow",
+   "white",
+   "red",
+   "black"
+  ],
+  "description": "a green field with a white-bordered yellow arrow pointing from the hoist and a black-bordered red triangle over it",
+  "layout": "complex",
+  "symbols": [
+   "triangle",
+   "arrow"
+  ]
+ },
+ "Haiti": {
+  "colors": [
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "a horizontal bicolor of blue over red with a central white panel bearing a coat of arms with a palm tree, cannons, flags, and a scroll",
+  "layout": "bicolor",
+  "symbols": [
+   "coat of arms",
+   "palm tree",
+   "cannons",
+   "flags",
+   "scroll"
+  ]
+ },
+ "Hungary": {
+  "colors": [
+   "red",
+   "white",
+   "green"
+  ],
+  "description": "a horizontal tricolor of red on top, white in the middle, and green on the bottom",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Iceland": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "a blue field with an off-center white cross overlaid by a narrower red cross, both shifted toward the hoist",
+  "layout": "cross",
+  "symbols": [
+   "nordic cross"
+  ]
+ },
+ "India": {
+  "colors": [
+   "orange",
+   "white",
+   "green",
+   "navy"
+  ],
+  "description": "a horizontal tricolor of orange, white, and green with a 24-spoke navy blue wheel centered on the white band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "spoked wheel"
+  ]
+ },
+ "Indonesia": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "a horizontal bicolor with red on top and white on the bottom",
+  "layout": "bicolor",
+  "symbols": []
+ },
+ "Iran": {
+  "colors": [
+   "green",
+   "white",
+   "red"
+  ],
+  "description": "a horizontal tricolor of green, white, and red with a red emblem centered on the white band and decorative white script borders along the green and red stripes",
+  "layout": "horizontal triband",
+  "symbols": [
+   "central emblem",
+   "kufic script border"
+  ]
+ },
+ "Iraq": {
+  "colors": [
+   "red",
+   "white",
+   "black",
+   "green"
+  ],
+  "description": "a horizontal tricolor of red, white, and black with green Arabic calligraphy centered on the white band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "arabic calligraphy"
+  ]
+ },
+ "Israel": {
+  "colors": [
+   "white",
+   "blue"
+  ],
+  "description": "a white field with two horizontal blue stripes near the top and bottom edges and a blue six-pointed star in the center",
+  "layout": "horizontal triband",
+  "symbols": [
+   "six-pointed star"
+  ]
+ },
+ "Italy": {
+  "colors": [
+   "green",
+   "white",
+   "red"
+  ],
+  "description": "a vertical tricolor of green, white, and red",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Ivory Coast": {
+  "colors": [
+   "orange",
+   "white",
+   "green"
+  ],
+  "description": "a vertical tricolor of orange, white, and green",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Jamaica": {
+  "colors": [
+   "gold",
+   "green",
+   "black"
+  ],
+  "description": "a gold diagonal saltire cross dividing the field into green top and bottom triangles and black hoist and fly triangles",
+  "layout": "saltire",
+  "symbols": []
+ },
+ "Japan": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "a white field with a large solid crimson red circle in the center",
+  "layout": "plain field",
+  "symbols": [
+   "circle"
+  ]
+ },
+ "Jordan": {
+  "colors": [
+   "black",
+   "white",
+   "green",
+   "red"
+  ],
+  "description": "a horizontal tricolor of black, white, and green with a red triangle at the hoist containing a white seven-pointed star",
+  "layout": "horizontal triband",
+  "symbols": [
+   "triangle",
+   "seven-pointed star"
+  ]
+ },
+ "Kazakhstan": {
+  "colors": [
+   "turquoise",
+   "gold"
+  ],
+  "description": "a turquoise field with a golden sun of many rays above a soaring golden eagle in the center and a vertical golden ornamental pattern along the hoist",
+  "layout": "plain field",
+  "symbols": [
+   "sun",
+   "eagle",
+   "ornamental pattern"
+  ]
+ },
+ "Kenya": {
+  "colors": [
+   "black",
+   "red",
+   "green",
+   "white"
+  ],
+  "description": "horizontal bands of black, red, and green separated by thin white fimbriations, with a red and white Maasai shield and two crossed spears centered",
+  "layout": "horizontal triband",
+  "symbols": [
+   "shield",
+   "crossed spears"
+  ]
+ },
+ "Kiribati": {
+  "colors": [
+   "red",
+   "gold",
+   "blue",
+   "white"
+  ],
+  "description": "a red upper field with a golden frigatebird flying over a rising golden sun, above a lower half of blue and white wavy stripes representing the sea",
+  "layout": "complex",
+  "symbols": [
+   "bird",
+   "sun",
+   "wavy stripes"
+  ]
+ },
+ "Kuwait": {
+  "colors": [
+   "green",
+   "white",
+   "red",
+   "black"
+  ],
+  "description": "a horizontal triband of green, white, and red with a black trapezoid at the hoist",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Kuwait (1521)": {
+  "colors": [
+   "white",
+   "red",
+   "gold",
+   "blue"
+  ],
+  "description": "a white field with a central red shield ringed by gold castles surrounding a white inner shield of blue escutcheons with white dots, topped by an open gold royal crown with green and red jewels",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "crown",
+   "castle"
+  ]
+ },
+ "Kyrgyzstan": {
+  "colors": [
+   "red",
+   "gold"
+  ],
+  "description": "a red field with a golden sun of many rays in the center, its disc containing crossed lines forming a tunduk roof pattern",
+  "layout": "plain field",
+  "symbols": [
+   "sun",
+   "tunduk emblem"
+  ]
+ },
+ "Laos": {
+  "colors": [
+   "red",
+   "blue",
+   "white"
+  ],
+  "description": "a horizontal triband of red, blue, and red with a large white circle centered on the wider blue band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "white disc",
+   "circle"
+  ]
+ },
+ "Latvia": {
+  "colors": [
+   "dark red",
+   "white"
+  ],
+  "description": "a dark crimson-red field with a narrow white horizontal band across the center",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Latvia (state)": {
+  "colors": [
+   "dark red",
+   "white"
+  ],
+  "description": "a dark red field with a narrow white horizontal stripe across the middle",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Lebanon": {
+  "colors": [
+   "red",
+   "white",
+   "green"
+  ],
+  "description": "red top and bottom stripes framing a wider white center band with a green cedar tree in the middle",
+  "layout": "horizontal triband",
+  "symbols": [
+   "cedar tree"
+  ]
+ },
+ "Lesotho": {
+  "colors": [
+   "blue",
+   "white",
+   "green",
+   "black"
+  ],
+  "description": "horizontal bands of blue, white, and green with a black conical hat centered on the white stripe",
+  "layout": "horizontal triband",
+  "symbols": [
+   "conical hat",
+   "mokorotlo"
+  ]
+ },
+ "Liberia": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "eleven alternating red and white horizontal stripes with a blue square canton bearing a single white five-pointed star",
+  "layout": "canton",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Libya": {
+  "colors": [
+   "red",
+   "black",
+   "green",
+   "white"
+  ],
+  "description": "a horizontal triband of red, black, and green with the black band wider and a white crescent and five-pointed star centered on it",
+  "layout": "horizontal triband",
+  "symbols": [
+   "crescent",
+   "five-pointed star",
+   "star and crescent"
+  ]
+ },
+ "Libya (18th century)": {
+  "colors": [
+   "green",
+   "white"
+  ],
+  "description": "a plain green field with three white crescents arranged in a triangle, two above and one below",
+  "layout": "plain field",
+  "symbols": [
+   "crescent"
+  ]
+ },
+ "Liechtenstein": {
+  "colors": [
+   "blue",
+   "red",
+   "gold"
+  ],
+  "description": "a horizontal bicolor of blue over red with a gold princely crown in the upper hoist",
+  "layout": "bicolor",
+  "symbols": [
+   "crown"
+  ]
+ },
+ "Liechtenstein (1400-1806)": {
+  "colors": [
+   "gold",
+   "black",
+   "red"
+  ],
+  "description": "a gold field with a large black double-headed eagle with red beaks and talons spread across the center",
+  "layout": "plain field",
+  "symbols": [
+   "eagle"
+  ]
+ },
+ "List of South African flags - 1994–2003": {
+  "colors": [
+   "light blue",
+   "blue",
+   "gold",
+   "red",
+   "white",
+   "black"
+  ],
+  "description": "a light blue ensign with a colorful flag bearing a black sideways Y in the upper hoist canton and a blue five-pointed star badge containing a golden eagle with spread wings in the lower fly",
+  "layout": "canton",
+  "symbols": [
+   "canton flag",
+   "five-pointed star badge",
+   "eagle"
+  ]
+ },
+ "List of South African flags - 1994–2003 (1994–2003)": {
+  "colors": [
+   "green",
+   "red",
+   "white",
+   "blue",
+   "gold",
+   "black"
+  ],
+  "description": "a dark green ensign with a colorful multicolor flag containing a black sideways Y and red, white, green, blue bands in the upper hoist canton and a gold-outlined five-pointed star badge with crossed weapons in the lower fly",
+  "layout": "canton",
+  "symbols": [
+   "canton flag",
+   "five-pointed star badge",
+   "crossed swords",
+   "anchor",
+   "coat of arms"
+  ]
+ },
+ "List of South African flags - 2003–present": {
+  "colors": [
+   "green",
+   "red",
+   "blue",
+   "white",
+   "gold",
+   "black"
+  ],
+  "description": "green field with a South African flag canton in the upper hoist and a golden nine-pointed star badge holding crossed swords and stylized feathers in the lower fly",
+  "layout": "canton",
+  "symbols": [
+   "canton flag",
+   "coat of arms",
+   "swords",
+   "star badge"
+  ]
+ },
+ "List of South African flags - 2003–present (variant 2)": {
+  "colors": [
+   "red",
+   "green",
+   "blue",
+   "white",
+   "gold",
+   "black"
+  ],
+  "description": "red field with a South African flag canton in the upper hoist and a black-and-gold roaring lion head badge inside a golden scalloped border in the lower fly",
+  "layout": "canton",
+  "symbols": [
+   "canton flag",
+   "lion",
+   "badge"
+  ]
+ },
+ "List of South African flags - 2003–present (variant 3)": {
+  "colors": [
+   "light blue",
+   "green",
+   "red",
+   "blue",
+   "white",
+   "gold"
+  ],
+  "description": "light blue field with a South African flag canton in the upper hoist and a navy circular badge with a golden eagle inside a white star-shaped border in the lower fly",
+  "layout": "canton",
+  "symbols": [
+   "canton flag",
+   "eagle",
+   "badge"
+  ]
+ },
+ "List of South African flags - Proposal 1 (1993)": {
+  "colors": [
+   "green",
+   "yellow",
+   "white",
+   "red",
+   "blue"
+  ],
+  "description": "a green field with a yellow vertical hoist stripe and a white zigzag chevron band filled with red, blue, and green triangles separated by a thin yellow stripe",
+  "layout": "vertical triband",
+  "symbols": [
+   "zigzag pattern",
+   "triangles"
+  ]
+ },
+ "List of South African flags - Proposal 1 (1994)": {
+  "colors": [
+   "yellow",
+   "green"
+  ],
+  "description": "a bicolor of yellow at the hoist and green at the fly separated by a vertical row of interlocking triangular teeth",
+  "layout": "bicolor",
+  "symbols": [
+   "serrated triangles"
+  ]
+ },
+ "Lithuania": {
+  "colors": [
+   "yellow",
+   "green",
+   "red"
+  ],
+  "description": "a horizontal triband of yellow, green, and red in equal bands",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Lithuania (variant 2)": {
+  "colors": [
+   "red",
+   "white",
+   "gray",
+   "gold"
+  ],
+  "description": "a red field on the hoist side with a white armored knight riding a rearing white horse and brandishing a raised sword, with a plain white triangular section on the fly",
+  "layout": "complex",
+  "symbols": [
+   "mounted knight",
+   "horse",
+   "sword",
+   "cross"
+  ]
+ },
+ "Luxembourg": {
+  "colors": [
+   "red",
+   "white",
+   "light blue"
+  ],
+  "description": "three horizontal stripes of red on top, white in the middle, and light blue on the bottom",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Luxembourg (variant 2)": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "a white field crossed by a jagged serrated red diagonal saltire resembling a ragged cross of Burgundy",
+  "layout": "saltire",
+  "symbols": [
+   "ragged saltire"
+  ]
+ },
+ "Madagascar": {
+  "colors": [
+   "white",
+   "red",
+   "green"
+  ],
+  "description": "a white vertical band at the hoist beside two horizontal bands of red over green",
+  "layout": "complex",
+  "symbols": []
+ },
+ "Malawi": {
+  "colors": [
+   "black",
+   "red",
+   "green"
+  ],
+  "description": "horizontal bands of black, red, and green with a rising red sun and radiating rays on the top black stripe",
+  "layout": "horizontal triband",
+  "symbols": [
+   "rising sun",
+   "sun rays"
+  ]
+ },
+ "Malaysia": {
+  "colors": [
+   "red",
+   "white",
+   "blue",
+   "yellow"
+  ],
+  "description": "fourteen alternating red and white horizontal stripes with a dark blue canton containing a yellow crescent and a fourteen-pointed yellow star",
+  "layout": "canton",
+  "symbols": [
+   "crescent",
+   "fourteen-pointed star",
+   "star and crescent"
+  ]
+ },
+ "Malaysia (variant 2)": {
+  "colors": [
+   "red",
+   "white",
+   "blue",
+   "black"
+  ],
+  "description": "three horizontal bands of dark red, white, and dark blue with the black letters V O C interlocked as a monogram in the center of the white band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "monogram"
+  ]
+ },
+ "Maldives": {
+  "colors": [
+   "red",
+   "green",
+   "white"
+  ],
+  "description": "a red field surrounding a large green rectangle with a white crescent moon opening toward the fly",
+  "layout": "complex",
+  "symbols": [
+   "crescent moon"
+  ]
+ },
+ "Mali": {
+  "colors": [
+   "green",
+   "yellow",
+   "red"
+  ],
+  "description": "a vertical triband of green, yellow, and red",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Malta": {
+  "colors": [
+   "white",
+   "red",
+   "gray"
+  ],
+  "description": "a vertical bicolor of white on the hoist and red on the fly, with a gray George Cross edged in red in the upper hoist corner",
+  "layout": "bicolor",
+  "symbols": [
+   "cross",
+   "medal"
+  ]
+ },
+ "Malta (various)": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "a red field bearing a large centered white couped cross that divides it into quarters",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Marshall Islands": {
+  "colors": [
+   "blue",
+   "orange",
+   "white"
+  ],
+  "description": "a blue field crossed by widening orange and white diagonal stripes rising to the fly, with a large white many-pointed star in the upper hoist",
+  "layout": "diagonal",
+  "symbols": [
+   "multi-pointed star",
+   "sunburst star"
+  ]
+ },
+ "Mauritania": {
+  "colors": [
+   "red",
+   "green",
+   "yellow"
+  ],
+  "description": "red top and bottom stripes with a green center band bearing a yellow crescent opening upward and a yellow five-pointed star above it",
+  "layout": "horizontal triband",
+  "symbols": [
+   "crescent moon",
+   "five-pointed star"
+  ]
+ },
+ "Mauritius": {
+  "colors": [
+   "red",
+   "blue",
+   "yellow",
+   "green"
+  ],
+  "description": "four equal horizontal bands of red, dark blue, yellow, and green",
+  "layout": "complex",
+  "symbols": []
+ },
+ "Mexico": {
+  "colors": [
+   "green",
+   "white",
+   "red"
+  ],
+  "description": "a vertical triband of green, white, and red with a detailed eagle perched on a cactus grasping a snake centered in the white band",
+  "layout": "vertical triband",
+  "symbols": [
+   "eagle",
+   "snake",
+   "cactus",
+   "coat of arms",
+   "laurel wreath"
+  ]
+ },
+ "Moldova": {
+  "colors": [
+   "blue",
+   "yellow",
+   "red",
+   "brown"
+  ],
+  "description": "a vertical triband of blue, yellow, and red with a central emblem of a brown eagle holding a cross in its beak and a shield showing an aurochs head, star, rose and crescent on the yellow band",
+  "layout": "vertical triband",
+  "symbols": [
+   "eagle",
+   "cross",
+   "coat of arms",
+   "aurochs head",
+   "star",
+   "crescent"
+  ]
+ },
+ "Moldova (variant 2)": {
+  "colors": [
+   "red",
+   "gold"
+  ],
+  "description": "a dark red field with a large golden aurochs head bearing an eight-pointed star between its horns, a rose to its left and a crescent to its right",
+  "layout": "plain field",
+  "symbols": [
+   "aurochs head",
+   "eight-pointed star",
+   "rose",
+   "crescent"
+  ]
+ },
+ "Monaco": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "two equal horizontal bands of red on top and white on the bottom",
+  "layout": "bicolor",
+  "symbols": []
+ },
+ "Mongolia": {
+  "colors": [
+   "red",
+   "blue",
+   "yellow"
+  ],
+  "description": "a vertical triband of red, blue, and red with a yellow soyombo emblem of flame, sun, moon and yin-yang in the hoist red band",
+  "layout": "vertical triband",
+  "symbols": [
+   "soyombo",
+   "flame",
+   "sun",
+   "crescent moon",
+   "yin-yang"
+  ]
+ },
+ "Montenegro": {
+  "colors": [
+   "red",
+   "gold",
+   "blue",
+   "green"
+  ],
+  "description": "a red field with a gold border and a central golden double-headed eagle wearing a crown, holding a scepter and orb, with a shield showing a blue field, gold lion and green base",
+  "layout": "plain field",
+  "symbols": [
+   "double-headed eagle",
+   "crown",
+   "coat of arms",
+   "lion",
+   "scepter",
+   "orb"
+  ]
+ },
+ "Montenegro (variant 2)": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "a red field with a large white flared cross with concave sides centered on it",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Morocco": {
+  "colors": [
+   "red",
+   "green"
+  ],
+  "description": "a plain red field with a green outlined five-pointed interlaced star (pentagram) in the center",
+  "layout": "plain field",
+  "symbols": [
+   "pentagram",
+   "five-pointed star"
+  ]
+ },
+ "Mozambique": {
+  "colors": [
+   "green",
+   "black",
+   "white",
+   "yellow",
+   "red"
+  ],
+  "description": "horizontal green, black-with-white-borders, and yellow bands with a red triangle at the hoist bearing a yellow star, rifle, book, and hoe",
+  "layout": "complex",
+  "symbols": [
+   "star",
+   "rifle",
+   "book",
+   "hoe",
+   "triangle"
+  ]
+ },
+ "Myanmar": {
+  "colors": [
+   "yellow",
+   "green",
+   "red",
+   "white"
+  ],
+  "description": "horizontal bands of yellow, green, and red with a large white five-pointed star overlapping the center",
+  "layout": "horizontal triband",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "NATO": {
+  "colors": [
+   "blue",
+   "white"
+  ],
+  "description": "dark blue field with a white four-pointed compass star inside a circle with four radiating lines pointing outward",
+  "layout": "plain field",
+  "symbols": [
+   "compass rose",
+   "four-pointed star",
+   "circle"
+  ]
+ },
+ "Namibia": {
+  "colors": [
+   "blue",
+   "red",
+   "white",
+   "green",
+   "yellow"
+  ],
+  "description": "a wide white-edged red diagonal stripe splitting the flag into a blue upper triangle with a yellow twelve-rayed sun and a green lower triangle",
+  "layout": "diagonal",
+  "symbols": [
+   "sun",
+   "sun rays"
+  ]
+ },
+ "Nauru": {
+  "colors": [
+   "blue",
+   "yellow",
+   "white"
+  ],
+  "description": "a dark blue field with a thin horizontal yellow stripe across the center and a white twelve-pointed star in the lower hoist",
+  "layout": "complex",
+  "symbols": [
+   "twelve-pointed star"
+  ]
+ },
+ "Naval and maritime flag of Massachusetts": {
+  "colors": [
+   "white",
+   "green"
+  ],
+  "description": "white field with a single green pine tree in the center",
+  "layout": "plain field",
+  "symbols": [
+   "pine tree"
+  ]
+ },
+ "Naval and maritime flag of Massachusetts (variant 2)": {
+  "colors": [
+   "white",
+   "green",
+   "brown",
+   "black"
+  ],
+  "description": "white field with a detailed green pine tree with a brown trunk and grassy base, and the black text AN APPEAL TO HEAVEN across the top",
+  "layout": "plain field",
+  "symbols": [
+   "pine tree",
+   "lettering"
+  ]
+ },
+ "Nepal": {
+  "colors": [
+   "red",
+   "blue",
+   "white"
+  ],
+  "description": "a crimson red double-pennant flag with blue borders made of two stacked triangles, showing a white crescent moon with rays in the top pennant and a white twelve-pointed sun in the bottom one",
+  "layout": "complex",
+  "symbols": [
+   "crescent moon",
+   "sun",
+   "stars"
+  ]
+ },
+ "Netherlands": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "three horizontal bands of red on top, white in the middle, and blue on the bottom",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Netherlands (1815–1908)": {
+  "colors": [
+   "red",
+   "white",
+   "blue",
+   "gold"
+  ],
+  "description": "three horizontal bands of red, white, and blue with a full royal coat of arms in the center featuring a crowned blue shield flanked by two golden lions and a JE MAINTIENDRAI motto ribbon",
+  "layout": "horizontal triband",
+  "symbols": [
+   "coat of arms",
+   "lion",
+   "crown",
+   "shield",
+   "motto ribbon"
+  ]
+ },
+ "New Zealand": {
+  "colors": [
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "a dark blue field with a red-and-white Union Jack in the top left canton and four red five-pointed stars outlined in white on the right side",
+  "layout": "canton",
+  "symbols": [
+   "union jack",
+   "stars"
+  ]
+ },
+ "Nicaragua": {
+  "colors": [
+   "blue",
+   "white",
+   "gold"
+  ],
+  "description": "a horizontal triband of blue, white, and blue with a central emblem of a triangle containing a rainbow, volcanoes, and rays ringed by gold text",
+  "layout": "horizontal triband",
+  "symbols": [
+   "triangle",
+   "rainbow",
+   "volcanoes",
+   "coat of arms"
+  ]
+ },
+ "Niger": {
+  "colors": [
+   "orange",
+   "white",
+   "green"
+  ],
+  "description": "a horizontal triband of orange, white, and green with a solid orange circle centered in the white middle band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "circle",
+   "sun"
+  ]
+ },
+ "Nigeria": {
+  "colors": [
+   "green",
+   "white"
+  ],
+  "description": "a vertical triband with green outer stripes and a white central stripe",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "North Korea": {
+  "colors": [
+   "red",
+   "blue",
+   "white"
+  ],
+  "description": "a wide central red band edged with thin white and blue stripes top and bottom, bearing a red five-pointed star inside a white circle toward the hoist",
+  "layout": "horizontal triband",
+  "symbols": [
+   "five-pointed star",
+   "circle"
+  ]
+ },
+ "North Macedonia": {
+  "colors": [
+   "red",
+   "yellow"
+  ],
+  "description": "a red field with a yellow sun in the center emitting eight broadening golden rays that reach the edges",
+  "layout": "plain field",
+  "symbols": [
+   "sun",
+   "rays"
+  ]
+ },
+ "Norway": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "a red field with an off-center white-bordered blue Scandinavian cross shifted toward the hoist",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Olympic flag": {
+  "colors": [
+   "white",
+   "blue",
+   "yellow",
+   "black",
+   "green",
+   "red"
+  ],
+  "description": "white field with five interlocking rings in blue, yellow, black, green, and red",
+  "layout": "plain field",
+  "symbols": [
+   "interlocking rings"
+  ]
+ },
+ "Oman": {
+  "colors": [
+   "red",
+   "white",
+   "green"
+  ],
+  "description": "a flag with a red vertical hoist band and horizontal white, red, and green stripes on the fly, with a white national emblem of crossed swords and a dagger in the upper hoist",
+  "layout": "complex",
+  "symbols": [
+   "crossed swords",
+   "dagger",
+   "khanjar"
+  ]
+ },
+ "Pakistan": {
+  "colors": [
+   "green",
+   "white"
+  ],
+  "description": "a dark green field with a white vertical band at the hoist, and a white crescent moon and five-pointed star centered in the green area",
+  "layout": "vertical bicolor",
+  "symbols": [
+   "crescent moon",
+   "star"
+  ]
+ },
+ "Palau": {
+  "colors": [
+   "blue",
+   "yellow"
+  ],
+  "description": "a light blue field with a large yellow circle positioned slightly left of center",
+  "layout": "plain field",
+  "symbols": [
+   "circle",
+   "moon"
+  ]
+ },
+ "Palestine": {
+  "colors": [
+   "black",
+   "white",
+   "green",
+   "red"
+  ],
+  "description": "Three horizontal bands of black, white and green with a red triangle at the hoist",
+  "layout": "horizontal triband with triangle",
+  "symbols": [
+   "triangle"
+  ]
+ },
+ "Panama": {
+  "colors": [
+   "white",
+   "red",
+   "blue"
+  ],
+  "description": "a flag divided into four quarters, white with a blue star at top left, plain red at top right, plain blue at bottom left, and white with a red star at bottom right",
+  "layout": "quartered",
+  "symbols": [
+   "stars"
+  ]
+ },
+ "Papua New Guinea": {
+  "colors": [
+   "red",
+   "black",
+   "yellow",
+   "white"
+  ],
+  "description": "a flag split diagonally with a red upper triangle bearing a yellow bird-of-paradise and a black lower triangle bearing five white stars of the Southern Cross",
+  "layout": "diagonal",
+  "symbols": [
+   "bird of paradise",
+   "stars",
+   "southern cross"
+  ]
+ },
+ "Paraguay": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "a horizontal triband of red, white, and blue with a circular emblem of a gold star ringed by a green wreath and black text in the center",
+  "layout": "horizontal triband",
+  "symbols": [
+   "star",
+   "wreath",
+   "seal"
+  ]
+ },
+ "Peru": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "a vertical triband with red outer stripes and a white central stripe",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Philippines": {
+  "colors": [
+   "blue",
+   "red",
+   "white",
+   "gold"
+  ],
+  "description": "a flag with blue top and red bottom horizontal bands and a white triangle at the hoist containing a golden eight-rayed sun and three small gold five-pointed stars",
+  "layout": "complex",
+  "symbols": [
+   "sun",
+   "stars",
+   "triangle"
+  ]
+ },
+ "Poland": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "two equal horizontal bands of white on top and red on the bottom",
+  "layout": "bicolor",
+  "symbols": []
+ },
+ "Poland (variant 2)": {
+  "colors": [
+   "red",
+   "white",
+   "gold"
+  ],
+  "description": "a red square on the hoist bearing a white crowned eagle with spread wings, with a plain white triangular section on the fly",
+  "layout": "complex",
+  "symbols": [
+   "eagle",
+   "crown"
+  ]
+ },
+ "Portugal (1495)": {
+  "colors": [
+   "red",
+   "gold",
+   "white",
+   "blue"
+  ],
+  "description": "a large red shield topped by a golden crown, bearing a white inner shield with five blue shields and bordered by golden castles, on a plain white background",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "crown",
+   "shield",
+   "castles"
+  ]
+ },
+ "Portugal (1616)": {
+  "colors": [
+   "white",
+   "red",
+   "gold",
+   "green",
+   "blue"
+  ],
+  "description": "a red shield with a white inner shield of blue shields and golden castles, topped by a golden crown and framed by green laurel and palm branches on a white background",
+  "layout": "complex",
+  "symbols": [
+   "coat of arms",
+   "crown",
+   "shield",
+   "castles",
+   "laurel wreath"
+  ]
+ },
+ "Portugal (1830–1910)": {
+  "colors": [
+   "blue",
+   "white",
+   "red",
+   "gold"
+  ],
+  "description": "vertical bicolor of dark blue on the hoist and white on the fly with a crowned red shield bearing golden castles and a white inner shield of blue shields centered over the boundary",
+  "layout": "vertical bicolor",
+  "symbols": [
+   "coat of arms",
+   "crown",
+   "shield",
+   "castles"
+  ]
+ },
+ "Portugal (official)": {
+  "colors": [
+   "green",
+   "red",
+   "yellow",
+   "white",
+   "blue"
+  ],
+  "description": "vertical bicolor of green on the hoist and red on the fly with a yellow armillary sphere and white shield of five small blue shields ringed by yellow castles centered over the color boundary",
+  "layout": "vertical bicolor",
+  "symbols": [
+   "coat of arms",
+   "armillary sphere",
+   "shield",
+   "castles"
+  ]
+ },
+ "Qatar": {
+  "colors": [
+   "maroon",
+   "white"
+  ],
+  "description": "a maroon field with a white vertical band at the hoist separated by a nine-pointed serrated zigzag edge",
+  "layout": "vertical bicolor",
+  "symbols": [
+   "serrated edge"
+  ]
+ },
+ "Romania": {
+  "colors": [
+   "blue",
+   "yellow",
+   "red"
+  ],
+  "description": "a vertical triband of dark blue, yellow, and red",
+  "layout": "vertical triband",
+  "symbols": []
+ },
+ "Romania (variant 2)": {
+  "colors": [
+   "white",
+   "black",
+   "red",
+   "green"
+  ],
+  "description": "a white field with a black raven holding a red cross in its beak, perched on a green tree",
+  "layout": "plain field",
+  "symbols": [
+   "raven",
+   "cross",
+   "tree"
+  ]
+ },
+ "Russia (1668–1693)": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "a blue centered cross dividing the field into four quarters colored white, red, red, and white",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Rwanda": {
+  "colors": [
+   "blue",
+   "yellow",
+   "green",
+   "gold"
+  ],
+  "description": "a horizontal tricolor with a large light blue top band, a yellow middle band, and a green bottom band, with a golden sun and rays in the upper fly corner",
+  "layout": "horizontal triband",
+  "symbols": [
+   "sun",
+   "rays"
+  ]
+ },
+ "Saint Kitts and Nevis": {
+  "colors": [
+   "green",
+   "black",
+   "red",
+   "yellow",
+   "white"
+  ],
+  "description": "a diagonal black band edged in yellow running from lower hoist to upper fly bearing two white five-pointed stars, with a green triangle in the upper hoist and a red triangle in the lower fly",
+  "layout": "diagonal",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Saint Kitts and Nevis (1707–1800)": {
+  "colors": [
+   "blue",
+   "white",
+   "red"
+  ],
+  "description": "a blue field with a red centered cross overlaid on a white diagonal saltire and white diagonal cross, forming a combined union flag pattern",
+  "layout": "complex",
+  "symbols": [
+   "cross",
+   "saltire"
+  ]
+ },
+ "Saint Lucia": {
+  "colors": [
+   "blue",
+   "yellow",
+   "black",
+   "white"
+  ],
+  "description": "a light blue field with a centered arrowhead device made of a yellow triangle overlapping a black triangle both bordered in white",
+  "layout": "plain field",
+  "symbols": [
+   "triangles",
+   "arrowhead"
+  ]
+ },
+ "Saint Vincent and the Grenadines": {
+  "colors": [
+   "blue",
+   "yellow",
+   "green"
+  ],
+  "description": "vertical triband of blue, yellow, and green with three green diamonds arranged in a V shape on the central yellow band",
+  "layout": "vertical triband",
+  "symbols": [
+   "diamonds"
+  ]
+ },
+ "Samoa": {
+  "colors": [
+   "red",
+   "blue",
+   "white"
+  ],
+  "description": "red field with a blue canton containing five white five-pointed stars forming a Southern Cross",
+  "layout": "canton",
+  "symbols": [
+   "stars"
+  ]
+ },
+ "San Marino": {
+  "colors": [
+   "white",
+   "light blue",
+   "gold",
+   "green"
+  ],
+  "description": "white over light blue horizontal bicolor with a central coat of arms showing three towers with feather plumes on a shield, topped by a gold crown and flanked by laurel and oak branches above a LIBERTAS scroll",
+  "layout": "horizontal bicolor",
+  "symbols": [
+   "coat of arms",
+   "three towers",
+   "crown",
+   "laurel wreath",
+   "scroll"
+  ]
+ },
+ "Sao Tome and Principe": {
+  "colors": [
+   "green",
+   "yellow",
+   "red",
+   "black"
+  ],
+  "description": "horizontal triband of green, yellow, and green with a red triangle at the hoist and two black five-pointed stars on the wide central yellow band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "stars",
+   "triangle"
+  ]
+ },
+ "Saudi Arabia": {
+  "colors": [
+   "green",
+   "white"
+  ],
+  "description": "solid green field with white Arabic calligraphy above a horizontal white sword",
+  "layout": "plain field",
+  "symbols": [
+   "Arabic script",
+   "sword"
+  ]
+ },
+ "Saudi Arabia (variant 2)": {
+  "colors": [
+   "red",
+   "yellow"
+  ],
+  "description": "red swallow-shaped pennant with a pointed fly end and a yellow crescent facing right near the hoist",
+  "layout": "plain field",
+  "symbols": [
+   "crescent"
+  ]
+ },
+ "Senegal": {
+  "colors": [
+   "green",
+   "yellow",
+   "red"
+  ],
+  "description": "vertical triband of green, yellow, and red with a green five-pointed star centered on the yellow band",
+  "layout": "vertical triband",
+  "symbols": [
+   "star"
+  ]
+ },
+ "Serbia": {
+  "colors": [
+   "red",
+   "blue",
+   "white",
+   "gold"
+  ],
+  "description": "red, blue and white horizontal triband with an off-center coat of arms featuring a white double-headed eagle on a red shield topped by a gold crown, with a small white cross shield on the eagle's chest",
+  "layout": "horizontal triband",
+  "symbols": [
+   "double-headed eagle",
+   "coat of arms",
+   "crown",
+   "cross"
+  ]
+ },
+ "Serbia (variant 2)": {
+  "colors": [
+   "cream",
+   "red"
+  ],
+  "description": "pale cream field with a centered red double-headed eagle emblem",
+  "layout": "plain field",
+  "symbols": [
+   "double-headed eagle"
+  ]
+ },
+ "Seychelles": {
+  "colors": [
+   "blue",
+   "yellow",
+   "red",
+   "white",
+   "green"
+  ],
+  "description": "five diagonal bands of blue, yellow, red, white, and green radiating outward from the bottom hoist corner",
+  "layout": "diagonal",
+  "symbols": []
+ },
+ "Sierra Leone": {
+  "colors": [
+   "green",
+   "white",
+   "blue"
+  ],
+  "description": "horizontal triband of green, white, and blue",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Singapore": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "red over white horizontal bicolor with a white crescent and five white five-pointed stars arranged in a circle in the upper hoist",
+  "layout": "horizontal bicolor",
+  "symbols": [
+   "crescent",
+   "five-pointed star"
+  ]
+ },
+ "Singapore (variant 2)": {
+  "colors": [
+   "white"
+  ],
+  "description": "solid white blank field with no visible charges",
+  "layout": "plain field",
+  "symbols": []
+ },
+ "Slovakia": {
+  "colors": [
+   "white",
+   "blue",
+   "red"
+  ],
+  "description": "horizontal triband of white, blue, and red with a red shield bearing a white double cross on three blue hills, offset toward the hoist",
+  "layout": "horizontal triband",
+  "symbols": [
+   "shield",
+   "double cross",
+   "hills"
+  ]
+ },
+ "Slovenia": {
+  "colors": [
+   "white",
+   "blue",
+   "red",
+   "yellow"
+  ],
+  "description": "horizontal triband of white, blue, and red with a shield showing a white mountain, blue wavy lines, and three yellow stars, offset toward the hoist",
+  "layout": "horizontal triband",
+  "symbols": [
+   "shield",
+   "mountain",
+   "stars",
+   "waves"
+  ]
+ },
+ "Solomon Islands": {
+  "colors": [
+   "blue",
+   "green",
+   "yellow",
+   "white"
+  ],
+  "description": "blue upper hoist triangle with five white stars and a green lower fly triangle divided by a thin yellow diagonal stripe",
+  "layout": "diagonal",
+  "symbols": [
+   "stars"
+  ]
+ },
+ "Somalia": {
+  "colors": [
+   "light blue",
+   "white"
+  ],
+  "description": "light blue field with a single large white five-pointed star centered",
+  "layout": "plain field",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Somalia (variant 2)": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "white field with a central red vertical stripe, showing three crescents, one white crescent on the red band flanked by two red crescents on the white field, all facing right",
+  "layout": "vertical triband",
+  "symbols": [
+   "crescent"
+  ]
+ },
+ "South Africa": {
+  "colors": [
+   "green",
+   "black",
+   "yellow",
+   "red",
+   "blue",
+   "white"
+  ],
+  "description": "Y-shaped green horizontal band edged in white splitting into a black hoist triangle bordered in yellow, with red top and blue bottom bands",
+  "layout": "complex",
+  "symbols": [
+   "Y shape",
+   "triangle"
+  ]
+ },
+ "South African team (1992 Summer Olympics)": {
+  "colors": [
+   "white",
+   "grey",
+   "blue",
+   "orange",
+   "green",
+   "yellow",
+   "black",
+   "red"
+  ],
+  "description": "white field with the five Olympic rings above flowing ribbon stripes of blue, orange, green and grey curving to the right",
+  "layout": "complex",
+  "symbols": [
+   "interlocking rings",
+   "stripes"
+  ]
+ },
+ "South African team (1994 Winter Olympics)": {
+  "colors": [
+   "white",
+   "green",
+   "yellow",
+   "blue",
+   "red",
+   "black"
+  ],
+  "description": "a white flag with green banner text reading SOUTH AFRICA above five interlocking Olympic rings and a curved green laurel wreath",
+  "layout": "plain field",
+  "symbols": [
+   "olympic rings",
+   "laurel wreath",
+   "text banner"
+  ]
+ },
+ "South Korea": {
+  "colors": [
+   "white",
+   "red",
+   "blue",
+   "black"
+  ],
+  "description": "a white field with a central red and blue yin-yang circle surrounded by four sets of black trigram bars in the corners",
+  "layout": "plain field",
+  "symbols": [
+   "yin-yang",
+   "trigrams"
+  ]
+ },
+ "South Sudan": {
+  "colors": [
+   "black",
+   "red",
+   "green",
+   "white",
+   "blue",
+   "yellow"
+  ],
+  "description": "horizontal triband of black, red, and green separated by thin white stripes with a blue hoist triangle containing a yellow five-pointed star",
+  "layout": "complex",
+  "symbols": [
+   "star",
+   "triangle"
+  ]
+ },
+ "Sri Lanka": {
+  "colors": [
+   "gold",
+   "maroon",
+   "orange",
+   "teal"
+  ],
+  "description": "gold-bordered flag with a hoist-side vertical band split into teal and orange stripes, and a dark maroon panel showing a gold lion holding a sword with four gold leaves in the corners",
+  "layout": "complex",
+  "symbols": [
+   "lion",
+   "sword",
+   "leaves"
+  ]
+ },
+ "Sri Lanka (variant 2)": {
+  "colors": [
+   "white",
+   "maroon",
+   "black"
+  ],
+  "description": "white swallowtail flag with a black outline showing a maroon sun disc, a maroon crescent ring, and a maroon winged lion holding a sword",
+  "layout": "complex",
+  "symbols": [
+   "lion",
+   "sword",
+   "sun",
+   "crescent"
+  ]
+ },
+ "Sudan": {
+  "colors": [
+   "red",
+   "white",
+   "black",
+   "green"
+  ],
+  "description": "horizontal triband of red, white, and black with a green triangle at the hoist",
+  "layout": "horizontal triband",
+  "symbols": [
+   "triangle"
+  ]
+ },
+ "Suriname": {
+  "colors": [
+   "green",
+   "white",
+   "red",
+   "yellow"
+  ],
+  "description": "horizontal bands of green, white, red, white, green with a large yellow five-pointed star centered on the wide red band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "star"
+  ]
+ },
+ "Sweden": {
+  "colors": [
+   "blue",
+   "yellow"
+  ],
+  "description": "blue field with a yellow Nordic cross offset toward the hoist",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Switzerland": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "square bright red field with a thin white centered cross with equal arms",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Switzerland (Pantone)": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "square red field with a bold white centered cross with equal arms",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Syria": {
+  "colors": [
+   "green",
+   "white",
+   "black",
+   "red"
+  ],
+  "description": "horizontal triband of green, white, and black with three red five-pointed stars in a row on the central white band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "stars"
+  ]
+ },
+ "Taiwan": {
+  "colors": [
+   "red",
+   "blue",
+   "white"
+  ],
+  "description": "red field with a blue canton in the upper hoist containing a white sun with twelve triangular rays",
+  "layout": "canton",
+  "symbols": [
+   "sun with rays"
+  ]
+ },
+ "Taiwan (variant 2)": {
+  "colors": [
+   "white",
+   "dark red",
+   "black"
+  ],
+  "description": "white field with a dark red brushstroke circle enclosing a black Chinese character seal",
+  "layout": "plain field",
+  "symbols": [
+   "Chinese character",
+   "seal",
+   "circle"
+  ]
+ },
+ "Tajikistan": {
+  "colors": [
+   "red",
+   "white",
+   "green",
+   "yellow"
+  ],
+  "description": "horizontal triband of red, white, and green with a wide central white band bearing a yellow crown topped by an arc of seven yellow stars",
+  "layout": "horizontal triband",
+  "symbols": [
+   "crown",
+   "stars"
+  ]
+ },
+ "Tanzania": {
+  "colors": [
+   "green",
+   "blue",
+   "black",
+   "yellow"
+  ],
+  "description": "diagonal division from lower hoist to upper fly with green upper triangle and blue lower triangle separated by a black diagonal stripe edged in yellow",
+  "layout": "diagonal",
+  "symbols": []
+ },
+ "Thailand": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "five horizontal bands of red, white, blue, white, red with a wide central navy blue band",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "The African Union": {
+  "colors": [
+   "green",
+   "white",
+   "gold",
+   "yellow"
+  ],
+  "description": "green field with a white silhouette of the African continent radiating white sun rays, encircled by a ring of small golden stars",
+  "layout": "plain field",
+  "symbols": [
+   "map",
+   "sun rays",
+   "stars"
+  ]
+ },
+ "The Arab League": {
+  "colors": [
+   "green",
+   "white",
+   "gold"
+  ],
+  "description": "green field with a white crescent enclosing Arabic script, ringed by a golden chain and a white laurel wreath tied at the bottom",
+  "layout": "plain field",
+  "symbols": [
+   "crescent",
+   "arabic script",
+   "laurel wreath",
+   "chain"
+  ]
+ },
+ "The CIS": {
+  "colors": [
+   "blue",
+   "white",
+   "gold",
+   "yellow"
+  ],
+  "description": "blue field with a white emblem of upward-curving human-like figures cradling a golden sun disc",
+  "layout": "plain field",
+  "symbols": [
+   "sun",
+   "human figures"
+  ]
+ },
+ "The Commonwealth of Nations (2013)": {
+  "colors": [
+   "blue",
+   "gold",
+   "yellow"
+  ],
+  "description": "blue field with a golden globe emblem surrounded by radiating spear-like sun rays forming a C shape",
+  "layout": "plain field",
+  "symbols": [
+   "globe",
+   "sun rays"
+  ]
+ },
+ "The Eurasian Economic Union": {
+  "colors": [
+   "white",
+   "navy blue",
+   "gold",
+   "brown"
+  ],
+  "description": "white field with two interlocking swoosh shapes in navy blue and brown-gold curving around a central circle containing a golden map of the Eurasian continent",
+  "layout": "plain field",
+  "symbols": [
+   "globe",
+   "map"
+  ]
+ },
+ "The Organisation of Islamic Cooperation (2011)": {
+  "colors": [
+   "white",
+   "green",
+   "black"
+  ],
+  "description": "white field with a green outlined globe grid, a green crescent, and a small black cube emblem at the center",
+  "layout": "plain field",
+  "symbols": [
+   "crescent",
+   "globe",
+   "cube"
+  ]
+ },
+ "The Organization for Security and Co-Operation in Europe": {
+  "colors": [
+   "white",
+   "blue"
+  ],
+  "description": "white field with the lowercase letters o s c e set in four separate dark blue squares",
+  "layout": "plain field",
+  "symbols": [
+   "lettering"
+  ]
+ },
+ "The Organization of American States": {
+  "colors": [
+   "blue",
+   "white",
+   "gold"
+  ],
+  "description": "blue field with a central white disc containing a fan of upright national flags on golden staffs bound at the base",
+  "layout": "plain field",
+  "symbols": [
+   "coat of arms",
+   "flags",
+   "spears"
+  ]
+ },
+ "The Western European Union": {
+  "colors": [
+   "blue",
+   "gold",
+   "white",
+   "yellow"
+  ],
+  "description": "blue field with a circle of twelve golden stars surrounding white letters spelling WEU with U above and O below",
+  "layout": "plain field",
+  "symbols": [
+   "stars",
+   "lettering"
+  ]
+ },
+ "The Western Union": {
+  "colors": [
+   "blue",
+   "red",
+   "gold",
+   "yellow",
+   "white",
+   "black"
+  ],
+  "description": "teal blue center bordered by white, black, gold and red frames, with a yellow chain forming an interlocking pentagon shape",
+  "layout": "complex",
+  "symbols": [
+   "chain",
+   "pentagon"
+  ]
+ },
+ "Timor-Leste": {
+  "colors": [
+   "red",
+   "black",
+   "yellow",
+   "white"
+  ],
+  "description": "A red field with a black arrowhead triangle outlined by a larger yellow triangle at the hoist, bearing a white five-pointed star",
+  "layout": "complex",
+  "symbols": [
+   "triangle",
+   "five-pointed star"
+  ]
+ },
+ "Togo": {
+  "colors": [
+   "green",
+   "yellow",
+   "red",
+   "white"
+  ],
+  "description": "Five alternating green and yellow horizontal stripes with a red square canton in the upper hoist holding a white five-pointed star",
+  "layout": "horizontal stripes with canton",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Tonga": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "A red field with a white rectangular canton in the upper hoist containing a red couped cross",
+  "layout": "canton",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "Trinidad and Tobago": {
+  "colors": [
+   "red",
+   "black",
+   "white"
+  ],
+  "description": "A red field crossed by a black diagonal band edged in white running from upper hoist to lower fly",
+  "layout": "diagonal",
+  "symbols": []
+ },
+ "Tunisia": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "red field with a central white disc containing a red crescent encircling a red five-pointed star",
+  "layout": "plain field",
+  "symbols": [
+   "crescent",
+   "five-pointed star"
+  ]
+ },
+ "Tunisia (1831)": {
+  "colors": [
+   "blue",
+   "red",
+   "green"
+  ],
+  "description": "horizontal stripes of blue, red, green, red and blue with rounded scalloped edges at the fly",
+  "layout": "complex",
+  "symbols": []
+ },
+ "Turkey": {
+  "colors": [
+   "red",
+   "white"
+  ],
+  "description": "A red field with a white crescent moon and a small white five-pointed star to its right, both centered slightly toward the hoist",
+  "layout": "plain field",
+  "symbols": [
+   "crescent",
+   "five-pointed star"
+  ]
+ },
+ "Turkmenistan": {
+  "colors": [
+   "green",
+   "red",
+   "white",
+   "yellow"
+  ],
+  "description": "A green field with a white crescent and five small white stars in the upper hoist, and a vertical red carpet-pattern stripe near the hoist bearing five ornamental medallions above a laurel wreath",
+  "layout": "complex",
+  "symbols": [
+   "crescent",
+   "five-pointed stars",
+   "carpet medallions",
+   "wreath"
+  ]
+ },
+ "Tuvalu": {
+  "colors": [
+   "light blue",
+   "blue",
+   "red",
+   "white",
+   "yellow"
+  ],
+  "description": "A light blue field with the British Union Jack in the upper hoist canton and nine yellow five-pointed stars scattered across the fly",
+  "layout": "canton",
+  "symbols": [
+   "union jack",
+   "five-pointed stars"
+  ]
+ },
+ "Uganda": {
+  "colors": [
+   "black",
+   "yellow",
+   "red",
+   "white",
+   "grey"
+  ],
+  "description": "Six horizontal stripes of black, yellow and red repeated, with a central white disc holding a grey crested crane standing on one leg",
+  "layout": "horizontal stripes",
+  "symbols": [
+   "crested crane",
+   "disc"
+  ]
+ },
+ "Ukraine": {
+  "colors": [
+   "blue",
+   "yellow"
+  ],
+  "description": "blue over yellow horizontal bicolor",
+  "layout": "horizontal bicolor",
+  "symbols": []
+ },
+ "Ukraine (variant 2)": {
+  "colors": [
+   "blue",
+   "gold",
+   "white"
+  ],
+  "description": "blue square in the hoist with a gold rampant lion, and a plain white area on the fly side",
+  "layout": "canton",
+  "symbols": [
+   "lion"
+  ]
+ },
+ "United Arab Emirates": {
+  "colors": [
+   "red",
+   "green",
+   "white",
+   "black"
+  ],
+  "description": "green, white and black horizontal triband with a vertical red band along the hoist",
+  "layout": "complex",
+  "symbols": []
+ },
+ "United Arab Emirates (variant 2)": {
+  "colors": [
+   "red"
+  ],
+  "description": "plain solid red field with no charges",
+  "layout": "plain field",
+  "symbols": []
+ },
+ "United Kingdom": {
+  "colors": [
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "a dark blue field overlaid with a red centered cross edged in white and red-and-white diagonal crosses forming the Union design",
+  "layout": "saltire",
+  "symbols": [
+   "cross",
+   "saltire"
+  ]
+ },
+ "United Kingdom (1-2)": {
+  "colors": [
+   "white",
+   "red"
+  ],
+  "description": "a plain white field with a centered upright red cross reaching all four edges",
+  "layout": "cross",
+  "symbols": [
+   "cross"
+  ]
+ },
+ "United Kingdom (1801–1816)": {
+  "colors": [
+   "red",
+   "gold",
+   "blue"
+  ],
+  "description": "a quartered royal banner with golden lions on red, a red lion rampant on gold within a floral border, a golden harp on blue, and a small central crowned shield",
+  "layout": "complex",
+  "symbols": [
+   "lion",
+   "harp",
+   "coat of arms",
+   "crown",
+   "shield"
+  ]
+ },
+ "United States": {
+  "colors": [
+   "red",
+   "white",
+   "blue"
+  ],
+  "description": "Thirteen alternating red and white horizontal stripes with a blue canton in the upper hoist filled with rows of small white five-pointed stars",
+  "layout": "canton",
+  "symbols": [
+   "five-pointed stars"
+  ]
+ },
+ "Uruguay": {
+  "colors": [
+   "white",
+   "blue",
+   "yellow"
+  ],
+  "description": "Nine alternating white and blue horizontal stripes with a white canton in the upper hoist bearing a golden sun with a human face and rays",
+  "layout": "canton",
+  "symbols": [
+   "sun with face"
+  ]
+ },
+ "Uzbekistan": {
+  "colors": [
+   "blue",
+   "white",
+   "green",
+   "red"
+  ],
+  "description": "Three horizontal bands of blue, white and green separated by thin red fimbriations, with a white crescent and twelve small white stars in the upper hoist",
+  "layout": "horizontal triband",
+  "symbols": [
+   "crescent",
+   "five-pointed stars"
+  ]
+ },
+ "Vanuatu": {
+  "colors": [
+   "red",
+   "green",
+   "black",
+   "yellow"
+  ],
+  "description": "Red over green horizontal halves with a black hoist triangle edged by a yellow horizontal Y-shape, the triangle bearing a yellow boar's tusk encircling crossed fern fronds",
+  "layout": "complex",
+  "symbols": [
+   "boar tusk",
+   "fern fronds",
+   "pall"
+  ]
+ },
+ "Venezuela": {
+  "colors": [
+   "yellow",
+   "blue",
+   "red",
+   "white"
+  ],
+  "description": "Horizontal bands of yellow, blue and red with an arc of eight white five-pointed stars curving across the central blue band",
+  "layout": "horizontal triband",
+  "symbols": [
+   "five-pointed stars"
+  ]
+ },
+ "Vietnam": {
+  "colors": [
+   "red",
+   "yellow"
+  ],
+  "description": "A plain red field with a single large yellow five-pointed star in the center",
+  "layout": "plain field",
+  "symbols": [
+   "five-pointed star"
+  ]
+ },
+ "Yemen": {
+  "colors": [
+   "red",
+   "white",
+   "black"
+  ],
+  "description": "Three equal horizontal bands of red, white and black",
+  "layout": "horizontal triband",
+  "symbols": []
+ },
+ "Zambia": {
+  "colors": [
+   "green",
+   "red",
+   "black",
+   "orange"
+  ],
+  "description": "A green field with three vertical stripes of red, black and orange at the lower fly and an orange eagle in flight above them",
+  "layout": "complex",
+  "symbols": [
+   "eagle"
+  ]
+ },
+ "Zimbabwe": {
+  "colors": [
+   "green",
+   "yellow",
+   "red",
+   "black",
+   "white"
+  ],
+  "description": "Horizontal stripes of green, yellow, red and black mirrored around a central black stripe, with a white hoist triangle edged in black bearing a red star and a golden bird",
+  "layout": "complex",
+  "symbols": [
+   "five-pointed star",
+   "bird",
+   "triangle"
+  ]
+ }
+}
