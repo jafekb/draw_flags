@@ -88,9 +88,49 @@ Per-tier for the winner (hybrid bge-base, w=0.3):
 4. **bge-base > bge-small > MiniLM** on quality; deploy trades this against the
    512 MB / 0.5 CPU Render budget (see deployment note).
 
-Net: **MRR 0.252 → 0.753 (≈3×), R@1 0.182 → 0.667 (≈3.7×)**, and the qualitative
-failure is fixed — "green and white with crescent moon" now returns Pakistan at the
-top instead of an obscure Norwegian municipality.
+### Scaling to the full corpus
+
+We then generated descriptions for the **whole corpus (2708/2752 flags** — the rest
+are unrenderable SVGs that stay name-only). Describing every flag makes descriptive
+search work for *any* flag ("a flag with a pine tree" → Maine / Lebanon), but it also
+means obscure historical/subdivision flags now legitimately compete on visual
+queries, which slightly lowered the national-answer eval (MRR 0.664).
+
+A small **national prominence prior** (+0.10 added to the score of current national
+flags) fixes this: for an ambiguous description it nudges the famous national flag to
+the top — usually what a searcher wants — without suppressing anything (a historical
+penalty was tried and rejected: it knocked the USSR off "hammer and sickle").
+
+**Deployed configuration** = `dense(bge-base int8) + 0.3·name_match + 0.10·national`:
+
+| Tier | R@1 | R@5 | R@10 | MRR@10 |
+|------|-----|-----|------|--------|
+| Overall | 0.72 | 0.89 | 0.90 | 0.79 |
+| easy | 0.97 | 0.97 | 1.00 | 0.97 |
+| medium | 0.60 | 0.72 | 0.81 | 0.69 |
+| hard | 0.68 | 0.79 | 0.80 | 0.72 |
+
+Net vs. the shipped baseline: **MRR 0.252 → ~0.79 (≈3×), R@1 0.182 → ~0.72 (≈4×),
+R@10 0.42 → ~0.90**, and the qualitative failure is fixed — "green and white with
+crescent moon" returns Pakistan at the top instead of an obscure Norwegian
+municipality.
+
+### Deployment
+
+The deployed model is **bge-base-en-v1.5 exported to int8 ONNX (105 MB)** — smaller
+than the old 254 MB CLIP encoder — run via the `tokenizers` lib + onnxruntime (no
+torch), with corpus embeddings precomputed (2752 × 768, ~8 MB). Comfortably inside
+Render Starter's 512 MB / 0.5 CPU. int8 quantization was quality-neutral (fp32 and
+int8 scored within noise). `run_eval.py --experiment production` evaluates the exact
+shipped configuration.
+
+### Known limitations / next steps
+
+- 44 flags have unrenderable source SVGs and remain name-only (findable by name).
+- Dataset name hygiene: one artifact fixed ("Flag of" → Menorca); a broader
+  name-cleanup pass over scraped subdivisions would help.
+- Image-upload search (draw/upload a flag) is still unimplemented; the SigLIP/CLIP
+  image experiments in `eval/embedders/image_clip.py` are the starting point.
 
 ## Reproduce
 
