@@ -11,7 +11,7 @@ from typing import List
 
 import numpy as np
 
-from backend.common.descriptions import build_document, load_descriptions
+from backend.common.descriptions import build_document
 from backend.common.flag_data import flaglist_from_json
 from backend.common.name_match import (
     build_name_token_sets,
@@ -37,10 +37,7 @@ class OnnxHybridExperiment:
         self._flag_names = load_flag_names()
         self._encoder = OnnxTextEncoder(Path(onnx_path), Path(tokenizer_path))
 
-        descriptions = load_descriptions()
-        documents = [
-            build_document(n, descriptions.get(n), include_name=False) for n in self._flag_names
-        ]
+        documents = [build_document(f.name, f.visual, include_name=False) for f in flags]
         corpus = self._encoder.encode(documents)
         self._corpus = corpus / np.clip(np.linalg.norm(corpus, axis=1, keepdims=True), 1e-12, None)
         self._name_token_sets = build_name_token_sets(self._flag_names)

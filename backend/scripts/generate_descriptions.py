@@ -25,12 +25,8 @@ import json
 import os
 from pathlib import Path
 
-from backend.common.descriptions import (
-    VLM_PROMPT,
-    load_descriptions,
-    save_descriptions,
-)
-from backend.common.flag_data import flaglist_from_json
+from backend.common.descriptions import VLM_PROMPT
+from backend.common.flag_data import VisualDescription, flaglist_from_json
 from backend.scripts.download_images import IMAGES_DIR, safe_name
 
 FLAGS_FILE = Path("backend/data/all_flags/flags.json")
@@ -93,32 +89,32 @@ def main() -> None:
         raise SystemExit("Install anthropic: uv pip install anthropic") from exc
 
     client = anthropic.Anthropic()
-    flags = flaglist_from_json(FLAGS_FILE).flags
+    flag_list = flaglist_from_json(FLAGS_FILE)
+    targets = flag_list.flags
     if args.categories:
-        flags = [f for f in flags if f.category in set(args.categories)]
+        targets = [f for f in targets if f.category in set(args.categories)]
     if args.limit:
-        flags = flags[: args.limit]
+        targets = targets[: args.limit]
 
-    store = load_descriptions()
     done = skipped = failed = 0
-    for i, flag in enumerate(flags, 1):
-        if flag.name in store:
+    for i, flag in enumerate(targets, 1):
+        if flag.visual is not None:
             continue
         image = _find_image(flag.name)
         if image is None:
             skipped += 1
             continue
         try:
-            store[flag.name] = describe_image(client, args.model, image)
+            flag.visual = VisualDescription(**describe_image(client, args.model, image))
             done += 1
         except Exception as exc:
             failed += 1
             print(f"  fail {flag.name}: {exc}")
         if i % 25 == 0:
-            save_descriptions(store)
-            print(f"  {i}/{len(flags)} done={done} skip_noimg={skipped} fail={failed}", flush=True)
+            flag_list.to_json(FLAGS_FILE)
+            print(f"  {i}/{len(targets)} done={done} skip={skipped} fail={failed}", flush=True)
 
-    save_descriptions(store)
+    flag_list.to_json(FLAGS_FILE)
     print(f"Complete: described={done} skipped_no_image={skipped} failed={failed}")
 
 

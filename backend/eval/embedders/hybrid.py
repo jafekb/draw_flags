@@ -19,10 +19,11 @@ from typing import List
 
 import numpy as np
 
-from backend.common.descriptions import build_document, load_descriptions
+from backend.common.descriptions import build_document
+from backend.common.flag_data import flaglist_from_json
 from backend.common.name_match import build_name_token_sets, name_overlap_scores
 from backend.eval.embedders.text_description import _get_model, _query_prefix
-from backend.eval.run_eval import load_flag_names
+from backend.eval.run_eval import FLAGS_FILE, load_flag_names
 
 
 class HybridExperiment:
@@ -33,10 +34,9 @@ class HybridExperiment:
         self._model = _get_model(model_name)
         self._prefix = _query_prefix(model_name)
 
-        descriptions = load_descriptions()
+        flags = flaglist_from_json(FLAGS_FILE).flags
         documents = [
-            build_document(n, descriptions.get(n), include_name=include_name_in_doc)
-            for n in self._flag_names
+            build_document(f.name, f.visual, include_name=include_name_in_doc) for f in flags
         ]
         corpus = np.asarray(self._model.encode(documents, batch_size=64, show_progress_bar=False))
         self._corpus = corpus / np.clip(np.linalg.norm(corpus, axis=1, keepdims=True), 1e-12, None)

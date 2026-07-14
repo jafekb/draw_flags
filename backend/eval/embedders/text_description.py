@@ -13,8 +13,9 @@ from typing import List
 
 import numpy as np
 
-from backend.common.descriptions import build_document, load_descriptions
-from backend.eval.run_eval import EmbeddingExperiment, load_flag_names
+from backend.common.descriptions import build_document
+from backend.common.flag_data import flaglist_from_json
+from backend.eval.run_eval import FLAGS_FILE, EmbeddingExperiment, load_flag_names
 
 # BGE v1.5 retrieval models expect a query-side instruction; passages get none.
 # Omitting it noticeably degrades ranking (especially short name queries).
@@ -39,12 +40,11 @@ def make_text_description_experiment(
     label: str | None = None,
 ) -> EmbeddingExperiment:
     flag_names = load_flag_names()
-    descriptions = load_descriptions()
+    flags = flaglist_from_json(FLAGS_FILE).flags
     model = _get_model(model_name)
 
     documents = [
-        build_document(name, descriptions.get(name), include_name=include_name)
-        for name in flag_names
+        build_document(f.name, f.visual, include_name=include_name) for f in flags
     ]
     corpus = np.asarray(model.encode(documents, batch_size=64, show_progress_bar=False))
 

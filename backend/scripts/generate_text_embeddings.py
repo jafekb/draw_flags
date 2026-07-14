@@ -18,7 +18,7 @@ from pathlib import Path
 
 import numpy as np
 
-from backend.common.descriptions import build_document, load_descriptions
+from backend.common.descriptions import build_document
 from backend.common.flag_data import flaglist_from_json
 from backend.src.text_encoder import OnnxTextEncoder
 
@@ -34,10 +34,7 @@ def main() -> None:
     args = ap.parse_args()
 
     flags = flaglist_from_json(FLAGS_FILE).flags
-    descriptions = load_descriptions()
-    documents = [
-        build_document(f.name, descriptions.get(f.name), include_name=False) for f in flags
-    ]
+    documents = [build_document(f.name, f.visual, include_name=False) for f in flags]
 
     encoder = OnnxTextEncoder(Path(args.onnx), Path(args.tokenizer))
     embeddings = encoder.encode(documents).astype(np.float32)
@@ -45,7 +42,7 @@ def main() -> None:
     embeddings /= np.clip(np.linalg.norm(embeddings, axis=1, keepdims=True), 1e-12, None)
 
     np.save(args.out, embeddings)
-    described = sum(1 for f in flags if f.name in descriptions)
+    described = sum(1 for f in flags if f.visual is not None)
     print(f"Saved {embeddings.shape} -> {args.out} ({described}/{len(flags)} flags described)")
 
 

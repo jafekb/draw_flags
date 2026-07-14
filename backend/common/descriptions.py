@@ -5,22 +5,15 @@ Descriptions power the text-to-text retrieval approach: each flag gets a vivid,
 country-agnostic visual description (colors, layout, emblems) that a user's query
 can match in the *same* modality, instead of the weak cross-modal CLIP path.
 
-Store format (backend/data/all_flags/descriptions.json):
-    { "<flag name>": {
-        "description": str,   # one vivid sentence, no country name
-        "layout": str,        # e.g. "horizontal triband", "canton", "saltire", "plain"
-        "colors": [str],      # dominant colors
-        "symbols": [str]      # charges/emblems, e.g. "crescent", "five-pointed star"
-    }, ... }
+Descriptions live inline on each flag as `Flag.visual` (a VisualDescription) in
+backend/data/all_flags/flags.json — see backend/scripts/generate_descriptions.py.
 """
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
-from typing import Dict, List
+from typing import List
 
-DESCRIPTIONS_FILE = Path("backend/data/all_flags/descriptions.json")
+from backend.common.flag_data import VisualDescription
 
 # Prompt shared by the API script and the in-harness generation so descriptions
 # stay consistent. Deliberately forbids naming the country: we want visual words
@@ -43,20 +36,7 @@ VLM_PROMPT = (
 )
 
 
-def load_descriptions() -> Dict[str, dict]:
-    if not DESCRIPTIONS_FILE.exists():
-        return {}
-    with DESCRIPTIONS_FILE.open() as f:
-        return json.load(f)
-
-
-def save_descriptions(store: Dict[str, dict]) -> None:
-    DESCRIPTIONS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with DESCRIPTIONS_FILE.open("w") as f:
-        json.dump(store, f, indent=1, ensure_ascii=False, sort_keys=True)
-
-
-def build_document(flag_name: str, entry: dict | None, *, include_name: bool) -> str:
+def build_document(name: str, visual: VisualDescription | None, *, include_name: bool) -> str:
     """
     Build the text document that gets embedded for a flag.
 
@@ -66,16 +46,16 @@ def build_document(flag_name: str, entry: dict | None, *, include_name: bool) ->
     """
     parts: List[str] = []
     if include_name:
-        parts.append(flag_name)
-    if entry:
-        if entry.get("description"):
-            parts.append(entry["description"])
-        if entry.get("layout"):
-            parts.append(entry["layout"])
-        if entry.get("colors"):
-            parts.append(", ".join(entry["colors"]))
-        if entry.get("symbols"):
-            parts.append(", ".join(entry["symbols"]))
+        parts.append(name)
+    if visual:
+        if visual.description:
+            parts.append(visual.description)
+        if visual.layout:
+            parts.append(visual.layout)
+        if visual.colors:
+            parts.append(", ".join(visual.colors))
+        if visual.symbols:
+            parts.append(", ".join(visual.symbols))
     if not parts:
-        parts.append(flag_name)
+        parts.append(name)
     return ". ".join(parts)
