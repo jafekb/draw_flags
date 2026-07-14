@@ -1,0 +1,2699 @@
+{
+  "experiment": "baseline_clip_vitb32",
+  "top_k": 10,
+  "num_queries": 132,
+  "overall": {
+    "recall@1": 0.18181818181818182,
+    "recall@5": 0.32575757575757575,
+    "recall@10": 0.42424242424242425,
+    "mrr@10": 0.25204725829725827,
+    "n": 132
+  },
+  "by_tier": {
+    "easy": {
+      "recall@1": 0.5333333333333333,
+      "recall@5": 0.8,
+      "recall@10": 0.9666666666666667,
+      "mrr@10": 0.6742989417989418,
+      "n": 30
+    },
+    "medium": {
+      "recall@1": 0.06976744186046512,
+      "recall@5": 0.13953488372093023,
+      "recall@10": 0.20930232558139536,
+      "mrr@10": 0.10358065706902916,
+      "n": 43
+    },
+    "hard": {
+      "recall@1": 0.0847457627118644,
+      "recall@5": 0.22033898305084745,
+      "recall@10": 0.3050847457627119,
+      "mrr@10": 0.14554748453053537,
+      "n": 59
+    }
+  },
+  "per_query": [
+    {
+      "query": "the flag of Japan",
+      "tier": "easy",
+      "expected": [
+        "Japan"
+      ],
+      "returned": [
+        "Argentina - Club Suizo de Buenos Aires",
+        "Japan",
+        "Dutch East Indies",
+        "Imperial Japanese Army",
+        "Salem, Oregon",
+        "Emperor of Japan",
+        "Mulhouse",
+        "Gua Musang",
+        "Sakikibara Motonao",
+        "Toyotomi Hidetsugu"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "Canada flag",
+      "tier": "easy",
+      "expected": [
+        "Canada"
+      ],
+      "returned": [
+        "Radovi\u0161",
+        "List of South African flags - 1910 proposal (red)",
+        "List of Chinese flags - Design by Yan Xinghua",
+        "Udmurtia",
+        "Abu Dhabi",
+        "List of Chinese flags - Design by Zhang Ding, Zhong Ling, Zhou Guangyuan and Xiao Shuhua",
+        "Tournai",
+        "Canada",
+        "Limbourg",
+        "Koryak Autonomous Okrug"
+      ],
+      "hit_rank": 8
+    },
+    {
+      "query": "flag of Brazil",
+      "tier": "easy",
+      "expected": [
+        "Brazil"
+      ],
+      "returned": [
+        "Brazil",
+        "Recklinghausen",
+        "V\u00f5ru",
+        "Nairobi",
+        "Nevinnomyssk",
+        "Novocheboksarsk",
+        "Saint Vincent and the Grenadines",
+        "Indonesia - Another variant of the practice flag used uncommonly in local districts or schools",
+        "Penza",
+        "List of South African flags - Proposal 1 (1994)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of France",
+      "tier": "easy",
+      "expected": [
+        "France"
+      ],
+      "returned": [
+        "Spa",
+        "France",
+        "Triesen",
+        "Tullamore",
+        "Turnhout",
+        "Schaan",
+        "Nivelles",
+        "Franklin County, Ohio",
+        "List of Chinese flags - Design by Xiao Shufang",
+        "Montgomery County, Maryland"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "flag of Germany",
+      "tier": "easy",
+      "expected": [
+        "Germany"
+      ],
+      "returned": [
+        "Miccosukee",
+        "Germany",
+        "Weimar Republic (historical)",
+        "East Germany (historical)",
+        "Frederick County, Maryland",
+        "Tetovo",
+        "Aachen",
+        "Austria (variant 2)",
+        "Reutlingen",
+        "Buton"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "the flag of Italy",
+      "tier": "easy",
+      "expected": [
+        "Italy"
+      ],
+      "returned": [
+        "Italy",
+        "Abasha",
+        "Lanchkhuti",
+        "Srbinovo",
+        "Rabat",
+        "Malta",
+        "South Maluku",
+        "Indische Partij",
+        "Zamora",
+        "Budapest"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "United States flag",
+      "tier": "easy",
+      "expected": [
+        "United States"
+      ],
+      "returned": [
+        "Indiana (1896\u20131908)",
+        "United States",
+        "Majapahit",
+        "List of South African flags - Proposal for the Flag of South Africa, Southern Cross Stripes Version",
+        "Texas (1835\u20131839)",
+        "Florida (1861)",
+        "Georgia State Navy",
+        "Yacht ensign",
+        "Pennsylvania Navy",
+        "Vermont Centennial Flag (1891)"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "flag of Mexico",
+      "tier": "easy",
+      "expected": [
+        "Mexico"
+      ],
+      "returned": [
+        "Mexico",
+        "Indische Partij",
+        "Raleigh, North Carolina",
+        "Penza Oblast",
+        "Budapest",
+        "Lanchkhuti",
+        "San Diego County, California",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "Texas Centennial Flag (1936)",
+        "Zamora"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of India",
+      "tier": "easy",
+      "expected": [
+        "India"
+      ],
+      "returned": [
+        "India",
+        "Miami, Florida",
+        "List of South African flags - Naval colour, 1981\u20131994",
+        "Niger",
+        "List of South African flags - Naval ensign, 1981\u20131994",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "List of South African flags - 1940\u20131951",
+        "South African Defence Force Ensign (1981\u20131994)",
+        "Chechnya (variant 2)",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of China",
+      "tier": "easy",
+      "expected": [
+        "China"
+      ],
+      "returned": [
+        "List of Chinese flags - Proposal 4 for the PRC flag",
+        "List of Chinese flags - Design by Bao Qiquan",
+        "List of Chinese flags - Zeng Liansong's original proposal for the PRC flag[20]",
+        "Guo Moruo (variant 2)",
+        "Guo Moruo",
+        "China",
+        "Menen",
+        "List of Chinese flags - Design by Hu Yuanqing",
+        "List of Chinese flags - Proposal 2 for the PRC flag symbolizing the Yellow River and the Yangtze River",
+        "List of Chinese flags - Proposal 3 for the PRC flag symbolizing the Yellow River, the Yangtze River and the Pearl River"
+      ],
+      "hit_rank": 6
+    },
+    {
+      "query": "South Korea flag",
+      "tier": "easy",
+      "expected": [
+        "South Korea"
+      ],
+      "returned": [
+        "Korea, South",
+        "South Korea",
+        "North Korea",
+        "Klungkung",
+        "Taiwan",
+        "List of Chinese flags - Design by Chen Lu",
+        "Guo Moruo (variant 2)",
+        "Thailand",
+        "Laos",
+        "Zhu De"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "the flag of Australia",
+      "tier": "easy",
+      "expected": [
+        "Australia"
+      ],
+      "returned": [
+        "Australia",
+        "Minnesota",
+        "Neftekamsk",
+        "Topeka, Kansas",
+        "Tbilisi",
+        "New Zealand",
+        "Denver, Colorado",
+        "Ottoman Empire (eight pointed star)",
+        "Nauru",
+        "List of South African flags - 1927 proposal by the Senate"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Argentina",
+      "tier": "easy",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Argentina",
+        "Guatemala",
+        "Uruguay",
+        "Viljandi",
+        "Civil Air Ensign of South Africa (1930s)",
+        "Plovdiv",
+        "Honduras",
+        "Tallinn",
+        "Tuva",
+        "Maardu"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Spain",
+      "tier": "easy",
+      "expected": [
+        "Spain"
+      ],
+      "returned": [
+        "Spain",
+        "Margraviate of Moravia",
+        "Warsaw",
+        "Pretoria",
+        "Karlsruhe",
+        "Peer",
+        "Lessines",
+        "Herk-de-Stad",
+        "Prague",
+        "M\u00fclheim"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Egypt",
+      "tier": "easy",
+      "expected": [
+        "Egypt"
+      ],
+      "returned": [
+        "Buton",
+        "Egypt",
+        "Kaimana",
+        "Yemen",
+        "Duchy of Carinthia",
+        "State flag (official)",
+        "Darul Islam flag (unofficial)[note 8]",
+        "Damme",
+        "Hotel Yamato",
+        "Argentina - Caption=Club N\u00e1utico Buchardo"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "the flag of South Africa",
+      "tier": "easy",
+      "expected": [
+        "South Africa"
+      ],
+      "returned": [
+        "Department of Military Veterans",
+        "List of South African flags - Naval ensign, 1994\u2013present",
+        "List of South African flags - Naval colour, c. 1998",
+        "List of South African flags - Proposal 1 (1993)",
+        "List of South African flags - 1994\u20132002",
+        "List of South African flags - 2003\u2013present",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "Joint Operations Division",
+        "List of South African flags - 1910 proposal (white)",
+        "South Africa"
+      ],
+      "hit_rank": 10
+    },
+    {
+      "query": "flag of Nigeria",
+      "tier": "easy",
+      "expected": [
+        "Nigeria"
+      ],
+      "returned": [
+        "N\u00f5mme",
+        "Soignies",
+        "Verviers",
+        "Planken",
+        "East Java (variant 2)",
+        "Duchy of Styria",
+        "Nigeria",
+        "Sierra Leone",
+        "Sungei Ujong",
+        "El Hierro"
+      ],
+      "hit_rank": 7
+    },
+    {
+      "query": "the flag of Kenya",
+      "tier": "easy",
+      "expected": [
+        "Kenya"
+      ],
+      "returned": [
+        "Kenya",
+        "Saarij\u00e4rvi",
+        "Lithuanian Soviet Socialist Republic (historical)",
+        "Indische Partij",
+        "Zambia",
+        "Burundi",
+        "Malawi",
+        "Zamora",
+        "Wind River Indian Reservation",
+        "Belgorod Oblast"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Saudi Arabia",
+      "tier": "easy",
+      "expected": [
+        "Saudi Arabia"
+      ],
+      "returned": [
+        "Saudi Arabia",
+        "Grue",
+        "East Java (variant 2)",
+        "Duchy of Styria",
+        "The Arab League",
+        "Tehran",
+        "N\u00f5mme",
+        "Kingdom of Egypt (historical)",
+        "Pasundan",
+        "F\u0103le\u0219ti"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Turkey",
+      "tier": "easy",
+      "expected": [
+        "Turkey"
+      ],
+      "returned": [
+        "Turkey",
+        "Ottoman Empire (1844\u20131922)",
+        "Free Aceh Movement",
+        "Aceh (variant 2)",
+        "Riau-Lingga",
+        "Ottoman Empire (eight pointed star)",
+        "Darul Islam (Indonesia) - War flag (official)",
+        "State flag (official)",
+        "Somalia (variant 2)",
+        "PETA / Pembela Tanah Air"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Greece",
+      "tier": "easy",
+      "expected": [
+        "Greece"
+      ],
+      "returned": [
+        "Greece",
+        "Tallinn",
+        "K\u00e4rdla",
+        "Kherson Oblast",
+        "Podgorica",
+        "Reims",
+        "Targu Mure\u0219",
+        "Bochum",
+        "Tienen",
+        "Civil Air Ensign of South Africa (1930s)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Sweden",
+      "tier": "easy",
+      "expected": [
+        "Sweden"
+      ],
+      "returned": [
+        "Ottignies-Louvain-la-Neuve",
+        "T\u00f6reboda",
+        "Turin",
+        "Rauma",
+        "Cimi\u0219lia",
+        "Herve",
+        "Saint-Ghislain",
+        "Triesenberg",
+        "Sweden",
+        "Sillam\u00e4e"
+      ],
+      "hit_rank": 9
+    },
+    {
+      "query": "flag of Portugal",
+      "tier": "easy",
+      "expected": [
+        "Portugal"
+      ],
+      "returned": [
+        "Portugal (official)",
+        "C\u00e1diz",
+        "Kryvyi Rih",
+        "Fuerteventura",
+        "Lanchkhuti",
+        "Penza Oblast",
+        "Budapest",
+        "Zamora",
+        "C\u00f3rdoba",
+        "Granada"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Ireland",
+      "tier": "easy",
+      "expected": [
+        "Ireland"
+      ],
+      "returned": [
+        "Ivory Coast",
+        "Zestaponi",
+        "F\u00fcrth",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "Enebakk",
+        "Dublin",
+        "N\u00f5mme",
+        "East Java (variant 2)",
+        "Orkdal",
+        "Soignies"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "flag of Israel",
+      "tier": "easy",
+      "expected": [
+        "Israel"
+      ],
+      "returned": [
+        "Israel",
+        "Kherson Oblast",
+        "Tel Aviv",
+        "K\u00e4rdla",
+        "Zemun - Zemun (2003\u20132005)",
+        "Bochum",
+        "Nitra",
+        "Kamyshin",
+        "Reims",
+        "The Komi Republic"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Vietnam",
+      "tier": "easy",
+      "expected": [
+        "Vietnam"
+      ],
+      "returned": [
+        "Vietnam",
+        "Guo Moruo",
+        "List of Chinese flags - Proposal 3 for the PRC flag symbolizing the Yellow River, the Yangtze River and the Pearl River",
+        "List of Chinese flags - Proposal 2 for the PRC flag symbolizing the Yellow River and the Yangtze River",
+        "North Vietnam (historical)",
+        "Mao Zedong's proposal for the PRC flag symbolizing the Yellow River[21]",
+        "List of Chinese flags - Design by Hu Yuanqing",
+        "Inder\u00f8y",
+        "Tver",
+        "List of Chinese flags - Design by Luo Wen"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Thailand",
+      "tier": "easy",
+      "expected": [
+        "Thailand"
+      ],
+      "returned": [
+        "Thailand",
+        "Klungkung",
+        "Lombok",
+        "Bali",
+        "Laos",
+        "Bali (variant 2)",
+        "Governor of the Dutch East Indies",
+        "Costa Rica",
+        "Tver",
+        "Batavia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Indonesia",
+      "tier": "easy",
+      "expected": [
+        "Indonesia"
+      ],
+      "returned": [
+        "Croatia (Habsburg)",
+        "Soppeng",
+        "Duchy of Salzburg",
+        "Indonesia",
+        "Hotel Yamato",
+        "Kingdom of Galicia and Lodomeria  1890\u20131918",
+        "Monaco",
+        "Duchy of Carinthia",
+        "Banggai",
+        "Latvia (state)"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "flag of Kazakhstan",
+      "tier": "easy",
+      "expected": [
+        "Kazakhstan"
+      ],
+      "returned": [
+        "Kazakhstan",
+        "Oktyabrsky",
+        "Koper",
+        "Etnedal",
+        "Salavat",
+        "Gheorgheni",
+        "Shchyolkovo",
+        "Cead\u00eer-Lunga",
+        "Palau",
+        "Kostroma"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Jamaica",
+      "tier": "easy",
+      "expected": [
+        "Jamaica"
+      ],
+      "returned": [
+        "Siak",
+        "Malmedy",
+        "Jamaica",
+        "K\u00e4vlinge",
+        "Rana",
+        "Sungei Ujong",
+        "Arzamas",
+        "Syzran",
+        "R\u00e5de",
+        "Saint Vincent and the Grenadines"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "red and white horizontal stripes with a blue rectangle in the top-left corner filled with small white stars",
+      "tier": "medium",
+      "expected": [
+        "United States"
+      ],
+      "returned": [
+        "Aubange",
+        "Bremen",
+        "Majapahit",
+        "Omsk Oblast",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Strasbourg",
+        "Ialoveni",
+        "Zvolen",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Bansk\u00e1 Bystrica"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical stripes blue white and red",
+      "tier": "medium",
+      "expected": [
+        "France"
+      ],
+      "returned": [
+        "Bali (variant 2)",
+        "Omsk Oblast",
+        "Klungkung",
+        "Bastogne",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Lombok",
+        "Costa Rica",
+        "Modum",
+        "Uzbek Soviet Socialist Republic (historical)",
+        "Aubange"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands of green white and orange",
+      "tier": "medium",
+      "expected": [
+        "Ireland"
+      ],
+      "returned": [
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "Surnadal",
+        "N\u00f5mme",
+        "Ivory Coast",
+        "Zemun - Zemun (2003\u20132005)",
+        "Hasselt",
+        "Orkdal",
+        "List of South African flags - Proposal for the Flag of South Africa, Orange Cross Version",
+        "Chechnya (variant 2)",
+        "Tukums"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands of orange white and green",
+      "tier": "medium",
+      "expected": [
+        "Ivory Coast"
+      ],
+      "returned": [
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "List of South African flags - Proposal for the Flag of South Africa, Orange Cross Version",
+        "Ivory Coast",
+        "Niger",
+        "The Cherokee Nation",
+        "List of South African flags - Proposal for the Flag of South Africa, Six Stripes NL Version",
+        "Sungei Ujong",
+        "Hamar",
+        "N\u00f5mme",
+        "Zabaykalsky Krai"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "two horizontal bands red on top and white on the bottom",
+      "tier": "medium",
+      "expected": [
+        "Indonesia",
+        "Monaco"
+      ],
+      "returned": [
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Kortrijk",
+        "Lanchkhuti",
+        "Strasbourg",
+        "Scherpenheuvel-Zichem",
+        "Blutbanner",
+        "Omsk Oblast",
+        "Asahan",
+        "Huedin"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "two horizontal bands white on top and red on the bottom",
+      "tier": "medium",
+      "expected": [
+        "Poland"
+      ],
+      "returned": [
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Lanchkhuti",
+        "Scherpenheuvel-Zichem",
+        "Kortrijk",
+        "Omsk Oblast",
+        "Strasbourg",
+        "Blutbanner",
+        "The Jewish Autonomous Oblast",
+        "Huedin"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands black red and gold",
+      "tier": "medium",
+      "expected": [
+        "Germany"
+      ],
+      "returned": [
+        "Frederick County, Maryland",
+        "Buton",
+        "Scherpenheuvel-Zichem",
+        "Tetovo",
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Martin",
+        "Kubu",
+        "Tana",
+        "Pre\u0161ov",
+        "Schellenberg"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands white blue and red from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Russia"
+      ],
+      "returned": [
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Klungkung",
+        "Bali (variant 2)",
+        "Omsk Oblast",
+        "Tunisia (1831)",
+        "Bastogne",
+        "Mingir",
+        "National Oceanic and Atmospheric Administration (variant 3)",
+        "Uzbek Soviet Socialist Republic (historical)",
+        "Robinson Rancheria of Pomo Indians of California"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands red white and blue from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Netherlands",
+        "Luxembourg"
+      ],
+      "returned": [
+        "Klungkung",
+        "Bali (variant 2)",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Omsk Oblast",
+        "Bastogne",
+        "Tunisia (1831)",
+        "Bucov\u0103\u021b",
+        "Majapahit",
+        "Mingir",
+        "Uzbek Soviet Socialist Republic (historical)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands green white and red",
+      "tier": "medium",
+      "expected": [
+        "Italy"
+      ],
+      "returned": [
+        "Lanchkhuti",
+        "Srbinovo",
+        "Zamora",
+        "Bacan",
+        "Hasselt",
+        "Tunisia (1831)",
+        "N\u00f5mme",
+        "Indische Partij",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "Zemun - Zemun (2003\u20132005)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands red white and green from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Hungary"
+      ],
+      "returned": [
+        "Lanchkhuti",
+        "Tunisia (1831)",
+        "Zamora",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "Indische Partij",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Majapahit",
+        "Karelia",
+        "Klungkung",
+        "Bali (variant 2)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands white green and red from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Bulgaria"
+      ],
+      "returned": [
+        "Lanchkhuti",
+        "Tunisia (1831)",
+        "Indische Partij",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Zamora",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "No Logo",
+        "The Jewish Autonomous Oblast",
+        "Blutbanner"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red circle centered on a plain white field",
+      "tier": "medium",
+      "expected": [
+        "Japan"
+      ],
+      "returned": [
+        "Paola",
+        "Qormi",
+        "Indonesia - Landak",
+        "Dutch East Indies",
+        "Bangladesh",
+        "Japan",
+        "United Arab Emirates (variant 2)",
+        "Soviet Union (historical)",
+        "Hosokawa clan",
+        "Siau"
+      ],
+      "hit_rank": 6
+    },
+    {
+      "query": "a red disc slightly left of center on a green field",
+      "tier": "medium",
+      "expected": [
+        "Bangladesh"
+      ],
+      "returned": [
+        "Bangladesh",
+        "Paola",
+        "Indonesia - Landak",
+        "Tukums",
+        "Talsi",
+        "Pajala",
+        "\u00c5seral",
+        "List of Chinese flags - Design by Kang Jian",
+        "Noginsk",
+        "Evenes"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a yellow circle centered on a light blue field",
+      "tier": "medium",
+      "expected": [
+        "Palau"
+      ],
+      "returned": [
+        "Palau",
+        "Kimito\u00f6n",
+        "Tayan",
+        "M\u0121arr",
+        "Bamble",
+        "\u010cajetina",
+        "D\u00f8nna",
+        "Etnedal",
+        "Bindal",
+        "Nesna"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red square with a bold white cross in the center",
+      "tier": "medium",
+      "expected": [
+        "Switzerland"
+      ],
+      "returned": [
+        "Switzerland",
+        "\u017demai\u010di\u0173 Kalvarija",
+        "Tytuv\u0117nai",
+        "Amsterdam (variant 2)",
+        "Ypres",
+        "Mingir",
+        "Novi Travnik",
+        "L\u0103pu\u0219na",
+        "United Arab Emirates (variant 2)",
+        "Soviet Union (historical)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red field with an off-center white Scandinavian cross",
+      "tier": "medium",
+      "expected": [
+        "Denmark"
+      ],
+      "returned": [
+        "Switzerland",
+        "\u00c5l",
+        "Cupcini",
+        "Strasbourg",
+        "L\u0103pu\u0219na",
+        "Evenes",
+        "Denmark",
+        "Montenegro (variant 2)",
+        "Si\u0121\u0121iewi",
+        "Vrnja\u010dka Banja"
+      ],
+      "hit_rank": 7
+    },
+    {
+      "query": "a blue field with a yellow Scandinavian cross",
+      "tier": "medium",
+      "expected": [
+        "Sweden"
+      ],
+      "returned": [
+        "K\u00f6ping",
+        "Asturias",
+        "\u010cajetina",
+        "Sillam\u00e4e",
+        "Rauma",
+        "Nordre Land",
+        "Bindal",
+        "Kr\u00f8dsherad",
+        "T\u00f6reboda",
+        "Mel\u00f8y"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a white field with a blue Scandinavian cross",
+      "tier": "medium",
+      "expected": [
+        "Finland"
+      ],
+      "returned": [
+        "\u010cajetina",
+        "\u017burrieq",
+        "Cuhure\u0219tii de Sus",
+        "Asturias",
+        "Marseille",
+        "T\u00e4by",
+        "K\u00f6ping",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "Herceg Novi",
+        "Cristuru Secuiesc"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red field with a blue Scandinavian cross outlined in white",
+      "tier": "medium",
+      "expected": [
+        "Norway"
+      ],
+      "returned": [
+        "List of Chinese flags - Design by Xiao Shufang",
+        "Isto\u010dno Sarajevo",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Uzbek Soviet Socialist Republic (historical)",
+        "Iceland",
+        "Ukrainian Soviet Socialist Republic (historical)",
+        "\u017burrieq",
+        "Russia (1668\u20131693)",
+        "Switzerland",
+        "Bastogne"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a blue field with a red Scandinavian cross outlined in white",
+      "tier": "medium",
+      "expected": [
+        "Iceland"
+      ],
+      "returned": [
+        "\u017burrieq",
+        "List of Chinese flags - Design by Xiao Shufang",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Isto\u010dno Sarajevo",
+        "Uzbek Soviet Socialist Republic (historical)",
+        "Obrenovac",
+        "Chiesanuova",
+        "Omsk Oblast",
+        "Argentina - Yacht Club Argentino",
+        "Switzerland"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a dark blue flag with the Union Jack in the top-left and white stars",
+      "tier": "medium",
+      "expected": [
+        "Australia",
+        "New Zealand"
+      ],
+      "returned": [
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "United Kingdom (1-2)",
+        "British Empire",
+        "Texas (1836\u20131839)",
+        "List of South African flags - Proposal for the Flag of South Africa, Bordered Version",
+        "Pennsylvania (1863)",
+        "Governor of the Natal Colony, 1905\u20131907",
+        "List of South African flags - Naval ensign, 1922\u20131946",
+        "Governor-General of South Africa",
+        "Qrendi"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a green field with a large yellow diamond and a blue circle in the middle",
+      "tier": "medium",
+      "expected": [
+        "Brazil"
+      ],
+      "returned": [
+        "M\u0121arr",
+        "\u010cajetina",
+        "Syktyvkar",
+        "Demak",
+        "Lija",
+        "Ninilchik Village Tribe",
+        "Palau",
+        "Murom",
+        "Jackson, Mississippi",
+        "Pushkino"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands black yellow and red from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Belgium"
+      ],
+      "returned": [
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Frederick County, Maryland",
+        "Tetovo",
+        "No Logo",
+        "Tana",
+        "Buton",
+        "Scherpenheuvel-Zichem",
+        "Martin",
+        "Grenoble",
+        "Nordkapp"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands black yellow and red",
+      "tier": "medium",
+      "expected": [
+        "Belgium"
+      ],
+      "returned": [
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Tana",
+        "Frederick County, Maryland",
+        "Tetovo",
+        "Grenoble",
+        "Schellenberg",
+        "Buton",
+        "Mortsel",
+        "Kubu",
+        "Pernik"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a light blue and white flag with horizontal stripes and a white cross canton",
+      "tier": "medium",
+      "expected": [
+        "Greece"
+      ],
+      "returned": [
+        "Argentina - Club Regatas Chascomus",
+        "Argentina - Yacht Club Buenos Aires",
+        "Askim",
+        "Evenk Autonomous Okrug",
+        "Argentina - Yacht Club Argentino",
+        "Harstad",
+        "Sauda",
+        "Uruguay",
+        "Coloni\u021ba",
+        "Tallinn"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "nine horizontal blue and white stripes with a white cross on a blue square in the corner",
+      "tier": "medium",
+      "expected": [
+        "Greece"
+      ],
+      "returned": [
+        "Coloni\u021ba",
+        "Podgorica",
+        "Sauda",
+        "\u017burrieq",
+        "Osen",
+        "Cuhure\u0219tii de Sus",
+        "Antaliept\u0117",
+        "Evenk Autonomous Okrug",
+        "Solund",
+        "Randaberg"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "red flag with a smaller blue and white cross flag in the upper corner",
+      "tier": "medium",
+      "expected": [
+        "New Zealand",
+        "Australia"
+      ],
+      "returned": [
+        "Argentina - Yacht Club Argentino",
+        "Evenk Autonomous Okrug",
+        "Argentina - Club N\u00e1utico Quilmes",
+        "Argentina - Club N\u00e1utico Albatros",
+        "Argentina - Club de N\u00e1utica y Pesca \"Comandante Espora\"",
+        "Mingir",
+        "Argentina - Yacht Club Santa Fe",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Taiwan",
+        "Ukrainian Soviet Socialist Republic (historical)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands blue yellow and red",
+      "tier": "medium",
+      "expected": [
+        "Colombia"
+      ],
+      "returned": [
+        "No Logo",
+        "Engels",
+        "Robinson Rancheria of Pomo Indians of California",
+        "Klungkung",
+        "Martin",
+        "Great Dayak",
+        "Bastogne",
+        "Bali (variant 2)",
+        "Tunisia (1831)",
+        "Armenia"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a horizontal flag that is half yellow on top with blue and red below",
+      "tier": "medium",
+      "expected": [
+        "Colombia"
+      ],
+      "returned": [
+        "Great Dayak",
+        "Kubu",
+        "South Vietnam (historical)",
+        "Martin",
+        "Engels",
+        "Rostov Oblast",
+        "Republic of China (1912\u20131949) (historical)",
+        "Nordkapp",
+        "Huy",
+        "Buton"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands yellow blue and red of equal size",
+      "tier": "medium",
+      "expected": [
+        "Armenia"
+      ],
+      "returned": [
+        "Engels",
+        "No Logo",
+        "Kubu",
+        "Great Dayak",
+        "Martin",
+        "Grenoble",
+        "Robinson Rancheria of Pomo Indians of California",
+        "South Vietnam (historical)",
+        "Orl\u00e9ans",
+        "Republic of China (1912\u20131949) (historical)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands red blue and orange",
+      "tier": "medium",
+      "expected": [
+        "Armenia"
+      ],
+      "returned": [
+        "Klungkung",
+        "Bali (variant 2)",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Bastogne",
+        "Omsk Oblast",
+        "Lombok",
+        "Mingir",
+        "Tunisia (1831)",
+        "Carei",
+        "Robinson Rancheria of Pomo Indians of California"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a pale blue and white flag of two colors used by the UN",
+      "tier": "medium",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Latin American Parliament",
+        "Honduras",
+        "The United Nations",
+        "Civil Air Ensign of South Africa (1930s)",
+        "Tongeren",
+        "Guatemala",
+        "Tallinn",
+        "K\u00e4rdla",
+        "Viljandi",
+        "Pontevedra"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands red white and red with a maple leaf in the center",
+      "tier": "medium",
+      "expected": [
+        "Canada"
+      ],
+      "returned": [
+        "Radovi\u0161",
+        "Strasbourg",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Aubange",
+        "Canada",
+        "Antoing",
+        "Blutbanner",
+        "List of South African flags - 1910 proposal (red)",
+        "\u00c5l",
+        "Innsbruck"
+      ],
+      "hit_rank": 5
+    },
+    {
+      "query": "a plain white flag with a red maple leaf in the center",
+      "tier": "medium",
+      "expected": [
+        "Canada"
+      ],
+      "returned": [
+        "Radovi\u0161",
+        "Canada",
+        "List of Chinese flags - Design by Yan Xinghua",
+        "Udmurtia",
+        "Koryak Autonomous Okrug",
+        "Argentina - Club Suizo de Buenos Aires",
+        "Pennant of the President of East Indonesia",
+        "Houffalize",
+        "List of South African flags - 1910 proposal (red)",
+        "\u014cmura clan"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "three vertical bands green white and green with a cedar tree",
+      "tier": "medium",
+      "expected": [
+        "Lebanon"
+      ],
+      "returned": [
+        "Naval and maritime flag of Massachusetts",
+        "Grong",
+        "Dilijan",
+        "Aloja",
+        "Hasselt",
+        "Surnadal",
+        "N\u00f5mme",
+        "Codru",
+        "Birkenes",
+        "\u017bejtun"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands green white and orange with a blue wheel in the center",
+      "tier": "medium",
+      "expected": [
+        "India"
+      ],
+      "returned": [
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "Zemun - Zemun (2003\u20132005)",
+        "\u00c5seral",
+        "Tunisia (1831)",
+        "Portland, Oregon",
+        "Dutch East Indies Company",
+        "List of South African flags - Proposal for the Flag of South Africa, Orange Cross Version",
+        "List of South African flags - Proposal for the Flag of South Africa, 1965, the \"Verwoerd Flag\"",
+        "The Prince's Flag",
+        "Cherepovets"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands saffron white and green with a navy blue spoked wheel in the center",
+      "tier": "medium",
+      "expected": [
+        "India"
+      ],
+      "returned": [
+        "\u00c5seral",
+        "List of South African flags - Proposal for the Flag of South Africa, Orange Cross Version",
+        "Portland, Oregon",
+        "Zemun - Zemun (2003\u20132005)",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "Bar",
+        "Vanylven",
+        "Saint Vincent and the Grenadines",
+        "Argentina - Club San Fernando",
+        "List of South African flags - Naval ensign, 1981\u20131994"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands green yellow and red the pan-African colors",
+      "tier": "medium",
+      "expected": [
+        "Ethiopia",
+        "Bolivia",
+        "Ghana",
+        "Senegal",
+        "Guinea"
+      ],
+      "returned": [
+        "List of South African flags - Proposal by ANC",
+        "Sungei Ujong",
+        "Veurne",
+        "Langkat",
+        "Zabaykalsky Krai",
+        "Mauritius",
+        "Algeria (variant 2)",
+        "Arzamas",
+        "Guinea",
+        "Bolivia"
+      ],
+      "hit_rank": 9
+    },
+    {
+      "query": "vertical bands green yellow red with a black star in the center",
+      "tier": "medium",
+      "expected": [
+        "Ghana"
+      ],
+      "returned": [
+        "Arzamas",
+        "Leirfjord",
+        "Adygea",
+        "Langkat",
+        "List of South African flags - Proposal by ANC",
+        "Palembang Sultanate - Flag of the Sultan of Palembang under Sultan Iskandar Mahmud Badaruddin[2]",
+        "Viejas Group of Capitan Grande Band of Mission Indians",
+        "Enghien",
+        "Bolivia",
+        "Sungei Ujong"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands red yellow and green with a green star in the center",
+      "tier": "medium",
+      "expected": [
+        "Ghana"
+      ],
+      "returned": [
+        "Langkat",
+        "List of South African flags - Proposal by ANC",
+        "Arzamas",
+        "Zabaykalsky Krai",
+        "Bolivia",
+        "Hannut",
+        "Palembang Sultanate - Flag of the Sultan of Palembang under Sultan Iskandar Mahmud Badaruddin[2]",
+        "Adygea",
+        "Bangladesh",
+        "The Jewish Autonomous Oblast"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a yellow star in the top-left corner",
+      "tier": "medium",
+      "expected": [
+        "China",
+        "Vietnam"
+      ],
+      "returned": [
+        "North Vietnam (historical)",
+        "Orhei",
+        "Ai Qing",
+        "Indonesian Socialist Youth",
+        "Pang Xunqin",
+        "Ulvik",
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Liang Congjie",
+        "Madrid",
+        "List of Chinese flags - Design by Luo Wen"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a plain red field with a large yellow five-pointed star in the center",
+      "tier": "medium",
+      "expected": [
+        "Vietnam"
+      ],
+      "returned": [
+        "Overhalla",
+        "Nordkapp",
+        "Gunung Tabur",
+        "Austro-Hungarian rule in Bosnia and Herzegovina",
+        "Indonesian Socialist Youth",
+        "North Vietnam (historical)",
+        "Ai Qing",
+        "Virton",
+        "Indonesia - Landak",
+        "Fontaine-l'\u00c9v\u00eaque"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a dark green flag with a white crescent moon and a white five-pointed star, with a white vertical stripe on the left",
+      "tier": "hard",
+      "expected": [
+        "Pakistan"
+      ],
+      "returned": [
+        "Kingdom of Egypt (historical)",
+        "Nov\u00e9 Z\u00e1mky",
+        "Indonesia Arab Association",
+        "\u00d8yer",
+        "Jackson, Mississippi",
+        "Zestaponi",
+        "Adygea",
+        "Indiana Centennial Flag (1916)",
+        "M\u00e5lselv",
+        "Lokeren"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red field with a white crescent moon and a white star",
+      "tier": "hard",
+      "expected": [
+        "Turkey"
+      ],
+      "returned": [
+        "Toda Ujikane",
+        "North Yemen (historical)",
+        "Thesen's Steamship Company",
+        "Qormi",
+        "Indonesian Socialist Youth",
+        "United Arab Emirates (variant 2)",
+        "Soviet Union (historical)",
+        "Somalia (variant 2)",
+        "Inoue Masatsugu",
+        "Darul Islam (Indonesia) - War flag (official)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a white disc in the center containing a red crescent and red star",
+      "tier": "hard",
+      "expected": [
+        "Tunisia"
+      ],
+      "returned": [
+        "Argentina - Yacht Club Entrerriano",
+        "Paola",
+        "Argentina - Club N\u00e1utico Albatros",
+        "Indonesian Socialist Youth",
+        "List of Chinese flags - Design by Mo Hongshu",
+        "Saudi Arabia (variant 2)",
+        "Ottoman Empire (eight pointed star)",
+        "Argentina - Club Suizo de Buenos Aires",
+        "Thesen's Steamship Company",
+        "Argentina - Club N\u00e1utico San Fernando"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with one large yellow star and four smaller yellow stars in the upper left",
+      "tier": "hard",
+      "expected": [
+        "China"
+      ],
+      "returned": [
+        "Overhalla",
+        "North Vietnam (historical)",
+        "Madrid",
+        "Orhei",
+        "Indonesian Socialist Youth",
+        "Nordkapp",
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Comines-Warneton",
+        "Ulvik",
+        "Wu Yuzhang (variant 2)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "light blue and white horizontal stripes with a golden sun with a face in the center",
+      "tier": "hard",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Podgorica",
+        "Modum",
+        "Uruguay",
+        "Askim",
+        "Sauda",
+        "Coloni\u021ba",
+        "Kislovodsk",
+        "Velika Kladu\u0161a",
+        "Koper",
+        "Harstad"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "blue and white vertical and horizontal pattern with a golden sun with a human face in the top-left",
+      "tier": "hard",
+      "expected": [
+        "Uruguay"
+      ],
+      "returned": [
+        "Thessaloniki",
+        "Association of Caribbean States",
+        "\u00d8ystre Slidre",
+        "Matsudaira Shigenao",
+        "The CIS",
+        "Coloni\u021ba",
+        "Kuroda clan",
+        "Po\u017earevac - Po\u017earevca (2001-2006)",
+        "Osen",
+        "Tachibana Tadashige"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag made of two stacked triangular pennants, crimson with blue borders, showing a white moon and sun",
+      "tier": "hard",
+      "expected": [
+        "Nepal"
+      ],
+      "returned": [
+        "Robinson Rancheria of Pomo Indians of California",
+        "Argentina - Club N\u00e1utico Albatros",
+        "Mingir",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "National Oceanic and Atmospheric Administration",
+        "Argentina - Club N\u00e1utico Quilmes",
+        "Omsk Oblast",
+        "Argentina - Caption=Club N\u00e1utico Buchardo",
+        "Argentina - Club de Veleros Rosario",
+        "Kortrijk"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a green flag with white Arabic calligraphy above a white horizontal sword",
+      "tier": "hard",
+      "expected": [
+        "Saudi Arabia"
+      ],
+      "returned": [
+        "Saudi Arabia",
+        "Tehran",
+        "The Arab League",
+        "Grue",
+        "Cirebon",
+        "Tachibana Muneshige",
+        "Kingdom of Egypt (historical)",
+        "Palembang Sultanate - Palace Guard Flag under Sultan Iskandar Mahmud Badaruddin[3]",
+        "C\u0103l\u0103ra\u0219i",
+        "Muhammadiyah"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag divided diagonally into black and red with a yellow bird of paradise and the southern cross stars",
+      "tier": "hard",
+      "expected": [
+        "Papua New Guinea"
+      ],
+      "returned": [
+        "Thesen's Steamship Company",
+        "Papua New Guinea",
+        "Timor-Leste",
+        "Sambreville",
+        "Ungheni",
+        "Blutbanner",
+        "Martin",
+        "Saint Kitts and Nevis",
+        "Angola",
+        "Enghien"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a green flag with a yellow emblem containing a book, a hoe, and an AK-47 rifle",
+      "tier": "hard",
+      "expected": [
+        "Mozambique"
+      ],
+      "returned": [
+        "Kotawaringin (variant 2)",
+        "R\u00e6lingen",
+        "Stryn",
+        "Indonesia - Flag of the Deputy Minister of East Indonesia",
+        "\u017dilina",
+        "Tkibuli",
+        "R\u00e5de",
+        "Rana",
+        "Prime Minister of East Indonesia",
+        "Adygea"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a blue flag with the silhouette of a temple, Angkor Wat, in white in the center",
+      "tier": "hard",
+      "expected": [
+        "Cambodia"
+      ],
+      "returned": [
+        "Novokuybyshevsk",
+        "Kalmykia",
+        "Obninsk",
+        "Bali",
+        "Nitra",
+        "Kuroda clan",
+        "Minneapolis",
+        "Kvinesdal",
+        "Lommel",
+        "Argentina - Club de Veleros Rosario"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a yellow and orange flag divided diagonally with a white dragon holding jewels",
+      "tier": "hard",
+      "expected": [
+        "Bhutan"
+      ],
+      "returned": [
+        "Bhutan",
+        "Qing Emperor",
+        "Qing China",
+        "Toyotomi Hidetsugu",
+        "Kirov",
+        "Marijampol\u0117",
+        "Korea, North",
+        "Ust-Orda Buryat Autonomous Okrug",
+        "Overhalla",
+        "Naujoji Akmen\u0117"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands black white and green with a red triangle at the hoist",
+      "tier": "hard",
+      "expected": [
+        "Palestine",
+        "Sudan"
+      ],
+      "returned": [
+        "Indische Partij",
+        "Argentina - Club N\u00e1utico Bahia Blanca",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Tielt",
+        "Blutbanner",
+        "Pre\u0161ov",
+        "Stange",
+        "Lanchkhuti",
+        "Nov\u00e9 Z\u00e1mky",
+        "Scherpenheuvel-Zichem"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands black white and green with a red triangle at the hoist containing a white seven-pointed star",
+      "tier": "hard",
+      "expected": [
+        "Jordan"
+      ],
+      "returned": [
+        "Argentina - Club N\u00e1utico Bahia Blanca",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Riga - Flag of Riga after it joins the Hanseatic League (1282)",
+        "Indische Partij",
+        "Tren\u010d\u00edn",
+        "Argentina - Club N\u00e1utico Albatros",
+        "Blutbanner",
+        "Askvoll",
+        "Amsterdam (variant 2)",
+        "Pre\u0161ov"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a white canton bearing crossed swords and a curved dagger",
+      "tier": "hard",
+      "expected": [
+        "Oman"
+      ],
+      "returned": [
+        "Lieksa",
+        "Tula Oblast",
+        "Tula",
+        "Saint Petersburg",
+        "Aalst",
+        "Chimay",
+        "Toyotomi Hidetsugu",
+        "Piltene",
+        "Garg\u017edai",
+        "North Yemen (historical)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a maroon field with a white serrated band on the hoist side",
+      "tier": "hard",
+      "expected": [
+        "Qatar"
+      ],
+      "returned": [
+        "Qatar",
+        "Aalst",
+        "Moscow",
+        "Argentina - Club N\u00e1utico San Martin",
+        "Garg\u017edai",
+        "Sri Lanka (variant 2)",
+        "Pine Ridge Reservation",
+        "Asahan",
+        "Vranje",
+        "Stor-Elvdal"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a white and red flag with a zigzag serrated line and five white triangles",
+      "tier": "hard",
+      "expected": [
+        "Bahrain"
+      ],
+      "returned": [
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Kortrijk",
+        "Blutbanner",
+        "National Oceanic and Atmospheric Administration (variant 3)",
+        "Huedin",
+        "Argentina - Caption=Club N\u00e1utico Buchardo",
+        "Strasbourg",
+        "Argentina - Club N\u00e1utico Albatros",
+        "Pre\u0161ov",
+        "Aubange"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a yellow sun with eight rays radiating outward from an off-center disc",
+      "tier": "hard",
+      "expected": [
+        "North Macedonia"
+      ],
+      "returned": [
+        "Bod\u00f8",
+        "Demak",
+        "Indonesia - Landak",
+        "Kyrgyzstan",
+        "Paola",
+        "Ulvik",
+        "Tidore",
+        "L\u00f8renskog",
+        "Bangladesh (variant 2)",
+        "Argentina - Yacht Club Entrerriano"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands red black and green with a golden eagle emblem in the center",
+      "tier": "hard",
+      "expected": [
+        "Egypt"
+      ],
+      "returned": [
+        "Garg\u017edai",
+        "Indische Partij",
+        "Zaporozhye Oblast",
+        "List of South African flags - Proposal by ANC",
+        "Valladolid",
+        "Kryvyi Rih",
+        "Budapest",
+        "Novomoskovsk",
+        "Kinel",
+        "Nazran"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag with a golden eagle perched on a cactus eating a snake in the center white band",
+      "tier": "hard",
+      "expected": [
+        "Mexico"
+      ],
+      "returned": [
+        "Voronezh",
+        "Korea, North",
+        "Central Java",
+        "Penza Oblast",
+        "Governor of the Transvaal Colony, 1904\u20131910",
+        "Qing Emperor",
+        "Bhutan",
+        "Hamar",
+        "R\u00e6lingen",
+        "Kotawaringin (variant 2)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a black flag with a red diagonal band and a yellow machete and cog wheel with a star",
+      "tier": "hard",
+      "expected": [
+        "Angola"
+      ],
+      "returned": [
+        "Noginsk",
+        "Kirov",
+        "Enghien",
+        "Piltene",
+        "L\u00f8renskog",
+        "Evje og Hornnes",
+        "Elektrostal",
+        "S\u00f8r-Odal",
+        "Thesen's Steamship Company",
+        "Argentina - Yacht Club Entrerriano"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a vertical triband red white blue with a coat of arms and a condor",
+      "tier": "hard",
+      "expected": [
+        "Ecuador",
+        "Colombia",
+        "Venezuela"
+      ],
+      "returned": [
+        "Topola",
+        "Despotovac",
+        "Tunisia (1831)",
+        "Bastogne",
+        "Rostov-on-Don",
+        "Tirana",
+        "Innsbruck",
+        "Austrian Littoral",
+        "Turda",
+        "Oberhausen"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "yellow blue and red horizontal bands with a coat of arms featuring a condor",
+      "tier": "hard",
+      "expected": [
+        "Ecuador"
+      ],
+      "returned": [
+        "Austrian Littoral",
+        "Bischofshofen",
+        "Jakobstad",
+        "Chi\u0219in\u0103u",
+        "Engels",
+        "Essen",
+        "Sacav\u00e9m",
+        "Orenburg",
+        "Bogot\u00e1",
+        "M\u00f6nchengladbach"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag with a green field and a large yellow-bordered white crescent opening toward the fly",
+      "tier": "hard",
+      "expected": [
+        "Turkey",
+        "Pakistan"
+      ],
+      "returned": [
+        "Recklinghausen",
+        "Sungei Ujong",
+        "Ust-Orda Buryat Autonomous Okrug",
+        "Stryn",
+        "Pontianak",
+        "R\u00e5de",
+        "Rana",
+        "Hurdal",
+        "Bangladesh (variant 2)",
+        "Tayan"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a blue white and red horizontal flag with a yellow crest and two llamas or vicunas",
+      "tier": "hard",
+      "expected": [
+        "Peru"
+      ],
+      "returned": [
+        "Austrian Littoral",
+        "Engels",
+        "Martin",
+        "Robinson Rancheria of Pomo Indians of California",
+        "Great Dayak",
+        "Santiago, Chile",
+        "Republic of China (1912\u20131949) (historical)",
+        "Canillo",
+        "Samara Oblast",
+        "Huy"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands red white and red with a coat of arms in the center",
+      "tier": "hard",
+      "expected": [
+        "Peru"
+      ],
+      "returned": [
+        "Innsbruck",
+        "Stari Grad",
+        "Camarate",
+        "Panev\u0117\u017eys",
+        "Witten",
+        "Ciudad Real",
+        "Philip II of Spain",
+        "Saint Petersburg",
+        "Albert VI, Archduke of Austria",
+        "\u017dagar\u0117"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red white and blue flag with a yellow sun and inca imagery",
+      "tier": "hard",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Koper",
+        "Great Dayak",
+        "Colombia",
+        "Tegucigalpa",
+        "Martin",
+        "Kalkara",
+        "Demak",
+        "Bod\u00f8",
+        "Ordino",
+        "Huy"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag with a large golden five-pointed star on a blue and yellow background split diagonally",
+      "tier": "hard",
+      "expected": [
+        "Congo",
+        "Republic of the Congo"
+      ],
+      "returned": [
+        "Nord-Aurdal",
+        "Belgian Congo (historical)",
+        "\u010cajetina",
+        "Kohtla-J\u00e4rve",
+        "Texas (1836\u20131839)",
+        "Topeka, Kansas",
+        "Kostroma",
+        "Volzhsky",
+        "Bindal",
+        "Vang"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a green flag with a yellow diagonal band from lower hoist to upper fly, with red and yellow triangles",
+      "tier": "hard",
+      "expected": [
+        "Republic of the Congo",
+        "Congo"
+      ],
+      "returned": [
+        "Arzamas",
+        "Ai Qing",
+        "East Indonesia",
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Palembang Sultanate - Flag of the Sultan of Palembang under Sultan Iskandar Mahmud Badaruddin[2]",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Rana",
+        "Guyana",
+        "South Vietnam (historical)",
+        "Beauraing"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a blue cross outlined in white and a coat of arms, Pacific island",
+      "tier": "hard",
+      "expected": [
+        "Tonga",
+        "Fiji"
+      ],
+      "returned": [
+        "Batumi",
+        "Argentina - Yacht Club Argentino",
+        "Sochi",
+        "Argentina - Club Delta Argentino",
+        "Evenk Autonomous Okrug",
+        "Izhevsk",
+        "The Northern Mariana Islands",
+        "Taymyr Autonomous Okrug",
+        "Chiesanuova",
+        "Ris\u00f8r"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a light blue flag with a shield and the Union Jack in the canton, Pacific",
+      "tier": "hard",
+      "expected": [
+        "Fiji"
+      ],
+      "returned": [
+        "List of South African flags - 1920\u20131940",
+        "Fiji",
+        "Argentina - Yacht Club Argentino",
+        "Tbilisi",
+        "Federated States of Micronesia",
+        "Argentina - Club Delta Argentino",
+        "List of South African flags - 1947\u20131981",
+        "Minnesota",
+        "List of South African flags - 1940\u20131951",
+        "Evenk Autonomous Okrug"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a red flag with a white canton containing a red cross, Pacific kingdom",
+      "tier": "hard",
+      "expected": [
+        "Tonga"
+      ],
+      "returned": [
+        "Toyotomi Hidetsugu",
+        "Mulhouse",
+        "Abu Dhabi",
+        "Yogyakarta (variant 2)",
+        "List of Chinese flags - Design by Zhang Ding, Zhong Ling, Zhou Guangyuan and Xiao Shuhua",
+        "Tonga",
+        "Ai Qing",
+        "List of Chinese flags - Design by Chen Lu",
+        "Menen",
+        "Zhu De"
+      ],
+      "hit_rank": 6
+    },
+    {
+      "query": "a flag with a golden harp on a field, or a green white orange arrangement",
+      "tier": "hard",
+      "expected": [
+        "Ireland"
+      ],
+      "returned": [
+        "The Cherokee Nation",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "Azerbaijan (variant 2)",
+        "Skaistgirys",
+        "South African Defence Force Ensign (1981\u20131994)",
+        "Dublin",
+        "Prime Minister of East Indonesia",
+        "Provisional Representative Body of East Indonesia",
+        "List of South African flags - Proposal for the Flag of South Africa, Orange Cross Version",
+        "Indonesia - Flag of the Deputy Minister of East Indonesia"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a blue white red horizontal tricolor with a shield in the center bearing stars, Slavic",
+      "tier": "hard",
+      "expected": [
+        "Slovakia",
+        "Slovenia",
+        "Serbia"
+      ],
+      "returned": [
+        "Miercurea Ciuc",
+        "Tunisia (1831)",
+        "Bastogne",
+        "Novi Travnik",
+        "Despotovac",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Omsk Oblast",
+        "Riga - Flag of Riga from 1917 until the 1920s",
+        "Mingir",
+        "Argentina - Club N\u00e1utico Albatros"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a white blue red horizontal tricolor with a red shield and a three-peak mountain and crescent",
+      "tier": "hard",
+      "expected": [
+        "Slovenia"
+      ],
+      "returned": [
+        "Mingir",
+        "Turkmen Soviet Socialist Republic (historical)",
+        "Argentina - Club N\u00e1utico Albatros",
+        "Robinson Rancheria of Pomo Indians of California",
+        "Pre\u0161ov",
+        "Omsk Oblast",
+        "Amur Oblast",
+        "National Oceanic and Atmospheric Administration",
+        "Tunisia (1831)",
+        "Antigua and Barbuda"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a white blue red horizontal tricolor with a shield showing a double-headed eagle",
+      "tier": "hard",
+      "expected": [
+        "Serbia"
+      ],
+      "returned": [
+        "Despotovac",
+        "Surdulica",
+        "Miercurea Ciuc",
+        "Mingir",
+        "Alicante",
+        "Oberhausen",
+        "Omsk Oblast",
+        "Argentina - Club N\u00e1utico Albatros",
+        "One\u0219ti",
+        "Shkod\u00ebr"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a black double-headed eagle in the center",
+      "tier": "hard",
+      "expected": [
+        "Albania",
+        "Montenegro"
+      ],
+      "returned": [
+        "Orsk",
+        "Angola",
+        "Ocni\u021ba",
+        "Albania",
+        "Pova\u017esk\u00e1 Bystrica",
+        "Thesen's Steamship Company",
+        "Amsterdam (variant 2)",
+        "Bansk\u00e1 Bystrica",
+        "Bima",
+        "Papua New Guinea"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "a red field with a black two-headed eagle and nothing else",
+      "tier": "hard",
+      "expected": [
+        "Albania"
+      ],
+      "returned": [
+        "Albania",
+        "Deinze",
+        "Orsk",
+        "Despotovac",
+        "Iberian Union",
+        "First French Empire",
+        "Bryansk",
+        "Serbia (variant 2)",
+        "Lajkovac",
+        "Poland (variant 2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a green red and white flag with a red star and a green Star of Solomon emblem in the center",
+      "tier": "hard",
+      "expected": [
+        "Morocco"
+      ],
+      "returned": [
+        "Lagodekhi",
+        "Morocco",
+        "Abasha",
+        "Marche-en-Famenne",
+        "Adygea",
+        "Kryvyi Rih",
+        "Aizpute",
+        "Nazran",
+        "List of Chinese flags - Design by Kang Jian",
+        "Novi Travnik"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a red field with a green five-pointed star outline in the center",
+      "tier": "hard",
+      "expected": [
+        "Morocco"
+      ],
+      "returned": [
+        "Indonesian Socialist Youth",
+        "List of Chinese flags - Design by Kang Jian",
+        "Bangladesh",
+        "Morocco",
+        "Bacan",
+        "Garg\u017edai",
+        "List of Chinese flags - Design by Bao Qiquan",
+        "Thesen's Steamship Company",
+        "North Vietnam (historical)",
+        "Byelorussian Soviet Socialist Republic (historical)"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "a flag with a golden lion holding a sword surrounded by four leaves in the corners",
+      "tier": "hard",
+      "expected": [
+        "Sri Lanka"
+      ],
+      "returned": [
+        "Azerbaijan (variant 2)",
+        "Bhutan",
+        "Qing Emperor",
+        "Camenca",
+        "Hemsedal",
+        "Valletta",
+        "Sri Lanka",
+        "Saltdal",
+        "Ust-Orda Buryat Autonomous Okrug",
+        "Birmingham"
+      ],
+      "hit_rank": 7
+    },
+    {
+      "query": "a green flag with a white vertical band on the hoist and a red disc, then a lion",
+      "tier": "hard",
+      "expected": [
+        "Sri Lanka"
+      ],
+      "returned": [
+        "Stange",
+        "Azerbaijan (variant 2)",
+        "Leova",
+        "Ciorescu",
+        "Noginsk",
+        "\u00c5seral",
+        "S\u00f8r-Odal",
+        "Kongsberg",
+        "List of South African flags - Naval colour, 1981\u20131994",
+        "L\u00f8ten"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a maroon flag with a white and blue crest and a snake, Himalayan",
+      "tier": "hard",
+      "expected": [
+        "Bhutan"
+      ],
+      "returned": [
+        "Bhutan",
+        "Kikinda",
+        "Sri Lanka (variant 2)",
+        "Nepal",
+        "\u017bebbu\u0121, Malta Island",
+        "And\u00f8y",
+        "Jelgava",
+        "Argentina - Club N\u00e1utico San Isidro",
+        "Ust-Orda Buryat Autonomous Okrug",
+        "Argentina - Club Delta Argentino"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a plain sky-blue flag with a white emblem of a map or building",
+      "tier": "hard",
+      "expected": [
+        "Somalia"
+      ],
+      "returned": [
+        "Argentina - Yacht Club Argentino",
+        "Pomorie",
+        "Honduras",
+        "Madison, Wisconsin",
+        "Argentina - Club Regatas Chascomus",
+        "J\u016brmala",
+        "Tuva",
+        "Federated States of Micronesia",
+        "Chiesanuova",
+        "Faetano"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a light blue flag with a single white five-pointed star in the center",
+      "tier": "hard",
+      "expected": [
+        "Somalia"
+      ],
+      "returned": [
+        "Honduras",
+        "Qrendi",
+        "Steinkjer",
+        "Federated States of Micronesia",
+        "Evenk Autonomous Okrug",
+        "Argentina - Yacht Club Argentino",
+        "Argentina - Club Regatas Chascomus",
+        "Somalia",
+        "Pennant of the President of East Indonesia",
+        "The Trust Territory of the Pacific Islands"
+      ],
+      "hit_rank": 8
+    },
+    {
+      "query": "a red flag with two crossed cannons, an African great lakes nation",
+      "tier": "hard",
+      "expected": [
+        "Burundi"
+      ],
+      "returned": [
+        "Angola",
+        "Belgorod Oblast",
+        "List of South African flags - 2002\u20132003",
+        "Malawi",
+        "Stary Oskol",
+        "Mozambique",
+        "List of South African flags - 1994\u20132002",
+        "Dub\u0103sari",
+        "Burundi",
+        "Botswana"
+      ],
+      "hit_rank": 9
+    },
+    {
+      "query": "a white diagonal cross dividing the flag into red and green with three red stars",
+      "tier": "hard",
+      "expected": [
+        "Burundi"
+      ],
+      "returned": [
+        "Abasha",
+        "List of South African flags - Proposal for the Flag of South Africa, 1927, Green Version",
+        "Burundi",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "Lagodekhi",
+        "Zamora",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Hannut",
+        "Suriname",
+        "\u017bejtun"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "a flag split by a white saltire into red top and bottom and green left and right with a white disc and stars",
+      "tier": "hard",
+      "expected": [
+        "Burundi"
+      ],
+      "returned": [
+        "Zestaponi",
+        "List of South African flags - Proposal for the Flag of South Africa, 1927, Green Version",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "Argentina - Club San Fernando",
+        "Abasha",
+        "Orkdal",
+        "Ermesinde",
+        "Burundi",
+        "Kingdom of Egypt (historical)",
+        "Senaki"
+      ],
+      "hit_rank": 8
+    },
+    {
+      "query": "a black white and green horizontal flag with three red stars along the white band",
+      "tier": "hard",
+      "expected": [
+        "Iraq",
+        "Syria"
+      ],
+      "returned": [
+        "Indische Partij",
+        "Zamora",
+        "Nov\u00e9 Z\u00e1mky",
+        "Chechnya (variant 2)",
+        "Bangladesh",
+        "Ermesinde",
+        "Bansk\u00e1 Bystrica",
+        "Lanchkhuti",
+        "Argentina - Club N\u00e1utico Bahia Blanca",
+        "Pova\u017esk\u00e1 Bystrica"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red white black horizontal tricolor with green Arabic script reading God is great",
+      "tier": "hard",
+      "expected": [
+        "Iraq"
+      ],
+      "returned": [
+        "United Arab Emirates",
+        "Gelsenkirchen",
+        "Iraq",
+        "Tehran",
+        "Indische Partij",
+        "Kingdom of Iraq (historical)",
+        "Torhout",
+        "Chechnya (variant 2)",
+        "Lanchkhuti",
+        "Afghanistan"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "a red white black horizontal tricolor with two green stars in the white band",
+      "tier": "hard",
+      "expected": [
+        "Syria"
+      ],
+      "returned": [
+        "Indische Partij",
+        "Zamora",
+        "Lanchkhuti",
+        "Chechnya (variant 2)",
+        "Tunisia (1831)",
+        "Nov\u00e9 Z\u00e1mky",
+        "Bangladesh",
+        "Ermesinde",
+        "Argentina - Club N\u00e1utico San Fernando",
+        "Hannut"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag with a green white and green vertical pattern and a yellow sun-like device",
+      "tier": "hard",
+      "expected": [
+        "Nigeria"
+      ],
+      "returned": [
+        "Bangladesh (variant 2)",
+        "Leirfjord",
+        "Azerbaijan (variant 2)",
+        "Ust-Orda Buryat Autonomous Okrug",
+        "Demak",
+        "Recklinghausen",
+        "Drangedal",
+        "East Indonesia",
+        "Sungei Ujong",
+        "Arzamas"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands green white and green with no emblem",
+      "tier": "hard",
+      "expected": [
+        "Nigeria"
+      ],
+      "returned": [
+        "\u00c5seral",
+        "Flatanger",
+        "Zestaponi",
+        "N\u00f5mme",
+        "Orkdal",
+        "Nov\u00e9 Z\u00e1mky",
+        "F\u0103le\u0219ti",
+        "Surnadal",
+        "Indonesia Arab Association",
+        "Kinel"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag with a hammer and sickle and a red star on a red field",
+      "tier": "hard",
+      "expected": [
+        "Soviet Union",
+        "USSR"
+      ],
+      "returned": [
+        "List of Chinese flags - Design by Chen Duo",
+        "Kazakh Soviet Socialist Republic (historical)",
+        "Russian Soviet Federative Socialist Republic (historical)",
+        "Checheno-Ingush ASSR - Flag of Checheno-Ingushetia(de jure; until 16 May 1992)",
+        "List of Chinese flags - Design by Bao Qiquan",
+        "Karelia (variant 2)",
+        "Folldal",
+        "List of Chinese flags - Design by Yu Zhuosheng",
+        "North Yemen (historical)",
+        "Thesen's Steamship Company"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands green yellow and red with a red five-pointed star, Sahel",
+      "tier": "hard",
+      "expected": [
+        "Senegal"
+      ],
+      "returned": [
+        "Guinea-Bissau",
+        "List of South African flags - Proposal by ANC",
+        "Benin",
+        "Arzamas",
+        "Orl\u00e9ans",
+        "Li\u00e8ge",
+        "Wervik",
+        "Guinea",
+        "Cameroon",
+        "Aix-en-Provence"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands green yellow red with a black five-pointed star in the center",
+      "tier": "hard",
+      "expected": [
+        "Guinea-Bissau"
+      ],
+      "returned": [
+        "Arzamas",
+        "Leirfjord",
+        "Adygea",
+        "Palembang Sultanate - Flag of the Sultan of Palembang under Sultan Iskandar Mahmud Badaruddin[2]",
+        "Langkat",
+        "List of South African flags - Proposal by ANC",
+        "Ninove",
+        "Enghien",
+        "Sungei Ujong",
+        "East Indonesia"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red vertical band at the hoist with a black star, and horizontal yellow and green bands",
+      "tier": "hard",
+      "expected": [
+        "Guinea-Bissau"
+      ],
+      "returned": [
+        "Enghien",
+        "Noginsk",
+        "Comines-Warneton",
+        "Fontaine-l'\u00c9v\u00eaque",
+        "Evje og Hornnes",
+        "Garg\u017edai",
+        "Kirov",
+        "Schellenberg",
+        "Viejas Group of Capitan Grande Band of Mission Indians",
+        "Sungei Ujong"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands red yellow green, plain, west African",
+      "tier": "hard",
+      "expected": [
+        "Guinea",
+        "Mali"
+      ],
+      "returned": [
+        "List of South African flags - Proposal by ANC",
+        "Republic of the Congo",
+        "Langkat",
+        "Guinea",
+        "Mauritius",
+        "Cameroon",
+        "Matan",
+        "Senegal",
+        "Bolivia",
+        "Veurne"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "three vertical bands green yellow red, plain, west African",
+      "tier": "hard",
+      "expected": [
+        "Mali"
+      ],
+      "returned": [
+        "Matan",
+        "List of South African flags - Proposal by ANC",
+        "Sungei Ujong",
+        "Veurne",
+        "Republic of the Congo",
+        "Guinea",
+        "Cameroon",
+        "Senegal",
+        "Saint Vincent and the Grenadines",
+        "Indonesia - Another variant of the practice flag used uncommonly in local districts or schools"
+      ],
+      "hit_rank": null
+    }
+  ]
+}
