@@ -90,7 +90,7 @@ Per-tier for the winner (hybrid bge-base, w=0.3):
 
 ### Scaling to the full corpus
 
-We then generated descriptions for the **whole corpus (2708/2752 flags** — the rest
+We then generated descriptions for the **whole corpus (2705/2751 flags** — the rest
 are unrenderable SVGs that stay name-only). Describing every flag makes descriptive
 search work for *any* flag ("a flag with a pine tree" → Maine / Lebanon), but it also
 means obscure historical/subdivision flags now legitimately compete on visual
@@ -119,14 +119,14 @@ municipality.
 
 The deployed model is **bge-base-en-v1.5 exported to int8 ONNX (105 MB)** — smaller
 than the old 254 MB CLIP encoder — run via the `tokenizers` lib + onnxruntime (no
-torch), with corpus embeddings precomputed (2752 × 768, ~8 MB). Comfortably inside
+torch), with corpus embeddings precomputed (2751 × 768, ~8 MB). Comfortably inside
 Render Starter's 512 MB / 0.5 CPU. int8 quantization was quality-neutral (fp32 and
 int8 scored within noise). `run_eval.py --experiment production` evaluates the exact
 shipped configuration.
 
 ### Known limitations / next steps
 
-- 44 flags have unrenderable source SVGs and remain name-only (findable by name).
+- 46 flags have unrenderable source SVGs and remain name-only (findable by name).
 - Dataset name hygiene: one artifact fixed ("Flag of" → Menorca); a broader
   name-cleanup pass over scraped subdivisions would help.
 - Image-upload search (draw/upload a flag) is still unimplemented; the SigLIP/CLIP
