@@ -1,5 +1,7 @@
 """
-Test script to verify that the flag searcher produces consistent embeddings.
+Smoke test for the hybrid text-description FlagSearcher: both name queries and
+visual-description queries should surface the right flag in the top results, and
+scores should be sorted descending.
 """
 
 import sys
@@ -11,20 +13,19 @@ from backend.src.flag_searcher import FlagSearcher
 
 
 def test_flag_searcher():
-    """Test the flag searcher with a sample query"""
-
-    # Create flag searcher
     searcher = FlagSearcher(top_k=10)
 
     test_cases = [
-        ("american flag", "United States"),
-        ("united states of america", "United States"),
-        ("ukraine", "Ukraine"),
-        ("democractic republic of congo", "Democratic Republic of the Congo"),
+        # name queries (handled by the lexical name-match term)
+        ("the flag of Japan", "Japan"),
+        ("Ukraine", "Ukraine"),
+        # description queries (handled by dense description similarity)
+        ("green flag with a white crescent moon and a star", "Pakistan"),
+        ("a red circle centered on a white field", "Japan"),
+        ("blue field with a yellow Scandinavian cross", "Sweden"),
     ]
 
     for query, expected in test_cases:
-        print(f"Testing query: '{query}'")
         results = searcher.query(query, is_image=False, top_k=10)
 
         assert len(results.flags) == 10
@@ -34,7 +35,7 @@ def test_flag_searcher():
         assert scores == sorted(scores, reverse=True)
 
         names = [flag.name for flag in results.flags]
-        assert expected in names
+        assert expected in names, f"{expected!r} not in top-10 for {query!r}: {names}"
 
 
 if __name__ == "__main__":

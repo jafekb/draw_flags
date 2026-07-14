@@ -1,0 +1,2699 @@
+{
+  "experiment": "production_bge_base_int8",
+  "top_k": 10,
+  "num_queries": 132,
+  "overall": {
+    "recall@1": 0.6590909090909091,
+    "recall@5": 0.8560606060606061,
+    "recall@10": 0.8787878787878788,
+    "mrr@10": 0.7440867003367003,
+    "n": 132
+  },
+  "by_tier": {
+    "easy": {
+      "recall@1": 0.7666666666666667,
+      "recall@5": 0.9666666666666667,
+      "recall@10": 0.9666666666666667,
+      "mrr@10": 0.8527777777777777,
+      "n": 30
+    },
+    "medium": {
+      "recall@1": 0.627906976744186,
+      "recall@5": 0.8372093023255814,
+      "recall@10": 0.9069767441860465,
+      "mrr@10": 0.7233204134366925,
+      "n": 43
+    },
+    "hard": {
+      "recall@1": 0.6271186440677966,
+      "recall@5": 0.8135593220338984,
+      "recall@10": 0.8135593220338984,
+      "mrr@10": 0.7039548022598869,
+      "n": 59
+    }
+  },
+  "per_query": [
+    {
+      "query": "the flag of Japan",
+      "tier": "easy",
+      "expected": [
+        "Japan"
+      ],
+      "returned": [
+        "Japan",
+        "Flag of",
+        "National flag",
+        "Japan - Matsudaira Terusada",
+        "Emperor of Japan",
+        "Japan - Matsudaira Chikatoki",
+        "Japan - Arima Toy\u014dji",
+        "States Flag",
+        "Japan - Makino Narizumi",
+        "Japan - Arima Toy\u014dji (possibly Arima Yasazumi)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "Canada flag",
+      "tier": "easy",
+      "expected": [
+        "Canada"
+      ],
+      "returned": [
+        "Canada",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "Paralympic flag (2019)",
+        "ECOWAS Flag",
+        "List of Chinese flags - Design by Chen Lu",
+        "List of Chinese flags - Proposal 4 for the PRC flag",
+        "List of Chinese flags - Design by Luo Wen",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Brazil",
+      "tier": "easy",
+      "expected": [
+        "Brazil"
+      ],
+      "returned": [
+        "Brazil",
+        "Flag of",
+        "ECOWAS Flag",
+        "States Flag",
+        "National flag",
+        "Paralympic flag (2019)",
+        "The Prince's Flag",
+        "Vienna (state flag)",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "State flag (official)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of France",
+      "tier": "easy",
+      "expected": [
+        "France"
+      ],
+      "returned": [
+        "Flag of",
+        "France",
+        "France (variant 2)",
+        "National flag",
+        "The Prince's Flag",
+        "States Flag",
+        "ECOWAS Flag",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "Vienna (state flag)",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "flag of Germany",
+      "tier": "easy",
+      "expected": [
+        "Germany"
+      ],
+      "returned": [
+        "Germany (1433)",
+        "Flag of",
+        "Nazi Germany (historical)",
+        "East Germany (historical)",
+        "Germany",
+        "National flag",
+        "Vienna (state flag)",
+        "States Flag",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Italy",
+      "tier": "easy",
+      "expected": [
+        "Italy"
+      ],
+      "returned": [
+        "Italy",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "The Prince's Flag",
+        "New Jersey Tricentennial Flag (1964)",
+        "Paralympic flag (2019)",
+        "Vienna (state flag)",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "Indiana Centennial Flag (1916)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "United States flag",
+      "tier": "easy",
+      "expected": [
+        "United States"
+      ],
+      "returned": [
+        "States Flag",
+        "United States",
+        "National flag",
+        "Flag of",
+        "United Kingdom",
+        "State flag (official)",
+        "The Organization of American States",
+        "New Jersey Tricentennial Flag (1964)",
+        "Alabama Bicentennial Flag (2019)",
+        "Confederate States of America (historical)"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "flag of Mexico",
+      "tier": "easy",
+      "expected": [
+        "Mexico"
+      ],
+      "returned": [
+        "Mexico",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "New Mexico",
+        "Texas Sesquicentennial Flag (1986)",
+        "Texas Centennial Flag (1936)",
+        "ECOWAS Flag",
+        "Illinois Sesquicentennial Flag (1968)",
+        "Mississippi Bicentennial Flag (2017)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of India",
+      "tier": "easy",
+      "expected": [
+        "India"
+      ],
+      "returned": [
+        "Flag of",
+        "India",
+        "National flag",
+        "Darul Islam flag (unofficial)[note 8]",
+        "States Flag",
+        "The Prince's Flag",
+        "Vienna (state flag)",
+        "ECOWAS Flag",
+        "State flag (official)",
+        "Sumatra - Flag of Sumatra under Dutch rule"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "flag of China",
+      "tier": "easy",
+      "expected": [
+        "China"
+      ],
+      "returned": [
+        "China",
+        "Republic of China (1912\u20131949) (historical)",
+        "Flag of",
+        "List of Chinese flags - Design by Chen Lu",
+        "List of Chinese flags - Design by Zhang Ding, Zhong Ling, Zhou Guangyuan and Xiao Shuhua",
+        "List of Chinese flags - Design by Mo Hongshu",
+        "List of Chinese flags - Design by Xiao Shufang",
+        "List of Chinese flags - Design by Luo Wen",
+        "List of Chinese flags - Design by Hu Yuanqing",
+        "List of Chinese flags - Proposal 4 for the PRC flag"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "South Korea flag",
+      "tier": "easy",
+      "expected": [
+        "South Korea"
+      ],
+      "returned": [
+        "Korea, South",
+        "South Korea",
+        "Korea, North",
+        "Flag of",
+        "South African Police Service flag (1995\u2013present)",
+        "National flag",
+        "South African team (1994 Winter Olympics)",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "States Flag",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "the flag of Australia",
+      "tier": "easy",
+      "expected": [
+        "Australia"
+      ],
+      "returned": [
+        "Australia",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "The Prince's Flag",
+        "Vienna (state flag)",
+        "Distinctive flag of the Governor of the Dutch New Guinea (1930-1962)",
+        "Paralympic flag (2019)",
+        "South African Police Service flag (1995\u2013present)",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Argentina",
+      "tier": "easy",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Argentina",
+        "Flag of",
+        "Argentina - Club Delta Argentino",
+        "Argentina - Yacht Club Argentino",
+        "Argentina - Club N\u00e1utico Zarate",
+        "Argentina - Yacht Club Neuqu\u00e9n",
+        "Argentina - Club N\u00e1utico Victoria",
+        "National flag",
+        "Argentina - Yacht Club Rosario",
+        "Argentina - Club N\u00e1utico Cordoba"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Spain",
+      "tier": "easy",
+      "expected": [
+        "Spain"
+      ],
+      "returned": [
+        "Spain",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "The Prince's Flag",
+        "Vienna (state flag)",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "Bangladesh (variant 2)",
+        "Namibia",
+        "Philippines"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Egypt",
+      "tier": "easy",
+      "expected": [
+        "Egypt"
+      ],
+      "returned": [
+        "Egypt",
+        "Kingdom of Egypt (historical)",
+        "Flag of",
+        "Egypt (variant 2)",
+        "National flag",
+        "States Flag",
+        "The Prince's Flag",
+        "Alabama Bicentennial Flag (2019)",
+        "Darul Islam flag (unofficial)[note 8]",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of South Africa",
+      "tier": "easy",
+      "expected": [
+        "South Africa"
+      ],
+      "returned": [
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "South African Police Service flag (1995\u2013present)",
+        "List of South African flags - Proposal for the Flag of South Africa, Boxes Version",
+        "List of South African flags - Proposal for the Flag of South Africa, Bordered Version",
+        "List of South African flags - Proposal for the Flag of South Africa, 1965, the \"Verwoerd Flag\"",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "List of South African flags - Proposal for the Flag of South Africa, Southern Cross Stripes Version",
+        "List of South African flags - Proposal for the Flag of South Africa, Six Stripes NL Version",
+        "South African team (1994 Winter Olympics)",
+        "Civil Air Ensign of South Africa (1930s)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "flag of Nigeria",
+      "tier": "easy",
+      "expected": [
+        "Nigeria"
+      ],
+      "returned": [
+        "Nigeria",
+        "ECOWAS Flag",
+        "Flag of",
+        "National flag",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "Darul Islam flag (unofficial)[note 8]",
+        "States Flag",
+        "List of South African flags - Proposal for the Flag of South Africa, Six Stripes NL Version",
+        "List of South African flags - Proposal for the Flag of South Africa, Southern Cross Stripes Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Kenya",
+      "tier": "easy",
+      "expected": [
+        "Kenya"
+      ],
+      "returned": [
+        "Kenya",
+        "Flag of",
+        "ECOWAS Flag",
+        "National flag",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "South African Police Service flag (1995\u2013present)",
+        "South African team (1994 Winter Olympics)",
+        "List of South African flags - Proposal for the Flag of South Africa, 1927, Four Quadrants Version proposed by the South African Party",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version",
+        "The Prince's Flag"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Saudi Arabia",
+      "tier": "easy",
+      "expected": [
+        "Saudi Arabia"
+      ],
+      "returned": [
+        "Saudi Arabia",
+        "Saudi Arabia (variant 2)",
+        "Flag of",
+        "The Prince's Flag",
+        "National flag",
+        "Darul Islam flag (unofficial)[note 8]",
+        "States Flag",
+        "ECOWAS Flag",
+        "Paralympic flag (2019)",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Turkey",
+      "tier": "easy",
+      "expected": [
+        "Turkey"
+      ],
+      "returned": [
+        "Turkey",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "Vienna (state flag)",
+        "The Prince's Flag",
+        "Darul Islam flag (unofficial)[note 8]",
+        "Indonesia - Another variant of the practice flag used uncommonly in local districts or schools",
+        "ECOWAS Flag",
+        "State flag (official)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Greece",
+      "tier": "easy",
+      "expected": [
+        "Greece"
+      ],
+      "returned": [
+        "Greece",
+        "Flag of",
+        "Greece (variant 2)",
+        "States Flag",
+        "National flag",
+        "The Prince's Flag",
+        "State flag (official)",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "Vienna (state flag)",
+        "Bangladesh (variant 2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Sweden",
+      "tier": "easy",
+      "expected": [
+        "Sweden"
+      ],
+      "returned": [
+        "Sweden",
+        "Riga - Flag of Riga given by the Swedish King",
+        "Flag of",
+        "National flag",
+        "Riga - Flag of Riga given by the Swedish King variant, according to the Johnson's new chart of national emblems, 1868.",
+        "The Prince's Flag",
+        "Vienna (state flag)",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "States Flag",
+        "Early design of the current flag of Riga in the 17th century, with no coat of arms"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Portugal",
+      "tier": "easy",
+      "expected": [
+        "Portugal"
+      ],
+      "returned": [
+        "Portugal (1830\u20131910)",
+        "Portugal (official)",
+        "Portugal (1616)",
+        "Flag of",
+        "Portugal (1495)",
+        "National flag",
+        "ECOWAS Flag",
+        "States Flag",
+        "United Kingdom of Portugal, Brazil and Algarves",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Ireland",
+      "tier": "easy",
+      "expected": [
+        "Ireland"
+      ],
+      "returned": [
+        "Ireland",
+        "Republic of Ireland",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "New Jersey Tricentennial Flag (1964)",
+        "Indiana Centennial Flag (1916)",
+        "Illinois Centennial Flag (1918)",
+        "The Prince's Flag",
+        "Paralympic flag (2019)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "flag of Israel",
+      "tier": "easy",
+      "expected": [
+        "Israel"
+      ],
+      "returned": [
+        "Israel",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "Vienna (state flag)",
+        "Darul Islam flag (unofficial)[note 8]",
+        "South African team (1994 Winter Olympics)",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "The Prince's Flag",
+        "Bangladesh (variant 2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Vietnam",
+      "tier": "easy",
+      "expected": [
+        "Vietnam"
+      ],
+      "returned": [
+        "North Vietnam (historical)",
+        "Flag of",
+        "South Vietnam (historical)",
+        "Vietnam",
+        "National flag",
+        "Mao Zedong's proposal for the PRC flag symbolizing the Yellow River[21]",
+        "List of Chinese flags - Design by Chen Lu",
+        "Alabama Sesquicentennial Flag (1969)",
+        "ECOWAS Flag",
+        "States Flag"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "flag of Thailand",
+      "tier": "easy",
+      "expected": [
+        "Thailand"
+      ],
+      "returned": [
+        "Thailand",
+        "Flag of",
+        "National flag",
+        "States Flag",
+        "Indonesia - Flag of the Ministry of Defence, used from 2005(?) until January 2022",
+        "Netherlands - Royal Flag of The Netherlands (1908\u20131949)",
+        "ECOWAS Flag",
+        "State flag (official)",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Indonesia",
+      "tier": "easy",
+      "expected": [
+        "Indonesia"
+      ],
+      "returned": [
+        "Indonesia - Flag of the Deputy Minister of East Indonesia",
+        "Indonesia - Bicoli",
+        "Indonesia",
+        "Indonesia - Another variant of the practice flag used uncommonly in local districts or schools",
+        "Indonesia - Flag of the Ministry of Defence, used from 2005(?) until January 2022",
+        "Flag of",
+        "Sumatra - Flag of Sumatra under Dutch rule",
+        "Indonesia - Landak",
+        "Pennant of the President of East Indonesia",
+        "East Indonesia"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "flag of Kazakhstan",
+      "tier": "easy",
+      "expected": [
+        "Kazakhstan"
+      ],
+      "returned": [
+        "Kazakhstan",
+        "Flag of",
+        "States Flag",
+        "Kazakh Soviet Socialist Republic (historical)",
+        "National flag",
+        "State flag (official)",
+        "Checheno-Ingush ASSR - Flag of Checheno-Ingushetia(de jure; until 16 May 1992)",
+        "ECOWAS Flag",
+        "Kake, Alaska - Flag of the Organized Village of Kake",
+        "Paralympic flag (2019)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "the flag of Jamaica",
+      "tier": "easy",
+      "expected": [
+        "Jamaica"
+      ],
+      "returned": [
+        "Jamaica",
+        "Flag of",
+        "National flag",
+        "ECOWAS Flag",
+        "South African Police Service flag (1995\u2013present)",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "List of South African flags - Proposal for the Flag of South Africa, 1927, Four Quadrants Version proposed by the South African Party",
+        "The Prince's Flag",
+        "New Jersey Tricentennial Flag (1964)",
+        "List of South African flags - Proposal for the Flag of South Africa, Checkered Version"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "red and white horizontal stripes with a blue rectangle in the top-left corner filled with small white stars",
+      "tier": "medium",
+      "expected": [
+        "United States"
+      ],
+      "returned": [
+        "Cuba",
+        "United States",
+        "Liberia",
+        "Central African Republic",
+        "Israel",
+        "Uzbekistan",
+        "North Korea",
+        "Singapore",
+        "Togo",
+        "Governor of the Dutch East Indies (tot 1954)"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "three vertical stripes blue white and red",
+      "tier": "medium",
+      "expected": [
+        "France"
+      ],
+      "returned": [
+        "Luxembourg",
+        "Peru",
+        "France",
+        "Costa Rica",
+        "Netherlands",
+        "Romania",
+        "Italy",
+        "Chad",
+        "Nigeria",
+        "Ivory Coast"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "three vertical bands of green white and orange",
+      "tier": "medium",
+      "expected": [
+        "Ireland"
+      ],
+      "returned": [
+        "Ivory Coast",
+        "Nigeria",
+        "Italy",
+        "Mali",
+        "Guinea",
+        "Senegal",
+        "Peru",
+        "France",
+        "Niger",
+        "Cameroon"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands of orange white and green",
+      "tier": "medium",
+      "expected": [
+        "Ivory Coast"
+      ],
+      "returned": [
+        "Ivory Coast",
+        "Nigeria",
+        "Italy",
+        "Mali",
+        "Guinea",
+        "Senegal",
+        "Peru",
+        "France",
+        "Niger",
+        "Cameroon"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "two horizontal bands red on top and white on the bottom",
+      "tier": "medium",
+      "expected": [
+        "Indonesia",
+        "Monaco"
+      ],
+      "returned": [
+        "Monaco",
+        "Poland",
+        "Croatia (Habsburg)",
+        "Netherlands",
+        "Indonesia",
+        "Hungary",
+        "Luxembourg",
+        "Bulgaria",
+        "Governor of the Dutch East Indies (1928-1949)",
+        "Governor of the Dutch East Indies (tot 1954)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "two horizontal bands white on top and red on the bottom",
+      "tier": "medium",
+      "expected": [
+        "Poland"
+      ],
+      "returned": [
+        "Monaco",
+        "Poland",
+        "Croatia (Habsburg)",
+        "Netherlands",
+        "Indonesia",
+        "Hungary",
+        "Luxembourg",
+        "Bulgaria",
+        "Governor of the Dutch East Indies (1928-1949)",
+        "Austria"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "three horizontal bands black red and gold",
+      "tier": "medium",
+      "expected": [
+        "Germany"
+      ],
+      "returned": [
+        "Germany",
+        "Yemen",
+        "Syria",
+        "Netherlands",
+        "Palestine",
+        "Lithuania",
+        "Austria",
+        "Armenia",
+        "Egypt",
+        "Sao Tome and Principe"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands white blue and red from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Russia"
+      ],
+      "returned": [
+        "Netherlands",
+        "Luxembourg",
+        "Thailand",
+        "Hungary",
+        "Yemen",
+        "Governor of the Dutch East Indies (1928-1949)",
+        "Governor of the Dutch East Indies (tot 1954)",
+        "Laos",
+        "Costa Rica",
+        "Armenia"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands red white and blue from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Netherlands",
+        "Luxembourg"
+      ],
+      "returned": [
+        "Netherlands",
+        "Luxembourg",
+        "Thailand",
+        "Hungary",
+        "Governor of the Dutch East Indies (1928-1949)",
+        "Yemen",
+        "Governor of the Dutch East Indies (tot 1954)",
+        "Laos",
+        "Armenia",
+        "Costa Rica"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three vertical bands green white and red",
+      "tier": "medium",
+      "expected": [
+        "Italy"
+      ],
+      "returned": [
+        "Italy",
+        "Mali",
+        "Guinea",
+        "Nigeria",
+        "Ivory Coast",
+        "Hungary",
+        "Senegal",
+        "Peru",
+        "Bulgaria",
+        "Netherlands"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands red white and green from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Hungary"
+      ],
+      "returned": [
+        "Hungary",
+        "Netherlands",
+        "Bulgaria",
+        "Yemen",
+        "Syria",
+        "Suriname",
+        "Sierra Leone",
+        "Lithuania",
+        "Luxembourg",
+        "Bolivia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands white green and red from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Bulgaria"
+      ],
+      "returned": [
+        "Hungary",
+        "Netherlands",
+        "Bulgaria",
+        "Yemen",
+        "Syria",
+        "Suriname",
+        "Austria",
+        "Luxembourg",
+        "Sierra Leone",
+        "Lithuania"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "a red circle centered on a plain white field",
+      "tier": "medium",
+      "expected": [
+        "Japan"
+      ],
+      "returned": [
+        "Japan",
+        "Tunisia",
+        "United Kingdom (1-2)",
+        "Turkey",
+        "Switzerland",
+        "Montenegro (variant 2)",
+        "Switzerland (Pantone)",
+        "Vietnam",
+        "Morocco",
+        "United Arab Emirates (variant 2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red disc slightly left of center on a green field",
+      "tier": "medium",
+      "expected": [
+        "Bangladesh"
+      ],
+      "returned": [
+        "Bangladesh",
+        "Tunisia",
+        "Japan",
+        "Albania",
+        "Burundi",
+        "Morocco",
+        "Maldives",
+        "Latvia (state)",
+        "Dominica",
+        "Latvia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a yellow circle centered on a light blue field",
+      "tier": "medium",
+      "expected": [
+        "Palau"
+      ],
+      "returned": [
+        "Palau",
+        "Somalia",
+        "Sweden",
+        "The Commonwealth of Nations (2013)",
+        "Nauru",
+        "Bosnia and Herzegovina",
+        "NATO",
+        "Saint Lucia",
+        "Finland (pre-1906)",
+        "Botswana"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red square with a bold white cross in the center",
+      "tier": "medium",
+      "expected": [
+        "Switzerland"
+      ],
+      "returned": [
+        "Switzerland (Pantone)",
+        "Switzerland",
+        "Montenegro (variant 2)",
+        "United Kingdom (1-2)",
+        "Malta (various)",
+        "Denmark",
+        "Tonga",
+        "Georgia (country)",
+        "International Committee of the Red Cross",
+        "Canada"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red field with an off-center white Scandinavian cross",
+      "tier": "medium",
+      "expected": [
+        "Denmark"
+      ],
+      "returned": [
+        "Denmark",
+        "Montenegro (variant 2)",
+        "Norway",
+        "United Kingdom (1-2)",
+        "Switzerland (Pantone)",
+        "Switzerland",
+        "Iceland",
+        "Malta (various)",
+        "Tonga",
+        "Finland"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a blue field with a yellow Scandinavian cross",
+      "tier": "medium",
+      "expected": [
+        "Sweden"
+      ],
+      "returned": [
+        "Finland (pre-1906)",
+        "Sweden",
+        "Iceland",
+        "Finland",
+        "Norway",
+        "Greece",
+        "Palau",
+        "Bosnia and Herzegovina (rotated)",
+        "United Kingdom",
+        "Saint Kitts and Nevis (1707\u20131800)"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a white field with a blue Scandinavian cross",
+      "tier": "medium",
+      "expected": [
+        "Finland"
+      ],
+      "returned": [
+        "Finland",
+        "Iceland",
+        "Norway",
+        "Finland (pre-1906)",
+        "Greece",
+        "Sweden",
+        "United Kingdom (1-2)",
+        "Georgia (country)",
+        "Israel",
+        "Bosnia and Herzegovina (rotated)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red field with a blue Scandinavian cross outlined in white",
+      "tier": "medium",
+      "expected": [
+        "Norway"
+      ],
+      "returned": [
+        "Norway",
+        "Iceland",
+        "United Kingdom (1-2)",
+        "Finland",
+        "Montenegro (variant 2)",
+        "Switzerland (Pantone)",
+        "Tonga",
+        "Switzerland",
+        "Finland (pre-1906)",
+        "Denmark"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a blue field with a red Scandinavian cross outlined in white",
+      "tier": "medium",
+      "expected": [
+        "Iceland"
+      ],
+      "returned": [
+        "Iceland",
+        "Finland",
+        "Norway",
+        "Finland (pre-1906)",
+        "United Kingdom (1-2)",
+        "Greece",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Sweden",
+        "United Kingdom",
+        "Montenegro (variant 2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a dark blue flag with the Union Jack in the top-left and white stars",
+      "tier": "medium",
+      "expected": [
+        "Australia",
+        "New Zealand"
+      ],
+      "returned": [
+        "New Zealand",
+        "Australia",
+        "Tuvalu",
+        "The Western European Union",
+        "Panama",
+        "List of South African flags - 1994\u20132003",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Philippines",
+        "United Kingdom",
+        "Marshall Islands"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a green field with a large yellow diamond and a blue circle in the middle",
+      "tier": "medium",
+      "expected": [
+        "Brazil"
+      ],
+      "returned": [
+        "Brazil",
+        "Palau",
+        "Bangladesh",
+        "Japan",
+        "The Commonwealth of Nations (2013)",
+        "Pakistan",
+        "Nauru",
+        "Libya (18th century)",
+        "Saint Vincent and the Grenadines",
+        "The Organisation of Islamic Cooperation (2011)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands black yellow and red from top to bottom",
+      "tier": "medium",
+      "expected": [
+        "Belgium"
+      ],
+      "returned": [
+        "Bolivia",
+        "Colombia",
+        "Yemen",
+        "Netherlands",
+        "Lithuania",
+        "Germany",
+        "Hungary",
+        "Belgium",
+        "Luxembourg",
+        "Ghana"
+      ],
+      "hit_rank": 8
+    },
+    {
+      "query": "three vertical bands black yellow and red",
+      "tier": "medium",
+      "expected": [
+        "Belgium"
+      ],
+      "returned": [
+        "Belgium",
+        "Guinea",
+        "Mali",
+        "Senegal",
+        "Cameroon",
+        "Yemen",
+        "Chad",
+        "Peru",
+        "Bolivia",
+        "Germany"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a light blue and white flag with horizontal stripes and a white cross canton",
+      "tier": "medium",
+      "expected": [
+        "Greece"
+      ],
+      "returned": [
+        "Greece",
+        "Liberia",
+        "Malaysia",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Australia",
+        "List of South African flags - 2003\u2013present (variant 3)",
+        "Uruguay",
+        "Namibia",
+        "Costa Rica",
+        "Dominican Republic"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "nine horizontal blue and white stripes with a white cross on a blue square in the corner",
+      "tier": "medium",
+      "expected": [
+        "Greece"
+      ],
+      "returned": [
+        "Greece",
+        "Central African Republic",
+        "Cuba",
+        "Slovakia",
+        "Dominican Republic",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Comoros",
+        "Russia (1668\u20131693)",
+        "Liberia",
+        "United Kingdom"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "red flag with a smaller blue and white cross flag in the upper corner",
+      "tier": "medium",
+      "expected": [
+        "New Zealand",
+        "Australia"
+      ],
+      "returned": [
+        "International Committee of the Red Cross",
+        "Tonga",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Iceland",
+        "Dominican Republic",
+        "United Kingdom (1-2)",
+        "United Kingdom",
+        "Norway",
+        "Switzerland (Pantone)",
+        "Greece"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three horizontal bands blue yellow and red",
+      "tier": "medium",
+      "expected": [
+        "Colombia"
+      ],
+      "returned": [
+        "Netherlands",
+        "Colombia",
+        "Luxembourg",
+        "Armenia",
+        "Lithuania",
+        "Yemen",
+        "Thailand",
+        "Gabon",
+        "Venezuela",
+        "Governor of the Dutch East Indies (tot 1954)"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a horizontal flag that is half yellow on top with blue and red below",
+      "tier": "medium",
+      "expected": [
+        "Colombia"
+      ],
+      "returned": [
+        "Colombia",
+        "Ukraine",
+        "Indonesia",
+        "Croatia (Habsburg)",
+        "Namibia",
+        "Austria (variant 2)",
+        "Bolivia",
+        "Luxembourg",
+        "Liechtenstein",
+        "Central African Republic"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands yellow blue and red of equal size",
+      "tier": "medium",
+      "expected": [
+        "Armenia"
+      ],
+      "returned": [
+        "Yemen",
+        "Lithuania",
+        "Germany",
+        "Netherlands",
+        "Mauritius",
+        "Armenia",
+        "Colombia",
+        "Luxembourg",
+        "Thailand",
+        "Gabon"
+      ],
+      "hit_rank": 6
+    },
+    {
+      "query": "three horizontal bands red blue and orange",
+      "tier": "medium",
+      "expected": [
+        "Armenia"
+      ],
+      "returned": [
+        "Armenia",
+        "Netherlands",
+        "Luxembourg",
+        "Thailand",
+        "Yemen",
+        "Costa Rica",
+        "Governor of the Dutch East Indies (tot 1954)",
+        "Laos",
+        "Malaysia (variant 2)",
+        "Cambodia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a pale blue and white flag of two colors used by the UN",
+      "tier": "medium",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "Flag of",
+        "Indonesia - Flag of the Ministry of Defence, used from 2005(?) until January 2022",
+        "List of Chinese flags - Design by Chen Duo",
+        "List of Chinese flags - Proposal 2 for the PRC flag symbolizing the Yellow River and the Yangtze River",
+        "Namibia",
+        "South African team (1994 Winter Olympics)",
+        "National flag",
+        "The Organization of American States",
+        "List of Chinese flags - Design by Luo Wen"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands red white and red with a maple leaf in the center",
+      "tier": "medium",
+      "expected": [
+        "Canada"
+      ],
+      "returned": [
+        "Canada",
+        "Lebanon",
+        "Peru",
+        "Netherlands",
+        "Somalia (variant 2)",
+        "Luxembourg",
+        "Hungary",
+        "Laos",
+        "Italy",
+        "Tajikistan"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a plain white flag with a red maple leaf in the center",
+      "tier": "medium",
+      "expected": [
+        "Canada"
+      ],
+      "returned": [
+        "Canada",
+        "United Kingdom (1-2)",
+        "Japan",
+        "Lebanon",
+        "Switzerland (Pantone)",
+        "Naval and maritime flag of Massachusetts",
+        "Serbia (variant 2)",
+        "Switzerland",
+        "Oman",
+        "Dominican Republic"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three vertical bands green white and green with a cedar tree",
+      "tier": "medium",
+      "expected": [
+        "Lebanon"
+      ],
+      "returned": [
+        "Lebanon",
+        "Nigeria",
+        "Italy",
+        "Mali",
+        "Guinea",
+        "Senegal",
+        "Madagascar",
+        "Ivory Coast",
+        "Tajikistan",
+        "Saint Vincent and the Grenadines"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three vertical bands green white and orange with a blue wheel in the center",
+      "tier": "medium",
+      "expected": [
+        "India"
+      ],
+      "returned": [
+        "India",
+        "Ivory Coast",
+        "Nigeria",
+        "France",
+        "Niger",
+        "Senegal",
+        "Italy",
+        "Saint Vincent and the Grenadines",
+        "Netherlands",
+        "Mali"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands saffron white and green with a navy blue spoked wheel in the center",
+      "tier": "medium",
+      "expected": [
+        "India"
+      ],
+      "returned": [
+        "India",
+        "Thailand",
+        "Syria",
+        "Netherlands",
+        "Hungary",
+        "Sierra Leone",
+        "Lesotho",
+        "Suriname",
+        "Bulgaria",
+        "Laos"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands green yellow and red the pan-African colors",
+      "tier": "medium",
+      "expected": [
+        "Ethiopia",
+        "Bolivia",
+        "Ghana",
+        "Senegal",
+        "Guinea"
+      ],
+      "returned": [
+        "Lithuania",
+        "Central African Republic",
+        "Syria",
+        "Myanmar",
+        "Suriname",
+        "Tajikistan",
+        "Sao Tome and Principe",
+        "Hungary",
+        "Bolivia",
+        "Gabon"
+      ],
+      "hit_rank": 9
+    },
+    {
+      "query": "vertical bands green yellow red with a black star in the center",
+      "tier": "medium",
+      "expected": [
+        "Ghana"
+      ],
+      "returned": [
+        "Senegal",
+        "Cameroon",
+        "Guinea-Bissau",
+        "Burkina Faso",
+        "Ghana",
+        "Myanmar",
+        "Suriname",
+        "Sao Tome and Principe",
+        "Mauritania",
+        "Guinea"
+      ],
+      "hit_rank": 5
+    },
+    {
+      "query": "three horizontal bands red yellow and green with a green star in the center",
+      "tier": "medium",
+      "expected": [
+        "Ghana"
+      ],
+      "returned": [
+        "Myanmar",
+        "Suriname",
+        "Ghana",
+        "Sao Tome and Principe",
+        "Syria",
+        "Senegal",
+        "Tajikistan",
+        "Cameroon",
+        "Lithuania",
+        "Burkina Faso"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "a red flag with a yellow star in the top-left corner",
+      "tier": "medium",
+      "expected": [
+        "China",
+        "Vietnam"
+      ],
+      "returned": [
+        "Mauritania",
+        "China",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "Bangladesh (variant 2)",
+        "Vietnam",
+        "Papua New Guinea",
+        "Grenada",
+        "Central African Republic",
+        "Flag of",
+        "Timor-Leste"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a plain red field with a large yellow five-pointed star in the center",
+      "tier": "medium",
+      "expected": [
+        "Vietnam"
+      ],
+      "returned": [
+        "Vietnam",
+        "China",
+        "Morocco",
+        "Tunisia",
+        "Somalia",
+        "Turkey",
+        "Timor-Leste",
+        "Japan",
+        "Grenada",
+        "North Macedonia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a dark green flag with a white crescent moon and a white five-pointed star, with a white vertical stripe on the left",
+      "tier": "hard",
+      "expected": [
+        "Pakistan"
+      ],
+      "returned": [
+        "Pakistan",
+        "Algeria",
+        "Mauritania",
+        "Comoros",
+        "Togo",
+        "Turkey",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "Central African Republic",
+        "Turkmenistan",
+        "Cameroon"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red field with a white crescent moon and a white star",
+      "tier": "hard",
+      "expected": [
+        "Turkey"
+      ],
+      "returned": [
+        "Turkey",
+        "Tunisia",
+        "Maldives",
+        "Pakistan",
+        "Japan",
+        "Somalia (variant 2)",
+        "Samoa",
+        "Moldova (variant 2)",
+        "Montenegro (variant 2)",
+        "United Kingdom (1-2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with a white disc in the center containing a red crescent and red star",
+      "tier": "hard",
+      "expected": [
+        "Tunisia"
+      ],
+      "returned": [
+        "Tunisia",
+        "Singapore",
+        "Burundi",
+        "Nepal",
+        "Turkey",
+        "Algeria",
+        "Somalia (variant 2)",
+        "North Korea",
+        "Mauritania",
+        "Grenada"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with one large yellow star and four smaller yellow stars in the upper left",
+      "tier": "hard",
+      "expected": [
+        "China"
+      ],
+      "returned": [
+        "China",
+        "Vietnam",
+        "Central African Republic",
+        "Mauritania",
+        "Panama",
+        "Myanmar",
+        "Togo",
+        "Grenada",
+        "Bangladesh (variant 2)",
+        "Singapore"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "light blue and white horizontal stripes with a golden sun with a face in the center",
+      "tier": "hard",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Argentina",
+        "Uruguay",
+        "Rwanda",
+        "Cuba",
+        "Costa Rica",
+        "Central African Republic",
+        "Israel",
+        "Liberia",
+        "Luxembourg",
+        "Philippines"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "blue and white vertical and horizontal pattern with a golden sun with a human face in the top-left",
+      "tier": "hard",
+      "expected": [
+        "Uruguay"
+      ],
+      "returned": [
+        "Argentina",
+        "Uruguay",
+        "The CIS",
+        "Kazakhstan",
+        "Philippines",
+        "Rwanda",
+        "Kyrgyzstan",
+        "Israel",
+        "Slovenia",
+        "Taiwan"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a flag made of two stacked triangular pennants, crimson with blue borders, showing a white moon and sun",
+      "tier": "hard",
+      "expected": [
+        "Nepal"
+      ],
+      "returned": [
+        "Nepal",
+        "Philippines",
+        "Namibia",
+        "Bangladesh (variant 2)",
+        "Sri Lanka (variant 2)",
+        "El Salvador",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "Papua New Guinea",
+        "Serbia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a green flag with white Arabic calligraphy above a white horizontal sword",
+      "tier": "hard",
+      "expected": [
+        "Saudi Arabia"
+      ],
+      "returned": [
+        "Saudi Arabia",
+        "Iraq",
+        "Oman",
+        "Iran",
+        "South African team (1994 Winter Olympics)",
+        "Algeria",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "The Arab League",
+        "Egypt",
+        "Jordan"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag divided diagonally into black and red with a yellow bird of paradise and the southern cross stars",
+      "tier": "hard",
+      "expected": [
+        "Papua New Guinea"
+      ],
+      "returned": [
+        "Papua New Guinea",
+        "Bangladesh (variant 2)",
+        "Brunei",
+        "Namibia",
+        "Zimbabwe",
+        "Dominica",
+        "List of South African flags - Proposal for the Flag of South Africa, Southern Cross Stripes Version",
+        "Panama",
+        "List of South African flags - 2003\u2013present",
+        "Philippines"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a green flag with a yellow emblem containing a book, a hoe, and an AK-47 rifle",
+      "tier": "hard",
+      "expected": [
+        "Mozambique"
+      ],
+      "returned": [
+        "Mozambique",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "Oman",
+        "Togo",
+        "List of South African flags - 2003\u2013present",
+        "South African team (1994 Winter Olympics)",
+        "Flag of",
+        "Equatorial Guinea",
+        "Bangladesh (variant 2)",
+        "List of South African flags - 1994\u20132003"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a blue flag with the silhouette of a temple, Angkor Wat, in white in the center",
+      "tier": "hard",
+      "expected": [
+        "Cambodia"
+      ],
+      "returned": [
+        "Sri Lanka (variant 2)",
+        "Cambodia",
+        "The Organization of American States",
+        "Oman",
+        "South African team (1994 Winter Olympics)",
+        "Flag of",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Philippines",
+        "Nepal",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a yellow and orange flag divided diagonally with a white dragon holding jewels",
+      "tier": "hard",
+      "expected": [
+        "Bhutan"
+      ],
+      "returned": [
+        "Bhutan",
+        "Bangladesh (variant 2)",
+        "Sri Lanka",
+        "Namibia",
+        "Papua New Guinea",
+        "Oman",
+        "Sri Lanka (variant 2)",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "Mao Zedong's proposal for the PRC flag symbolizing the Yellow River[21]",
+        "South African team (1994 Winter Olympics)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands black white and green with a red triangle at the hoist",
+      "tier": "hard",
+      "expected": [
+        "Palestine",
+        "Sudan"
+      ],
+      "returned": [
+        "Palestine",
+        "Sudan",
+        "Kuwait",
+        "United Arab Emirates",
+        "Jordan",
+        "Madagascar",
+        "Sao Tome and Principe",
+        "Mozambique",
+        "South Sudan",
+        "Guinea-Bissau"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands black white and green with a red triangle at the hoist containing a white seven-pointed star",
+      "tier": "hard",
+      "expected": [
+        "Jordan"
+      ],
+      "returned": [
+        "Jordan",
+        "Palestine",
+        "Sao Tome and Principe",
+        "South Sudan",
+        "Mozambique",
+        "North Korea",
+        "Guinea-Bissau",
+        "Sudan",
+        "Uzbekistan",
+        "Djibouti"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with a white canton bearing crossed swords and a curved dagger",
+      "tier": "hard",
+      "expected": [
+        "Oman"
+      ],
+      "returned": [
+        "Oman",
+        "Tonga",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "Brunei",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "List of South African flags - 2003\u2013present",
+        "Switzerland (Pantone)",
+        "Serbia",
+        "Egypt",
+        "Liberia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a maroon field with a white serrated band on the hoist side",
+      "tier": "hard",
+      "expected": [
+        "Qatar"
+      ],
+      "returned": [
+        "Qatar",
+        "Bahrain",
+        "Trinidad and Tobago",
+        "Finland",
+        "List of South African flags - Proposal 1 (1993)",
+        "Madagascar",
+        "Tonga",
+        "Denmark",
+        "Guyana",
+        "Latvia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a white and red flag with a zigzag serrated line and five white triangles",
+      "tier": "hard",
+      "expected": [
+        "Bahrain"
+      ],
+      "returned": [
+        "Bahrain",
+        "Singapore",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "Cuba",
+        "Comoros",
+        "Switzerland (Pantone)",
+        "Oman",
+        "Nepal",
+        "Dominican Republic",
+        "Namibia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with a yellow sun with eight rays radiating outward from an off-center disc",
+      "tier": "hard",
+      "expected": [
+        "North Macedonia"
+      ],
+      "returned": [
+        "North Macedonia",
+        "Ethiopia",
+        "Tunisia",
+        "China",
+        "Bangladesh (variant 2)",
+        "Grenada",
+        "Antigua and Barbuda",
+        "Kyrgyzstan",
+        "Philippines",
+        "Namibia"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three horizontal bands red black and green with a golden eagle emblem in the center",
+      "tier": "hard",
+      "expected": [
+        "Egypt"
+      ],
+      "returned": [
+        "Egypt",
+        "Ghana",
+        "Syria",
+        "Sao Tome and Principe",
+        "Palestine",
+        "Suriname",
+        "Myanmar",
+        "Libya",
+        "Germany",
+        "Paraguay"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag with a golden eagle perched on a cactus eating a snake in the center white band",
+      "tier": "hard",
+      "expected": [
+        "Mexico"
+      ],
+      "returned": [
+        "Mexico",
+        "Moldova",
+        "Serbia",
+        "Egypt",
+        "Sri Lanka (variant 2)",
+        "Poland (variant 2)",
+        "Kazakhstan",
+        "Guatemala",
+        "Serbia (variant 2)",
+        "Oman"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a black flag with a red diagonal band and a yellow machete and cog wheel with a star",
+      "tier": "hard",
+      "expected": [
+        "Angola"
+      ],
+      "returned": [
+        "Angola",
+        "Guinea-Bissau",
+        "Mozambique",
+        "Saint Kitts and Nevis",
+        "Timor-Leste",
+        "Grenada",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "Ghana",
+        "Oman"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a vertical triband red white blue with a coat of arms and a condor",
+      "tier": "hard",
+      "expected": [
+        "Ecuador",
+        "Colombia",
+        "Venezuela"
+      ],
+      "returned": [
+        "Ecuador",
+        "Peru",
+        "Guatemala",
+        "Andorra",
+        "Serbia",
+        "France",
+        "Chad",
+        "Italy",
+        "El Salvador",
+        "Nigeria"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "yellow blue and red horizontal bands with a coat of arms featuring a condor",
+      "tier": "hard",
+      "expected": [
+        "Ecuador"
+      ],
+      "returned": [
+        "Ecuador",
+        "El Salvador",
+        "Serbia",
+        "Guatemala",
+        "Andorra",
+        "Colombia",
+        "Moldova",
+        "Netherlands (1815\u20131908)",
+        "Nicaragua",
+        "Central African Republic"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag with a green field and a large yellow-bordered white crescent opening toward the fly",
+      "tier": "hard",
+      "expected": [
+        "Turkey",
+        "Pakistan"
+      ],
+      "returned": [
+        "Maldives",
+        "Saudi Arabia (variant 2)",
+        "Libya (18th century)",
+        "The Organisation of Islamic Cooperation (2011)",
+        "Turkmenistan",
+        "The Arab League",
+        "Guyana",
+        "List of South African flags - 2003\u2013present",
+        "Brunei",
+        "Brazil"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a blue white and red horizontal flag with a yellow crest and two llamas or vicunas",
+      "tier": "hard",
+      "expected": [
+        "Peru"
+      ],
+      "returned": [
+        "Oman",
+        "Serbia",
+        "Netherlands (1815\u20131908)",
+        "Guatemala",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Haiti",
+        "Nicaragua",
+        "Nepal",
+        "List of Chinese flags - Proposal 2 for the PRC flag symbolizing the Yellow River and the Yangtze River"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands red white and red with a coat of arms in the center",
+      "tier": "hard",
+      "expected": [
+        "Peru"
+      ],
+      "returned": [
+        "Peru",
+        "Canada",
+        "Somalia (variant 2)",
+        "Serbia",
+        "Netherlands",
+        "Andorra",
+        "Netherlands (1815\u20131908)",
+        "Nigeria",
+        "Italy",
+        "Luxembourg"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red white and blue flag with a yellow sun and inca imagery",
+      "tier": "hard",
+      "expected": [
+        "Argentina"
+      ],
+      "returned": [
+        "Namibia",
+        "Nepal",
+        "List of Chinese flags - Proposal 2 for the PRC flag symbolizing the Yellow River and the Yangtze River",
+        "Philippines",
+        "List of Chinese flags - Proposal 3 for the PRC flag symbolizing the Yellow River, the Yangtze River and the Pearl River",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "List of South African flags - Proposal for the Flag of South Africa, Five Colors with White Stripes Version",
+        "Bangladesh (variant 2)",
+        "Taiwan",
+        "Haiti"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a flag with a large golden five-pointed star on a blue and yellow background split diagonally",
+      "tier": "hard",
+      "expected": [
+        "Congo",
+        "Republic of the Congo"
+      ],
+      "returned": [
+        "Split",
+        "Papua New Guinea",
+        "Namibia",
+        "Bangladesh (variant 2)",
+        "Togo",
+        "Cuba",
+        "Central African Republic",
+        "Philippines",
+        "Myanmar",
+        "Liberia"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a green flag with a yellow diagonal band from lower hoist to upper fly, with red and yellow triangles",
+      "tier": "hard",
+      "expected": [
+        "Republic of the Congo",
+        "Congo"
+      ],
+      "returned": [
+        "Benin",
+        "Bangladesh (variant 2)",
+        "Tanzania",
+        "Saint Kitts and Nevis",
+        "List of South African flags - Proposal 1 (1993)",
+        "Solomon Islands",
+        "Sao Tome and Principe",
+        "Guinea-Bissau",
+        "Oman",
+        "Palestine"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a red flag with a blue cross outlined in white and a coat of arms, Pacific island",
+      "tier": "hard",
+      "expected": [
+        "Tonga",
+        "Fiji"
+      ],
+      "returned": [
+        "International Committee of the Red Cross",
+        "Saint Kitts and Nevis (1707\u20131800)",
+        "Dominican Republic",
+        "Fiji",
+        "Nepal",
+        "Greece",
+        "Haiti",
+        "Iceland",
+        "Norway",
+        "Serbia"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "a light blue flag with a shield and the Union Jack in the canton, Pacific",
+      "tier": "hard",
+      "expected": [
+        "Fiji"
+      ],
+      "returned": [
+        "Fiji",
+        "List of South African flags - 1994\u20132003",
+        "Tuvalu",
+        "List of South African flags - 2003\u2013present (variant 3)",
+        "New Zealand",
+        "Australia",
+        "Greece",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "The Western Union",
+        "Saint Kitts and Nevis (1707\u20131800)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with a white canton containing a red cross, Pacific kingdom",
+      "tier": "hard",
+      "expected": [
+        "Tonga"
+      ],
+      "returned": [
+        "United Kingdom (1-2)",
+        "International Committee of the Red Cross",
+        "Tonga",
+        "United Kingdom",
+        "Kingdom of Yugoslavia (historical)",
+        "Greece",
+        "United Kingdom (1801\u20131816)",
+        "Samoa",
+        "Malta",
+        "Switzerland (Pantone)"
+      ],
+      "hit_rank": 3
+    },
+    {
+      "query": "a flag with a golden harp on a field, or a green white orange arrangement",
+      "tier": "hard",
+      "expected": [
+        "Ireland"
+      ],
+      "returned": [
+        "Bangladesh (variant 2)",
+        "The Organization of American States",
+        "Kazakhstan",
+        "List of South African flags - 2003\u2013present",
+        "Brazil",
+        "The CIS",
+        "United Kingdom (1801\u20131816)",
+        "Dominica",
+        "List of South African flags - Proposal 1 (1993)",
+        "Bangladesh"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a blue white red horizontal tricolor with a shield in the center bearing stars, Slavic",
+      "tier": "hard",
+      "expected": [
+        "Slovakia",
+        "Slovenia",
+        "Serbia"
+      ],
+      "returned": [
+        "Slovenia",
+        "Paraguay",
+        "Croatia",
+        "Slovakia",
+        "North Korea",
+        "Azerbaijan",
+        "Singapore",
+        "Serbia",
+        "Jordan",
+        "Uzbekistan"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a white blue red horizontal tricolor with a red shield and a three-peak mountain and crescent",
+      "tier": "hard",
+      "expected": [
+        "Slovenia"
+      ],
+      "returned": [
+        "Slovenia",
+        "Slovakia",
+        "Azerbaijan",
+        "El Salvador",
+        "Nicaragua",
+        "Serbia",
+        "Croatia",
+        "Netherlands",
+        "Uzbekistan",
+        "Luxembourg"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a white blue red horizontal tricolor with a shield showing a double-headed eagle",
+      "tier": "hard",
+      "expected": [
+        "Serbia"
+      ],
+      "returned": [
+        "Serbia",
+        "Slovakia",
+        "Egypt",
+        "Netherlands (1815\u20131908)",
+        "Montenegro",
+        "San Marino",
+        "Moldova",
+        "Croatia",
+        "Slovenia",
+        "Serbia (variant 2)"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with a black double-headed eagle in the center",
+      "tier": "hard",
+      "expected": [
+        "Albania",
+        "Montenegro"
+      ],
+      "returned": [
+        "Albania",
+        "Serbia (variant 2)",
+        "Montenegro",
+        "Liechtenstein (1400-1806)",
+        "Serbia",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "List of South African flags - 2003\u2013present (variant 2)",
+        "Flag of",
+        "Egypt",
+        "Nepal"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red field with a black two-headed eagle and nothing else",
+      "tier": "hard",
+      "expected": [
+        "Albania"
+      ],
+      "returned": [
+        "Albania",
+        "Serbia (variant 2)",
+        "Liechtenstein (1400-1806)",
+        "Montenegro",
+        "Zambia",
+        "Moldova (variant 2)",
+        "Timor-Leste",
+        "Japan",
+        "Romania (variant 2)",
+        "Switzerland"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a green red and white flag with a red star and a green Star of Solomon emblem in the center",
+      "tier": "hard",
+      "expected": [
+        "Morocco"
+      ],
+      "returned": [
+        "Solomon Islands",
+        "Algeria",
+        "Bangladesh (variant 2)",
+        "Paraguay",
+        "Morocco",
+        "Oman",
+        "Burundi",
+        "Suriname",
+        "Burkina Faso",
+        "Mauritania"
+      ],
+      "hit_rank": 5
+    },
+    {
+      "query": "a red field with a green five-pointed star outline in the center",
+      "tier": "hard",
+      "expected": [
+        "Morocco"
+      ],
+      "returned": [
+        "Morocco",
+        "Vietnam",
+        "China",
+        "Tunisia",
+        "Timor-Leste",
+        "Turkey",
+        "Dominica",
+        "Turkmenistan",
+        "Grenada",
+        "Bangladesh"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag with a golden lion holding a sword surrounded by four leaves in the corners",
+      "tier": "hard",
+      "expected": [
+        "Sri Lanka"
+      ],
+      "returned": [
+        "Sri Lanka",
+        "Sri Lanka (variant 2)",
+        "Cyprus (variant 2)",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "United Kingdom (1801\u20131816)",
+        "Netherlands (1815\u20131908)",
+        "Montenegro",
+        "Bangladesh (variant 2)",
+        "List of South African flags - 2003\u2013present",
+        "Oman"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a green flag with a white vertical band on the hoist and a red disc, then a lion",
+      "tier": "hard",
+      "expected": [
+        "Sri Lanka"
+      ],
+      "returned": [
+        "Oman",
+        "Madagascar",
+        "Benin",
+        "Belarus",
+        "Guinea-Bissau",
+        "Kuwait",
+        "Algeria",
+        "Bangladesh (variant 2)",
+        "List of South African flags - Proposal 1 (1993)",
+        "South African team (1994 Winter Olympics)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a maroon flag with a white and blue crest and a snake, Himalayan",
+      "tier": "hard",
+      "expected": [
+        "Bhutan"
+      ],
+      "returned": [
+        "Sri Lanka (variant 2)",
+        "Mexico",
+        "Nepal",
+        "El Salvador",
+        "Netherlands (1815\u20131908)",
+        "Oman",
+        "Serbia",
+        "The Prince's Flag",
+        "Philippines",
+        "Nicaragua"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a plain sky-blue flag with a white emblem of a map or building",
+      "tier": "hard",
+      "expected": [
+        "Somalia"
+      ],
+      "returned": [
+        "The Organization of American States",
+        "Egypt (variant 2)",
+        "Namibia",
+        "Dominican Republic",
+        "Flag of",
+        "Nepal",
+        "El Salvador",
+        "Switzerland - Depiction of the flag with Schwenkel (Humbert Mareschet, 1585)",
+        "Greece",
+        "Saint Kitts and Nevis (1707\u20131800)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a light blue flag with a single white five-pointed star in the center",
+      "tier": "hard",
+      "expected": [
+        "Somalia"
+      ],
+      "returned": [
+        "Somalia",
+        "Cuba",
+        "Liberia",
+        "Chile",
+        "Philippines",
+        "Panama",
+        "Israel",
+        "North Korea",
+        "Djibouti",
+        "Bosnia and Herzegovina"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red flag with two crossed cannons, an African great lakes nation",
+      "tier": "hard",
+      "expected": [
+        "Burundi"
+      ],
+      "returned": [
+        "South African team (1994 Winter Olympics)",
+        "List of South African flags - 2003\u2013present (variant 2)",
+        "List of South African flags - 1910 proposal (red)",
+        "List of South African flags - 2003\u2013present",
+        "List of South African flags - 1994\u20132003 (1994\u20132003)",
+        "Choctaw Nation",
+        "Chickasaw Nation",
+        "The African Union",
+        "South African Police Service flag (1995\u2013present)",
+        "National flag"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "a white diagonal cross dividing the flag into red and green with three red stars",
+      "tier": "hard",
+      "expected": [
+        "Burundi"
+      ],
+      "returned": [
+        "Burundi",
+        "Bangladesh (variant 2)",
+        "Namibia",
+        "Papua New Guinea",
+        "Algeria",
+        "Uzbekistan",
+        "Panama",
+        "Singapore",
+        "Dominican Republic",
+        "Jordan"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag split by a white saltire into red top and bottom and green left and right with a white disc and stars",
+      "tier": "hard",
+      "expected": [
+        "Burundi"
+      ],
+      "returned": [
+        "Split",
+        "Burundi",
+        "Panama",
+        "Namibia",
+        "Bangladesh (variant 2)",
+        "Papua New Guinea",
+        "Philippines",
+        "Luxembourg (variant 2)",
+        "Singapore",
+        "Flag of"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a black white and green horizontal flag with three red stars along the white band",
+      "tier": "hard",
+      "expected": [
+        "Iraq",
+        "Syria"
+      ],
+      "returned": [
+        "Syria",
+        "Suriname",
+        "Jordan",
+        "Myanmar",
+        "Libya",
+        "Sao Tome and Principe",
+        "Tajikistan",
+        "Ghana",
+        "Iran",
+        "Uzbekistan"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red white black horizontal tricolor with green Arabic script reading God is great",
+      "tier": "hard",
+      "expected": [
+        "Iraq"
+      ],
+      "returned": [
+        "Iraq",
+        "Iran",
+        "Egypt",
+        "Jordan",
+        "Saudi Arabia",
+        "Libya",
+        "Great Dayak",
+        "Brunei",
+        "Sudan",
+        "Syria"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a red white black horizontal tricolor with two green stars in the white band",
+      "tier": "hard",
+      "expected": [
+        "Syria"
+      ],
+      "returned": [
+        "Syria",
+        "Suriname",
+        "Jordan",
+        "Ghana",
+        "Myanmar",
+        "Libya",
+        "Sao Tome and Principe",
+        "Hungary",
+        "Tajikistan",
+        "Iraq"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "a flag with a green white and green vertical pattern and a yellow sun-like device",
+      "tier": "hard",
+      "expected": [
+        "Nigeria"
+      ],
+      "returned": [
+        "List of South African flags - Proposal 1 (1993)",
+        "Nigeria",
+        "Bangladesh (variant 2)",
+        "Senegal",
+        "Mali",
+        "Cameroon",
+        "Ivory Coast",
+        "Italy",
+        "Namibia",
+        "Algeria"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "three vertical bands green white and green with no emblem",
+      "tier": "hard",
+      "expected": [
+        "Nigeria"
+      ],
+      "returned": [
+        "Bulgaria",
+        "Nigeria",
+        "Bolivia",
+        "Italy",
+        "Mali",
+        "Ivory Coast",
+        "Senegal",
+        "Chad",
+        "Guinea",
+        "Cameroon"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "a flag with a hammer and sickle and a red star on a red field",
+      "tier": "hard",
+      "expected": [
+        "Soviet Union",
+        "USSR"
+      ],
+      "returned": [
+        "Samoa",
+        "New Zealand",
+        "Tonga",
+        "Australia",
+        "Timor-Leste",
+        "Turkey",
+        "Tunisia",
+        "Brunei",
+        "China",
+        "Switzerland (Pantone)"
+      ],
+      "hit_rank": null
+    },
+    {
+      "query": "three vertical bands green yellow and red with a red five-pointed star, Sahel",
+      "tier": "hard",
+      "expected": [
+        "Senegal"
+      ],
+      "returned": [
+        "Cameroon",
+        "Senegal",
+        "Mauritania",
+        "Myanmar",
+        "Ghana",
+        "Suriname",
+        "Guinea-Bissau",
+        "Sao Tome and Principe",
+        "Syria",
+        "Tajikistan"
+      ],
+      "hit_rank": 2
+    },
+    {
+      "query": "three vertical bands green yellow red with a black five-pointed star in the center",
+      "tier": "hard",
+      "expected": [
+        "Guinea-Bissau"
+      ],
+      "returned": [
+        "Cameroon",
+        "Senegal",
+        "Ghana",
+        "Guinea-Bissau",
+        "Myanmar",
+        "Burkina Faso",
+        "Sao Tome and Principe",
+        "Suriname",
+        "Syria",
+        "Mauritania"
+      ],
+      "hit_rank": 4
+    },
+    {
+      "query": "a red vertical band at the hoist with a black star, and horizontal yellow and green bands",
+      "tier": "hard",
+      "expected": [
+        "Guinea-Bissau"
+      ],
+      "returned": [
+        "Guinea-Bissau",
+        "Sao Tome and Principe",
+        "Jordan",
+        "Mozambique",
+        "Benin",
+        "United Arab Emirates",
+        "Madagascar",
+        "Palestine",
+        "Kuwait",
+        "South Sudan"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three vertical bands red yellow green, plain, west African",
+      "tier": "hard",
+      "expected": [
+        "Guinea",
+        "Mali"
+      ],
+      "returned": [
+        "Guinea",
+        "Mali",
+        "Central African Republic",
+        "List of South African flags - Proposal 1 (1993)",
+        "Senegal",
+        "Italy",
+        "Cameroon",
+        "Lithuania",
+        "The African Union",
+        "Nigeria"
+      ],
+      "hit_rank": 1
+    },
+    {
+      "query": "three vertical bands green yellow red, plain, west African",
+      "tier": "hard",
+      "expected": [
+        "Mali"
+      ],
+      "returned": [
+        "Guinea",
+        "Mali",
+        "List of South African flags - Proposal 1 (1993)",
+        "Senegal",
+        "Central African Republic",
+        "Belgium",
+        "Lithuania",
+        "Italy",
+        "Cameroon",
+        "The African Union"
+      ],
+      "hit_rank": 2
+    }
+  ]
+}

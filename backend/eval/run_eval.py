@@ -3,7 +3,7 @@ Metrics harness for description->flag retrieval.
 
 Every experiment implements `Experiment.rank(queries, top_k) -> list[list[str]]`,
 returning ranked flag *names* per query. Matching against ground truth is by
-normalized name (see backend/eval/normalize.py); a query is a hit at rank r if any
+normalized name (see backend/common/normalize.py); a query is a hit at rank r if any
 `expected` name appears at position r (1-indexed) in the returned list.
 
 Reports Recall@1/5/10 and MRR@10, overall and per tier, and writes a per-query
@@ -24,7 +24,7 @@ from typing import Callable, Dict, List, Protocol
 import numpy as np
 
 from backend.common.flag_data import flaglist_from_json
-from backend.eval.normalize import normalize_name
+from backend.common.normalize import normalize_name
 
 QUERIES_FILE = Path("backend/eval/queries.json")
 FLAGS_FILE = Path("backend/data/all_flags/flags.json")
@@ -50,22 +50,24 @@ class Experiment(Protocol):
         """Return, for each query, the ranked list of flag names (best first)."""
 
 
-class ClipBaselineExperiment:
-    """Current production path: ONNX CLIP text encoder + precomputed image embeddings."""
+def make_clip_baseline() -> EmbeddingExperiment:
+    """
+    Reproduce the original production path: cosine of a CLIP text-query embedding
+    against the precomputed CLIP *image* embeddings (embeddings.npy). Self-contained
+    (does not depend on FlagSearcher, which has since moved to text-description
+    retrieval) so the historical baseline stays reproducible.
+    """
+    import numpy as np
+    from sentence_transformers import SentenceTransformer
 
-    name = "baseline_clip_vitb32"
+    corpus = np.load("backend/data/all_flags/embeddings.npy")
+    flag_names = load_flag_names()
+    model = SentenceTransformer("clip-ViT-B-32")
 
-    def __init__(self) -> None:
-        from backend.src.flag_searcher import FlagSearcher
+    def encode_queries(queries: List[str]) -> np.ndarray:
+        return np.asarray(model.encode(queries, batch_size=64, show_progress_bar=False))
 
-        self._searcher = FlagSearcher(top_k=DEFAULT_TOP_K)
-
-    def rank(self, queries: List[str], top_k: int) -> List[List[str]]:
-        ranked = []
-        for q in queries:
-            result = self._searcher.query(q, is_image=False, top_k=top_k)
-            ranked.append([f.name for f in result.flags])
-        return ranked
+    return EmbeddingExperiment("baseline_clip_vitb32", corpus, encode_queries, flag_names)
 
 
 class EmbeddingExperiment:
@@ -128,10 +130,23 @@ def _hybrid(model_name: str, weight: float, *, include_name_in_doc: bool):
     return factory
 
 
+def _production():
+    """Exactly what FlagSearcher ships: deployed ONNX int8 encoder + name-match."""
+    from backend.eval.embedders.onnx_hybrid import OnnxHybridExperiment
+    from backend.src.flag_searcher import DEFAULT_NAME_MATCH_WEIGHT, MODEL_PATH, TOKENIZER_PATH
+
+    return OnnxHybridExperiment(
+        "production_bge_base_int8",
+        str(MODEL_PATH),
+        str(TOKENIZER_PATH),
+        DEFAULT_NAME_MATCH_WEIGHT,
+    )
+
+
 # Registry of runnable experiments (name -> zero-arg factory). Add new experiments
 # here as they are built; heavy imports stay lazy inside the factory.
 EXPERIMENTS: Dict[str, Callable[[], Experiment]] = {
-    "baseline": ClipBaselineExperiment,
+    "baseline": make_clip_baseline,
     "textdesc_bge_small": _textdesc("BAAI/bge-small-en-v1.5", include_name=True),
     "textdesc_bge_small_desconly": _textdesc("BAAI/bge-small-en-v1.5", include_name=False),
     "textdesc_minilm": _textdesc("sentence-transformers/all-MiniLM-L6-v2", include_name=True),
@@ -141,6 +156,7 @@ EXPERIMENTS: Dict[str, Callable[[], Experiment]] = {
     "hybrid_bge_base_w03": _hybrid("BAAI/bge-base-en-v1.5", 0.3, include_name_in_doc=False),
     "hybrid_bge_base_w05": _hybrid("BAAI/bge-base-en-v1.5", 0.5, include_name_in_doc=False),
     "hybrid_bge_small_w05": _hybrid("BAAI/bge-small-en-v1.5", 0.5, include_name_in_doc=False),
+    "production": _production,
 }
 
 

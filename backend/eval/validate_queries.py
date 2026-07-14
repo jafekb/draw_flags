@@ -16,7 +16,7 @@ from collections import Counter
 from pathlib import Path
 
 from backend.common.flag_data import flaglist_from_json
-from backend.eval.normalize import normalize_name
+from backend.common.normalize import normalize_name
 
 QUERIES_FILE = Path("backend/eval/queries.json")
 FLAGS_FILE = Path("backend/data/all_flags/flags.json")

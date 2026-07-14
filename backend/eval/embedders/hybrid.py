@@ -20,15 +20,9 @@ from typing import List
 import numpy as np
 
 from backend.common.descriptions import build_document, load_descriptions
+from backend.common.name_match import build_name_token_sets, name_overlap_scores
 from backend.eval.embedders.text_description import _get_model, _query_prefix
-from backend.eval.normalize import normalize_name
 from backend.eval.run_eval import load_flag_names
-
-_STOP = {"flag", "of", "the", "a", "an", "and", "national", "state", "variant"}
-
-
-def _name_tokens(name: str) -> set:
-    return {t for t in normalize_name(name).split() if t not in _STOP and len(t) > 1}
 
 
 class HybridExperiment:
@@ -46,16 +40,7 @@ class HybridExperiment:
         ]
         corpus = np.asarray(self._model.encode(documents, batch_size=64, show_progress_bar=False))
         self._corpus = corpus / np.clip(np.linalg.norm(corpus, axis=1, keepdims=True), 1e-12, None)
-        self._name_token_sets = [_name_tokens(n) for n in self._flag_names]
-
-    def _name_overlap(self, query_tokens: set) -> np.ndarray:
-        scores = np.zeros(len(self._flag_names), dtype=np.float32)
-        for i, toks in enumerate(self._name_token_sets):
-            if toks and toks <= query_tokens:  # all meaningful name tokens present in query
-                scores[i] = 1.0
-            elif toks:
-                scores[i] = len(toks & query_tokens) / len(toks)
-        return scores
+        self._name_token_sets = build_name_token_sets(self._flag_names)
 
     def rank(self, queries: List[str], top_k: int) -> List[List[str]]:
         prefixed = [self._prefix + q for q in queries] if self._prefix else queries
@@ -65,7 +50,7 @@ class HybridExperiment:
 
         ranked = []
         for row, raw_query in zip(dense, queries):
-            overlap = self._name_overlap(set(normalize_name(raw_query).split()))
+            overlap = name_overlap_scores(raw_query, self._name_token_sets)
             score = row + self._weight * overlap
             top_idx = np.argsort(-score)[:top_k]
             ranked.append([self._flag_names[i] for i in top_idx])
