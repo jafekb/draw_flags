@@ -13,7 +13,11 @@ from pathlib import Path
 import numpy as np
 
 from backend.common.flag_data import FlagList, flaglist_from_json
-from backend.common.name_match import build_name_token_sets, name_overlap_scores
+from backend.common.name_match import (
+    build_name_token_sets,
+    name_overlap_scores,
+    national_prior,
+)
 from backend.src.metadata_store import LocalMetadataStore, compute_flag_id
 from backend.src.text_encoder import OnnxTextEncoder
 
@@ -22,12 +26,19 @@ TEXT_EMBEDDINGS_FILE = Path("backend/data/all_flags/text_embeddings.npy")
 MODEL_PATH = Path("backend/models/bge-base-en-v1.5-int8.onnx")
 TOKENIZER_PATH = Path("backend/models/bge-base-en-v1.5-tokenizer/tokenizer.json")
 DEFAULT_NAME_MATCH_WEIGHT = 0.3
+DEFAULT_NATIONAL_BONUS = 0.10
 
 
 class FlagSearcher:
-    def __init__(self, top_k, name_match_weight: float = DEFAULT_NAME_MATCH_WEIGHT):
+    def __init__(
+        self,
+        top_k,
+        name_match_weight: float = DEFAULT_NAME_MATCH_WEIGHT,
+        national_bonus: float = DEFAULT_NATIONAL_BONUS,
+    ):
         self._top_k = top_k
         self._weight = float(os.getenv("NAME_MATCH_WEIGHT", str(name_match_weight)))
+        self._national_bonus = float(os.getenv("NATIONAL_BONUS", str(national_bonus)))
 
         if not MODEL_PATH.exists():
             raise FileNotFoundError(f"Text encoder not found at {MODEL_PATH}.")
@@ -45,6 +56,7 @@ class FlagSearcher:
         # Corpus embeddings are saved already L2-normalized, so dense cosine is a dot.
         self._corpus = np.load(TEXT_EMBEDDINGS_FILE).astype(np.float32)
         self._name_token_sets = build_name_token_sets([f.name for f in self._flags.flags])
+        self._prior = national_prior([f.category for f in self._flags.flags], self._national_bonus)
 
     def _matches_filters(self, flag, filters) -> bool:
         if not filters or all(v is None or v == [] for v in filters.values()):
@@ -65,7 +77,7 @@ class FlagSearcher:
         q = q / max(float(np.linalg.norm(q)), 1e-12)
         dense = self._corpus @ q
         overlap = name_overlap_scores(text_query, self._name_token_sets)
-        return dense + self._weight * overlap
+        return dense + self._weight * overlap + self._prior
 
     def search_by_text(self, text_query, top_k, filters=None) -> FlagList:
         scores = self._scores(text_query)

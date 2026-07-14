@@ -131,15 +131,21 @@ def _hybrid(model_name: str, weight: float, *, include_name_in_doc: bool):
 
 
 def _production():
-    """Exactly what FlagSearcher ships: deployed ONNX int8 encoder + name-match."""
+    """Exactly what FlagSearcher ships: deployed ONNX int8 encoder + name-match + prior."""
     from backend.eval.embedders.onnx_hybrid import OnnxHybridExperiment
-    from backend.src.flag_searcher import DEFAULT_NAME_MATCH_WEIGHT, MODEL_PATH, TOKENIZER_PATH
+    from backend.src.flag_searcher import (
+        DEFAULT_NAME_MATCH_WEIGHT,
+        DEFAULT_NATIONAL_BONUS,
+        MODEL_PATH,
+        TOKENIZER_PATH,
+    )
 
     return OnnxHybridExperiment(
         "production_bge_base_int8",
         str(MODEL_PATH),
         str(TOKENIZER_PATH),
         DEFAULT_NAME_MATCH_WEIGHT,
+        national_bonus=DEFAULT_NATIONAL_BONUS,
     )
 
 

@@ -38,3 +38,15 @@ def name_overlap_scores(query: str, name_token_sets: List[set]) -> np.ndarray:
         else:
             scores[i] = len(toks & query_tokens) / len(toks)
     return scores
+
+
+def national_prior(categories: List[str], national_bonus: float) -> np.ndarray:
+    """
+    A small constant bonus for current national flags. With the whole corpus
+    described, obscure historical/subdivision flags legitimately match visual
+    queries; this nudges the famous national flag to the top for ambiguous
+    descriptions (usually what a searcher wants) without suppressing anything.
+    """
+    return np.array(
+        [national_bonus if c == "national" else 0.0 for c in categories], dtype=np.float32
+    )

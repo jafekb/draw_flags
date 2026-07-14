@@ -22420,7 +22420,7 @@
    }
   },
   {
-   "name": "Flag of",
+   "name": "Menorca",
    "wikipedia_page": "Flag_of_Menorca",
    "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Menorca",
    "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Bandera_de_Menorca.svg",
@@ -69073,5 +69073,5 @@
    }
   }
  ],
-"embeddings_filename": "backend/data/all_flags/embeddings.npy"
+ "embeddings_filename": "backend/data/all_flags/embeddings.npy"
 }
