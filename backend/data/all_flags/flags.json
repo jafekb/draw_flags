@@ -70956,11 +70956,18 @@
     "agistri"
    ],
    "color_coverage": {
-    "gray": 0.03515625,
-    "yellow": 0.29076287150382996,
-    "blue": 0.6740809082984924
+    "gold": 0.216,
+    "blue": 0.784
    },
-   "visual": null,
+   "visual": {
+    "description": "A blue field with a yellow border, a large yellow disc in the center bearing a blue cross with flared arms, a small yellow fish-hook in the upper hoist corner, and a row of yellow lettering along the bottom edge.",
+    "layout": "plain field",
+    "symbols": [
+     "cross",
+     "fish hook",
+     "inscription"
+    ]
+   },
    "score": null,
    "attribution": "Image: Flags of the World (crwflags.com)"
   },
@@ -71111,15 +71118,19 @@
     "patras"
    ],
    "color_coverage": {
-    "black": 0.006066176574677229,
-    "gray": 0.0649816170334816,
-    "red": 0.00034466912620700896,
-    "orange": 0.014866728335618973,
-    "yellow": 0.21700367331504822,
-    "blue": 0.6765395402908325,
-    "purple": 0.020197609439492226
+    "white": 0.005,
+    "blue": 0.995
    },
-   "visual": null,
+   "visual": {
+    "description": "A dark blue field with a white circular emblem in the center showing a bearded man's head in profile framed by a laurel wreath and a Greek-key ring, with white lettering curved along the bottom.",
+    "layout": "plain field",
+    "symbols": [
+     "bearded head",
+     "laurel wreath",
+     "greek key",
+     "inscription"
+    ]
+   },
    "score": null,
    "attribution": "Image: Flags of the World (crwflags.com)"
   },
