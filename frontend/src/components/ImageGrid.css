@@ -69,3 +69,8 @@
   color: #888;
   margin-top: 2px;
 }
+
+.grid-sentinel {
+  height: 1px;
+  width: 100%;
+}
