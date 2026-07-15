@@ -64,6 +64,9 @@ const ImageGrid = ({ images, title, coverageColor }) => {
                     <p>({(image.score * 100).toFixed(1)}%)</p>
                   )
                 )}
+                {image.attribution && (
+                  <p className="attribution">{image.attribution}</p>
+                )}
               </div>
             </div>
           );

@@ -70944,7 +70944,7 @@
    "name": "Agistri",
    "wikipedia_page": "Agistri",
    "wikipedia_url": "https://en.wikipedia.org/wiki/Agistri",
-   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Flag_of_Agistri_Island.png",
+   "wikipedia_image_url": "https://www.crwflags.com/fotw/images/g/gr-at-ag.gif",
    "category": "subdivision",
    "entity_type": "state",
    "country": null,
@@ -70961,7 +70961,8 @@
     "blue": 0.6740809082984924
    },
    "visual": null,
-   "score": null
+   "score": null,
+   "attribution": "Image: Flags of the World (crwflags.com)"
   },
   {
    "id": null,
@@ -71098,7 +71099,7 @@
    "name": "Patras",
    "wikipedia_page": "Patras",
    "wikipedia_url": "https://en.wikipedia.org/wiki/Patras",
-   "wikipedia_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Patras_flag.png",
+   "wikipedia_image_url": "https://www.crwflags.com/fotw/images/g/gr-pw-pa0.gif",
    "category": "subdivision",
    "entity_type": "state",
    "country": null,
@@ -71119,7 +71120,8 @@
     "purple": 0.020197609439492226
    },
    "visual": null,
-   "score": null
+   "score": null,
+   "attribution": "Image: Flags of the World (crwflags.com)"
   },
   {
    "id": null,

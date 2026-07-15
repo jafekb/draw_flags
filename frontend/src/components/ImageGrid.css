@@ -63,3 +63,9 @@
   flex: 1;
   align-items: center;
 }
+
+.attribution {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+}

@@ -54,6 +54,9 @@ class Flag(BaseModel):
     tags: List[str] = []  # Searchable keywords
     color_coverage: Dict[str, float] = {}  # Palette color -> percent of pixels (includes gray)
     visual: Optional[VisualDescription] = None  # VLM visual description (for search)
+    # Required source credit for images not from Wikimedia (e.g. Flags of the World),
+    # shown in the UI to satisfy the source's attribution terms.
+    attribution: Optional[str] = None
 
     # Query result field (not stored in database, used only for search results)
     score: Optional[float] = None  # Similarity score from search queries
