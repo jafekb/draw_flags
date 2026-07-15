@@ -4,11 +4,12 @@ Repair stale flag image URLs. Some scraped wikipedia_image_url values now 404 on
 Wikimedia (the file was renamed/replaced), which renders as a blank flag in the UI.
 
 For each candidate flag we check whether its current URL still resolves; if not, we
-re-resolve the article's *flag* image (the lead image only if it looks like a flag,
-otherwise the best flag-named file used on the page) and adopt it if it resolves.
-We never adopt a non-flag photo (e.g. a cityscape), which would be worse than a
-blank. Candidates default to flags with no local downloaded image (the set that
-failed to download); --all checks every flag.
+re-resolve its flag image in order of fidelity: (0) follow the stored file's rename
+redirect (recovers the literal same file at its new name); (1) the article lead
+image if it looks like a flag; (2) the best flag-named file used on the page. Every
+candidate must look like a flag AND share a place-token with the entity, so we never
+adopt a non-flag photo or another entity's flag — a blank beats a wrong flag.
+Candidates default to flags with no local downloaded image; --all checks every flag.
 
 Usage:
     uv run backend/scripts/refresh_image_urls.py            # fix the known-missing set
@@ -22,6 +23,7 @@ import json
 import re
 import time
 import unicodedata
+import urllib.parse
 from pathlib import Path
 
 import requests
@@ -176,12 +178,44 @@ def _file_url(file_title: str) -> str | None:
     return None
 
 
-def resolve_flag_image(name: str, wikipedia_page: str) -> str | None:
-    """Find THIS entity's flag: the lead image if it's a flag that belongs to the
-    entity, otherwise the best flag-named file on the page that shares a place-token
-    with the entity. Returns None rather than adopt another entity's flag."""
+def _canonical_url(stored_url: str) -> str | None:
+    """Follow the stored file's rename: query imageinfo on its filename with
+    redirects, returning the current canonical URL (Wikimedia keeps a file redirect
+    when a file is renamed, so this recovers the new location directly)."""
+    filename = urllib.parse.unquote(stored_url.rstrip("/").rsplit("/", 1)[-1])
+    pages = (
+        _api(
+            {
+                "action": "query",
+                "titles": f"File:{filename}",
+                "prop": "imageinfo",
+                "iiprop": "url",
+                "redirects": "1",
+            }
+        )
+        .get("query", {})
+        .get("pages", {})
+    )
+    for page in pages.values():
+        info = page.get("imageinfo")
+        if info:
+            return info[0].get("url")
+    return None
+
+
+def resolve_flag_image(name: str, wikipedia_page: str, stored_url: str) -> str | None:
+    """Find THIS entity's flag. First follow the stored file's rename redirect; then
+    fall back to the article's lead image (if a flag) or the best flag-named file on
+    the page. Only ever adopts a flag that belongs to the entity, never another's."""
     title = wikipedia_page.replace("_", " ")
     place_tokens = _place_tokens(name, wikipedia_page)
+
+    # tier 0: the same file, renamed (most faithful — it's literally the old file)
+    canon = _canonical_url(stored_url)
+    if canon:
+        cf = urllib.parse.unquote(canon.rsplit("/", 1)[-1])
+        if _looks_like_flag(cf) and _belongs(cf, place_tokens):
+            return canon
 
     lead = _lead_image(title)
     if lead:
@@ -236,7 +270,7 @@ def main() -> None:
         if url_ok(f["wikipedia_image_url"]):
             ok += 1
             continue
-        new = resolve_flag_image(f["name"], f["wikipedia_page"])
+        new = resolve_flag_image(f["name"], f["wikipedia_page"], f["wikipedia_image_url"])
         time.sleep(args.delay)
         if new and new != f["wikipedia_image_url"] and url_ok(new):
             print(f"  FIXED  {f['name']}\n         {f['wikipedia_image_url']}\n      -> {new}")
