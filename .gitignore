@@ -186,3 +186,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Playwright
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
