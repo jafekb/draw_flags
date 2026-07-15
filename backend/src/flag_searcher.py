@@ -1,152 +1,113 @@
 """
-Class that can take in an image and output a bunch of
-other images of flags that look like it.
+Flag search: given a text query, return flags whose visual description best matches.
+
+Hybrid ranking = dense cosine similarity between the query embedding and each flag's
+VLM description embedding, plus a lexical name-match boost so name queries ("flag of
+Japan") work too. Runs on the small ONNX text encoder + a precomputed, normalized
+description-embedding matrix, so it fits the Render Starter 512 MB / 0.5 CPU budget.
 """
 
 import os
 from pathlib import Path
 
 import numpy as np
-import onnxruntime as ort
 
 from backend.common.flag_data import FlagList, flaglist_from_json
-from backend.src.metadata_store import LocalMetadataStore
-from backend.src.minimal_tokenizer import create_minimal_tokenizer
-from backend.src.vector_index import HnswIndex
+from backend.common.name_match import (
+    build_name_token_sets,
+    name_overlap_scores,
+    national_prior,
+)
+from backend.src.metadata_store import LocalMetadataStore, compute_flag_id
+from backend.src.text_encoder import OnnxTextEncoder
 
 FLAGS_FILE = Path("backend/data/all_flags/flags.json")
-MODEL_PATH = Path("backend/models/clip-text-encoder.onnx")
+TEXT_EMBEDDINGS_FILE = Path("backend/data/all_flags/text_embeddings.npy")
+MODEL_PATH = Path("backend/models/bge-base-en-v1.5-int8.onnx")
+TOKENIZER_PATH = Path("backend/models/bge-base-en-v1.5-tokenizer/tokenizer.json")
+DEFAULT_NAME_MATCH_WEIGHT = 0.3
+DEFAULT_NATIONAL_BONUS = 0.10
 
 
 class FlagSearcher:
-    def __init__(self, top_k, filtered_candidate_k=1000):
+    def __init__(
+        self,
+        top_k,
+        name_match_weight: float = DEFAULT_NAME_MATCH_WEIGHT,
+        national_bonus: float = DEFAULT_NATIONAL_BONUS,
+    ):
         self._top_k = top_k
-        self._filtered_candidate_k = filtered_candidate_k
+        self._weight = float(os.getenv("NAME_MATCH_WEIGHT", str(name_match_weight)))
+        self._national_bonus = float(os.getenv("NATIONAL_BONUS", str(national_bonus)))
 
-        # Load ONNX model and tokenizer
         if not MODEL_PATH.exists():
+            raise FileNotFoundError(f"Text encoder not found at {MODEL_PATH}.")
+        if not TEXT_EMBEDDINGS_FILE.exists():
             raise FileNotFoundError(
-                f"ONNX model not found at {MODEL_PATH}. Please run the model conversion script."
+                f"Description embeddings not found at {TEXT_EMBEDDINGS_FILE}. "
+                "Run backend/scripts/generate_text_embeddings.py."
             )
 
-        session_options = ort.SessionOptions()
-        session_options.enable_cpu_mem_arena = False
-        session_options.enable_mem_pattern = False
-        session_options.intra_op_num_threads = int(os.getenv("ORT_INTRA_OP_NUM_THREADS", "1"))
-        session_options.inter_op_num_threads = int(os.getenv("ORT_INTER_OP_NUM_THREADS", "1"))
-        self._session = ort.InferenceSession(
-            str(MODEL_PATH),
-            providers=["CPUExecutionProvider"],
-            sess_options=session_options,
-        )
-        self._tokenizer = create_minimal_tokenizer()
-
+        self._encoder = OnnxTextEncoder(MODEL_PATH, TOKENIZER_PATH)
         self._flags = flaglist_from_json(FLAGS_FILE)
         self._metadata_store = LocalMetadataStore(self._flags)
+        self._stable_ids = [compute_flag_id(f) for f in self._flags.flags]
 
-        embeddings_path = Path(self._flags.embeddings_filename)
-        index_path = embeddings_path.with_suffix(".hnsw.bin")
-        meta_path = embeddings_path.with_suffix(".hnsw.meta.json")
-        embeddings = None
-        if not index_path.exists() or not meta_path.exists():
-            if not embeddings_path.exists():
-                raise FileNotFoundError(
-                    f"Embeddings not found at {embeddings_path}. Cannot build index."
-                )
-            embeddings = np.load(embeddings_path, mmap_mode="r")
-
-        self._vector_index = HnswIndex.load_or_build(embeddings, index_path, meta_path)
-
-    def _encode_text(self, text):
-        """Encode text using CLIP text encoder via ONNX"""
-        inputs = self._tokenizer(text, return_tensors="np", padding=True, truncation=True)
-
-        # Run inference
-        outputs = self._session.run(
-            None, {"input_ids": inputs["input_ids"], "attention_mask": inputs["attention_mask"]}
-        )
-
-        # The ONNX model now outputs the final embeddings directly
-        # (including EOS token selection and text projection)
-        text_embeddings = outputs[0]
-
-        # Normalize embeddings
-        text_embeddings = text_embeddings / np.linalg.norm(text_embeddings, axis=-1, keepdims=True)
-
-        return text_embeddings
+        # Corpus embeddings are saved already L2-normalized, so dense cosine is a dot.
+        self._corpus = np.load(TEXT_EMBEDDINGS_FILE).astype(np.float32)
+        self._name_token_sets = build_name_token_sets([f.name for f in self._flags.flags])
+        self._prior = national_prior([f.category for f in self._flags.flags], self._national_bonus)
 
     def _matches_filters(self, flag, filters) -> bool:
         if not filters or all(v is None or v == [] for v in filters.values()):
             return True
-
         if filters.get("categories") and flag.category not in filters["categories"]:
             return False
-
         if filters.get("continent") and flag.continent != filters["continent"]:
             return False
-
         if filters.get("country"):
             is_national = flag.category == "national" and flag.name == filters["country"]
             is_from_country = flag.country == filters["country"]
             if not (is_national or is_from_country):
                 return False
-
         return True
 
-    def search_by_vector(self, vector, top_k, filters=None) -> FlagList:
-        total_flags = len(self._flags.flags)
-        if total_flags == 0:
-            return FlagList(flags=[])
-        top_k = min(top_k, total_flags)
-        if filters and any(v is not None and v != [] for v in filters.values()):
-            candidate_k = min(self._filtered_candidate_k, total_flags)
-            ids, scores = self._vector_index.search(vector, candidate_k)
-            flags = self._metadata_store.get_many(ids)
-
-            filtered_flags = []
-            for flag, score in zip(flags, scores):
-                if not self._matches_filters(flag, filters):
-                    continue
-                filtered_flags.append(flag.model_copy(update={"score": score}))
-                if len(filtered_flags) >= top_k:
-                    break
-
-            return FlagList(flags=filtered_flags)
-
-        if top_k <= 0:
-            return FlagList(flags=[])
-        ids, scores = self._vector_index.search(vector, top_k)
-        flags = self._metadata_store.get_many(ids)
-        flags_with_score = [
-            flag.model_copy(update={"score": score}) for flag, score in zip(flags, scores)
-        ]
-        return FlagList(flags=flags_with_score)
+    def _scores(self, text_query: str) -> np.ndarray:
+        q = self._encoder.encode([text_query], is_query=True)[0]
+        q = q / max(float(np.linalg.norm(q)), 1e-12)
+        dense = self._corpus @ q
+        overlap = name_overlap_scores(text_query, self._name_token_sets)
+        return dense + self._weight * overlap + self._prior
 
     def search_by_text(self, text_query, top_k, filters=None) -> FlagList:
-        new_embedding = self._encode_text(text_query)
-        return self.search_by_vector(new_embedding, top_k, filters=filters)
+        scores = self._scores(text_query)
+        order = np.argsort(-scores)
+        results = []
+        for idx in order:
+            flag = self._flags.flags[idx]
+            if not self._matches_filters(flag, filters):
+                continue
+            results.append(
+                flag.model_copy(update={"score": float(scores[idx]), "id": self._stable_ids[idx]})
+            )
+            if len(results) >= top_k:
+                break
+        return FlagList(flags=results)
 
     def query(self, text_query, is_image, filters=None, top_k=None) -> FlagList:
         """
         Search for flags matching the query, with optional filtering.
 
-        Filters are applied BEFORE computing similarities for efficiency.
-
         Arguments:
-            text_query: Text description of the flag
-            is_image (bool): TODO(bjafek) this currently handles both text
-                and image querying.
-            filters: Optional dict with keys: categories, continent, country
+            text_query: Text description of the flag.
+            is_image (bool): image querying is not yet supported.
+            filters: Optional dict with keys: categories, continent, country.
 
         Returns:
-            FlagList with top_k matching flags
+            FlagList with up to top_k matching flags, best first.
         """
         if is_image:
             raise NotImplementedError
-            # TODO(bjafek) again, this should be a usable format when it
-            #  gets passed, instead of this junk.
-            # fn = "/home/bjafek/personal/draw_flags/examples/" + img.data
-            # img = Image.open(fn)
 
         effective_top_k = self._top_k if top_k is None else top_k
         if effective_top_k <= 0:

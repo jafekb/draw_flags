@@ -18,6 +18,19 @@ except ImportError:
     CAIROSVG_AVAILABLE = False
 
 
+class VisualDescription(BaseModel):
+    """
+    VLM-generated, country-agnostic visual description of a flag, used to power
+    text-to-text search. See backend/scripts/generate_descriptions.py.
+    """
+
+    description: str = ""  # one vivid sentence: colors + layout + emblems
+    layout: str = ""  # e.g. "horizontal triband", "canton", "saltire", "plain field"
+    symbols: List[str] = []  # charges/emblems, e.g. "crescent", "five-pointed star"
+    # Note: color is intentionally NOT stored here. The pixel-based quantizer
+    # (color_coverage) is the single source of truth for color; see build_document.
+
+
 class Flag(BaseModel):
     """
     Flag data model with metadata for searchability and organization.
@@ -40,6 +53,7 @@ class Flag(BaseModel):
     adoption_year: Optional[int] = None  # Year flag was adopted
     tags: List[str] = []  # Searchable keywords
     color_coverage: Dict[str, float] = {}  # Palette color -> percent of pixels (includes gray)
+    visual: Optional[VisualDescription] = None  # VLM visual description (for search)
 
     # Query result field (not stored in database, used only for search results)
     score: Optional[float] = None  # Similarity score from search queries

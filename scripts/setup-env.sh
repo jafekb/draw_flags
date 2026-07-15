@@ -22,9 +22,8 @@ echo "Setting up $ENV environment..."
 # Try to pull only required LFS files (many cloud platforms have git-lfs pre-installed)
 echo "Pulling required Git LFS files..."
 git lfs pull --include "\
-backend/models/clip-text-encoder.onnx,\
-backend/data/all_flags/embeddings.hnsw.bin,\
-backend/data/all_flags/embeddings.hnsw.meta.json\
+backend/models/bge-base-en-v1.5-int8.onnx,\
+backend/data/all_flags/text_embeddings.npy\
 " || echo "Warning: Git LFS pull failed, continuing anyway..."
 
 case $ENV in

@@ -18,6 +18,8 @@ COLOR_PALETTE = {
     "red": (196, 50, 48),
     "orange": (231, 132, 55),
     "yellow": (247, 228, 79),
+    "gold": (211, 183, 115),
+    "brown": (145, 65, 20),
     "green": (58, 131, 64),
     "blue": (27, 46, 163),
     "light_blue": (121, 182, 232),
@@ -294,16 +296,44 @@ def nearest_palette_indices(
     return np.argmin(distances, axis=1)
 
 
+EDGE_GRADIENT_THRESHOLD = 30  # max per-channel diff to a 4-neighbor that marks a boundary pixel
+EDGE_KEEP_FLOOR = 0.15  # if suppression would drop below this fraction, keep all (busy flag)
+
+
+def edge_mask(rgb2d: np.ndarray, threshold: int = EDGE_GRADIENT_THRESHOLD) -> np.ndarray:
+    """
+    Boolean HxW mask of pixels adjacent to a strong color transition, i.e. the
+    anti-aliased seams between flag regions. Blue↔gold blends (which quantize to a
+    spurious "green"), etc. live here; dropping them cleans the coverage counts.
+    """
+    rgb = rgb2d.astype(np.int16)
+    grad = np.zeros(rgb.shape[:2], dtype=np.int16)
+    grad[:, :-1] = np.maximum(grad[:, :-1], np.abs(rgb[:, 1:] - rgb[:, :-1]).max(2))
+    grad[:, 1:] = np.maximum(grad[:, 1:], np.abs(rgb[:, :-1] - rgb[:, 1:]).max(2))
+    grad[:-1, :] = np.maximum(grad[:-1, :], np.abs(rgb[1:, :] - rgb[:-1, :]).max(2))
+    grad[1:, :] = np.maximum(grad[1:, :], np.abs(rgb[:-1, :] - rgb[1:, :]).max(2))
+    return grad > threshold
+
+
 def compute_color_coverage(
     image: Image.Image,
     palette_names: list[str],
     palette_lab_values: np.ndarray,
     sample_max: int,
+    *,
+    suppress_edges: bool = True,
 ) -> dict[str, float]:
     image = image.convert("RGBA")
-    pixels = np.array(image).reshape(-1, 4)
-    opaque = pixels[:, 3] > 0
-    rgb = pixels[opaque, :3]
+    arr = np.array(image)
+    opaque2d = arr[:, :, 3] > 0
+    keep = opaque2d
+    if suppress_edges and opaque2d.any():
+        interior = opaque2d & ~edge_mask(arr[:, :, :3])
+        # don't over-suppress detail-heavy flags (paintings, dense heraldry)
+        if interior.sum() >= EDGE_KEEP_FLOOR * opaque2d.sum():
+            keep = interior
+
+    rgb = arr[:, :, :3][keep]
     if rgb.size == 0:
         return {}
 
@@ -393,7 +423,11 @@ def main() -> None:
                 palette_lab_values=palette_values,
                 sample_max=args.sample_max,
             )
-            flag["color_coverage"] = coverage
+            # store rounded to 3 decimals; drop entries that round to zero (they are
+            # below the frontend's "contains color" threshold anyway) to keep flags.json clean
+            flag["color_coverage"] = {
+                k: round(v, 3) for k, v in coverage.items() if round(v, 3) > 0
+            }
         except Exception as exc:
             print(f"Failed to process {flag.get('name', 'unknown')}: {exc}")
         processed += 1
