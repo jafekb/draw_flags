@@ -7,6 +7,34 @@ import "./ImageGrid.css";
 // user scrolls to the bottom.
 const PAGE_SIZE = 60;
 
+// Wikimedia serves rendered, CDN-cached PNG thumbnails at a /thumb/ path. They're
+// lighter and far more cache-friendly than hotlinking raw SVG originals (which get
+// rate-limited / occasionally fail), so we render thumbnails and fall back to the
+// original URL on error. Width must be one of Wikimedia's allowed thumbnail sizes
+// (arbitrary widths now 400). The grid displays flags at ~264px, so 500 keeps them
+// crisp on 2x/Retina displays while staying far smaller than the source SVGs.
+const THUMB_WIDTH = 500;
+
+const thumbnailUrl = (url) => {
+  try {
+    const u = new URL(url);
+    if (u.hostname !== "upload.wikimedia.org") return url;
+    const parts = u.pathname.split("/"); // /wikipedia/<proj>/<h>/<hh>/<name>
+    if (parts.includes("thumb") || parts.length < 6) return url;
+    const name = parts[parts.length - 1];
+    const hh = parts[parts.length - 2];
+    const h = parts[parts.length - 3];
+    const proj = parts.slice(1, parts.length - 3).join("/");
+    const ext = name.split(".").pop().toLowerCase();
+    let thumbName = `${THUMB_WIDTH}px-${name}`;
+    if (ext === "svg" || ext === "svgz") thumbName += ".png";
+    else if (ext === "tif" || ext === "tiff") thumbName += ".jpg";
+    return `${u.origin}/${proj}/thumb/${h}/${hh}/${name}/${thumbName}`;
+  } catch {
+    return url;
+  }
+};
+
 const formatCoverageLabel = (color) => {
   if (!color) {
     return "";
@@ -74,12 +102,22 @@ const ImageGrid = ({ images, title, coverageColor }) => {
                 aria-label={image.name || "Flag"}
               >
                 <img
-                  src={image.wikipedia_image_url}
+                  src={thumbnailUrl(image.wikipedia_image_url)}
                   alt={image.name || "Flag"}
                   loading="lazy"
                   onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.style.minHeight = "200px";
+                    // First fall back from the thumbnail to the original file,
+                    // then hide if that also fails.
+                    if (
+                      !e.target.dataset.fellBack &&
+                      e.target.src !== image.wikipedia_image_url
+                    ) {
+                      e.target.dataset.fellBack = "1";
+                      e.target.src = image.wikipedia_image_url;
+                    } else {
+                      e.target.style.display = "none";
+                      e.target.parentElement.style.minHeight = "200px";
+                    }
                   }}
                 />
               </a>
