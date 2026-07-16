@@ -61,3 +61,30 @@
   border-color: #2c4dd9;
   background: #e8edff;
 }
+
+.image-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.image-search__preview {
+  max-width: 200px;
+  max-height: 160px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  object-fit: contain;
+}
+
+.image-search__error {
+  color: #b00020;
+  font-size: 14px;
+  margin: 0;
+}
+
+.image-search__detected {
+  font-style: italic;
+  color: #555;
+  margin: 8px 0;
+}

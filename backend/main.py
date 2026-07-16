@@ -1,3 +1,5 @@
+import base64
+import binascii
 import logging
 import os
 import random
@@ -5,12 +7,21 @@ from pathlib import Path
 from typing import List, Optional
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from backend.common.flag_data import FlagList
+from backend.common.flag_data import Flag, FlagList
 from backend.src.flag_searcher import FlagSearcher
+from backend.src.vlm_client import (
+    VLMError,
+    describe_image,
+    description_to_query,
+)
+
+# Uploads are downscaled client-side (canvas), so anything much larger than this is
+# unexpected; cap it to protect memory and the provider's token budget.
+MAX_IMAGE_BYTES = 5 * 1024 * 1024
 
 MEMORY_LOG_REQUESTS = int(os.getenv("MEMORY_LOG_REQUESTS", "5"))
 logger = logging.getLogger("uvicorn.error")
@@ -86,6 +97,23 @@ class SearchRequest(BaseModel):
     country: Optional[str] = None  # e.g., "United States"
 
 
+class ImageSearchRequest(BaseModel):
+    """Request model for identifying the flag in an uploaded image."""
+
+    image: str  # base64-encoded image bytes (optionally a data: URI)
+    top_k: Optional[int] = None
+    categories: Optional[List[str]] = None
+    continent: Optional[str] = None
+    country: Optional[str] = None
+
+
+class ImageSearchResult(BaseModel):
+    """Search results plus the description the VLM read off the image (shown in the UI)."""
+
+    detected: str
+    flags: List[Flag]
+
+
 class BannerFlag(BaseModel):
     name: str
     wikipedia_url: str
@@ -106,11 +134,52 @@ async def add_flag(request: SearchRequest):
     }
     flags = app.state.flag_searcher.query(
         request.text_query,
-        is_image=False,
         filters=filters,
         top_k=request.top_k,
     )
     return flags
+
+
+def _decode_image(image: str) -> bytes:
+    """Decode the base64 upload (tolerating a data: URI prefix) and enforce a size cap."""
+    payload = image.split(",", 1)[1] if image.startswith("data:") else image
+    try:
+        image_bytes = base64.b64decode(payload, validate=True)
+    except (binascii.Error, ValueError) as exc:
+        raise HTTPException(status_code=400, detail="Image is not valid base64.") from exc
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="Image is empty.")
+    if len(image_bytes) > MAX_IMAGE_BYTES:
+        raise HTTPException(status_code=413, detail="Image is too large.")
+    return image_bytes
+
+
+@app.post("/image", response_model=ImageSearchResult)
+async def search_by_image(request: ImageSearchRequest):
+    """
+    Identify the flag in an uploaded image: a hosted VLM describes it, then the same
+    text search users get for typed queries ranks the corpus against that description.
+    """
+    image_bytes = _decode_image(request.image)
+    try:
+        parsed = describe_image(image_bytes)
+    except VLMError as exc:
+        logger.warning("VLM describe_image failed: %s", exc)
+        raise HTTPException(
+            status_code=502, detail="Couldn't read the image right now. Please try again."
+        ) from exc
+
+    query_text = description_to_query(parsed)
+    if not query_text:
+        raise HTTPException(status_code=422, detail="No flag could be described in that image.")
+
+    filters = {
+        "categories": request.categories,
+        "continent": request.continent,
+        "country": request.country,
+    }
+    flags = app.state.flag_searcher.query(query_text, filters=filters, top_k=request.top_k)
+    return ImageSearchResult(detected=parsed.get("description") or query_text, flags=flags.flags)
 
 
 @app.get("/flags/random", response_model=BannerFlagList)

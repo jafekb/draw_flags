@@ -39,7 +39,7 @@ all_chars = string.whitespace + string.ascii_uppercase + string.ascii_lowercase
 for i in trange(n_text_queries, leave=False):
     # I don't think the actual choice of letters makes a big difference in speed
     text = "".join(random.choice(all_chars) for _ in range(10))
-    flags = flag_searcher.query(text, is_image=False)
+    flags = flag_searcher.query(text)
 elapsed = (time.time() - start) / n_text_queries
 print(f"Time per text query: {elapsed:.2e}s")
 

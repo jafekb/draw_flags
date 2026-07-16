@@ -26,7 +26,7 @@ def test_flag_searcher():
     ]
 
     for query, expected in test_cases:
-        results = searcher.query(query, is_image=False, top_k=10)
+        results = searcher.query(query, top_k=10)
 
         assert len(results.flags) == 10
         assert all(flag.score is not None for flag in results.flags)

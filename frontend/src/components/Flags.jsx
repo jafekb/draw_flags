@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import api from "../api.js";
 import ImageGrid from "./ImageGrid";
+import ImageSearchForm from "./ImageSearchForm";
 import SubmitDescriptionForm from "./SubmitDescriptionForm";
 import "./Flags.css";
 
@@ -31,12 +32,34 @@ const FlagList = () => {
   const [sortOrder, setSortOrder] = useState(null);
   const [colorFilter, setColorFilter] = useState(null);
   const [randomSeed, setRandomSeed] = useState(0);
+  const [detected, setDetected] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageError, setImageError] = useState(null);
   const addFlag = async (textQuery) => {
     try {
       const response = await api.post("/", { text_query: textQuery });
+      setDetected(null);
       setFlags(response.data.flags);
     } catch (error) {
       console.error("Error adding flag", error);
+    }
+  };
+
+  const searchByImage = async (imageDataUri) => {
+    setImageLoading(true);
+    setImageError(null);
+    try {
+      const response = await api.post("/image", { image: imageDataUri });
+      setDetected(response.data.detected);
+      setFlags(response.data.flags);
+    } catch (error) {
+      console.error("Error identifying flag from image", error);
+      setImageError(
+        error.response?.data?.detail ||
+          "Couldn't identify a flag in that image. Please try another.",
+      );
+    } finally {
+      setImageLoading(false);
     }
   };
 
@@ -123,11 +146,19 @@ const FlagList = () => {
     setFlags([]);
     setSortOrder(null);
     setColorFilter(null);
+    setDetected(null);
+    setImageError(null);
   };
 
   return (
     <div>
       <SubmitDescriptionForm addFlag={addFlag} />
+      <div className="or-divider">OR</div>
+      <ImageSearchForm
+        onSubmit={searchByImage}
+        loading={imageLoading}
+        error={imageError}
+      />
       <div className="or-divider">OR</div>
       <div className="show-all-controls">
         <span className="show-all-label">Show All:</span>
@@ -174,6 +205,9 @@ const FlagList = () => {
           >
             Clear
           </button>
+          {detected && (
+            <p className="image-search__detected">Detected: {detected}</p>
+          )}
           <ImageGrid images={displayFlags} coverageColor={colorFilter} />
         </>
       )}
