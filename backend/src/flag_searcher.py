@@ -94,21 +94,18 @@ class FlagSearcher:
                 break
         return FlagList(flags=results)
 
-    def query(self, text_query, is_image, filters=None, top_k=None) -> FlagList:
+    def query(self, text_query, filters=None, top_k=None) -> FlagList:
         """
         Search for flags matching the query, with optional filtering.
 
         Arguments:
-            text_query: Text description of the flag.
-            is_image (bool): image querying is not yet supported.
+            text_query: Text description of the flag. For image uploads, this is the
+                VLM-generated description (see backend/src/vlm_client.py).
             filters: Optional dict with keys: categories, continent, country.
 
         Returns:
             FlagList with up to top_k matching flags, best first.
         """
-        if is_image:
-            raise NotImplementedError
-
         effective_top_k = self._top_k if top_k is None else top_k
         if effective_top_k <= 0:
             return FlagList(flags=[])

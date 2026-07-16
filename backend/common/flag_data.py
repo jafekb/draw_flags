@@ -197,14 +197,6 @@ def flaglist_from_json(file_name: Path) -> Flag:
     return FlagList(**data)
 
 
-class Image(BaseModel):
-    """
-    The data passed between processes for image data
-    """
-
-    data: str
-
-
 def download_image(image_url: str, out_name: Path) -> None:
     """
     Download a jpg/png file from the internet, save it to 'out_name'

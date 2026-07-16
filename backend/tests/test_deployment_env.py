@@ -56,7 +56,7 @@ def test_deployment_environment():
     # 5. Test a simple query
     print("\n5. Testing simple query...")
     try:
-        flags = searcher.query("red white blue", is_image=False)
+        flags = searcher.query("red white blue")
         print(f"✅ Query successful, returned {len(flags.flags)} flags")
         print(f"   Top result: {flags.flags[0].name} (score: {flags.flags[0].score:.3f})")
     except Exception as e:
