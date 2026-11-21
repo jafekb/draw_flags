@@ -15,11 +15,13 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-import cairosvg
+# import cairosvg
+import resvg_py
 import easyocr
 import numpy as np
 import requests
 from PIL import Image, ImageDraw
+from tqdm import tqdm
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC_JSON = ROOT / "legacy" / "backend" / "data" / "all_flags" / "flags.json"
@@ -27,20 +29,74 @@ OUT_JSON = ROOT / "frontend" / "public" / "active_flags.json"
 CENSOR_DIR = ROOT / "frontend" / "public" / "flags_censored"
 
 US_STATES = {
-    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-    "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-    "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-    "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-    "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-    "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-    "Wisconsin", "Wyoming", "District of Columbia", "Washington, D.C."
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming",
+    "District of Columbia",
+    "Washington, D.C.",
 }
 
 CA_PROVINCES = {
-    "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador",
-    "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan",
-    "Northwest Territories", "Nunavut", "Yukon"
+    "Alberta",
+    "British Columbia",
+    "Manitoba",
+    "New Brunswick",
+    "Newfoundland and Labrador",
+    "Nova Scotia",
+    "Ontario",
+    "Prince Edward Island",
+    "Quebec",
+    "Saskatchewan",
+    "Northwest Territories",
+    "Nunavut",
+    "Yukon",
 }
 
 HEADERS = {"User-Agent": "WhatsThatFlagQuizBot/1.0 (https://whatsthatflag.com)"}
@@ -91,7 +147,7 @@ def sample_border_color(arr: np.ndarray, pts: list[tuple[int, int]]) -> tuple[in
     y0 = max(0, min(ys) - 3)
     x1 = min(arr.shape[1] - 1, max(xs) + 3)
     y1 = min(arr.shape[0] - 1, max(ys) + 3)
-    patch = arr[y0:y1 + 1, x0:x1 + 1, :3]
+    patch = arr[y0 : y1 + 1, x0 : x1 + 1, :3]
     if patch.size == 0:
         return (24, 24, 27, 255)
     med = np.median(patch.reshape(-1, 3), axis=0).astype(int)
@@ -103,7 +159,11 @@ def censor_flag_image(url: str, out_path: Path, reader: easyocr.Reader) -> bool:
     resp.raise_for_status()
 
     cleaned_svg, stripped_xml = strip_svg_text_nodes(resp.content)
-    png_bytes = cairosvg.svg2png(bytestring=cleaned_svg, output_width=640)
+    # png_bytes = cairosvg.svg2png(bytestring=cleaned_svg, output_width=640)
+    png_bytes = resvg_py.svg_to_bytes(
+        svg_string=cleaned_svg.decode("utf-8"),
+        width=640,
+    )
     img = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
     arr = np.array(img)
 
@@ -129,7 +189,9 @@ def censor_flag_image(url: str, out_path: Path, reader: easyocr.Reader) -> bool:
 
 def main():
     if not SRC_JSON.exists():
-        raise FileNotFoundError(f"Could not find {SRC_JSON}. Move backend/ into legacy/backend/ first.")
+        raise FileNotFoundError(
+            f"Could not find {SRC_JSON}. Move backend/ into legacy/backend/ first."
+        )
 
     reader = easyocr.Reader(["en"], gpu=False, verbose=False)
     raw = json.loads(SRC_JSON.read_text(encoding="utf-8"))
@@ -137,7 +199,7 @@ def main():
 
     seen = set()
     active = []
-    for f in flags:
+    for f in tqdm(flags):
         group = classify_group(f)
         if not group or not f.get("wikipedia_image_url"):
             continue
@@ -164,7 +226,9 @@ def main():
         active.append(entry)
 
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps({"flags": active}, indent=2, ensure_ascii=False), encoding="utf-8")
+    OUT_JSON.write_text(
+        json.dumps({"flags": active}, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
     print(f"Wrote {len(active)} active flags to {OUT_JSON}")
 
 
