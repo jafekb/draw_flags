@@ -1,13 +1,698 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/guyana.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>What's That Flag?</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What's That Flag?</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+  <!-- Minimal Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30">
+    <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
+      <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900">What's That Flag?</h1>
+      <nav class="flex items-center bg-slate-100 p-1 rounded-xl text-xs font-medium" aria-label="Primary">
+        <button id="tab-study" class="tab-btn px-3 py-1 rounded-lg transition bg-white text-slate-900 shadow-xs">Study</button>
+        <button id="tab-browse" class="tab-btn px-3 py-1 rounded-lg transition text-slate-600 hover:text-slate-900">Browse</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-4 space-y-4">
+
+    <!-- STUDY VIEW -->
+    <section id="view-study" class="space-y-3">
+      <!-- Compact Controls & Score Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-1 bg-white border border-slate-200 p-1 rounded-xl">
+          <button id="mode-flag-to-name" class="px-2.5 py-1 rounded-lg bg-slate-900 text-white font-medium">Flag → Name</button>
+          <button id="mode-name-to-flag" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 font-medium">Name → Flag</button>
+          <button id="mode-mixed" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 font-medium">Mixed</button>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-600 font-medium">
+          <span>Score: <strong id="stat-score" class="text-slate-900">0/0</strong></span>
+          <span>Streak: <strong id="stat-streak" class="text-indigo-600">0</strong></span>
+          <span>Mastered: <strong id="stat-mastered" class="text-emerald-600">0/0</strong></span>
+        </div>
+      </div>
+
+      <!-- Quiz Card -->
+      <div id="study-card-area" class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-7 shadow-xs">
+        <!-- Populated dynamically -->
+      </div>
+    </section>
+
+    <!-- BROWSE VIEW -->
+    <section id="view-browse" class="hidden space-y-3">
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input id="browse-search" type="search" placeholder="Search active bank..." class="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <select id="browse-group" class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-medium">
+          <option value="All">All Active Flags</option>
+          <option value="national">National</option>
+          <option value="us_state">US States</option>
+          <option value="ca_province">Canadian Provinces</option>
+        </select>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 px-1">
+        <span id="browse-count">0 flags</span>
+        <div class="flex items-center gap-2">
+          <button id="export-btn" class="px-2.5 py-1 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium rounded-lg">Export</button>
+          <label class="px-2.5 py-1 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium rounded-lg cursor-pointer">
+            Import
+            <input id="import-input" type="file" accept="application/json" class="hidden" />
+          </label>
+          <button id="reset-btn" class="px-2.5 py-1 bg-rose-50 hover:bg-rose-100 text-rose-700 font-medium rounded-lg">Reset</button>
+        </div>
+      </div>
+
+      <div id="browse-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+    </section>
+
+  </main>
+
+  <!-- Flag Detail Modal -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-xl space-y-3 relative text-center">
+      <button id="detail-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-base font-bold px-2">✕</button>
+      <div id="detail-content" class="space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div id="confirm-modal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-xl space-y-4">
+      <h3 class="text-base font-bold text-slate-900">Reset quiz progress?</h3>
+      <p class="text-sm text-slate-600">This clears your score and spaced-repetition history.</p>
+      <div class="flex justify-end gap-2">
+        <button id="confirm-cancel" class="px-3.5 py-2 text-sm font-medium bg-slate-100 hover:bg-slate-200 rounded-xl">Cancel</button>
+        <button id="confirm-ok" class="px-3.5 py-2 text-sm font-medium bg-rose-600 hover:bg-rose-700 text-white rounded-xl">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white text-xs font-medium px-4 py-2 rounded-full shadow-lg"></div>
+
+  <script>
+    const LOCAL_BANK_URL = './active_flags.json';
+    const DRAW_FLAGS_RAW_URL = 'https://raw.githubusercontent.com/jafekb/draw_flags/refs/heads/main/backend/data/all_flags/flags.json';
+    const FALLBACK_FLAGS = [{"name": "United States", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_United_States", "wikipedia_image_url": "https://flagcdn.com/w640/us.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"red": 0.42, "white": 0.4, "blue": 0.18}, "visual": {"layout": "canton"}}, {"name": "Canada", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Canada", "wikipedia_image_url": "https://flagcdn.com/w640/ca.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"red": 0.58, "white": 0.42}, "visual": {"layout": "vertical stripes"}}, {"name": "Mexico", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mexico", "wikipedia_image_url": "https://flagcdn.com/w640/mx.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"green": 0.33, "white": 0.31, "red": 0.33, "brown": 0.03}, "visual": {"layout": "vertical stripes"}}, {"name": "Cuba", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cuba", "wikipedia_image_url": "https://flagcdn.com/w640/cu.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.45, "white": 0.35, "red": 0.2}, "visual": {"layout": "triangle"}}, {"name": "Jamaica", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Jamaica", "wikipedia_image_url": "https://flagcdn.com/w640/jm.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"green": 0.38, "gold": 0.24, "black": 0.38}, "visual": {"layout": "saltire"}}, {"name": "Dominican Republic", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Dominican_Republic", "wikipedia_image_url": "https://flagcdn.com/w640/do.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.35, "red": 0.35, "white": 0.3}, "visual": {"layout": "cross"}}, {"name": "Costa Rica", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Costa_Rica", "wikipedia_image_url": "https://flagcdn.com/w640/cr.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.33, "white": 0.33, "red": 0.34}, "visual": {"layout": "horizontal stripes"}}, {"name": "Panama", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Panama", "wikipedia_image_url": "https://flagcdn.com/w640/pa.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"white": 0.5, "red": 0.25, "blue": 0.25}, "visual": {"layout": "canton"}}, {"name": "Guatemala", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Guatemala", "wikipedia_image_url": "https://flagcdn.com/w640/gt.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"light_blue": 0.64, "white": 0.32, "gold": 0.04}, "visual": {"layout": "vertical stripes"}}, {"name": "Puerto Rico", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Puerto_Rico", "wikipedia_image_url": "https://flagcdn.com/w640/pr.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"red": 0.45, "white": 0.35, "blue": 0.2}, "visual": {"layout": "triangle"}}, {"name": "Brazil", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Brazil", "wikipedia_image_url": "https://flagcdn.com/w640/br.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"green": 0.62, "yellow": 0.24, "blue": 0.12, "white": 0.02}, "visual": {"layout": "center emblem"}}, {"name": "Argentina", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Argentina", "wikipedia_image_url": "https://flagcdn.com/w640/ar.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"light_blue": 0.64, "white": 0.32, "yellow": 0.04}, "visual": {"layout": "horizontal stripes"}}, {"name": "Colombia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Colombia", "wikipedia_image_url": "https://flagcdn.com/w640/co.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"yellow": 0.5, "blue": 0.25, "red": 0.25}, "visual": {"layout": "horizontal stripes"}}, {"name": "Chile", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Chile", "wikipedia_image_url": "https://flagcdn.com/w640/cl.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"white": 0.34, "red": 0.5, "blue": 0.16}, "visual": {"layout": "canton"}}, {"name": "Peru", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Peru", "wikipedia_image_url": "https://flagcdn.com/w640/pe.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"red": 0.67, "white": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Venezuela", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Venezuela", "wikipedia_image_url": "https://flagcdn.com/w640/ve.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"yellow": 0.33, "blue": 0.33, "red": 0.32, "white": 0.02}, "visual": {"layout": "horizontal stripes"}}, {"name": "Ecuador", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ecuador", "wikipedia_image_url": "https://flagcdn.com/w640/ec.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"yellow": 0.48, "blue": 0.25, "red": 0.27}, "visual": {"layout": "horizontal stripes"}}, {"name": "Uruguay", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Uruguay", "wikipedia_image_url": "https://flagcdn.com/w640/uy.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"white": 0.5, "blue": 0.42, "yellow": 0.08}, "visual": {"layout": "canton"}}, {"name": "Bolivia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bolivia", "wikipedia_image_url": "https://flagcdn.com/w640/bo.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"red": 0.33, "yellow": 0.34, "green": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Paraguay", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Paraguay", "wikipedia_image_url": "https://flagcdn.com/w640/py.png", "category": "national", "entity_type": "country", "continent": "South America", "color_coverage": {"red": 0.33, "white": 0.34, "blue": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "United Kingdom", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_United_Kingdom", "wikipedia_image_url": "https://flagcdn.com/w640/gb.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.4, "red": 0.35, "white": 0.25}, "visual": {"layout": "saltire"}}, {"name": "France", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_France", "wikipedia_image_url": "https://flagcdn.com/w640/fr.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.33, "white": 0.34, "red": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Germany", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Germany", "wikipedia_image_url": "https://flagcdn.com/w640/de.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"black": 0.33, "red": 0.34, "gold": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Italy", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Italy", "wikipedia_image_url": "https://flagcdn.com/w640/it.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"green": 0.33, "white": 0.34, "red": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Spain", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Spain", "wikipedia_image_url": "https://flagcdn.com/w640/es.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.5, "yellow": 0.5}, "visual": {"layout": "horizontal stripes"}}, {"name": "Portugal", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Portugal", "wikipedia_image_url": "https://flagcdn.com/w640/pt.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"green": 0.38, "red": 0.56, "yellow": 0.06}, "visual": {"layout": "vertical stripes"}}, {"name": "Netherlands", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Netherlands", "wikipedia_image_url": "https://flagcdn.com/w640/nl.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.33, "white": 0.34, "blue": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Belgium", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Belgium", "wikipedia_image_url": "https://flagcdn.com/w640/be.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"black": 0.33, "yellow": 0.34, "red": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Switzerland", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Switzerland", "wikipedia_image_url": "https://flagcdn.com/w640/ch.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.8, "white": 0.2}, "visual": {"layout": "cross"}}, {"name": "Austria", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Austria", "wikipedia_image_url": "https://flagcdn.com/w640/at.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.67, "white": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Sweden", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sweden", "wikipedia_image_url": "https://flagcdn.com/w640/se.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.7, "yellow": 0.3}, "visual": {"layout": "cross"}}, {"name": "Norway", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Norway", "wikipedia_image_url": "https://flagcdn.com/w640/no.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.64, "blue": 0.2, "white": 0.16}, "visual": {"layout": "cross"}}, {"name": "Denmark", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Denmark", "wikipedia_image_url": "https://flagcdn.com/w640/dk.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.76, "white": 0.24}, "visual": {"layout": "cross"}}, {"name": "Finland", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Finland", "wikipedia_image_url": "https://flagcdn.com/w640/fi.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.72, "blue": 0.28}, "visual": {"layout": "cross"}}, {"name": "Iceland", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Iceland", "wikipedia_image_url": "https://flagcdn.com/w640/is.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.64, "red": 0.2, "white": 0.16}, "visual": {"layout": "cross"}}, {"name": "Ireland", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ireland", "wikipedia_image_url": "https://flagcdn.com/w640/ie.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"green": 0.33, "white": 0.34, "orange": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Poland", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Poland", "wikipedia_image_url": "https://flagcdn.com/w640/pl.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.5, "red": 0.5}, "visual": {"layout": "bicolor"}}, {"name": "Ukraine", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ukraine", "wikipedia_image_url": "https://flagcdn.com/w640/ua.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.5, "yellow": 0.5}, "visual": {"layout": "bicolor"}}, {"name": "Greece", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Greece", "wikipedia_image_url": "https://flagcdn.com/w640/gr.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.55, "white": 0.45}, "visual": {"layout": "canton"}}, {"name": "Turkey", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Turkey", "wikipedia_image_url": "https://flagcdn.com/w640/tr.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.88, "white": 0.12}, "visual": {"layout": "center emblem"}}, {"name": "Russia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Russia", "wikipedia_image_url": "https://flagcdn.com/w640/ru.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.33, "blue": 0.34, "red": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Czechia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Czechia", "wikipedia_image_url": "https://flagcdn.com/w640/cz.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.37, "red": 0.37, "blue": 0.26}, "visual": {"layout": "triangle"}}, {"name": "Hungary", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Hungary", "wikipedia_image_url": "https://flagcdn.com/w640/hu.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.33, "white": 0.34, "green": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Romania", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Romania", "wikipedia_image_url": "https://flagcdn.com/w640/ro.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.33, "yellow": 0.34, "red": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Croatia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Croatia", "wikipedia_image_url": "https://flagcdn.com/w640/hr.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.35, "white": 0.32, "blue": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Serbia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Serbia", "wikipedia_image_url": "https://flagcdn.com/w640/rs.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.34, "blue": 0.32, "white": 0.31, "gold": 0.03}, "visual": {"layout": "horizontal stripes"}}, {"name": "Bulgaria", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bulgaria", "wikipedia_image_url": "https://flagcdn.com/w640/bg.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.33, "green": 0.34, "red": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Slovakia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Slovakia", "wikipedia_image_url": "https://flagcdn.com/w640/sk.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.32, "blue": 0.34, "red": 0.34}, "visual": {"layout": "horizontal stripes"}}, {"name": "Slovenia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Slovenia", "wikipedia_image_url": "https://flagcdn.com/w640/si.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.32, "blue": 0.34, "red": 0.33, "yellow": 0.01}, "visual": {"layout": "horizontal stripes"}}, {"name": "Estonia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Estonia", "wikipedia_image_url": "https://flagcdn.com/w640/ee.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.33, "black": 0.34, "white": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Latvia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Latvia", "wikipedia_image_url": "https://flagcdn.com/w640/lv.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.8, "white": 0.2}, "visual": {"layout": "horizontal stripes"}}, {"name": "Lithuania", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Lithuania", "wikipedia_image_url": "https://flagcdn.com/w640/lt.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"yellow": 0.33, "green": 0.34, "red": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Albania", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Albania", "wikipedia_image_url": "https://flagcdn.com/w640/al.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.82, "black": 0.18}, "visual": {"layout": "center emblem"}}, {"name": "Vatican City", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Vatican_City", "wikipedia_image_url": "https://flagcdn.com/w640/va.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"yellow": 0.5, "white": 0.45, "gold": 0.05}, "visual": {"layout": "bicolor"}}, {"name": "Japan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Japan", "wikipedia_image_url": "https://flagcdn.com/w640/jp.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"white": 0.8, "red": 0.2}, "visual": {"layout": "center emblem"}}, {"name": "South Korea", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_South_Korea", "wikipedia_image_url": "https://flagcdn.com/w640/kr.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"white": 0.72, "red": 0.1, "blue": 0.1, "black": 0.08}, "visual": {"layout": "center emblem"}}, {"name": "China", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_China", "wikipedia_image_url": "https://flagcdn.com/w640/cn.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.92, "yellow": 0.08}, "visual": {"layout": "canton"}}, {"name": "India", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_India", "wikipedia_image_url": "https://flagcdn.com/w640/in.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"orange": 0.33, "white": 0.3, "green": 0.33, "blue": 0.04}, "visual": {"layout": "horizontal stripes"}}, {"name": "Vietnam", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Vietnam", "wikipedia_image_url": "https://flagcdn.com/w640/vn.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.9, "yellow": 0.1}, "visual": {"layout": "center emblem"}}, {"name": "Thailand", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Thailand", "wikipedia_image_url": "https://flagcdn.com/w640/th.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.33, "white": 0.33, "blue": 0.34}, "visual": {"layout": "horizontal stripes"}}, {"name": "Indonesia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Indonesia", "wikipedia_image_url": "https://flagcdn.com/w640/id.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.5, "white": 0.5}, "visual": {"layout": "bicolor"}}, {"name": "Philippines", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Philippines", "wikipedia_image_url": "https://flagcdn.com/w640/ph.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"blue": 0.38, "red": 0.38, "white": 0.2, "yellow": 0.04}, "visual": {"layout": "triangle"}}, {"name": "Malaysia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Malaysia", "wikipedia_image_url": "https://flagcdn.com/w640/my.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.38, "white": 0.38, "blue": 0.18, "yellow": 0.06}, "visual": {"layout": "canton"}}, {"name": "Singapore", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Singapore", "wikipedia_image_url": "https://flagcdn.com/w640/sg.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.45, "white": 0.55}, "visual": {"layout": "bicolor"}}, {"name": "Pakistan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Pakistan", "wikipedia_image_url": "https://flagcdn.com/w640/pk.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"green": 0.7, "white": 0.3}, "visual": {"layout": "center emblem"}}, {"name": "Bangladesh", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh", "wikipedia_image_url": "https://flagcdn.com/w640/bd.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"green": 0.8, "red": 0.2}, "visual": {"layout": "center emblem"}}, {"name": "Nepal", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nepal", "wikipedia_image_url": "https://flagcdn.com/w640/np.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.65, "blue": 0.23, "white": 0.12}, "visual": {"layout": "triangle"}}, {"name": "Sri Lanka", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sri_Lanka", "wikipedia_image_url": "https://flagcdn.com/w640/lk.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"gold": 0.3, "red": 0.42, "green": 0.14, "orange": 0.14}, "visual": {"layout": "center emblem"}}, {"name": "Taiwan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Taiwan", "wikipedia_image_url": "https://flagcdn.com/w640/tw.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.72, "blue": 0.22, "white": 0.06}, "visual": {"layout": "canton"}}, {"name": "Hong Kong", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Hong_Kong", "wikipedia_image_url": "https://flagcdn.com/w640/hk.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.85, "white": 0.15}, "visual": {"layout": "center emblem"}}, {"name": "North Korea", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_North_Korea", "wikipedia_image_url": "https://flagcdn.com/w640/kp.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.52, "blue": 0.3, "white": 0.18}, "visual": {"layout": "horizontal stripes"}}, {"name": "Mongolia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mongolia", "wikipedia_image_url": "https://flagcdn.com/w640/mn.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.62, "blue": 0.33, "yellow": 0.05}, "visual": {"layout": "vertical stripes"}}, {"name": "Kazakhstan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kazakhstan", "wikipedia_image_url": "https://flagcdn.com/w640/kz.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"light_blue": 0.86, "gold": 0.14}, "visual": {"layout": "center emblem"}}, {"name": "Cambodia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cambodia", "wikipedia_image_url": "https://flagcdn.com/w640/kh.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"blue": 0.48, "red": 0.44, "white": 0.08}, "visual": {"layout": "horizontal stripes"}}, {"name": "Saudi Arabia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Saudi_Arabia", "wikipedia_image_url": "https://flagcdn.com/w640/sa.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"green": 0.85, "white": 0.15}, "visual": {"layout": "center emblem"}}, {"name": "United Arab Emirates", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_United_Arab_Emirates", "wikipedia_image_url": "https://flagcdn.com/w640/ae.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.25, "green": 0.25, "white": 0.25, "black": 0.25}, "visual": {"layout": "horizontal stripes"}}, {"name": "Israel", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Israel", "wikipedia_image_url": "https://flagcdn.com/w640/il.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"white": 0.72, "blue": 0.28}, "visual": {"layout": "horizontal stripes"}}, {"name": "Iran", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Iran", "wikipedia_image_url": "https://flagcdn.com/w640/ir.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"green": 0.33, "white": 0.34, "red": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Iraq", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Iraq", "wikipedia_image_url": "https://flagcdn.com/w640/iq.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.33, "white": 0.31, "black": 0.33, "green": 0.03}, "visual": {"layout": "horizontal stripes"}}, {"name": "Jordan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Jordan", "wikipedia_image_url": "https://flagcdn.com/w640/jo.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"black": 0.27, "white": 0.27, "green": 0.27, "red": 0.19}, "visual": {"layout": "triangle"}}, {"name": "Lebanon", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Lebanon", "wikipedia_image_url": "https://flagcdn.com/w640/lb.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.5, "white": 0.42, "green": 0.08}, "visual": {"layout": "horizontal stripes"}}, {"name": "Qatar", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Qatar", "wikipedia_image_url": "https://flagcdn.com/w640/qa.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"white": 0.28, "red": 0.72}, "visual": {"layout": "bicolor"}}, {"name": "South Africa", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_South_Africa", "wikipedia_image_url": "https://flagcdn.com/w640/za.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.22, "blue": 0.22, "green": 0.26, "yellow": 0.08, "black": 0.12, "white": 0.1}, "visual": {"layout": "diagonal"}}, {"name": "Nigeria", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nigeria", "wikipedia_image_url": "https://flagcdn.com/w640/ng.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.67, "white": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Egypt", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Egypt", "wikipedia_image_url": "https://flagcdn.com/w640/eg.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.33, "white": 0.31, "black": 0.33, "gold": 0.03}, "visual": {"layout": "horizontal stripes"}}, {"name": "Kenya", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kenya", "wikipedia_image_url": "https://flagcdn.com/w640/ke.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"black": 0.28, "red": 0.28, "green": 0.28, "white": 0.16}, "visual": {"layout": "horizontal stripes"}}, {"name": "Morocco", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Morocco", "wikipedia_image_url": "https://flagcdn.com/w640/ma.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.92, "green": 0.08}, "visual": {"layout": "center emblem"}}, {"name": "Ethiopia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ethiopia", "wikipedia_image_url": "https://flagcdn.com/w640/et.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.31, "yellow": 0.3, "red": 0.31, "blue": 0.08}, "visual": {"layout": "horizontal stripes"}}, {"name": "Ghana", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Ghana", "wikipedia_image_url": "https://flagcdn.com/w640/gh.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.33, "yellow": 0.3, "green": 0.33, "black": 0.04}, "visual": {"layout": "horizontal stripes"}}, {"name": "Algeria", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Algeria", "wikipedia_image_url": "https://flagcdn.com/w640/dz.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.48, "white": 0.46, "red": 0.06}, "visual": {"layout": "bicolor"}}, {"name": "Tunisia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tunisia", "wikipedia_image_url": "https://flagcdn.com/w640/tn.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.85, "white": 0.15}, "visual": {"layout": "center emblem"}}, {"name": "Senegal", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Senegal", "wikipedia_image_url": "https://flagcdn.com/w640/sn.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.33, "yellow": 0.31, "red": 0.36}, "visual": {"layout": "vertical stripes"}}, {"name": "Tanzania", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tanzania", "wikipedia_image_url": "https://flagcdn.com/w640/tz.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.3, "light_blue": 0.3, "black": 0.25, "yellow": 0.15}, "visual": {"layout": "diagonal"}}, {"name": "Uganda", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Uganda", "wikipedia_image_url": "https://flagcdn.com/w640/ug.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"black": 0.32, "yellow": 0.32, "red": 0.32, "white": 0.04}, "visual": {"layout": "horizontal stripes"}}, {"name": "Cameroon", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cameroon", "wikipedia_image_url": "https://flagcdn.com/w640/cm.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.33, "red": 0.32, "yellow": 0.35}, "visual": {"layout": "vertical stripes"}}, {"name": "Côte d'Ivoire", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Côte_d'Ivoire", "wikipedia_image_url": "https://flagcdn.com/w640/ci.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"orange": 0.33, "white": 0.34, "green": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "Angola", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Angola", "wikipedia_image_url": "https://flagcdn.com/w640/ao.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.48, "black": 0.48, "yellow": 0.04}, "visual": {"layout": "bicolor"}}, {"name": "DR Congo", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_DR_Congo", "wikipedia_image_url": "https://flagcdn.com/w640/cd.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"light_blue": 0.68, "red": 0.16, "yellow": 0.16}, "visual": {"layout": "diagonal"}}, {"name": "Zimbabwe", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Zimbabwe", "wikipedia_image_url": "https://flagcdn.com/w640/zw.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.25, "yellow": 0.22, "red": 0.22, "black": 0.15, "white": 0.16}, "visual": {"layout": "triangle"}}, {"name": "Namibia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Namibia", "wikipedia_image_url": "https://flagcdn.com/w640/na.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"blue": 0.32, "green": 0.32, "red": 0.2, "white": 0.08, "yellow": 0.08}, "visual": {"layout": "diagonal"}}, {"name": "Australia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Australia", "wikipedia_image_url": "https://flagcdn.com/w640/au.png", "category": "national", "entity_type": "country", "continent": "Oceania", "color_coverage": {"blue": 0.72, "red": 0.1, "white": 0.18}, "visual": {"layout": "canton"}}, {"name": "New Zealand", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_New_Zealand", "wikipedia_image_url": "https://flagcdn.com/w640/nz.png", "category": "national", "entity_type": "country", "continent": "Oceania", "color_coverage": {"blue": 0.74, "red": 0.14, "white": 0.12}, "visual": {"layout": "canton"}}, {"name": "Fiji", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Fiji", "wikipedia_image_url": "https://flagcdn.com/w640/fj.png", "category": "national", "entity_type": "country", "continent": "Oceania", "color_coverage": {"light_blue": 0.68, "blue": 0.12, "red": 0.1, "white": 0.1}, "visual": {"layout": "canton"}}, {"name": "Papua New Guinea", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Papua_New_Guinea", "wikipedia_image_url": "https://flagcdn.com/w640/pg.png", "category": "national", "entity_type": "country", "continent": "Oceania", "color_coverage": {"red": 0.45, "black": 0.45, "yellow": 0.06, "white": 0.04}, "visual": {"layout": "diagonal"}}, {"name": "Samoa", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Samoa", "wikipedia_image_url": "https://flagcdn.com/w640/ws.png", "category": "national", "entity_type": "country", "continent": "Oceania", "color_coverage": {"red": 0.75, "blue": 0.22, "white": 0.03}, "visual": {"layout": "canton"}}, {"name": "Tonga", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Tonga", "wikipedia_image_url": "https://flagcdn.com/w640/to.png", "category": "national", "entity_type": "country", "continent": "Oceania", "color_coverage": {"red": 0.78, "white": 0.22}, "visual": {"layout": "canton"}}, {"name": "Palestine", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Palestine", "wikipedia_image_url": "https://flagcdn.com/w640/ps.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"black": 0.27, "white": 0.27, "green": 0.27, "red": 0.19}, "visual": {"layout": "triangle"}}, {"name": "Syria", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Syria", "wikipedia_image_url": "https://flagcdn.com/w640/sy.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.33, "white": 0.31, "black": 0.33, "green": 0.03}, "visual": {"layout": "horizontal stripes"}}, {"name": "Kuwait", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Kuwait", "wikipedia_image_url": "https://flagcdn.com/w640/kw.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"green": 0.28, "white": 0.28, "red": 0.28, "black": 0.16}, "visual": {"layout": "horizontal stripes"}}, {"name": "Oman", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Oman", "wikipedia_image_url": "https://flagcdn.com/w640/om.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"white": 0.25, "red": 0.5, "green": 0.25}, "visual": {"layout": "horizontal stripes"}}, {"name": "Bahrain", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bahrain", "wikipedia_image_url": "https://flagcdn.com/w640/bh.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"white": 0.28, "red": 0.72}, "visual": {"layout": "bicolor"}}, {"name": "Myanmar", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Myanmar", "wikipedia_image_url": "https://flagcdn.com/w640/mm.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"yellow": 0.3, "green": 0.3, "red": 0.3, "white": 0.1}, "visual": {"layout": "horizontal stripes"}}, {"name": "Laos", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Laos", "wikipedia_image_url": "https://flagcdn.com/w640/la.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.46, "blue": 0.44, "white": 0.1}, "visual": {"layout": "horizontal stripes"}}, {"name": "Uzbekistan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan", "wikipedia_image_url": "https://flagcdn.com/w640/uz.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"light_blue": 0.32, "white": 0.32, "green": 0.32, "red": 0.04}, "visual": {"layout": "horizontal stripes"}}, {"name": "Georgia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Georgia", "wikipedia_image_url": "https://flagcdn.com/w640/ge.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.72, "red": 0.28}, "visual": {"layout": "cross"}}, {"name": "Armenia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Armenia", "wikipedia_image_url": "https://flagcdn.com/w640/am.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"red": 0.33, "blue": 0.34, "orange": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Azerbaijan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Azerbaijan", "wikipedia_image_url": "https://flagcdn.com/w640/az.png", "category": "national", "entity_type": "country", "continent": "Asia", "color_coverage": {"light_blue": 0.33, "red": 0.31, "green": 0.33, "white": 0.03}, "visual": {"layout": "horizontal stripes"}}, {"name": "Cyprus", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Cyprus", "wikipedia_image_url": "https://flagcdn.com/w640/cy.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.84, "orange": 0.12, "green": 0.04}, "visual": {"layout": "center emblem"}}, {"name": "Malta", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Malta", "wikipedia_image_url": "https://flagcdn.com/w640/mt.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"white": 0.48, "red": 0.5, "gray": 0.02}, "visual": {"layout": "bicolor"}}, {"name": "Luxembourg", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Luxembourg", "wikipedia_image_url": "https://flagcdn.com/w640/lu.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.33, "white": 0.34, "light_blue": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Monaco", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Monaco", "wikipedia_image_url": "https://flagcdn.com/w640/mc.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.5, "white": 0.5}, "visual": {"layout": "bicolor"}}, {"name": "Belarus", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Belarus", "wikipedia_image_url": "https://flagcdn.com/w640/by.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"red": 0.6, "green": 0.3, "white": 0.1}, "visual": {"layout": "bicolor"}}, {"name": "Bahamas", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Bahamas", "wikipedia_image_url": "https://flagcdn.com/w640/bs.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"light_blue": 0.55, "yellow": 0.25, "black": 0.2}, "visual": {"layout": "triangle"}}, {"name": "Barbados", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Barbados", "wikipedia_image_url": "https://flagcdn.com/w640/bb.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.66, "gold": 0.28, "black": 0.06}, "visual": {"layout": "vertical stripes"}}, {"name": "Trinidad and Tobago", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Trinidad_and_Tobago", "wikipedia_image_url": "https://flagcdn.com/w640/tt.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"red": 0.72, "black": 0.2, "white": 0.08}, "visual": {"layout": "diagonal"}}, {"name": "Haiti", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Haiti", "wikipedia_image_url": "https://flagcdn.com/w640/ht.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.46, "red": 0.46, "white": 0.08}, "visual": {"layout": "bicolor"}}, {"name": "Honduras", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Honduras", "wikipedia_image_url": "https://flagcdn.com/w640/hn.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"light_blue": 0.67, "white": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "El Salvador", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador", "wikipedia_image_url": "https://flagcdn.com/w640/sv.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.66, "white": 0.31, "gold": 0.03}, "visual": {"layout": "horizontal stripes"}}, {"name": "Nicaragua", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Nicaragua", "wikipedia_image_url": "https://flagcdn.com/w640/ni.png", "category": "national", "entity_type": "country", "continent": "North America", "color_coverage": {"blue": 0.67, "white": 0.33}, "visual": {"layout": "horizontal stripes"}}, {"name": "Rwanda", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Rwanda", "wikipedia_image_url": "https://flagcdn.com/w640/rw.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"light_blue": 0.5, "yellow": 0.25, "green": 0.25}, "visual": {"layout": "horizontal stripes"}}, {"name": "Mozambique", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mozambique", "wikipedia_image_url": "https://flagcdn.com/w640/mz.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.28, "black": 0.25, "yellow": 0.25, "red": 0.18, "white": 0.04}, "visual": {"layout": "triangle"}}, {"name": "Madagascar", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Madagascar", "wikipedia_image_url": "https://flagcdn.com/w640/mg.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"white": 0.33, "red": 0.33, "green": 0.34}, "visual": {"layout": "bicolor"}}, {"name": "Botswana", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Botswana", "wikipedia_image_url": "https://flagcdn.com/w640/bw.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"light_blue": 0.72, "black": 0.2, "white": 0.08}, "visual": {"layout": "horizontal stripes"}}, {"name": "Zambia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Zambia", "wikipedia_image_url": "https://flagcdn.com/w640/zm.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.75, "red": 0.08, "black": 0.08, "orange": 0.09}, "visual": {"layout": "center emblem"}}, {"name": "Libya", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Libya", "wikipedia_image_url": "https://flagcdn.com/w640/ly.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.25, "black": 0.48, "green": 0.25, "white": 0.02}, "visual": {"layout": "horizontal stripes"}}, {"name": "Sudan", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Sudan", "wikipedia_image_url": "https://flagcdn.com/w640/sd.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"red": 0.27, "white": 0.27, "black": 0.27, "green": 0.19}, "visual": {"layout": "triangle"}}, {"name": "Somalia", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Somalia", "wikipedia_image_url": "https://flagcdn.com/w640/so.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"light_blue": 0.9, "white": 0.1}, "visual": {"layout": "center emblem"}}, {"name": "Mali", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_Mali", "wikipedia_image_url": "https://flagcdn.com/w640/ml.png", "category": "national", "entity_type": "country", "continent": "Africa", "color_coverage": {"green": 0.33, "yellow": 0.34, "red": 0.33}, "visual": {"layout": "vertical stripes"}}, {"name": "European Union", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_European_Union", "wikipedia_image_url": "https://flagcdn.com/w640/eu.png", "category": "national", "entity_type": "country", "continent": "Europe", "color_coverage": {"blue": 0.9, "yellow": 0.1}, "visual": {"layout": "center emblem"}}, {"name": "United Nations", "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_of_United_Nations", "wikipedia_image_url": "https://flagcdn.com/w640/un.png", "category": "national", "entity_type": "country", "continent": "Global", "color_coverage": {"light_blue": 0.85, "white": 0.15}, "visual": {"layout": "center emblem"}}];
+
+    const US_STATES = new Set([
+      'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia',
+      'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland',
+      'Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
+      'New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina',
+      'South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming',
+      'District of Columbia','Washington, D.C.'
+    ]);
+
+    const CA_PROVINCES = new Set([
+      'Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Nova Scotia',
+      'Ontario','Prince Edward Island','Quebec','Saskatchewan','Northwest Territories','Nunavut','Yukon'
+    ]);
+
+    const STORAGE_KEY = 'whatsthatflag_fsrs_quiz_v3';
+    const memoryFallback = {};
+
+    function defaultStore() {
+      return {
+        cards: {},
+        correctCount: 0,
+        totalAnswered: 0,
+        streak: 0,
+        recentTimesMs: []
+      };
+    }
+
+    function loadStorage() {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (raw) return { ...defaultStore(), ...JSON.parse(raw) };
+      } catch (e) {}
+      return memoryFallback[STORAGE_KEY] || defaultStore();
+    }
+
+    function saveStorage(data) {
+      memoryFallback[STORAGE_KEY] = data;
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+    }
+
+    // Active Bank Filter: National + US States + Canadian Provinces (excluding historical year variants)
+    function classifyActiveBank(f) {
+      const name = (f.name || '').trim();
+      if (/\(\d{3,4}|1[0-9]{3}|20[0-2][0-9]/.test(name)) return null;
+      if ((f.category || '').toLowerCase() === 'historical') return null;
+
+      if (US_STATES.has(name) && (f.category === 'subdivision' || f.entity_type === 'state')) {
+        // Avoid matching the country Georgia
+        if (name === 'Georgia' && f.category === 'national') return 'national';
+        return 'us_state';
+      }
+      if (CA_PROVINCES.has(name)) return 'ca_province';
+      if ((f.category || '').toLowerCase() === 'national') return 'national';
+      return null;
+    }
+
+    function normalizeFlags(list) {
+      const seenNames = new Set();
+      const out = [];
+      for (let idx = 0; idx < list.length; idx++) {
+        const f = list[idx];
+        if (!f || !f.name || !f.wikipedia_image_url) continue;
+        const group = classifyActiveBank(f);
+        if (!group) continue;
+
+        const dedupKey = `${group}:${f.name}`;
+        if (seenNames.has(dedupKey)) continue;
+        seenNames.add(dedupKey);
+
+        const colors = Object.entries(f.color_coverage || {})
+          .filter(([, pct]) => pct >= 0.01)
+          .sort((a, b) => b[1] - a[1])
+          .map(([c]) => c);
+
+        out.push({
+          id: f.wikipedia_image_url || `${f.name}_${idx}`,
+          name: f.name,
+          imageUrl: f.wikipedia_image_url,
+          censoredImageUrl: f.censored_image_url || null,
+          wikiUrl: f.wikipedia_url || '',
+          group,
+          continent: f.continent || null,
+          colors: colors.length ? colors : Object.keys(f.color_coverage || {}),
+          layout: (f.visual && f.visual.layout) ? f.visual.layout : ''
+        });
+      }
+      return out;
+    }
+
+    // Distraction-Aware Timing -> Automatic FSRS Rating
+    function getMedianResponseMs() {
+      const times = appState.store.recentTimesMs || [];
+      if (times.length < 3) return 3500;
+      const sorted = [...times].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    }
+
+    function inferFsrsRating(isCorrect, elapsedMs) {
+      if (!isCorrect) return { rating: 1 };
+
+      const median = getMedianResponseMs();
+      const distractionCutoff = Math.max(12000, median * 3.0);
+      if (elapsedMs > distractionCutoff) return { rating: 3 };
+
+      const times = appState.store.recentTimesMs || [];
+      times.push(elapsedMs);
+      if (times.length > 30) times.shift();
+      appState.store.recentTimesMs = times;
+
+      const fastCutoff = Math.min(2800, Math.max(1400, median * 0.85));
+      const normalCutoff = Math.max(5800, median * 1.65);
+
+      if (elapsedMs <= fastCutoff) return { rating: 4 };
+      if (elapsedMs <= normalCutoff) return { rating: 3 };
+      return { rating: 2 };
+    }
+
+    // FSRS Scheduler
+    function getCardState(id) {
+      const existing = appState.store.cards[id];
+      if (existing) return existing;
+      return { id, stability: 0, difficulty: 5.0, reps: 0, lapses: 0, due: 0, lastReview: 0, state: 'new' };
+    }
+
+    function scheduleCard(card, rating) {
+      const now = Date.now();
+      const dayMs = 86400000;
+      const elapsedDays = card.lastReview > 0 ? Math.max(0, (now - card.lastReview) / dayMs) : 0;
+
+      let { stability, difficulty, reps, lapses, state } = card;
+      let nextIntervalDays = 0;
+
+      if (state === 'new' || reps === 0) {
+        const initStability = { 1: 0.0015, 2: 0.5, 3: 1.0, 4: 4.0 };
+        const initDiff = { 1: 7.2, 2: 6.0, 3: 5.0, 4: 3.5 };
+        stability = initStability[rating];
+        difficulty = initDiff[rating];
+        reps = 1;
+        if (rating === 1) lapses += 1;
+        state = rating === 1 ? 'learning' : 'review';
+        nextIntervalDays = stability;
+      } else {
+        const r = Math.pow(1 + elapsedDays / (9 * Math.max(0.1, stability)), -1);
+        difficulty = Math.min(10, Math.max(1, difficulty - 0.6 * (rating - 3)));
+
+        if (rating === 1) {
+          lapses += 1;
+          stability = Math.max(0.0015, stability * 0.25);
+          nextIntervalDays = 0.0015;
+          state = 'relearning';
+        } else {
+          const factor = rating === 2 ? 1.2 : rating === 3 ? 2.1 : 2.9;
+          const diffPenalty = Math.max(0.6, (11 - difficulty) / 6);
+          const spacingBonus = 1 + (1 - r) * 0.6;
+          stability = Math.min(365, Math.max(0.5, stability * factor * diffPenalty * spacingBonus));
+          nextIntervalDays = stability;
+          state = 'review';
+        }
+        reps += 1;
+      }
+
+      return {
+        id: card.id,
+        stability,
+        difficulty,
+        reps,
+        lapses,
+        state,
+        lastReview: now,
+        due: now + Math.round(nextIntervalDays * dayMs)
+      };
+    }
+
+    // Smart 4-option distractors (prefers same group: national with national, US state with US state, etc.)
+    function pickChoices(target, deck) {
+      const sameGroup = deck.filter(f => f.group === target.group);
+      const pool = sameGroup.length >= 4 ? sameGroup : deck;
+      const targetColors = new Set(target.colors);
+
+      const candidates = pool
+        .filter(f => f.id !== target.id && f.name !== target.name && f.imageUrl !== target.imageUrl)
+        .map(f => {
+          let sim = Math.random() * 0.6;
+          if (f.group === target.group) sim += 3.0;
+          if (target.continent && f.continent === target.continent) sim += 1.5;
+          if (target.layout && f.layout === target.layout) sim += 1.0;
+          let sharedColors = 0;
+          f.colors.forEach(c => { if (targetColors.has(c)) sharedColors += 1; });
+          sim += sharedColors * 0.8;
+          return { flag: f, sim };
+        })
+        .sort((a, b) => b.sim - a.sim);
+
+      const distractors = [];
+      const usedNames = new Set([target.name]);
+      for (const item of candidates) {
+        if (!usedNames.has(item.flag.name)) {
+          usedNames.add(item.flag.name);
+          distractors.push(item.flag);
+          if (distractors.length === 3) break;
+        }
+      }
+
+      const options = [target, ...distractors];
+      for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+      }
+      return options;
+    }
+
+    const stored = loadStorage();
+    const appState = {
+      flags: normalizeFlags(FALLBACK_FLAGS),
+      activeTab: 'study',
+      studyMode: 'flag-to-name',
+      currentDirection: 'flag-to-name',
+      currentFlag: null,
+      currentChoices: [],
+      selectedChoiceId: null,
+      questionStartMs: 0,
+      practiceAllMode: false,
+      advanceTimer: null,
+      store: stored,
+      browseQuery: '',
+      browseGroup: 'All'
+    };
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => el.classList.add('hidden'), 2200);
+    }
+
+    function switchTab(tab) {
+      appState.activeTab = tab;
+      ['study', 'browse'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById(`tab-${t}`);
+        btn.className = t === tab
+          ? 'tab-btn px-3 py-1 rounded-lg transition bg-white text-slate-900 shadow-xs'
+          : 'tab-btn px-3 py-1 rounded-lg transition text-slate-600 hover:text-slate-900';
+      });
+    }
+
+    document.getElementById('tab-study').addEventListener('click', () => switchTab('study'));
+    document.getElementById('tab-browse').addEventListener('click', () => switchTab('browse'));
+
+    function isMastered(card) {
+      return card.state === 'review' && card.stability >= 7;
+    }
+
+    function pickNextCard() {
+      clearTimeout(appState.advanceTimer);
+      const now = Date.now();
+      const deck = appState.flags;
+      const due = [];
+      const fresh = [];
+      let masteredCount = 0;
+
+      deck.forEach(f => {
+        const c = getCardState(f.id);
+        if (isMastered(c)) masteredCount += 1;
+        if (c.state === 'new') fresh.push(f);
+        else if (c.due <= now) due.push({ flag: f, due: c.due });
+      });
+
+      const allMastered = deck.length > 0 && masteredCount === deck.length;
+      due.sort((a, b) => a.due - b.due);
+
+      if (allMastered && !appState.practiceAllMode) {
+        appState.currentFlag = null;
+      } else if (due.length > 0) {
+        appState.currentFlag = due[0].flag;
+      } else if (fresh.length > 0) {
+        appState.currentFlag = fresh[Math.floor(Math.random() * fresh.length)];
+      } else if (appState.practiceAllMode && deck.length > 0) {
+        appState.currentFlag = deck[Math.floor(Math.random() * deck.length)];
+      } else {
+        appState.currentFlag = null;
+      }
+
+      appState.currentDirection = appState.studyMode === 'mixed'
+        ? (Math.random() < 0.5 ? 'flag-to-name' : 'name-to-flag')
+        : appState.studyMode;
+
+      appState.currentChoices = appState.currentFlag ? pickChoices(appState.currentFlag, deck) : [];
+      appState.selectedChoiceId = null;
+      appState.questionStartMs = performance.now();
+      renderStudy(masteredCount, allMastered);
+    }
+
+    function updateStudyStats(masteredCount) {
+      const correct = appState.store.correctCount || 0;
+      const total = appState.store.totalAnswered || 0;
+      document.getElementById('stat-score').textContent = `${correct}/${total}`;
+      document.getElementById('stat-streak').textContent = appState.store.streak || 0;
+      document.getElementById('stat-mastered').textContent = `${masteredCount}/${appState.flags.length}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function handleAnswer(choiceId) {
+      if (appState.selectedChoiceId !== null || !appState.currentFlag) return;
+      const elapsedMs = Math.max(100, performance.now() - appState.questionStartMs);
+      const isCorrect = choiceId === appState.currentFlag.id;
+
+      const inferred = inferFsrsRating(isCorrect, elapsedMs);
+      const card = getCardState(appState.currentFlag.id);
+      const updated = scheduleCard(card, inferred.rating);
+
+      appState.store.cards[appState.currentFlag.id] = updated;
+      appState.store.totalAnswered = (appState.store.totalAnswered || 0) + 1;
+      if (isCorrect) {
+        appState.store.correctCount = (appState.store.correctCount || 0) + 1;
+        appState.store.streak = (appState.store.streak || 0) + 1;
+      } else {
+        appState.store.streak = 0;
+      }
+      saveStorage(appState.store);
+
+      appState.selectedChoiceId = choiceId;
+
+      // Update UI immediately with green/red flash, then auto-advance
+      let masteredCount = 0;
+      appState.flags.forEach(f => { if (isMastered(getCardState(f.id))) masteredCount += 1; });
+      renderStudy(masteredCount, masteredCount === appState.flags.length);
+
+      appState.advanceTimer = setTimeout(() => {
+        pickNextCard();
+      }, isCorrect ? 550 : 950);
+    }
+
+    function renderStudy(masteredCount = 0, allMastered = false) {
+      updateStudyStats(masteredCount);
+      const container = document.getElementById('study-card-area');
+      const flag = appState.currentFlag;
+
+      if (!flag) {
+        container.innerHTML = allMastered ? `
+          <div class="text-center py-8 space-y-3">
+            <h2 class="text-xl font-bold text-emerald-700">You've mastered all of these—let's add some more!</h2>
+            <p class="text-sm text-slate-600 max-w-md mx-auto">All ${appState.flags.length} flags in your current bank have reached mastery. Tell me what kind of flags you want to learn next (or share a Wikipedia link) and we'll add a new bank.</p>
+            <button id="practice-anyway-btn" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-xl transition">Keep Reviewing Current Bank</button>
+          </div>
+        ` : `
+          <div class="text-center py-8 space-y-3">
+            <h2 class="text-xl font-bold text-slate-900">Caught up for now!</h2>
+            <p class="text-sm text-slate-600">No cards are due right now (${masteredCount}/${appState.flags.length} mastered).</p>
+            <button id="practice-anyway-btn" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition">Keep Practicing</button>
+          </div>
+        `;
+        document.getElementById('practice-anyway-btn').addEventListener('click', () => {
+          appState.practiceAllMode = true;
+          pickNextCard();
+        });
+        return;
+      }
+
+      const answered = appState.selectedChoiceId !== null;
+      const wikiLinkHtml = flag.wikiUrl
+        ? `<a href="${escapeHtml(flag.wikiUrl)}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 hover:text-indigo-800 underline underline-offset-2">Wikipedia ↗</a>`
+        : '';
+
+      const promptHtml = appState.currentDirection === 'flag-to-name'
+        ? `
+          <div class="w-full flex flex-col items-center gap-2 py-1">
+            <img src="${escapeHtml(flag.censoredImageUrl || flag.imageUrl)}" alt="Identify this flag" class="max-h-48 sm:max-h-56 w-auto rounded-lg border border-slate-200 shadow-xs bg-slate-100 object-contain" />
+            ${wikiLinkHtml}
+          </div>
+        `
+        : `
+          <div class="py-2 space-y-1">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">${escapeHtml(flag.name)}</h2>
+            ${wikiLinkHtml}
+          </div>
+        `;
+
+      const choicesHtml = appState.currentDirection === 'flag-to-name'
+        ? `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full max-w-xl mx-auto">
+            ${appState.currentChoices.map(opt => {
+              let cls = 'bg-slate-50 hover:bg-indigo-50 border-slate-200 hover:border-indigo-300 text-slate-800';
+              if (answered) {
+                if (opt.id === flag.id) cls = 'bg-emerald-500 border-emerald-600 text-white';
+                else if (opt.id === appState.selectedChoiceId) cls = 'bg-rose-500 border-rose-600 text-white';
+                else cls = 'bg-slate-50 border-slate-200 text-slate-400 opacity-60';
+              }
+              return `
+                <button data-choice-id="${escapeHtml(opt.id)}" ${answered ? 'disabled' : ''} class="choice-btn px-4 py-3.5 rounded-xl border text-sm font-semibold text-left transition duration-150 ${cls}">
+                  ${escapeHtml(opt.name)}
+                </button>
+              `;
+            }).join('')}
+          </div>
+        `
+        : `
+          <div class="grid grid-cols-2 gap-3 w-full max-w-lg mx-auto">
+            ${appState.currentChoices.map(opt => {
+              let cls = 'bg-slate-50 hover:bg-indigo-50 border-slate-200 hover:border-indigo-300';
+              if (answered) {
+                if (opt.id === flag.id) cls = 'bg-emerald-100 border-emerald-500 ring-4 ring-emerald-500';
+                else if (opt.id === appState.selectedChoiceId) cls = 'bg-rose-100 border-rose-500 ring-4 ring-rose-500';
+                else cls = 'bg-slate-50 border-slate-200 opacity-40';
+              }
+              return `
+                <button data-choice-id="${escapeHtml(opt.id)}" ${answered ? 'disabled' : ''} class="choice-btn p-2.5 rounded-xl border transition duration-150 flex items-center justify-center h-28 sm:h-32 ${cls}">
+                  <img src="${escapeHtml(opt.censoredImageUrl || opt.imageUrl)}" alt="Flag choice" class="max-h-full max-w-full object-contain rounded-xs" />
+                </button>
+              `;
+            }).join('')}
+          </div>
+        `;
+
+      container.innerHTML = `
+        <div class="flex flex-col items-center text-center space-y-5">
+          ${promptHtml}
+          ${choicesHtml}
+        </div>
+      `;
+
+      container.querySelectorAll('.choice-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleAnswer(btn.dataset.choiceId));
+      });
+    }
+
+    function setStudyMode(mode) {
+      appState.studyMode = mode;
+      const map = {
+        'flag-to-name': 'mode-flag-to-name',
+        'name-to-flag': 'mode-name-to-flag',
+        'mixed': 'mode-mixed'
+      };
+      Object.entries(map).forEach(([m, id]) => {
+        const el = document.getElementById(id);
+        el.className = m === mode
+          ? 'px-2.5 py-1 rounded-lg bg-slate-900 text-white font-medium'
+          : 'px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 font-medium';
+      });
+      pickNextCard();
+    }
+
+    document.getElementById('mode-flag-to-name').addEventListener('click', () => setStudyMode('flag-to-name'));
+    document.getElementById('mode-name-to-flag').addEventListener('click', () => setStudyMode('name-to-flag'));
+    document.getElementById('mode-mixed').addEventListener('click', () => setStudyMode('mixed'));
+
+    // Browse View
+    function flagCardHtml(flag) {
+      return `
+        <button data-flag-id="${escapeHtml(flag.id)}" class="flag-card text-left bg-white border border-slate-200 hover:border-indigo-300 rounded-xl p-3 shadow-xs transition flex flex-col items-center text-center gap-2">
+          <div class="w-full h-24 flex items-center justify-center bg-slate-50 rounded-lg overflow-hidden border border-slate-100 p-1.5">
+            <img src="${escapeHtml(flag.imageUrl)}" alt="Flag of ${escapeHtml(flag.name)}" loading="lazy" class="max-h-full max-w-full object-contain" />
+          </div>
+          <span class="text-xs font-semibold text-slate-900 line-clamp-1">${escapeHtml(flag.name)}</span>
+        </button>
+      `;
+    }
+
+    function renderBrowseGrid() {
+      const q = appState.browseQuery.trim().toLowerCase();
+      const filtered = appState.flags.filter(f => {
+        if (appState.browseGroup !== 'All' && f.group !== appState.browseGroup) return false;
+        if (!q) return true;
+        return f.name.toLowerCase().includes(q);
+      });
+
+      document.getElementById('browse-count').textContent = `${filtered.length} flags`;
+      const grid = document.getElementById('browse-grid');
+      grid.innerHTML = filtered.slice(0, 150).map(flagCardHtml).join('');
+      bindCardModalClicks(grid);
+    }
+
+    document.getElementById('browse-search').addEventListener('input', e => {
+      appState.browseQuery = e.target.value;
+      renderBrowseGrid();
+    });
+    document.getElementById('browse-group').addEventListener('change', e => {
+      appState.browseGroup = e.target.value;
+      renderBrowseGrid();
+    });
+
+    function bindCardModalClicks(root) {
+      root.querySelectorAll('.flag-card').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const flag = appState.flags.find(f => f.id === btn.dataset.flagId);
+          if (!flag) return;
+          document.getElementById('detail-content').innerHTML = `
+            <div class="flex justify-center bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <img src="${escapeHtml(flag.imageUrl)}" alt="Flag of ${escapeHtml(flag.name)}" class="max-h-44 w-auto object-contain rounded shadow-xs" />
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">${escapeHtml(flag.name)}</h3>
+            ${flag.wikiUrl ? `<a href="${escapeHtml(flag.wikiUrl)}" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-medium text-indigo-600 hover:text-indigo-800 underline underline-offset-2">Wikipedia ↗</a>` : ''}
+          `;
+          document.getElementById('detail-modal').classList.remove('hidden');
+        });
+      });
+    }
+
+    document.getElementById('detail-close').addEventListener('click', () => {
+      document.getElementById('detail-modal').classList.add('hidden');
+    });
+    document.getElementById('detail-modal').addEventListener('click', e => {
+      if (e.target.id === 'detail-modal') document.getElementById('detail-modal').classList.add('hidden');
+    });
+
+    // Export / Import / Reset
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(appState.store, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `whatsthatflag-backup.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Backup exported');
+    });
+
+    document.getElementById('import-input').addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (parsed && typeof parsed.cards === 'object') {
+            appState.store = { ...defaultStore(), ...parsed };
+            saveStorage(appState.store);
+            pickNextCard();
+            showToast('Progress imported');
+          } else {
+            showToast('Invalid backup file');
+          }
+        } catch (err) {
+          showToast('Could not read JSON file');
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('confirm-modal').classList.remove('hidden');
+    });
+    document.getElementById('confirm-cancel').addEventListener('click', () => {
+      document.getElementById('confirm-modal').classList.add('hidden');
+    });
+    document.getElementById('confirm-ok').addEventListener('click', () => {
+      appState.store = defaultStore();
+      saveStorage(appState.store);
+      document.getElementById('confirm-modal').classList.add('hidden');
+      pickNextCard();
+      showToast('Progress reset');
+    });
+
+    async function loadRepoFlags() {
+      try {
+        let res = await fetch(LOCAL_BANK_URL).catch(() => null);
+        if (!res || !res.ok) res = await fetch(DRAW_FLAGS_RAW_URL);
+        if (!res.ok) throw new Error('Network response was not ok');
+        const json = await res.json();
+        if (json && Array.isArray(json.flags) && json.flags.length > 0) {
+          const curated = normalizeFlags(json.flags);
+          if (curated.length > 0) {
+            appState.flags = curated;
+            renderBrowseGrid();
+            pickNextCard();
+          }
+        }
+      } catch (err) {}
+    }
+
+    renderBrowseGrid();
+    pickNextCard();
+    loadRepoFlags();
+  </script>
+</body>
 </html>
