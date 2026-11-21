@@ -1,27 +1,11 @@
-name: Backend tests
-
-on:
-  pull_request:
-
+name: Frontend Build
+on: [push, pull_request]
 jobs:
-  backend_tests:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          lfs: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install uv
-        run: python -m pip install --upgrade uv
-
-      - name: Install dependencies
-        run: ./scripts/setup-env.sh test
-
-      - name: Run flag searcher test
-        run: uv run pytest backend/tests/test_flag_searcher.py
+          node-version: 22
+      - run: cd frontend && npm install && npm run build
