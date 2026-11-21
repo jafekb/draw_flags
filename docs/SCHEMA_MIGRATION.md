@@ -190,7 +190,9 @@ for flag in flags.flags:
 city_flags = [f for f in flags.flags if f.category == "city"]
 
 # Get all US state flags
-us_state_flags = [f for f in flags.flags if f.country == "United States" and f.entity_type == "state"]
+us_state_flags = [
+    f for f in flags.flags if f.country == "United States" and f.entity_type == "state"
+]
 
 # Get all national flags
 national_flags = [f for f in flags.flags if f.category == "national"]

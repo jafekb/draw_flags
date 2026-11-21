@@ -27,6 +27,7 @@ class SearchRequest(BaseModel):
     continent: Optional[str] = None
     country: Optional[str] = None
 
+
 @app.post("/", response_model=FlagList)
 async def add_flag(request: SearchRequest):
     flags = flag_searcher.query(
@@ -35,8 +36,8 @@ async def add_flag(request: SearchRequest):
         filters={
             "categories": request.categories,
             "continent": request.continent,
-            "country": request.country
-        }
+            "country": request.country,
+        },
     )
     return flags
 ```
