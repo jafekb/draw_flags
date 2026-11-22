@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>What's That Flag?</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Flags" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -449,7 +455,7 @@
 
       appState.advanceTimer = setTimeout(() => {
         pickNextCard();
-      }, isCorrect ? 550 : 950);
+      }, isCorrect ? 120 : 950);
     }
 
     function renderStudy(masteredCount = 0, allMastered = false) {
@@ -593,11 +599,59 @@
 
     document.getElementById('browse-search').addEventListener('input', e => {
       appState.browseQuery = e.target.value;
-      renderBrowseGrid();
+  
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    async function prefetchOfflineImages(flags) {
+      if (!('caches' in window)) return;
+      try {
+        const cache = await caches.open('whatsthatflag-v1');
+        for (const f of flags) {
+          const url = f.censoredImageUrl || f.imageUrl;
+          if (!url) continue;
+          const hit = await cache.match(url);
+          if (!hit) {
+            fetch(url, { mode: url.startsWith('http') ? 'no-cors' : 'same-origin' })
+              .then((res) => { if (res) cache.put(url, res); })
+              .catch(() => {});
+          }
+        }
+      } catch (e) {}
+    }
+
+    renderBrowseGrid();
     });
     document.getElementById('browse-group').addEventListener('change', e => {
       appState.browseGroup = e.target.value;
-      renderBrowseGrid();
+  
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    async function prefetchOfflineImages(flags) {
+      if (!('caches' in window)) return;
+      try {
+        const cache = await caches.open('whatsthatflag-v1');
+        for (const f of flags) {
+          const url = f.censoredImageUrl || f.imageUrl;
+          if (!url) continue;
+          const hit = await cache.match(url);
+          if (!hit) {
+            fetch(url, { mode: url.startsWith('http') ? 'no-cors' : 'same-origin' })
+              .then((res) => { if (res) cache.put(url, res); })
+              .catch(() => {});
+          }
+        }
+      } catch (e) {}
+    }
+
+    renderBrowseGrid();
     });
 
     function bindCardModalClicks(root) {
@@ -683,11 +737,60 @@
           const curated = normalizeFlags(json.flags);
           if (curated.length > 0) {
             appState.flags = curated;
-            renderBrowseGrid();
+        
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    async function prefetchOfflineImages(flags) {
+      if (!('caches' in window)) return;
+      try {
+        const cache = await caches.open('whatsthatflag-v1');
+        for (const f of flags) {
+          const url = f.censoredImageUrl || f.imageUrl;
+          if (!url) continue;
+          const hit = await cache.match(url);
+          if (!hit) {
+            fetch(url, { mode: url.startsWith('http') ? 'no-cors' : 'same-origin' })
+              .then((res) => { if (res) cache.put(url, res); })
+              .catch(() => {});
+          }
+        }
+      } catch (e) {}
+    }
+
+    renderBrowseGrid();
             pickNextCard();
+            prefetchOfflineImages(curated);
           }
         }
       } catch (err) {}
+    }
+
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    async function prefetchOfflineImages(flags) {
+      if (!('caches' in window)) return;
+      try {
+        const cache = await caches.open('whatsthatflag-v1');
+        for (const f of flags) {
+          const url = f.censoredImageUrl || f.imageUrl;
+          if (!url) continue;
+          const hit = await cache.match(url);
+          if (!hit) {
+            fetch(url, { mode: url.startsWith('http') ? 'no-cors' : 'same-origin' })
+              .then((res) => { if (res) cache.put(url, res); })
+              .catch(() => {});
+          }
+        }
+      } catch (e) {}
     }
 
     renderBrowseGrid();
