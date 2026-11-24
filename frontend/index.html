@@ -128,7 +128,7 @@
       'Ontario','Prince Edward Island','Quebec','Saskatchewan','Northwest Territories','Nunavut','Yukon'
     ]);
 
-    const STORAGE_KEY = 'whatsthatflag_fsrs_quiz_v3';
+    const STORAGE_KEY = 'whatsthatflag_binge_v1';
     const memoryFallback = {};
 
     function defaultStore() {
@@ -137,7 +137,8 @@
         correctCount: 0,
         totalAnswered: 0,
         streak: 0,
-        recentTimesMs: []
+        recentTimesMs: [],
+        turnCount: 0
       };
     }
 
@@ -157,10 +158,15 @@
     }
 
     // Active Bank Filter: National + US States + Canadian Provinces (excluding historical year variants)
+    const VARIANT_RE = /\b(variant|ensign|standard|civil|naval|air\s+force|army|merchant|government|vertical|reverse|obverse|unofficial|proposed|alternative|construction|ratio)\b/i;
+
     function classifyActiveBank(f) {
       const name = (f.name || '').trim();
+      const cat = (f.category || '').toLowerCase();
+      const et = (f.entity_type || '').toLowerCase();
       if (/\(\d{3,4}|1[0-9]{3}|20[0-2][0-9]/.test(name)) return null;
-      if ((f.category || '').toLowerCase() === 'historical') return null;
+      if (cat === 'historical') return null;
+      if (VARIANT_RE.test(name) || VARIANT_RE.test(cat) || VARIANT_RE.test(et)) return null;
 
       if (US_STATES.has(name) && (f.category === 'subdivision' || f.entity_type === 'state')) {
         // Avoid matching the country Georgia
@@ -234,63 +240,46 @@
       return { rating: 2 };
     }
 
-    // FSRS Scheduler
+    // Iteration-Based Binge Scheduler (card-step spacing + 3-streak mastery)
     function getCardState(id) {
       const existing = appState.store.cards[id];
       if (existing) return existing;
-      return { id, stability: 0, difficulty: 5.0, reps: 0, lapses: 0, due: 0, lastReview: 0, state: 'new' };
+      return { id, masteryStreak: 0, reps: 0, lapses: 0, dueTurn: 0, state: 'new' };
     }
 
-    function scheduleCard(card, rating) {
-      const now = Date.now();
-      const dayMs = 86400000;
-      const elapsedDays = card.lastReview > 0 ? Math.max(0, (now - card.lastReview) / dayMs) : 0;
+    function scheduleCard(card, rating, turnCount) {
+      let { masteryStreak, reps, lapses } = card;
+      let gap = 20;
 
-      let { stability, difficulty, reps, lapses, state } = card;
-      let nextIntervalDays = 0;
-
-      if (state === 'new' || reps === 0) {
-        const initStability = { 1: 0.0015, 2: 0.5, 3: 1.0, 4: 4.0 };
-        const initDiff = { 1: 7.2, 2: 6.0, 3: 5.0, 4: 3.5 };
-        stability = initStability[rating];
-        difficulty = initDiff[rating];
-        reps = 1;
-        if (rating === 1) lapses += 1;
-        state = rating === 1 ? 'learning' : 'review';
-        nextIntervalDays = stability;
+      if (rating === 1) {
+        // Missed -> reset mastery streak, repeat in 3 questions
+        lapses += 1;
+        masteryStreak = 0;
+        gap = 3;
+      } else if (rating === 2) {
+        // Hesitant (Hard) -> keep streak, repeat in 8 questions
+        gap = 8;
+      } else if (rating === 3) {
+        // Steady (Good or distraction-filtered) -> +1 streak, space out
+        masteryStreak += 1;
+        gap = 20 * masteryStreak;
       } else {
-        const r = Math.pow(1 + elapsedDays / (9 * Math.max(0.1, stability)), -1);
-        difficulty = Math.min(10, Math.max(1, difficulty - 0.6 * (rating - 3)));
-
-        if (rating === 1) {
-          lapses += 1;
-          stability = Math.max(0.0015, stability * 0.25);
-          nextIntervalDays = 0.0015;
-          state = 'relearning';
-        } else {
-          const factor = rating === 2 ? 1.2 : rating === 3 ? 2.1 : 2.9;
-          const diffPenalty = Math.max(0.6, (11 - difficulty) / 6);
-          const spacingBonus = 1 + (1 - r) * 0.6;
-          stability = Math.min(365, Math.max(0.5, stability * factor * diffPenalty * spacingBonus));
-          nextIntervalDays = stability;
-          state = 'review';
-        }
-        reps += 1;
+        // Fast (Easy) -> +1 streak, space further
+        masteryStreak += 1;
+        gap = 45 * masteryStreak;
       }
 
+      reps += 1;
       return {
         id: card.id,
-        stability,
-        difficulty,
+        masteryStreak,
         reps,
         lapses,
-        state,
-        lastReview: now,
-        due: now + Math.round(nextIntervalDays * dayMs)
+        state: masteryStreak >= 3 ? 'mastered' : 'learning',
+        dueTurn: turnCount + gap
       };
     }
 
-    // Smart 4-option distractors (prefers same group: national with national, US state with US state, etc.)
     function pickChoices(target, deck) {
       const sameGroup = deck.filter(f => f.group === target.group);
       const pool = sameGroup.length >= 4 ? sameGroup : deck;
@@ -368,26 +357,32 @@
     document.getElementById('tab-browse').addEventListener('click', () => switchTab('browse'));
 
     function isMastered(card) {
-      return card.state === 'review' && card.stability >= 7;
+      return (card.masteryStreak || 0) >= 3;
     }
 
     function pickNextCard() {
       clearTimeout(appState.advanceTimer);
-      const now = Date.now();
+      const turn = appState.store.turnCount || 0;
       const deck = appState.flags;
       const due = [];
       const fresh = [];
+      const waiting = [];
       let masteredCount = 0;
 
       deck.forEach(f => {
         const c = getCardState(f.id);
-        if (isMastered(c)) masteredCount += 1;
+        if (isMastered(c)) {
+          masteredCount += 1;
+          return;
+        }
         if (c.state === 'new') fresh.push(f);
-        else if (c.due <= now) due.push({ flag: f, due: c.due });
+        else if (c.dueTurn <= turn) due.push({ flag: f, dueTurn: c.dueTurn });
+        else waiting.push({ flag: f, dueTurn: c.dueTurn });
       });
 
       const allMastered = deck.length > 0 && masteredCount === deck.length;
-      due.sort((a, b) => a.due - b.due);
+      due.sort((a, b) => a.dueTurn - b.dueTurn);
+      waiting.sort((a, b) => a.dueTurn - b.dueTurn);
 
       if (allMastered && !appState.practiceAllMode) {
         appState.currentFlag = null;
@@ -395,6 +390,9 @@
         appState.currentFlag = due[0].flag;
       } else if (fresh.length > 0) {
         appState.currentFlag = fresh[Math.floor(Math.random() * fresh.length)];
+      } else if (waiting.length > 0) {
+        // Never hit a wall: pull the soonest unmastered card so you can keep bingeing
+        appState.currentFlag = waiting[0].flag;
       } else if (appState.practiceAllMode && deck.length > 0) {
         appState.currentFlag = deck[Math.floor(Math.random() * deck.length)];
       } else {
@@ -434,7 +432,8 @@
 
       const inferred = inferFsrsRating(isCorrect, elapsedMs);
       const card = getCardState(appState.currentFlag.id);
-      const updated = scheduleCard(card, inferred.rating);
+      appState.store.turnCount = (appState.store.turnCount || 0) + 1;
+      const updated = scheduleCard(card, inferred.rating, appState.store.turnCount);
 
       appState.store.cards[appState.currentFlag.id] = updated;
       appState.store.totalAnswered = (appState.store.totalAnswered || 0) + 1;
