@@ -101,6 +101,11 @@ CA_PROVINCES = {
 
 HEADERS = {"User-Agent": "WhatsThatFlagQuizBot/1.0 (https://whatsthatflag.com)"}
 
+VARIANT_RE = re.compile(
+    r"\b(variant|ensign|standard|civil|naval|air\s+force|army|merchant|government|vertical|reverse|obverse|unofficial|proposed|alternative|construction|ratio)\b",
+    re.IGNORECASE,
+)
+
 
 def classify_group(flag: dict):
     name = (flag.get("name") or "").strip()
@@ -108,6 +113,8 @@ def classify_group(flag: dict):
     et = (flag.get("entity_type") or "").lower()
 
     if re.search(r"\(\d{3,4}|1[0-9]{3}|20[0-2][0-9]", name) or cat == "historical":
+        return None
+    if VARIANT_RE.search(name) or VARIANT_RE.search(et) or VARIANT_RE.search(cat):
         return None
     if name in US_STATES and (cat == "subdivision" or et == "state"):
         if name == "Georgia" and cat == "national":
